@@ -1,0 +1,32 @@
+```mermaid
+graph TB
+    subgraph WT["Workflow Templates = Chains of concept atoms"]
+        direction TB
+        W1["workflow:rent-apartment (type=concept)"]
+        S1["Step 1: List apartment (type=task template)"]
+        S2["Step 2: Screen tenant (type=task template)"]
+        S3["Step 3: Draft contract (type=task template)"]
+        S4["Step 4: Sign + handover (type=task template)"]
+
+        W1 --- S1
+        S1 -->|DEPENDS_ON| S2
+        S2 -->|DEPENDS_ON| S3
+        S3 -->|DEPENDS_ON| S4
+    end
+
+    subgraph INST["Instance: Rent Apt 3B to Juan"]
+        I1["task: List Apt 3B"]
+        I2["task: Screen Juan"]
+        I3["task: Draft contract Juan-3B"]
+        I4["task: Handover keys to Juan"]
+
+        I1 -->|DEPENDS_ON| I2
+        I2 -->|DEPENDS_ON| I3
+        I3 -->|DEPENDS_ON| I4
+    end
+
+    S1 -.->|DERIVED_FROM| I1
+    S2 -.->|DERIVED_FROM| I2
+    S3 -.->|DERIVED_FROM| I3
+    S4 -.->|DERIVED_FROM| I4
+```

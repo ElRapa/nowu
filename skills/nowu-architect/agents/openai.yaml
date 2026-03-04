@@ -1,0 +1,4 @@
+interface:
+  display_name: "nowu Architect"
+  short_description: "Shape and evaluate nowu architecture decisions"
+  default_prompt: "Analyze architecture options, score tradeoffs, and produce a clear decision with risks, mitigations, and required contract updates."

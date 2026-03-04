@@ -1,0 +1,31 @@
+```mermaid
+graph TB
+    subgraph MEMORY["Memory Architecture in know"]
+        subgraph WM["Working Memory (flow owns)"]
+            WM1["Session state"]
+            WM2["Current task context"]
+            WM3["Recent conversation"]
+        end
+        subgraph EM["Episodic Memory (know atoms)"]
+            EM1["type=lesson: What happened"]
+            EM2["type=decision: What we chose"]
+            EM3["Activity log: When things happened"]
+        end
+        subgraph SM["Semantic Memory (know atoms)"]
+            SM1["type=fact: Truths about the world"]
+            SM2["type=concept: Ideas and models"]
+            SM3["type=preference: User preferences"]
+        end
+        subgraph PM["Procedural Memory (soul + know)"]
+            PM1["AGENTS.md: How agents work"]
+            PM2["Workflow templates: How processes work"]
+            PM3["type=lesson: Learned procedures"]
+        end
+    end
+
+    WM -->|compacted to| EM
+    WM -->|extracted to| SM
+    EM -->|generalized to| SM
+    SM -.->|informs| WM
+    PM -.->|guides| WM
+```

@@ -1,0 +1,4 @@
+interface:
+  display_name: "nowu Shaper"
+  short_description: "Turn nowu goals into bounded execution tasks"
+  default_prompt: "Convert goals and architecture decisions into small tasks with strict scope boundaries, acceptance criteria, dependencies, and verification commands."
