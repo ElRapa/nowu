@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash(git commit*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Running VBR checks before commit...' && uv run pytest --tb=short -q && uv run mypy src/ --strict && uv run ruff check ."
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "deny": []
+  },
+    "mcpServers": {
+    "know": {
+      "command": "know-mcp",
+      "args": ["--data-dir", "~/.know"]
+    }
+  }
+}

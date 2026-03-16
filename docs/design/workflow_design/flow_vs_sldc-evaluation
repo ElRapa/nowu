@@ -1,0 +1,65 @@
+Your core insight is exactly right: **matching abstraction level to workflow phase is the key to preventing AI (and humans) from drowning in irrelevant context**. Here's the full analysis.
+## Your Workflow vs SDLC vs Agile
+Your nowu workflow is stronger than all three standard approaches for AI-native development, but each has something to teach.
+
+| Dimension | nowu (Shape Up-based) | SDLC (7 phases) | Agile/Scrum |
+|-----------|----------------------|-----------------|-------------|
+| Design abstraction | Explicit per-phase (this analysis) | HLD → LLD → Code (explicit but sequential)  [lilys](https://lilys.ai/en/notes/ai-coding-agents-20251225/claude-code-ai-agent-guide) | Emergent within sprint (implicit) |
+| Scope control | Fixed appetite + in/out scope per task  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/64120149/2b69e660-c251-4975-8a51-ad1b684eab2c/WORKFLOW.md) | Requirements spec (SRS) upfront  | Flexible within sprint goal  [notes.nicolevanderhoeven](https://notes.nicolevanderhoeven.com/sources/Article/Basecamp's+Shape+Up+-+how+different+is+it+really+from+Scrum) |
+| Quality gate | VBR (automated, machine-checkable)  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/64120149/2b69e660-c251-4975-8a51-ad1b684eab2c/WORKFLOW.md) | Separate Testing phase after all coding  | Definition of Done (team-defined) |
+| Knowledge capture | Curator role → `know` persistence  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/64120149/2b69e660-c251-4975-8a51-ad1b684eab2c/WORKFLOW.md) | Maintenance phase docs (often stale) | Retro notes (frequently lost)  [marmelab](https://marmelab.com/blog/2024/09/26/shape-up.html) |
+| AI context management | Subagents with scoped context windows | Not addressed | Not addressed |
+
+The SDLC's strength is its **explicit HLD-before-LLD-before-Code sequencing** . Your workflow does this implicitly through the Architect → Shaper → Implementer role chain, but making the abstraction levels explicit — as I'll show below — makes it machine-enforceable. [lilys](https://lilys.ai/en/notes/ai-coding-agents-20251225/claude-code-ai-agent-guide)
+
+Shape Up adds **fixed appetite and shaping** before building, which SDLC lacks. But Shape Up has no verification protocol, no knowledge capture, and no approval tiers — all of which your workflow adds. [fastcompany](https://www.fastcompany.com/91126753/when-to-shape-up-versus-be-more-agile)
+## HLD vs LLD: The Abstraction Ladder
+The Harness article describes the SDLC Design phase as a single step, but the testRigor analysis breaks it into two critical layers: [lilys](https://lilys.ai/en/notes/ai-coding-agents-20251225/claude-code-ai-agent-guide)
+
+- **HLD (High-Level Design)**: System architecture, module relationships, technology stack, data flows. Audience: architects, stakeholders. Answers **"what"** the system does.
+- **LLD (Low-Level Design)**: Classes, methods, algorithms, data structures. Audience: developers, testers. Answers **"how"** the system does it.
+
+The C4 Model refines this further into four zoom levels: System Context → Container → Component → Code. Each level serves a different audience and a different decision point. [visual-c4](https://www.visual-c4.com/blog/4-cluster-understanding-c4-model-levels)
+
+The critical insight from the testRigor article: **the flow is bidirectional**. Discoveries during LLD can force HLD changes. Your workflow already handles this — if an Implementer discovers a module boundary violation, it's a Tier 3 escalation back to the Architect. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/64120149/2b69e660-c251-4975-8a51-ad1b684eab2c/WORKFLOW.md)
+## Mapping Your Workflow to Abstraction Levels
+Here's the core framework: each workflow phase operates at a specific abstraction level, and should load **only the context appropriate to that level**.
+| Workflow Phase | Abstraction Level | C4 Level | Context to Load | Context to EXCLUDE |
+|---------------|-------------------|----------|-----------------|-------------------|
+| Intake + Architecture | HLD (System) | 1-2 | ARCHITECTURE.md, DECISIONS.md, V1_PLAN.md | Source code, test files |
+| Design Options + Eval | HLD → LLD | 2-3 | Above + contracts, module APIs | Internal implementations |
+| Task Shaping | LLD (Component) | 3 | Contracts, file tree, test structure | Architecture docs, vision |
+| Implementation + VBR | Code | 4 | In-scope files ONLY + tests | Architecture, plan, use cases |
+| Review | LLD + Code | 3-4 | Git diff, acceptance criteria, rules | Full architecture docs |
+| Capture & Close | HLD (System) | 1-2 | DECISIONS.md, PROGRESS.md, git log | Source code, tests |
+## Why Context Scoping Matters for AI
+Anthropic's own research on context engineering confirms your instinct. Three key findings: [anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+
+1. **Context rot is real**: As tokens increase, the model's ability to recall information degrades. It's not a hard cliff but a performance gradient — more tokens means less precision. [anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+2. **Minimal relevant context wins**: Chkk's research shows "less but sharper beats more but messy every single time" — dumping your entire codebase into a prompt is like forwarding your intern every email since 2018. [chkk](https://www.chkk.io/blog/your-ai-agent-needs-minimal-relevant-context-at-the-right-time)
+3. **Progressive disclosure**: Rather than pre-loading everything, let agents discover context through exploration — each interaction yields context that informs the next decision. [anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+
+The practical failure mode: during Phase 6 (Implementation), if the agent still has ARCHITECTURE.md in context from Phase 2, it may **re-litigate settled architecture decisions** instead of writing code. Anthropic calls this "anchoring on historical context". [chkk](https://www.chkk.io/blog/your-ai-agent-needs-minimal-relevant-context-at-the-right-time)
+## The Anti-Pattern Your USE_CASES.md Exposes
+Your USE_CASES.md is 55,616 characters. Loading it into every interaction would consume roughly 40% of a typical context window. But during Implementation (Phase 6), the agent only needs to know it's implementing **NF-01** — not read 35 use cases. The fix is referencing by ID (`"This task implements NF-01"`) rather than loading the full document. [anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+## How Your Subagents Enforce This
+Your Claude Code subagents (from our previous setup) naturally enforce context scoping because each runs in its own context window: [anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+
+- **`nowu-architect`** (Read-only tools): Can't accidentally load or edit code during architecture analysis. Operates at C4 Level 1-2. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/64120149/4d9cb7d0-fc8f-4bd6-938a-a8d20d2bb82f/ARCHITECTURE.md)
+- **`nowu-shaper`** (Read + Bash): Explores file structure but doesn't see implementation internals. Operates at C4 Level 3. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/64120149/2b69e660-c251-4975-8a51-ad1b684eab2c/WORKFLOW.md)
+- **`nowu-reviewer`** (Read + Bash): Gets fresh eyes on code without accumulated context pollution from earlier phases. [chkk](https://www.chkk.io/blog/your-ai-agent-needs-minimal-relevant-context-at-the-right-time)
+- **`nowu-curator`** (Read + Write docs only): Can update DECISIONS.md and PROGRESS.md but cannot touch source code — ensuring capture stays at the system level. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/64120149/cc179415-fd38-4770-b162-cb21ffa3680a/DECISIONS.md)
+
+The full context scoping guide with implementation details and anti-patterns is in the downloadable artifact:
+## Future: `know` as the Context Engine
+When your MemoryService is built (Step 02), `know` becomes the ultimate context scoping tool. Instead of loading raw files, the `flow` orchestrator can request context at the right abstraction level: [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/64120149/4d9cb7d0-fc8f-4bd6-938a-a8d20d2bb82f/ARCHITECTURE.md)
+
+```python
+# Architect phase: system-level context only
+context = know.subgraph(project="nowu", types=["DECISION", "TASK"], max_depth=2)
+
+# Implementer phase: component-level context only  
+context = know.subgraph(project="nowu", related_to="session-recovery", types=["ACTION"])
+```
+
+This is where your framework becomes genuinely self-developing: `know` serves the right atoms, `flow` orchestrates which abstraction level to request, and each agent role receives only what it needs — no more, no less. [anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
