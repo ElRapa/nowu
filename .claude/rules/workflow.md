@@ -1,27 +1,19 @@
 # Workflow Rules
 
-## Delivery Loop (from WORKFLOW.md)
-Every piece of work follows this sequence:
-1. **Intake**: gather request, use-case IDs, affected modules
-2. **Architecture analysis**: constraints, boundaries, failure modes
-3. **Design options**: 2-3 approaches with tradeoffs
-4. **Evaluation and decision**: score against criteria, record in DECISIONS.md
-5. **Task shaping**: split into ≤4h tasks with acceptance criteria
-6. **Implementation**: one shaped task at a time, TDD
-7. **VBR**: run tests/lint/checks, compare to acceptance criteria
-8. **Review**: architecture compliance, test quality, code standards
-9. **Capture**: persist decisions/lessons/tasks to DECISIONS.md (later: `know`)
+## 9-Step Cycle (see docs/WORKFLOW.md for full spec)
+S1 Intake → S2 Constraints → S3 Options → S4 Decision →
+S5 Shape  → S6 Implement   → S7 VBR     → S8 Review   → S9 Capture
+
+## Handoff Status Enum
+DRAFT | READY_FOR_ARCH | READY_FOR_OPTIONS | READY_FOR_DECISION |
+READY_FOR_SHAPING | READY_FOR_IMPL | READY_FOR_VBR | READY_FOR_REVIEW |
+READY_FOR_CAPTURE | DONE | CHANGES_REQUESTED | BLOCKED
 
 ## Approval Tiers
-- **Tier 1 (auto)**: docs edits, test additions, non-breaking internal refactors
-- **Tier 2 (batch)**: feature additions in approved scope, dependency changes
-- **Tier 3 (block)**: destructive migrations, architecture reversals, data integrity changes
+- **Tier 1** (auto): tests, docs, refactors following ADRs — just do it
+- **Tier 2** (batch): feature impl, design changes, new deps — create pending/ entry
+- **Tier 3** (block): merge to main, breaking change, new ADR, delete — STOP + ask
 
-## Task Sizing
-- NEVER accept tasks > 8 hours — break them down
-- Target ≤4 hours per implementation task
-- Each task must have: scope, acceptance criteria, dependencies, test strategy
-
-## Use-Case Traceability
-- Every feature maps to one or more use-case IDs (NF-01, PK-03, etc.)
-- Reference IDs in commit messages, task definitions, and test names
+## Execution Modes
+A: Full Cycle (S1→S9)  |  B: Implement Loop (S5→[S6-S7]×n→S8-S9)
+C: Single Step (S6-S9)  |  D: Architecture Only (S1→S4→S9)

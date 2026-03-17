@@ -1,22 +1,29 @@
 # Architecture Rules
 
-## Module Boundaries (D-002, D-007)
-- Modular monolith: `core`, `flow`, `bridge`, `soul`, `skills`
-- `know` is consumed via `KnowAdapter` / public API only (D-001)
-- Import direction: bridge → flow → core → know/soul
-- NEVER create circular dependencies between modules
+## Layer Dependency (never violate)
+Interface → Application → Domain
+     ↓            ↓
+Infrastructure (used by Application + Interface, NEVER by Domain)
 
-## Data Ownership
-- Only `know` persists structured memory (atoms: TASK, DECISION, ACTION, LESSON)
-- `soul/SESSION-STATE.md` is the WAL for in-flight session continuity
-- `flow` and `bridge` do NOT write to private DB tables
+## Module Boundaries
+core ← depended on by all | flow → core | bridge → flow,core
+soul → core | know → core
 
-## Contract-First Design
-- Define interfaces in `core/contracts/` before implementation
-- New cross-module interactions require a contract protocol
-- Violations caught by AST-based architecture tests in `tests/architecture/`
+All cross-module calls go through `core/contracts/*.py` Protocol classes.
+Direct instantiation across module boundaries is forbidden.
 
-## Decision Protocol
-- Every non-trivial choice gets a D-NNN entry in DECISIONS.md
-- Check existing decisions before proposing alternatives
-- If proposing to change an existing decision, escalate (Tier 3)
+## Import Check (run after every change)
+`uv run python -c "import ast, sys, pathlib; [...]"` or `uv run pytest tests/unit/core/test_architecture.py`
+
+## ADR compliance
+Before shaping or designing architecture (S2–S5), check `docs/DECISIONS.md`.
+Implementers (S6–S7) and reviewers (S8) must follow the active task spec and
+rules here; they do NOT load `docs/DECISIONS.md` directly.
+Any deviation from a relevant D-NNN = Tier 3 escalation. Do not workaround settled decisions.
+
+Scope by step:
+- S2–S4 (constraints, options, decision): may read DECISIONS.md and ARCHITECTURE.md.
+- S5 (shaping): may read the decision handoff, file tree, contracts; not DECISIONS.md.
+- S6–S7 (implement+VBR): only task spec, in-scope files, tests, pyproject.toml.
+- S8 (review): VBR report, changeset, task spec, git diff, this rules file.
+- S9 (capture): DECISIONS.md, PROGRESS.md, review, git log; never src/ or tests/.

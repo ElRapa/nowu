@@ -1,50 +1,23 @@
 # Code Style Rules
 
-## Python Standards
-- Python 3.11+ features encouraged (match, StrEnum, etc.)
-- Line length: 100 (ruff configured)
-- Strict mypy: all functions fully annotated, no `Any` without justification
+## Python Version
+Python 3.11+ features encouraged: match statements, tomllib, ExceptionGroup.
+
+## Tooling
+- `ruff` for lint + format (line-length=100, target-version=py311)
+- `mypy --strict` — no `Any` unless absolutely necessary, all functions typed
 
 ## Naming
-- Classes: `PascalCase`
-- Functions/methods: `snake_case`
-- Constants: `UPPER_SNAKE_CASE`
-- Private members: `_prefix`
-- Protocols/interfaces: descriptive names, not `I`-prefixed
+Classes: `PascalCase` | functions/methods: `snake_case` | constants: `UPPER_SNAKE`
+Private: prefix `_` | Type vars: `T`, `V`, or descriptive `TModel`
 
 ## Function Design
-- Keep functions < 20 lines
-- Single responsibility
-- Pure functions in `core` wherever possible
-- No side effects in domain logic
+- < 20 lines ideally, single responsibility
+- Pure functions in domain layer — no side effects
+- Prefer immutable value objects over mutable state
 
-## Imports
-```python
-# Standard library
-from pathlib import Path
-
-# Third-party
-import typer
-
-# Local — absolute imports from src root
-from nowu.core.contracts import MemoryPort
-from nowu.flow.session import SessionManager
-```
+## Imports (always in this order)
+1. stdlib  2. third-party  3. local (absolute: `from nowu.domain.models import X`)
 
 ## Docstrings
-Google-style, required on all public classes and functions:
-```python
-def create_task(title: str, scope: str) -> Task:
-    """Create a new task atom in the knowledge graph.
-
-    Args:
-        title: Human-readable task name.
-        scope: Project scope identifier.
-
-    Returns:
-        The created Task with generated ID.
-
-    Raises:
-        ValidationError: If title is empty or scope unknown.
-    """
-```
+Google-style for public APIs. One-line for internal helpers.

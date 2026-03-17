@@ -1,36 +1,38 @@
----
-name: implement-step
-description: Implement a specific V1 plan step. Use when you want to execute a single step from V1_PLAN.md with full TDD and VBR.
----
+# Skill: Implement Step Loop (Mode B — S5→[S6-S7]×n→S8-S9)
 
-# Implement V1 Step
+Use when: tasks are already shaped and approved. You are executing known work.
+Entry condition: one or more `state/tasks/task-<NNN>.md` files exist with
+status = READY_FOR_IMPL.
 
-Execute one step from docs/V1_PLAN.md following the full workflow.
+## Steps
 
-## Before Starting
-1. Read docs/V1_PLAN.md — find the step to implement
-2. Read docs/PROGRESS.md — confirm the step is next and dependencies are met
-3. Read docs/DECISIONS.md — check for relevant existing decisions
-4. Read docs/ARCHITECTURE.md Section 5 — if step involves `know` integration
+### 1. Read the active task queue
+List all tasks in `state/tasks/` with status READY_FOR_IMPL.
+Order by `depends_on` field (tasks with no deps first).
 
-## Execution
-1. Follow the step's own "Architecture analysis → Design options → Evaluation → Implementation → Verification" structure from V1_PLAN.md
-2. For each design option evaluation, present to human before proceeding
-3. Implement with TDD: tests first, then code, then refactor
-4. After implementation, run VBR:
-   ```bash
-   uv run pytest --tb=short -q
-   uv run mypy src/ --strict
-   uv run ruff check .
-   ```
-5. Use the `nowu-reviewer` agent for quality review
-6. Use the `nowu-curator` agent to capture decisions and update progress
+### 2. For each task (in order):
 
-## Commit
-```
-feat(<module>): <description> [<use-case-IDs>]
+**S5 verification** — confirm the task spec is complete:
+- `in_scope_files` is explicit (no wildcards)
+- `validation_trace` covers all `use_case_ids`
+- `estimated_hours` ≤ 4h
+If incomplete: stop, invoke `nowu-shaper` to repair, wait for human re-approval.
 
-Step NN: <step title>
-- <key changes>
-- <decisions made>
-```
+**S6+S7 — Implement + VBR**:
+Invoke `nowu-implementer` with the task spec path.
+If VBR status = CHANGES_REQUESTED: fix and re-run VBR (max 3 retries, then escalate).
+If VBR status = READY_FOR_REVIEW: proceed.
+
+**S8 — Review**:
+Invoke `nowu-reviewer` with VBR + task spec paths.
+If verdict = CHANGES_REQUESTED: return to S6 (max 2 retries, then escalate Tier 2).
+If verdict = APPROVED: proceed.
+
+**S9 — Capture**:
+Invoke `nowu-curator` with review report path.
+
+### 3. After all tasks complete
+Report to human:
+- Tasks completed (with UC-NNN coverage)
+- Decisions recorded (if any)
+- Suggested next step (next task, next feature, or ready for phase review)
