@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash(git commit*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run pytest --tb=short -q && uv run mypy src/ --strict && uv run ruff check ."
+          }
+        ]
+      },
+      {
+        "matcher": "Write(*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -c \"import sys,json; args=json.loads(sys.argv[1]); path=args.get('path',''); guard=open('state/tasks/.active-scope').read().strip() if __import__('os').path.exists('state/tasks/.active-scope') else ''; print('SCOPE_OK') if not guard or any(p in path for p in guard.split(',')) else (print(f'SCOPE VIOLATION: {path} not in allowed scope'), exit(1))\" '$TOOL_INPUT'"
+          }
+        ]
+      }
+    ]
+  }
+}

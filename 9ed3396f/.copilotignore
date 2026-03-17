@@ -1,0 +1,10 @@
+htmlcov/
+output/
+tmp/
+**/__pycache__/
+**/*.pyc
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
