@@ -99,7 +99,6 @@ Decision: choose Option A now, while designing contracts that allow a gradual mo
 | `flow` (new) | Session runtime, role pipeline (Architect/Shaper/Implementer/Reviewer/Curator), VBR loop | session lifecycle | `core`, `know`, `soul` |
 | `bridge` (new) | CLI/API entrypoints, approval queue interactions, project bootstrap commands | user interaction layer | `flow`, `core`, `know` |
 | `dash` (later) | Visualization and reporting UI | presentation only | `bridge` or `core` |
-| `skills` (new in repo) | Reusable role skills for AI agents (`nowu-architect`, `nowu-shaper`) | workflow knowledge | none |
 
 ### 4.2 Data ownership and boundaries
 

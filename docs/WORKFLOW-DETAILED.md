@@ -3,15 +3,18 @@
 > The standard repeatable process for developing any piece of software.
 > Steps are always the same. Depth varies by task size and risk.
 
-## The Octahedron Principle
+## C4 Perspective
 
-Every step maps to a specific layer of the Octahedron (see GLOBAL-MODEL.md).
-Agents and humans only see context from their current layer.
-Loading context from the wrong layer is the root cause of design drift and re-litigation.
+Every step operates at a specific C4 level:
 
-- Upper half (WHY): vision → use cases → requirements.
-- Equator: decisions (D-NNN) with `level:` field (product/system/module/component/code).
-- Lower half (WHAT): C4 L1–L4 — system context → containers → components → code.
+- **Above C4**: vision, use cases, requirements (problem space).
+- **C4 Level 1 (Context)**: systems and external actors.
+- **C4 Level 2 (Containers/Modules)**: major building blocks and their interactions.
+- **C4 Level 3 (Components)**: internal structure inside a container/module.
+- **C4 Level 4 (Code)**: classes, functions, tests.
+
+Agents and humans only see context from their current level.
+Loading context from the wrong level is the main cause of design drift and re‑litigation.
 
 ## S0 — Session Bookmark (optional)
 
@@ -35,7 +38,8 @@ that the current cycle is complete.
 ## The 9 Steps
 
 ### S1 — Intake
-**Octahedron layer**: Requirements (upper half)  
+
+**C4 position**: Above C4 (problem space: vision, use cases, requirements)  
 **Actor**: Human (+ main Claude agent if async)  
 **Purpose**: Translate an idea, bug, or need into a structured brief.
 
@@ -54,12 +58,13 @@ that the current cycle is complete.
 ---
 
 ### S2 — Architecture Analysis
-**Octahedron layer**: Equator (approaching from above) — C4 L1–L2  
-**Actor**: nowu-architect agent  
+
+**C4 position**: L1–L2 (system context and module boundaries)  
+**Actor**: nowu-constraints agent  
 **Purpose**: Identify constraints, affected modules, architectural risks.
 
 **Scope IN**: Module map, existing decisions, protocol interfaces  
-**Scope OUT**: Source code, test files, task-level details
+**Scope OUT**: Source code bodies, test files, task-level details
 
 **Requires**:
 - `state/intake/intake-NNN.md`
@@ -67,27 +72,34 @@ that the current cycle is complete.
 - `docs/DECISIONS.md`
 - `core/contracts/*.py`
 
-**Produces**: `state/arch/intake-NNN-constraints.md`
+**Produces**: `state/arch/intake-NNN-constraints.md`  
+**Template**: `templates/constraints-sheet.md`
 
 ---
 
 ### S3 — Design Options
-**Octahedron layer**: Equator — C4 L2  
-**Actor**: nowu-architect agent  
+
+**C4 position**: L2 (module / container interactions)  
+**Actor**: nowu-options agent  
 **Purpose**: Propose 2–3 approaches with explicit trade-offs.
 
-**Scope IN**: Constraints, module protocols, integration patterns  
-**Scope OUT**: Implementation code, test structure
+**Scope IN**: Constraints, module protocols, module `__init__.py` surfaces  
+**Scope OUT**: Implementation internals, test structure
 
-**Requires**: `state/arch/intake-NNN-constraints.md` + contracts
+**Requires**:
+- `state/arch/intake-NNN-constraints.md`
+- `core/contracts/*.py`
+- `src/nowu/<module>/__init__.py` (public surface only)
 
-**Produces**: `state/arch/intake-NNN-options.md` (2–3 options, recommendation)
+**Produces**: `state/arch/intake-NNN-options.md` (2–3 options, recommendation)  
+**Template**: `templates/options-sheet.md`
 
 ---
 
 ### S4 — Decision 🛑 (VALIDATION GATE)
-**Octahedron layer**: Equator  
-**Actor**: nowu-architect (proposes) + Human (approves)  
+
+**C4 position**: L2 (choosing between module-level options)  
+**Actor**: nowu-decider (proposes) + Human (approves)  
 **Purpose**: Record which option to build AND validate it solves the right problem.
 
 **Two checks**:
@@ -101,20 +113,34 @@ that the current cycle is complete.
 - Is the effort within the stated appetite?
 - Does this create unacceptable constraints downstream?
 
-**Produces**: `docs/DECISIONS.md` entry (D-NNN, with `level:` field set)  
-**Template**: `templates/decision.md`
+**Requires**:
+- `state/arch/intake-NNN-options.md`
+- `docs/DECISIONS.md`
+
+**Produces**:
+- `docs/DECISIONS.md` entry (D-NNN, with `level:` field: product/system/module/component/code)
+- `state/arch/intake-NNN-decision.md` (handoff for shaping)  
+**Template**: `templates/decision.md`, `templates/decision-handoff.md`
 
 This step is the first validation gate: “Are we planning to build the right thing?”
 
 ---
 
 ### S5 — Shaping 🛑 (VALIDATION GATE)
-**Octahedron layer**: Lower half — C4 L3 (component level)  
+
+**C4 position**: L3 (components: files, classes, internal services)  
 **Actor**: nowu-shaper (proposes) + Human (approves)  
 **Purpose**: Break decision into bounded, TDD-ready tasks. ≤4h each.
 
-**Scope IN**: Decision D-NNN, file tree, protocol interfaces  
-**Scope OUT**: Architecture docs, vision docs, source code bodies
+**Scope IN**: Decision D-NNN, file tree, protocol interfaces, test tree  
+**Scope OUT**: Architecture docs, vision docs, source code bodies outside scope
+
+**Requires**:
+- `state/arch/intake-NNN-decision.md`
+- File tree of affected modules
+- `core/contracts/*.py`
+- `tests/` structure
+- `docs/PROGRESS.md`
 
 **Human validates before approving**:
 
@@ -131,12 +157,19 @@ problem be solved?
 ---
 
 ### S6 — Implementation
-**Octahedron layer**: Lower half — C4 L4 (code level)  
-**Actor**: Main Claude agent (or future nowu-implementer)  
+
+**C4 position**: L4 (code: classes, functions, tests)  
+**Actor**: nowu-implementer agent (or main Claude session)  
 **Purpose**: Write code + tests. TDD. Stay within `in_scope_files`.
 
-**Scope IN**: Task spec + `in_scope_files` ONLY (nothing else!)  
-**Scope OUT**: All architecture docs, other modules, `DECISIONS.md`
+**Scope IN**: Task spec + `in_scope_files` ONLY (nothing else)  
+**Scope OUT**: Architecture docs, other modules, `DECISIONS.md`, upstream artifacts
+
+**Requires**:
+- `state/tasks/task-NNN.md`
+- Files listed in `in_scope_files`
+- Related test files
+- `pyproject.toml`
 
 **TDD cycle** (per acceptance criterion):
 
@@ -144,7 +177,8 @@ problem be solved?
 2. GREEN: minimal implementation to pass  
 3. REFACTOR: clean up while keeping green  
 
-**Produces**: `state/changes/changes-task-NNN.md`
+**Produces**: `state/changes/changes-task-NNN.md`  
+**Template**: `templates/changeset.md`
 
 At natural stopping points (e.g. after a major AC turns green), optionally update
 `state/SESSION-STATE.md` with the current step (S6), `task_id`, and next checkpoint.
@@ -152,8 +186,9 @@ At natural stopping points (e.g. after a major AC turns green), optionally updat
 ---
 
 ### S7 — VBR (Verify Before Responding)
-**Octahedron layer**: Code (AST boundary check = lightweight CPG Layer 1)  
-**Actor**: Automated + main agent  
+
+**C4 position**: L4 (code, with lightweight structural checks)  
+**Actor**: nowu-implementer + automation  
 **Purpose**: Mechanically verify code quality and scope compliance.
 
 **Automated gates**:
@@ -162,19 +197,37 @@ At natural stopping points (e.g. after a major AC turns green), optionally updat
 uv run pytest --tb=short -q
 uv run mypy src/ --strict
 uv run ruff check .
-git diff --name-only HEAD  # compare vs in_scope_files
+# compare changed files vs in_scope_files
+git diff --name-only HEAD
 ```
+
+**Requires**:
+- `state/changes/changes-task-NNN.md`
+- `state/tasks/task-NNN.md`
 
 **Produces**: `state/vbr/vbr-task-NNN.md`  
 **Template**: `templates/vbr-report.md`  
+
 **Rule**: Never proceed to S8 with any FAIL. Fix and re-run.
 
 ---
 
 ### S8 — Review
-**Octahedron layer**: Code → Component (zooming out)  
-**Actor**: nowu-reviewer agent (fresh context — no inheritance from S6)  
+
+**C4 position**: L4 → L3 (zooming out from code to component intent)  
+**Actor**: nowu-reviewer agent (fresh context)  
 **Purpose**: Human-quality check. Verification + Validation.
+
+**Scope IN**:
+- `state/vbr/vbr-task-NNN.md` (VBR evidence)
+- `state/changes/changes-task-NNN.md` (what changed)
+- `state/tasks/task-NNN.md` (acceptance criteria + validation_trace)
+- `git diff` (actual changes)
+- `.claude/rules/architecture.md` (boundaries)
+
+**Scope OUT**:
+- Full architecture docs, plan, vision (upstream)
+- Other tasks’ artifacts
 
 **Verification** (built it right?):
 
@@ -185,29 +238,42 @@ git diff --name-only HEAD  # compare vs in_scope_files
 
 **Validation** (built the right thing?):
 
-- Tests are meaningful, not just green  
-- Each AC provably covers its use case via `validation_trace`  
-- If outcome differs from validation intent: `CHANGES_REQUESTED`  
+- Each acceptance criterion is meaningful, not just “makes tests green”  
+- Each use case in `validation_trace` is covered by ≥1 passing AC  
+- The final behavior matches the original intent in the intake/decision chain  
 
-**Produces**: `state/reviews/review-task-NNN.md` + commit message  
+**Produces**: `state/reviews/review-task-NNN.md`  
 **Template**: `templates/review-report.md`
 
 ---
 
 ### S9 — Capture
-**Octahedron layer**: Back to equator (system-level view)  
+
+**C4 position**: L1–L2 (zooming back out to system/module)  
 **Actor**: nowu-curator agent  
-**Purpose**: Close the loop. Record decisions, lessons, commit, update progress.
+**Purpose**: Close the loop. Record decisions, lessons, progress, and commit.
+
+**Scope IN**:
+- `state/reviews/review-task-NNN.md`
+- `docs/DECISIONS.md`
+- `docs/PROGRESS.md`
+- `git log`
+
+**Scope OUT**:
+- `src/` and `tests/` (implementation details)
 
 **Actions**:
 
-1. Update task status to DONE in `state/tasks/`  
-2. Update `docs/PROGRESS.md`  
-3. Append new decisions (if discovered during S6–S8) to `docs/DECISIONS.md`  
-4. Write `state/capture/capture-task-NNN.md`  
-5. Commit with generated message from review report  
+1. Update task status to DONE in `state/tasks/` and/or `docs/PROGRESS.md`  
+2. Append new decisions to `docs/DECISIONS.md` if review surfaced any  
+3. Write `state/capture/capture-task-NNN.md` with what/why/lessons  
+4. Compose or confirm commit message and ensure code is committed  
 
-**Produces**: Committed code, updated PROGRESS.md, capture record
+**Produces**:
+- Updated `docs/PROGRESS.md`
+- Optional updates in `docs/DECISIONS.md`
+- `state/capture/capture-task-NNN.md`
+- A commit that reflects the work
 
 After Capture, you may clear or reset `state/SESSION-STATE.md` to indicate
 that the current cycle is complete.

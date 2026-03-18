@@ -2,7 +2,8 @@
 ## D-NNN — <title>
 
 **Date**: YYYY-MM-DD
-**Status**: DRAFT | ACCEPTED | DEFERRED | REJECTED | SUPERSEDED_BY D-NNN
+**Status**: DRAFT | ACCEPTED | DEFERRED | REJECTED | SUPERSEDED
+**Superseded By**: D-NNN (optional)
 **Level**: product | system | module | component | code
 **Intake**: intake-<YYYY-MM-DD>-<slug>
 **Use Cases**: [UC-NNN]

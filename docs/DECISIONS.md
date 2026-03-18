@@ -1,8 +1,8 @@
 # nowu Architectural Decisions
 
 <!-- Template for new entries: templates/decision.md -->
-<!-- Level values: product | system | module | component | code -->
-<!-- Levels map to the Octahedron equator in docs/GLOBAL-MODEL.md -->
+<!-- Template for new entries: templates/decision.md
+     Level values (decision zoom): product | system | module | component | code -->
 
 ---
 
@@ -204,41 +204,6 @@ Focus v1 on NF-01..NF-07 plus PK-01/PK-03 and XP-01 as enabling coverage.
 
 ### Consequences
 Keeps v1 achievable while preserving expansion path for domain-specific capabilities.
-
----
-
-## D-011 — Create dedicated architecture and shaping skills for AI consistency
-
-**Date:** 2026-03-04 | **Status**: ACCEPTED | **Level**: system  
-**Intake**: Workflow tooling | **Use Cases**: all
-
-### Context
-Repeated architecture/tradeoff and task-shaping work benefits from reusable process constraints.
-
-### Decision
-Create `skills/nowu-architect` and `skills/nowu-shaper`, validate them, and
-install copies to the local skills directory.
-
-### Consequences
-Stronger consistency across sessions and reduced prompt drift for planning tasks.
-
----
-
-## D-012 — Establish Step 01 baseline with explicit contracts and AST boundary tests
-
-**Date:** 2026-03-04 | **Status**: ACCEPTED | **Level**: module  
-**Intake**: Step 01 | **Use Cases**: all
-
-### Context
-Step 01 required a safe implementation base before runtime features.
-
-### Decision
-Implement package scaffold under `src/nowu`, define contract protocols in
-`core/contracts`, and enforce module import policy via AST-based architecture tests.
-
-### Consequences
-Future steps can add behavior without uncontrolled cross-module coupling;
-violations are caught early in tests.
 
 ---
 

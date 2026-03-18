@@ -1,4 +1,4 @@
-# C4 Model and Code Property Graph — nowu Reference
+# GLOBAL-MODEL - C4 Model and Code Property Graph — nowu Reference
 
 ## C4 Model (primary — use today)
 
