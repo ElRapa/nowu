@@ -30,164 +30,107 @@ Dedicated VS Code agents run each step. See `docs/WORKFLOW.md` for the full refe
 
 ## 3) Steps and Mini-plans
 
+> **Note**: Each step is executed via the S1–S9 workflow (see `docs/WORKFLOW.md`).
+> The mini-plans below record the **pre-decided direction only** — settled design choices
+> that S2–S5 agents should treat as constraints, not re-litigate.
+> Detailed task specs, acceptance criteria, and done-criteria are produced by S5 Shaping.
+
 ## Step 01 - Repo and Contract Baseline ✅ Done
 Use cases: `NF-01`, `NF-02`, `NF-03`
 
-Architecture analysis:
-- define package/module boundaries (`core`, `flow`, `bridge`, `soul`)
-- define what remains external (`know`)
-
 Design options:
-- A: flat module layout under one package
-- B: per-module package with explicit interface files
+- A: flat layout — all source in `src/nowu/`, no sub-packages
+- B: per-module packages — `src/nowu/core/`, `src/nowu/flow/`, `src/nowu/bridge/`, etc.
 
-Evaluation and decision:
-- choose B for clearer agent boundaries and easier ownership
-
-Detailed implementation plan:
-1. create Python workspace scaffold and `pyproject.toml`
-2. add interface contracts (`core/contracts/*.py`)
-3. add architecture compliance tests (import boundaries)
-
-Implementation + verification:
-- tests: scaffold tests + boundary checks
-- done when modules import cleanly and boundaries are enforced
+Decision: **B** — each module maps to a VS Code agent context and enforces the import boundary rules at the filesystem level.
 
 ## Step 02 - Memory Integration Layer
 Use cases: `NF-01`, `NF-02`, `PK-03`, `XP-01`
 **Status**: ⏳ Next
 
-Architecture analysis:
-- identify required `know` operations and failure modes
-- define session-to-knowledge write policy
-
 Design options:
-- A: direct `kb.*` calls everywhere (where `kb` is a `KnowledgeBase` instance)
+- A: call `kb.*` / `KnowAdapter` directly from `flow` and `bridge` wherever memory is needed
 - B: `core/memory_service.py` wrapper around `KnowledgeBase` + `KnowAdapter`
 
-Evaluation and decision:
-- choose B to centralize retries, validation, and project scoping
+Decision: **B** — centralizes retries, validation, and project scoping in one place.
 
-Detailed implementation plan:
-1. implement `MemoryService` with typed methods (`record_decision`, `create_task`, `recall_context`, `task_overview`)
-2. add input validation for grades/scope/tags
-3. add integration tests against a temp `KNOW_DATA_DIR`
-
-Implementation + verification:
-- tests cover create/search/link/query/subgraph calls
-- done when flow/bridge can use memory service without raw `kb.*` calls
+Key orientation for S2:
+- `core/memory_service.py` implements the existing `MemoryService` protocol
+- Required operations: `record_decision`, `create_task`, `recall_context`, `task_overview`
+- Must use `KnowledgeBase(kb)` + `KnowAdapter(kb)`, never raw `kb.*` calls from `flow`/`bridge`
+- Integration tests use a temp `KNOW_DATA_DIR`
 
 ## Step 03 - Session Runtime and WAL
 Use cases: `NF-01`, `NF-04`
 
-Architecture analysis:
-- define minimal durable session state for crash recovery
-- define what is WAL-only vs persisted to `know`
-
 Design options:
-- A: markdown WAL only
-- B: markdown WAL + mirrored session summary atom
+- A: write-ahead log (WAL) only — append events to `soul/SESSION-STATE.md`, replay on resume
+- B: WAL + mirrored session summary atom in `know` — same WAL, but also persist a summary atom after each session
 
-Evaluation and decision:
-- choose B for auditability and recovery confidence
+Decision: **B** — the `know` atom provides structured recall and cross-session auditability; WAL alone is hard to query.
 
-Detailed implementation plan:
-1. implement `flow/session.py` state model + WAL writer
-2. implement resume logic from `soul/SESSION-STATE.md`
-3. implement session-end summarization contract
+Key orientation for S2:
+- `flow/session.py` state model + WAL writer to `soul/SESSION-STATE.md`
+- Resume logic reads `soul/SESSION-STATE.md` on startup
+- Session-end: summarize events → write lesson/decision atoms via `MemoryService`
 
-Implementation + verification:
-- tests for resume, append events, interrupted sessions
-- done when a killed session can restart and propose next action correctly
-
-## Step 04 - Role Pipeline (Architect/Shaper/Implementer/Reviewer)
+## Step 04 - Session Role Sequencer (`flow/orchestrator.py`)
 Use cases: `NF-02`, `NF-03`, `NF-04`
 
-Architecture analysis:
-- define role handoff artifacts and required invariants
+> The *development workflow* role pipeline (structured handoff artifacts, agent-per-step,
+> S1–S9 cycle) is already fully operational via the VS Code agent system.
+> This step covers the **runtime role sequencer** only.
 
 Design options:
-- A: free-form prompt handoffs
-- B: structured role payloads (`analysis`, `options`, `decision`, `task_spec`, `verification`)
+- A: fixed linear sequence (Intake → Constraints → Options → Decision → Shape → Implement → VBR → Review → Capture)
+- B: configurable DAG allowing parallel or skipped steps
 
-Evaluation and decision:
-- choose B to reduce ambiguity and improve automated checks
+Decision: **A** — linear is sufficient for v1 and far simpler to test; DAG adds complexity without a current use case.
 
-Detailed implementation plan:
-1. define payload schemas
-2. implement pipeline orchestrator in `flow/orchestrator.py`
-3. add automatic rejection for missing acceptance criteria
-
-Implementation + verification:
-- tests for handoff completeness and failure recycling
-- done when each role output can be consumed without human cleanup
+Key orientation for S2:
+- Implements `RoleOrchestrator` protocol from `core/contracts/session.py`
+- Enforces per-transition guards: reject if `SessionSnapshot` is missing required fields
 
 ## Step 05 - Bridge CLI and Approval Routing
 Use cases: `NF-05`, `PK-03`, `NF-07`
 
-Architecture analysis:
-- map command surface to user intents (`continue`, `status`, `today`, `approve`, `bootstrap`)
-
 Design options:
-- A: thin pass-through CLI
-- B: policy-aware CLI with approval queue metadata
+- A: thin CLI pass-through — forward commands to `flow`, no approval modeling
+- B: policy-aware CLI with approval queue — classify actions by tier, store pending approvals as objects in `soul/pending/`
 
-Evaluation and decision:
-- choose B so approvals become explicit, auditable objects
+Decision: **B** — approvals must be auditable and resumable; a pass-through loses the tier decision and requires manual re-evaluation after interruption.
 
-Detailed implementation plan:
-1. implement CLI commands in `bridge/cli.py`
-2. implement tier classification rules (Tier 1/2/3)
-3. implement pending queue representation in `soul/pending/`
-
-Implementation + verification:
-- CLI integration tests (golden output + state transitions)
-- done when approvals can be batched safely and low-risk work stays unblocked
+Key orientation for S2:
+- `bridge/cli.py` commands: `continue`, `status`, `today`, `approve`, `bootstrap`
+- Tier classification rules (Tier 1/2/3) in `bridge/`
+- Pending queue lives in `soul/pending/`
 
 ## Step 06 - Learning and Curation Loop
 Use cases: `NF-06`, `PK-04`, `XP-04`
 
-Architecture analysis:
-- define pattern detection sources (reviews, failures, repeated edits)
-- define contradiction detection thresholds
-
 Design options:
-- A: periodic batch-only curator
-- B: lightweight continuous signals + periodic curator review
+- A: batch-only — curator runs once per sprint, processes all accumulated signals
+- B: lightweight continuous signals — detect patterns on session end, curator reviews periodically with pre-filtered input
 
-Evaluation and decision:
-- choose B for earlier feedback with controlled noise
+Decision: **B** — batch-only delays feedback; continuous signal detection is cheap and surfaces issues earlier, while the curator gate controls noise.
 
-Detailed implementation plan:
-1. implement recurring pattern detector from task/review events
-2. implement contradiction scan using `know` connections + grades
-3. persist lessons/tasks for follow-up
-
-Implementation + verification:
-- tests with synthetic repeated-failure datasets
-- done when framework surfaces reusable lessons and conflict alerts
+Key orientation for S2:
+- Pattern detection sources: reviews, repeated failures, repeated edits
+- Contradiction scan via `know` connections + epistemic grades
+- Lessons/tasks persisted back to `know` for follow-up
 
 ## Step 07 - Project Bootstrap and Cross-project Context
 Use cases: `NF-07`, `XP-01`, `XP-03`
 
-Architecture analysis:
-- define project namespace model and safety boundaries
-
 Design options:
-- A: manual project setup only
-- B: bootstrap command that creates project seed atoms + files
+- A: manual setup — human creates `soul/`, config files, and initial `know` atoms by hand
+- B: `nowu bootstrap <project>` command seeds atoms (concept, decision, task types) and generates required files with `project_scope=[project]`
 
-Evaluation and decision:
-- choose B to make onboarding repeatable and low-friction
+Decision: **B** — manual setup is error-prone and undocumented; a bootstrap command encodes the correct starting state and is testable.
 
-Detailed implementation plan:
-1. implement `nowu bootstrap <project>`
-2. seed project concept/decision/task atoms
-3. add cross-project recall command with explicit link confirmation
-
-Implementation + verification:
-- end-to-end test: create project, capture knowledge, discover cross-project item, link safely
-- done when a new project can be started in one command with isolated scope
+Key orientation for S2:
+- `nowu bootstrap <project>` seeds concept/decision/task atoms with `project_scope=[project]`
+- Cross-project recall uses explicit link confirmation (no silent merging)
 
 ## 4) Exit Criteria for v1
 
