@@ -99,7 +99,7 @@ Atom: "Use PostgreSQL" (DECISION)
 
 The existing markdown artifacts (FRAMING.md, SHAPE.md) can be *generated views* from these atoms, rather than the source of truth. This is exactly the "JSON truth, SQLite index" principle already in `know` — extended to agent workflow artifacts.
 
-**Impact:** Medium effort (requires the `know_adapter` layer in nowu). High value because it means cross-project knowledge automatically accumulates — a design decision made in the aperitif project that is also relevant to real-estate digitalization becomes discoverable via `know.search()`.
+**Impact:** Medium effort (requires the `know_adapter` layer in nowu). High value because it means cross-project knowledge automatically accumulates — a design decision made in the aperitif project that is also relevant to real-estate digitalization becomes discoverable via `kb.search()`.
 ### Improvement 3: Add Knowledge Versioning to `know`
 **Source:** Guo et al.'s continuous learning recommendation; Palantir's feedback loops[^4][^2]
 

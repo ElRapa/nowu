@@ -1,14 +1,14 @@
 # nowu Architecture
 
-Version: 1.1
-Date: 2026-03-04
+Version: 1.2
+Date: 2026-03-22
 Status: Active draft for implementation kickoff
 
 ## 1) Problem and Target
 
 `nowu` is an AI-first framework for running multi-project work with durable memory, structured decision-making, and reliable execution loops.
 
-The key constraint is that `know` already exists (v0.2.0) and should be reused as the memory substrate, not rebuilt.
+The key constraint is that `know` already exists (v0.4.0) and should be reused as the memory substrate, not rebuilt.
 
 ### Primary v1 use-case focus
 
@@ -93,7 +93,7 @@ Decision: choose Option A now, while designing contracts that allow a gradual mo
 
 | Module | Responsibility | Owns | Depends on |
 |---|---|---|---|
-| `know` (external package) | Durable knowledge graph, search, task/today view, versions, subgraph context | `~/.know` data | none |
+| `know` (external package) | Durable knowledge graph, search, task queries, versions, subgraph context | `~/.know` data | none |
 | `soul` | Human-authored identity and governance docs (`VISION`, `AGENTS`, WAL conventions) | markdown policies | none |
 | `core` (new) | Domain contracts and use-case level services for nowu | interfaces, policies | `know`, `soul` |
 | `flow` (new) | Session runtime, role pipeline (Architect/Shaper/Implementer/Reviewer/Curator), VBR loop | session lifecycle | `core`, `know`, `soul` |
@@ -111,7 +111,7 @@ Decision: choose Option A now, while designing contracts that allow a gradual mo
 
 1. User invokes `nowu` from CLI (`bridge`).
 2. `flow` opens/resumes session and writes WAL checkpoint.
-3. `flow` asks `know` for relevant context (`today`, `search`, `subgraph`).
+3. `flow` asks `know` for relevant context (`query_atoms`, `search`, `subgraph`).
 4. Role-specific logic runs (Architect/Shaper/Implementer/Reviewer).
 5. Actions, tasks, decisions, lessons are persisted to `know`.
 6. Reviewer/VBR gate decides pass, retry, or escalation.
@@ -126,18 +126,36 @@ The framework uses itself:
 - Cross-project links are explicit (`related_to`, `supports`, `refines`) after discovery.
 - Planning and delivery loops consume these atoms just like any other project.
 
-## 5) know Usage Contract (v1)
+## 5) know Usage Contract (v1 — updated for know v0.4.0)
 
-Use only public `know` APIs and `KnowAdapter`.
+Use the `KnowledgeBase` class and `KnowAdapter` (with DI).
+See `know/docs/adr/ADR-0005-class-based-api.md` for the full decision record.
+See `know/docs/framework/NOWU_KNOW_USAGE_CONTRACTS.md` for detailed contracts.
 
-Required operations for nowu modules:
+Required setup:
 
-- Initialization: `know.init(data_dir=...)`
-- Persist knowledge: `know.create_atom(...)`, `know.update_atom(...)`
-- Link knowledge: `know.add_connection(...)`
-- Query/retrieval: `know.query_atoms(...)`, `know.search(...)`, `know.today(...)`
-- Context extraction: `know.subgraph(...).to_prompt(...)`
-- Audit/history: `know.get_atom_versions(...)`
+```python
+from know import KnowledgeBase, KnowAdapter
+
+kb = KnowledgeBase(data_dir=...)  # or use context manager
+adapter = KnowAdapter(kb)          # DI required since v0.4.0
+```
+
+Required operations for nowu modules (all instance methods on `kb`):
+
+- Persist knowledge: `kb.create_atom(...)`, `kb.update_atom(...)`
+- Link knowledge: `kb.add_connection(...)`
+- Query/retrieval: `kb.query_atoms(...)`, `kb.search(...)`
+- Context extraction: `kb.subgraph(...).to_prompt(...)`
+- Audit/history: `kb.get_atom_versions(...)`
+- Lifecycle: `kb.close()` or `with KnowledgeBase() as kb: ...`
+
+Removed in v0.4.0:
+
+- `know.init()` — replaced by `KnowledgeBase()` constructor
+- `know.today()` — use `kb.query_atoms(type=KnowledgeType.TASK, ...)` + date filter
+- `KnowAdapter()` no-arg — now requires `KnowAdapter(kb)`
+- `KnowAdapter.create_action()` / `.create_task()` — construct `KnowledgeAtom` directly
 
 Guidance:
 

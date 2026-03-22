@@ -1,4 +1,4 @@
-"""Memory service contract for integrating with know."""
+"""Memory service contract for integrating with know (v0.4.0+)."""
 
 from __future__ import annotations
 
@@ -8,7 +8,10 @@ from .types import DecisionRecord
 
 
 class MemoryService(Protocol):
-    """Stable memory operations required by flow and bridge."""
+    """Stable memory operations required by flow and bridge.
+
+    Implementation delegates to know.KnowledgeBase instance methods.
+    """
 
     def record_decision(self, decision: DecisionRecord) -> str:
         """Persist a decision and return memory id."""
@@ -22,8 +25,13 @@ class MemoryService(Protocol):
     ) -> str:
         """Create task memory entry and return id."""
 
-    def today_view(self, project: str | None = None) -> dict[str, Any]:
-        """Return a project or global today-view payload."""
+    def task_overview(self, project: str | None = None) -> dict[str, Any]:
+        """Return a project or global task overview payload.
+
+        Replaces the former today_view() — know.today() was removed in v0.4.0.
+        Implementation should use kb.query_atoms(type=KnowledgeType.TASK, ...)
+        with date filtering.
+        """
 
     def recall_context(
         self,

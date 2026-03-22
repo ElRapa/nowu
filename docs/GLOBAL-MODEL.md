@@ -37,7 +37,7 @@ on MemoryService?"
 
 **Today (v1):** Lightweight CPG-adjacent — AST-based import boundary tests.
 **Future (v2+):** `know` stores code atoms with typed edges (CALLS, FLOWS_TO,
-IMPLEMENTS) enabling `know.subgraph(from="MODULE:flow", depth=3)` to return
+IMPLEMENTS) enabling `kb.subgraph(from="MODULE:flow", depth=3)` to return
 a queryable C4 L2 view without loading raw files.
 
 ## Why C4 Beats CPG for Visualisation

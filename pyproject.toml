@@ -9,7 +9,12 @@ description = "AI-first framework runtime scaffold"
 readme = "ARCHITECTURE.md"
 requires-python = ">=3.11"
 authors = [{ name = "Raphael Weidemann" }]
-dependencies = []
+dependencies = [
+  "know>=0.4.0",
+]
+
+[tool.uv.sources]
+know = { path = "../know", editable = true }
 
 [project.optional-dependencies]
 dev = [

@@ -28,7 +28,7 @@ semantic CPG — queryable at any abstraction level.
 ## Query Power
 ```python
 # C4 L2 view — which modules does `flow` depend on?
-know.subgraph(from_atom="MODULE:flow", edge_types=["DEPENDS_ON"], depth=1)
+kb.subgraph(from_atom="MODULE:flow", edge_types=["DEPENDS_ON"], depth=1)
 
 # Validation trace — what use case drives this function?
 know.path(from_atom="FUNCTION:recover", to_atom="USE_CASE:*")

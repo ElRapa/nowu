@@ -54,8 +54,7 @@ class Session:
 
 ```python
 from dataclasses import dataclass
-from know.storage import Storage
-from know.models import KnowledgeAtom, AtomType
+from know import KnowledgeBase, KnowledgeAtom, KnowledgeType
 
 @dataclass
 class SessionSummaryResult:
@@ -66,14 +65,13 @@ class SessionSummaryResult:
 def summarize_session(events: list[SessionEvent], llm_client) -> SessionSummaryResult:
     """
     Call LLM with events formatted as conversation transcript.
-    Use prompt from know/prompts/session_summary.txt.
     Parse JSON response into SessionSummaryResult.
     """
 
 def persist_summary(
     result: SessionSummaryResult,
     session: Session,
-    storage: Storage,
+    kb: KnowledgeBase,
 ) -> list[KnowledgeAtom]:
     """
     Write one lesson atom (summary) + one decision atom per decision.

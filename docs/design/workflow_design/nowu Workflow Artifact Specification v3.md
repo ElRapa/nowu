@@ -707,7 +707,7 @@ When the `know` module is built, each artifact naturally maps to atom types:
 | Capture Record | `CAPTURE` | → `DECISION`, → `TASK`, → `LESSON` |
 | Lesson | `LESSON` | → `CAPTURE`, → `MODULE` |
 
-This means `know.subgraph(related_to="NF-01")` would return the entire chain: use case → intake → decision → tasks → reviews → lessons. The traceability is built into the data model.[^9]
+This means `kb.subgraph(related_to="NF-01")` would return the entire chain: use case → intake → decision → tasks → reviews → lessons. The traceability is built into the data model.[^9]
 
 ---
 

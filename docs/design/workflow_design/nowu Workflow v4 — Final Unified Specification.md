@@ -97,7 +97,7 @@ When `know` stores atoms with typed connections, it becomes a lightweight CPG:[^
 - `FUNCTION("recover()") --CALLS--> FUNCTION("recall()")` = CPG call graph edge
 - `VARIABLE("session_state") --FLOWS_TO--> FUNCTION("store()")` = CPG data flow edge
 
-The key advantage: `know.subgraph(depth=2, from="MODULE:flow")` returns the C4 L2 view, while `know.subgraph(depth=4, from="FUNCTION:recover")` returns the CPG-level view — same data, different zoom levels. This eliminates the need to maintain separate diagrams at different levels.
+The key advantage: `kb.subgraph(depth=2, from="MODULE:flow")` returns the C4 L2 view, while `kb.subgraph(depth=4, from="FUNCTION:recover")` returns the CPG-level view — same data, different zoom levels. This eliminates the need to maintain separate diagrams at different levels.
 
 ***
 ## Part III: The Complete Workflow — Step by Step

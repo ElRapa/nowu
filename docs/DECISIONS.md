@@ -125,12 +125,14 @@ When agents need to collaborate across steps (future team features).
 The original nowu draft planned to implement a local `know` module from scratch.
 
 ### Decision
-Reuse the existing sibling project `know` (v0.2.0) through public API and `KnowAdapter`.
+Reuse the existing sibling project `know` (v0.4.0) through `KnowledgeBase` class API and `KnowAdapter(kb)`.
 No internal reimplementation in nowu.
 
 ### Consequences
 - Faster delivery, lower risk, and tighter contract boundaries.
 - nowu modules must not bypass `know`.
+- `know.init()` and flat module functions are gone; use `KnowledgeBase` instance methods.
+- `today()` removed; use `kb.query_atoms(type=KnowledgeType.TASK, ...)` + date filtering.
 
 ---
 

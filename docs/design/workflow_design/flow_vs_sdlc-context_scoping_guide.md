@@ -257,7 +257,7 @@ When your MemoryService (Step 02) is implemented, `know` becomes the context sco
 
 ```python
 # Phase-appropriate context retrieval
-context = know.subgraph(
+context = kb.subgraph(
     project="nowu",
     types=["DECISION", "TASK"],  # Only decisions and tasks, not code
     related_to="session-recovery",

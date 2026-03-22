@@ -1,7 +1,7 @@
 # nowu v1 Plan
 
-Date: 2026-03-04
-Status: Rebased on `know` v0.2.0 integration
+Date: 2026-03-22
+Status: Rebased on `know` v0.4.0 (class-based `KnowledgeBase` API)
 
 ## 1) v1 Objective
 
@@ -12,7 +12,7 @@ Deliver a usable `nowu` core that can:
 - shape and execute bounded work (`NF-03`)
 - route approvals safely (`NF-05`)
 - bootstrap and run at least one additional project context (`NF-07`)
-- leverage `know` for today view and cross-project recall (`PK-03`, `XP-01`)
+- leverage `know` for task queries and cross-project recall (`PK-03`, `XP-01`)
 
 ## 2) Delivery Strategy
 
@@ -57,20 +57,20 @@ Architecture analysis:
 - define session-to-knowledge write policy
 
 Design options:
-- A: direct `know.*` calls everywhere
-- B: `core/memory_service.py` wrapper around `KnowAdapter`
+- A: direct `kb.*` calls everywhere (where `kb` is a `KnowledgeBase` instance)
+- B: `core/memory_service.py` wrapper around `KnowledgeBase` + `KnowAdapter`
 
 Evaluation and decision:
 - choose B to centralize retries, validation, and project scoping
 
 Detailed implementation plan:
-1. implement `MemoryService` with typed methods (`record_decision`, `create_task`, `recall_context`, `today_view`)
+1. implement `MemoryService` with typed methods (`record_decision`, `create_task`, `recall_context`, `task_overview`)
 2. add input validation for grades/scope/tags
 3. add integration tests against a temp `KNOW_DATA_DIR`
 
 Implementation + verification:
-- tests cover create/search/link/today/subgraph calls
-- done when flow/bridge can use memory service without raw `know` calls
+- tests cover create/search/link/query/subgraph calls
+- done when flow/bridge can use memory service without raw `kb.*` calls
 
 ## Step 03 - Session Runtime and WAL
 Use cases: `NF-01`, `NF-04`

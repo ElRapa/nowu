@@ -25,10 +25,10 @@ When your MemoryService is built (Step 02), `know` becomes the ultimate context 
 
 ```python
 # Architect phase: system-level context only
-context = know.subgraph(project="nowu", types=["DECISION", "TASK"], max_depth=2)
+context = kb.subgraph(project="nowu", types=["DECISION", "TASK"], max_depth=2)
 
 # Implementer phase: component-level context only  
-context = know.subgraph(project="nowu", related_to="session-recovery", types=["ACTION"])
+context = kb.subgraph(project="nowu", related_to="session-recovery", types=["ACTION"])
 ```
 
 This is where your framework becomes genuinely self-developing: `know` serves the right atoms, `flow` orchestrates which abstraction level to request, and each agent role receives only what it needs — no more, no less. [anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
