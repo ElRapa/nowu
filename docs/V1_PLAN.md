@@ -14,18 +14,16 @@ Deliver a usable `nowu` core that can:
 - route approvals safely (`NF-05`)
 - bootstrap and run at least one additional project context (`NF-07`)
 - leverage `know` for task queries and cross-project recall (`PK-03`, `XP-01`)
+- ensure every deliverable traces back to a use case (`NF-09`)
 
 ## 2) Delivery Strategy
 
-Use incremental vertical slices. Every step contains:
+Use incremental vertical slices. Every step is executed via the **9-step S1–S9 workflow** (Intake → Capture) with dedicated VS Code agents.
 
-1. architecture analysis
-2. design options
-3. evaluation and decision
-4. detailed implementation plan
-5. implementation + verification
+Each feature must be traceable from code → test → acceptance criterion → use case ID (`NF-09`).
+Detailed task specs, acceptance criteria, and done-criteria are produced by S5 Shaping — not stored here.
 
-The **9-step S1–S9 workflow** (Intake → Capture) is the operational vehicle for all steps.
+See `docs/WORKFLOW.md` for the full reference.
 Dedicated VS Code agents run each step. See `docs/WORKFLOW.md` for the full reference.
 
 ## 3) Steps and Mini-plans
@@ -139,6 +137,7 @@ Key orientation for S2:
 3. Approval tiers are enforced with auditable queue state.
 4. Role pipeline runs with structured handoffs and VBR checks.
 5. Core decisions and lessons are persisted in `know` with links.
+6. Every merged task spec carries a complete `validation_trace` (code → test → AC → use case ID).
 
 ## 5) Out of Scope for v1
 
