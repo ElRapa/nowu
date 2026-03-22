@@ -2,6 +2,7 @@
 
 Date: 2026-03-22
 Status: Rebased on `know` v0.4.0 (class-based `KnowledgeBase` API)
+Workflow: 9-step cycle with VS Code agents operational (see `docs/WORKFLOW.md`)
 
 ## 1) v1 Objective
 
@@ -24,9 +25,12 @@ Use incremental vertical slices. Every step contains:
 4. detailed implementation plan
 5. implementation + verification
 
+The **9-step S1–S9 workflow** (Intake → Capture) is the operational vehicle for all steps.
+Dedicated VS Code agents run each step. See `docs/WORKFLOW.md` for the full reference.
+
 ## 3) Steps and Mini-plans
 
-## Step 01 - Repo and Contract Baseline
+## Step 01 - Repo and Contract Baseline ✅ Done
 Use cases: `NF-01`, `NF-02`, `NF-03`
 
 Architecture analysis:
@@ -51,6 +55,7 @@ Implementation + verification:
 
 ## Step 02 - Memory Integration Layer
 Use cases: `NF-01`, `NF-02`, `PK-03`, `XP-01`
+**Status**: ⏳ Next
 
 Architecture analysis:
 - identify required `know` operations and failure modes

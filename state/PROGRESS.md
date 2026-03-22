@@ -29,4 +29,10 @@ Update this file after each step completes. It is the practical source of truth 
 
 - 2026-03-04: Rebased architecture, plan, and workflow; created architect/shaper skills; captured key decisions to `know`.
 - 2026-03-04: Completed Step 01 scaffold, contracts, and import-boundary tests.
+- 2026-03-22: Rebased all docs and contracts on `know` v0.4.0 class-based API (ADR-0005):
+  - Renamed `today_view()` → `task_overview()` in `MemoryService` protocol (`know.today()` removed).
+  - `KnowAdapter` now requires `KnowledgeBase` via DI: `KnowAdapter(kb)`.
+  - Updated `ARCHITECTURE.md`, `DECISIONS.md` (D-006), `V1_PLAN.md`, `GLOBAL-MODEL.md`.
+  - Workflow and agent system (9-step S1–S9) is operational; documented in `ARCHITECTURE.md` §4.5.
+  - Archived completed one-shot agents (steps 01–04) to `agents/archive/`.
 

@@ -1,8 +1,8 @@
 # nowu Architecture
 
-Version: 1.2
+Version: 1.3
 Date: 2026-03-22
-Status: Active draft for implementation kickoff
+Status: Active — scaffold complete, Step 02 (MemoryService) next
 
 ## 1) Problem and Target
 
@@ -91,14 +91,14 @@ Decision: choose Option A now, while designing contracts that allow a gradual mo
 
 ### 4.1 Module map
 
-| Module | Responsibility | Owns | Depends on |
-|---|---|---|---|
-| `know` (external package) | Durable knowledge graph, search, task queries, versions, subgraph context | `~/.know` data | none |
-| `soul` | Human-authored identity and governance docs (`VISION`, `AGENTS`, WAL conventions) | markdown policies | none |
-| `core` (new) | Domain contracts and use-case level services for nowu | interfaces, policies | `know`, `soul` |
-| `flow` (new) | Session runtime, role pipeline (Architect/Shaper/Implementer/Reviewer/Curator), VBR loop | session lifecycle | `core`, `know`, `soul` |
-| `bridge` (new) | CLI/API entrypoints, approval queue interactions, project bootstrap commands | user interaction layer | `flow`, `core`, `know` |
-| `dash` (later) | Visualization and reporting UI | presentation only | `bridge` or `core` |
+| Module | Responsibility | Owns | Depends on | Status |
+|---|---|---|---|---|
+| `know` (external package) | Durable knowledge graph, search, task queries, versions, subgraph context | `~/.know` data | none | ✅ v0.4.0 |
+| `soul` | Human-authored identity and governance docs (`VISION`, `AGENTS`, WAL conventions) | markdown policies | none | ✅ scaffold |
+| `core` | Domain contracts and use-case level services for nowu | interfaces, policies | `know`, `soul` | ✅ contracts defined |
+| `flow` | Session runtime, role pipeline, VBR loop | session lifecycle | `core`, `know`, `soul` | ⬜ Step 03–04 |
+| `bridge` | CLI/API entrypoints, approval queue interactions, project bootstrap commands | user interaction layer | `flow`, `core`, `know` | ⬜ Step 05 |
+| `dash` (later) | Visualization and reporting UI | presentation only | `bridge` or `core` | 🔮 out of scope v1 |
 
 ### 4.2 Data ownership and boundaries
 
@@ -125,7 +125,20 @@ The framework uses itself:
 - Each external project gets its own scope (for example `aperitif`, `real-estate`).
 - Cross-project links are explicit (`related_to`, `supports`, `refines`) after discovery.
 - Planning and delivery loops consume these atoms just like any other project.
+## 4.5 Workflow and agent system
 
+The development workflow is operationalized as a **9-step cycle** (S1–S9) with dedicated
+VS Code agents for each step. This is not aspirational — it is the active working model.
+
+Key documents:
+- `docs/WORKFLOW.md` — step reference table, context scoping rules, agent rationale
+- `docs/WORKFLOW-DETAILED.md` — narrative spec, depth calibration, Iteration Modes
+- `.claude/rules/` — architecture, code style, testing, workflow rules loaded by agents
+- `.github/copilot-instructions.md` — workspace-level agent configuration
+
+Agent definitions (VS Code agents with dedicated context scopes):
+- `nowu-intake` (S1), `nowu-constraints` (S2), `nowu-options` (S3), `nowu-decider` (S4)
+- `nowu-shaper` (S5), `nowu-implementer` (S6+S7), `nowu-reviewer` (S8), `nowu-curator` (S9)
 ## 5) know Usage Contract (v1 — updated for know v0.4.0)
 
 Use the `KnowledgeBase` class and `KnowAdapter` (with DI).
