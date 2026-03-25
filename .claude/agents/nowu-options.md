@@ -43,4 +43,5 @@ For each option (2-3 options required):
 Apply lightweight ATAM thinking: for each option, score against quality
 attributes that matter (modifiability, performance, testability, simplicity)
 using H/M/L. Flag sensitivity points (changes that heavily affect one QA)
-and tradeoff points (changes that improve one QA at cost of another).
+and tradeoff points (changes that improve one QA at cost of another). 
+Favor long-term architectural health over short-term speed.

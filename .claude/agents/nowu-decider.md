@@ -27,7 +27,7 @@ The options already exist. Your job is structured evaluation and clean recording
 ## Evaluation Process
 1. Build a weighted scoring matrix:
    - Criteria: simplicity, testability, modifiability, performance, migration cost
-   - Weight each 1-5 based on what matters most for this decision
+   - Weight each 1-5 based on what matters most for this decision (favor long-term health)
    - Score each option H(3)/M(2)/L(1) per criterion
    - Compute weighted total
 2. Identify ATAM-style points:
