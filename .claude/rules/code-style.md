@@ -1,23 +1,32 @@
-# Code Style Rules
+# Code Style Rules v2.1
 
-## Python Version
-Python 3.11+ features encouraged: match statements, tomllib, ExceptionGroup.
+## Python Style
 
-## Tooling
-- `ruff` for lint + format (line-length=100, target-version=py311)
-- `mypy --strict` — no `Any` unless absolutely necessary, all functions typed
+- Follow PEP 8
+- Type annotations required on all public functions and methods
+- Docstrings required on public functions (one-line minimum)
+- No unused imports -- ruff will fail
+- Import order: stdlib -> third party -> local (enforced by ruff)
 
 ## Naming
-Classes: `PascalCase` | functions/methods: `snake_case` | constants: `UPPER_SNAKE`
-Private: prefix `_` | Type vars: `T`, `V`, or descriptive `TModel`
 
-## Function Design
-- < 20 lines ideally, single responsibility
-- Pure functions in domain layer — no side effects
-- Prefer immutable value objects over mutable state
+- Classes: PascalCase
+- Functions and variables: snake_case
+- Constants: UPPER_SNAKE_CASE
+- Private methods: _prefixed_snake_case
+- Test functions: `test_[unit]_[scenario]_[expected]`
 
-## Imports (always in this order)
-1. stdlib  2. third-party  3. local (absolute: `from nowu.domain.models import X`)
+## File Structure
 
-## Docstrings
-Google-style for public APIs. One-line for internal helpers.
+- One class per file for domain objects
+- Helper functions in `utils.py` within the module
+- Public API in `__init__.py` -- expose only what contracts require
+
+## Tooling
+
+- Formatter: ruff format
+- Linter: ruff check
+- Type checker: mypy --strict
+- Test runner: pytest with uv run
+
+All tools must pass with zero errors before S8 review.

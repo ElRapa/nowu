@@ -1,42 +1,41 @@
----
-# Review Report
-id: <task-id>-review
+***
+id: review-task-NNN
 task_id: task-NNN
-reviewed: YYYY-MM-DD
-verdict: APPROVED | CHANGES_REQUESTED
----
+story_id: story-NNN-001
+created: YYYY-MM-DD
+status: APPROVED | CHANGES_REQUESTED | BLOCKED
+***
 
-## Verification Checklist ("built it right")
-- [ ] No architecture boundary violations
-- [ ] Only in_scope_files modified
-- [ ] Tests written before implementation (git log)
-- [ ] Every AC-N has a passing named test
-- [ ] mypy clean (from VBR)
-- [ ] ruff clean (from VBR)
-- [ ] Changes follow D-NNN constraints
+# Review Report: task-NNN
 
-## Validation Checklist ("built the right thing")
-- [ ] task.decision_id → D-NNN exists + ACCEPTED
-- [ ] D-NNN.intake_id → intake file exists
-- [ ] intake.use_case_ids → all UC-NNN exist
-- [ ] Every UC-NNN in validation_trace has ≥1 passing AC-N
-- [ ] No orphan work (nothing outside trace chain)
-- [ ] Passing tests actually prove the use case is solved
+## Verification (built it right?)
 
-## Critical Issues (must fix)
-<!-- Empty = none -->
+| Check | Result | Notes |
+|---|---|---|
+| Every AC has matching test function | PASS/FAIL | |
+| All VBR gates PASS | PASS/FAIL | |
+| Only in_scope_files modified | PASS/FAIL | |
+| Architecture rules respected | PASS/FAIL | |
+| Type annotations present | PASS/FAIL | |
 
-## Warnings (should fix)
-<!-- Empty = none -->
+## Validation (built the right thing?)
 
-## Lessons (for S9 capture)
-<!-- Patterns to remember, things that went well, things to avoid -->
+| Check | Result | Notes |
+|---|---|---|
+| Each AC tests observable behavior (not just “code runs”) | PASS/FAIL | |
+| Each UC-NNN in validation_trace is covered by ≥1 AC | PASS/FAIL | |
+| Story-level ACs covered across all tasks in this epic | PASS/FAIL | |
+| Behavior matches original intake intent | PASS/FAIL | |
+| No hidden scope additions | PASS/FAIL | |
 
-## Handoff
+## Status: APPROVED / CHANGES_REQUESTED / BLOCKED
+
+[If CHANGES_REQUESTED: specific numbered list of required changes with file + line references]  
+[If BLOCKED: what human decision is required before proceeding]
+
+***
 ```yaml
 from_step: S8
 to_step: S9
 agent: nowu-curator
-verdict: APPROVED | CHANGES_REQUESTED
-status: READY_FOR_CAPTURE | CHANGES_REQUESTED
-```
+status: APPROVED

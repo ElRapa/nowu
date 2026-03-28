@@ -1,48 +1,61 @@
 ---
-# Task Spec
 id: task-NNN
-title: ...
+title: [title]
 created: YYYY-MM-DD
 status: READY_FOR_IMPL | IN_PROGRESS | DONE | BLOCKED
 decision_id: D-NNN
-intake_id: intake-<YYYY-MM-DD>-<slug>
-estimated_hours: N  # must be ≤4
+intake_id: intake-NNN
+story_id: story-NNN-001
+estimated_hours: N  # must be <= 4
 primary_module: core | flow | bridge | soul | know
-depends_on: []  # task IDs
-use_case_ids: [UC-NNN]
+depends_on: []  # other task IDs, if any
+use_case_ids:
+  - UC-NNN
 ---
 
-## In-Scope Files
-<!-- Explicit paths only — no wildcards -->
-- src/nowu/<module>/<file>.py
-- tests/unit/<module>/test_<file>.py
+# Task Spec: task-NNN
 
-## Out-of-Scope
-<!-- What must NOT be touched -->
+## In-Scope Files
+
+<!-- Explicit paths only — no wildcards, no directories -->
+
+- src/nowu/module/file.py
+- tests/unit/module/test_file.py
+
+## Out of Scope
+
+<!-- What must NOT be touched — be explicit -->
+
 - Everything not listed above
+- [any specific file that might seem related but is excluded]
 
 ## Acceptance Criteria
-- id: AC-1
-  description: ...
-  test_function_name: test_<unit>_<scenario>_<expected>
-- id: AC-2
-  description: ...
-  test_function_name: test_<unit>_<scenario>_<expected>
+
+- id: AC-1  
+  description: [what must be true — behavior, not implementation]  
+  test_function_name: test_unit_scenario_expected
+
+- id: AC-2  
+  description: [what must be true]  
+  test_function_name: test_unit_scenario_expected
 
 ## Test Strategy (TDD order)
-1. Write `test_<unit>_<scenario>` — confirm RED
+
+1. Write `test_unit_scenario_expected` — confirm RED
 2. Implement minimal code — confirm GREEN
-3. ...
+3. Refactor — confirm still GREEN
 
 ## Validation Trace
+
 ```yaml
 validation_trace:
   - use_case: UC-NNN
     criteria: [AC-1, AC-2]
-    rationale: "AC-1 tests X, AC-2 tests Y → UC-NNN is covered"
+    rationale: "AC-1 tests X, AC-2 tests Y — UC-NNN is fully covered"
 ```
 
-## Handoff
+
+---
 ```yaml
 from_step: S5
 to_step: S6

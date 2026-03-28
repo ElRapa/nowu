@@ -1,32 +1,46 @@
 ---
-## D-NNN — <title>
-
-**Date**: YYYY-MM-DD
-**Status**: DRAFT | ACCEPTED | DEFERRED | REJECTED | SUPERSEDED
-**Superseded By**: D-NNN (optional)
-**Level**: product | system | module | component | code
-**Intake**: intake-<YYYY-MM-DD>-<slug>
-**Use Cases**: [UC-NNN]
-
-### Context
-<!-- What problem does this decision solve? -->
-
-### Decision
-<!-- What was decided. One clear statement. -->
-
-### Options Considered
-| Option | Score | Rejected Because |
-|--------|-------|-----------------|
-| A | 45 | — (chosen) |
-| B | 38 | higher migration cost |
-
-### Tradeoff Points
-<!-- Decisions that improve one QA at cost of another -->
-
-### Consequences
-- **Good**: ...
-- **Bad**: ...
-
-### Review Trigger
-<!-- When should this decision be revisited? -->
+id: D-NNN
+intake_id: intake-YYYY-MM-DD-slug
+created: YYYY-MM-DD
+status: PROPOSED | ACCEPTED | SUPERSEDED
+level: product | system | module | component | code
 ---
+
+# Decision: D-NNN -- [Title]
+
+## Context
+
+[What situation requires a decision. 2-3 sentences.]
+
+## Decision
+
+[The decision made -- one clear sentence. No ambiguity.]
+
+## Rationale
+
+[Why this option over alternatives. Reference QA scoring from options sheet.]
+
+## Consequences
+
+**Positive:** [what this enables]
+**Negative:** [what this constrains]
+**Neutral:** [what changes without value judgment]
+
+## Alternatives Considered
+
+| Option | Pros | Cons | Rejected because |
+|---|---|---|---|
+| [Option A] | [pros] | [cons] | [reason] |
+
+## Related
+
+- intake: intake-NNN
+- options: intake-NNN-options.md
+
+---
+```yaml
+from_step: S4
+to_step: S5
+agent: nowu-shaper
+status: READY_FOR_SHAPING
+```

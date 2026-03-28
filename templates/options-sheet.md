@@ -1,23 +1,19 @@
 ---
-# Options Sheet
-id: <intake-id>-options
-intake_id: intake-<YYYY-MM-DD>-<slug>
+id: intake-id-options
+intake_id: intake-YYYY-MM-DD-slug
 created: YYYY-MM-DD
 status: DRAFT | READY_FOR_DECISION
 recommended_option: A | B | C
 ---
 
-## Option A — <name>
-**Summary**: ...
+# Options Sheet
 
-```mermaid
-graph LR
-  A[Module] -->|Protocol| B[Module]
-```
+## Option A: [Name]
 
-**Quality Attribute Scoring** (H=3 M=2 L=1)
-| QA | Weight | Score | Weighted |
-|----|--------|-------|---------|
+[1 paragraph approach description]
+
+| QA Attribute | Weight | Score (H=3 M=2 L=1) | Weighted |
+|---|---|---|---|
 | Simplicity | 5 | H | 15 |
 | Testability | 5 | H | 15 |
 | Modifiability | 4 | M | 8 |
@@ -25,20 +21,23 @@ graph LR
 | Migration Cost | 3 | L | 3 |
 | **Total** | | | **45** |
 
-**Sensitivity Points**: <!-- QA decisions with large impact -->
-**Tradeoff Points**: <!-- improves X, hurts Y -->
-**Effort**: Nh (within / exceeds appetite)
-**Migration Path**: ...
+**Trade-off points:** [what this improves / what it hurts]
+**Effort:** Nh -- [within / exceeds] appetite
+**Migration path:** [if applicable]
 
----
-## Option B — <name>
-<!-- same structure -->
+## Option B: [Name]
 
----
+[same structure]
+
+## Option C: [Name] (if needed)
+
+[same structure]
+
 ## Recommendation
-Option [X] recommended because [rationale].
 
-## Handoff
+Option [X] recommended because [rationale referencing QA scores and constraints].
+
+---
 ```yaml
 from_step: S3
 to_step: S4

@@ -1,29 +1,38 @@
-# Architecture Rules
+# Architecture Rules v2.1
 
-## Layer Dependency (never violate)
-Interface → Application → Domain
-     ↓            ↓
-Infrastructure (used by Application + Interface, NEVER by Domain)
+## Layer Boundaries
+
+Agents and Claude sessions must respect C4 level boundaries at all times.
+
+| Level | What you may access | What you must never access |
+|---|---|---|
+| Above L1 (P0-P2) | vision.md, ideas, discovery, problems, stories | src/, tests/, ARCHITECTURE.md |
+| L1 (S1, S2) | ARCHITECTURE.md system section, DECISIONS.md, intake | src/ bodies, tests/ |
+| L2 (S3, S4) | containers, module __init__.py surfaces, contracts | src/ bodies, test bodies |
+| L3 (S5, S8) | file tree, contracts, task specs | ARCHITECTURE.md, vision |
+| L4 (S6, S7) | in_scope_files ONLY, task spec, pyproject.toml | everything else |
 
 ## Module Boundaries
-core ← depended on by all | flow → core | bridge → flow,core
-soul → core | know → core
 
-All cross-module calls go through `core/contracts/*.py` Protocol classes.
-Direct instantiation across module boundaries is forbidden.
+- Modules communicate only through contracts defined in `core/contracts.py`.
+- Direct imports between non-adjacent modules are forbidden.
+- No module may write to another module's private state.
 
-## Import Check (run after every change)
-`uv run python -c "import ast, sys, pathlib; [...]"` or `uv run pytest tests/unit/core/test_architecture.py`
+## ADR Rules
 
-## ADR compliance
-Before shaping or designing architecture (S2–S5), check `docs/DECISIONS.md`.
-Implementers (S6–S7) and reviewers (S8) must follow the active task spec and
-rules here; they do NOT load `docs/DECISIONS.md` directly.
-Any deviation from a relevant D-NNN = Tier 3 escalation. Do not workaround settled decisions.
+- All ADRs in `docs/architecture/adr/` are binding.
+- A decision may not be contradicted without a superseding ADR.
+- Superseding ADRs must be created and marked ACCEPTED before the decision changes.
+- ADR status flow: PROPOSED -> ACCEPTED -> SUPERSEDED.
 
-Scope by step:
-- S2–S4 (constraints, options, decision): may read DECISIONS.md and ARCHITECTURE.md.
-- S5 (shaping): may read the decision handoff, file tree, contracts; not DECISIONS.md.
-- S6–S7 (implement+VBR): only task spec, in-scope files, tests, pyproject.toml.
-- S8 (review): VBR report, changeset, task spec, git diff, this rules file.
-- S9 (capture): DECISIONS.md, PROGRESS.md, review, git log; never src/ or tests/.
+## Pre-Workflow Boundary
+
+Pre-workflow agents (P0-P4) must never:
+- Read or write files in `src/` or `tests/`
+- Make implementation decisions
+- Specify function signatures, class names, or database schemas
+
+S1-S9 agents must never:
+- Read `docs/vision.md` during implementation steps (S5-S7)
+- Read full `docs/ARCHITECTURE.md` during implementation (S5-S7)
+- Modify `state/arch/arch-pass-NNN.md` -- it is a read-only input from pre-workflow

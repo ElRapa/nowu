@@ -1,231 +1,231 @@
-# nowu + Claude — Workflow, C4 Model, and Setup Guide
+# nowu — Claude Workflow, C4 Model, and Setup Guide
 
-## TL;DR for humans
-
-- Always start a new Claude Code session by pasting `BOOTSTRAP.md`, then let Claude read the listed docs.
-- Pick a **mode** (Full cycle, Architecture-only, Implement loop) from the skills and follow it step-by-step.
-- Each workflow step has its own **agent** and C4 **zoom level**; only load the files that level needs.
-- All important decisions live in `docs/DECISIONS.md`; all in-progress work lives under `state/`.
+> Read this when: setting up a new repo, onboarding to an existing project,
+> or when you need a reference for which file/agent/skill to use.
+> Commands are in `CLAUDE.md`. Session start is in `BOOTSTRAP.md`.
 
 ---
 
-nowu is an AI-powered project management framework. You and Claude follow the
-same 9-step workflow to design, implement, and review changes.
+## TL;DR
 
-This document explains:
-- How the 9-step workflow and C4 model work together for humans.
-- How the Claude setup (agents, skills, rules, hooks, state files) is structured.
-- How to copy this setup to another repository.
-
----
-
-## 1. Core ideas
-
-- 9-step workflow (S1–S9) from problem → architecture → tasks → code → capture.
-- C4 levels (L1–L4) define the zoom for each step (system → modules → components → code).
-- Dedicated agent per step (`nowu-intake` … `nowu-curator`).
-- Skills orchestrate common modes (full cycle, architecture-only, implement loop).
-- Strict context scoping: each step only loads the minimum context for its C4 level.
-- Decisions are recorded as D-NNN in `docs/DECISIONS.md` and must be followed.
+- **Pre-Workflow (P0–P4):** raw ideas → structured intake brief.
+- **Implementation Loop (S1–S9):** intake brief → shipped, documented code.
+- **Health Checks:** run anytime to validate vision, architecture, goal alignment.
+- **C4 Levels:** define exactly what context each step may load — this is non-negotiable.
+- **One agent per step.** Skills orchestrate the order and modes.
+- **All decisions:** recorded as D-NNN in `docs/DECISIONS.md` — binding on all agents.
 
 ---
 
-## 2. C4 model and step mapping
+## Cheat Sheet: Which Skill to Use When
 
-`docs/GLOBAL-MODEL.md` defines how C4 levels map to nowu artifacts and steps.
+### Pre-Workflow (P0–P4)
 
-### 2.1 C4 levels
+Use when you are **not yet at an intake brief**.
 
-| Level | Name              | Question                           | nowu main artifact             |
-|-------|-------------------|-------------------------------------|--------------------------------|
-| L1    | System Context    | What does the system do? Who uses it? | `ARCHITECTURE.md` §1        |
-| L2    | Container/Modules | How do modules interact?            | `ARCHITECTURE.md` §4.1      |
-| L3    | Component         | What files/classes exist?           | `core/contracts/*.py`, file tree |
-| L4    | Code              | How does it work internally?        | Source code and tests        |
+| Situation | Skill | Mode | Outcome |
+|---|---|---|---|
+| New product / big idea (from zero) | `pre-workflow-runner` | Bootstrap | `docs/vision.md` + `docs/V1_PLAN.md` + first `intake-NNN` READY_FOR_S1 |
+| New epic on existing product | `pre-workflow-runner` | Full | `problem-NNN`, `epic-NNN`, `story-NNN-*`, `arch-pass-NNN`, `intake-NNN` READY_FOR_S1 |
+| New story on existing epic (arch current) | `pre-workflow-runner` | Standard | new `story-NNN-*` + `intake-NNN` READY_FOR_S1, no arch pass |
+| Small feature / tweak on known project | `pre-workflow-runner` | Lite | 1–few approved stories + `intake-NNN` READY_FOR_S1 |
 
-### 2.2 Which step uses which level
+### Implementation (S1–S9)
 
-- S1–S2: L1 (system boundary, actors, high-level constraints).
-- S3–S4: L2 (module interactions, options, decisions).
-- S5 and S8: L3 (files/classes, task shaping, code review vs intent).
-- S6–S7: L4 (code and tests with AST/import boundary checks).
+Use when you **already have `state/intake/intake-NNN.md [READY_FOR_S1]`**.
 
-The context-scoping guides reinforce this: **never load code during architecture analysis**, and **never load full architecture docs during implementation**.
+| Situation | Skill | Mode | Entry |
+|---|---|---|---|
+| Full feature from intake → shipped | `full-cycle` | A | `intake-NNN.md [READY_FOR_S1]` |
+| You have shaped tasks, just execute | `implement-loop` | B | `task-NNN [READY_FOR_IMPL]` |
+| Quick bugfix / refactor / docs | `single-step` | C | thin `task-NNN` or direct |
+| Architecture / design spike, no code | `architecture-only` | D | `intake-NNN.md [READY_FOR_S1]` |
 
----
+### Health Checks (run anytime)
 
-## 3. Files you should know
+| Question | Command | Output |
+|---|---|---|
+| Is vision.md still accurate and current? | `/health-check vision` | `state/health/vision-YYYY-MM-DD.md` |
+| Does architecture match reality? | `/health-check architecture` | `state/health/arch-YYYY-MM-DD.md` |
+| Is active work aligned with vision? | `/health-check goals` | `state/health/goals-YYYY-MM-DD.md` |
+| Is USE_CASES.md aligned with vision + active work? | `/health-check use-cases` | `state/health/health-use-cases-YYYY-MM-DD.md` |
+| All of the above | `/health-check all` | All four reports + `health-sweep-YYYY-MM-DD.md` |
 
-### 3.1 High-level docs
-
-| File / Dir                  | Purpose                                     |
-|----------------------------|---------------------------------------------|
-| `CLAUDE.md`                | Rules and commands for Claude.              |
-| `BOOTSTRAP.md`             | Prompt you paste at the start of a session. |
-| `BOOTSTRAP_lean.md`        | Minimal variant of the bootstrap prompt.    |
-| `docs/WORKFLOW.md`         | High-level description of S1–S9.            |
-| `docs/WORKFLOW-DETAILED.md`| Full spec: inputs/outputs per step.         |
-| `docs/GLOBAL-MODEL.md`     | C4 model and Code Property Graph overview.  |
-| `docs/ARCHITECTURE.md`     | Module map and architecture rules.          |
-| `docs/DECISIONS.md`        | Accepted architecture decisions (D-NNN).    |
-| `docs/V1_PLAN.md`          | Current v1 steps and tasks.                 |
-| `docs/PROGRESS.md`         | Execution status of v1 steps.               |
-
-### 3.2 State and session tracking
-
-| File / Dir                | Purpose                                      |
-|---------------------------|----------------------------------------------|
-| `state/SESSION-STATE.md`  | Current step + focus bookmark.               |
-| `state/intake/`           | Intake briefs (S1 outputs).                  |
-| `state/arch/`             | Constraints, options, decisions (S2–S4).     |
-| `state/tasks/`            | Task specs (S5 outputs).                     |
-| `state/changes/`          | Implementation notes / diffs (S6).           |
-| `state/vbr/`              | VBR reports (S7).                            |
-| `state/reviews/`          | Review reports (S8).                         |
-| `state/capture/`          | Capture records (S9).                        |
+Run at session start if >7 days since last run, or whenever something feels off.
 
 ---
 
-## 4. Claude configuration: agents, skills, rules, settings
+## 1. The Two Loops
 
-### 4.1 Agents (.claude/nowu-*.md)
+### Pre-Workflow (P0–P4)
+Converts raw ideas into `state/intake/intake-NNN.md [READY_FOR_S1]`.
+Full specification: `docs/PRE-WORKFLOW.md`.
 
-The `.claude` directory holds agent definitions for each workflow step.
+### Implementation Loop (S1–S9)
+Converts intake briefs into shipped, documented code.
+Reference table: `docs/WORKFLOW.md`.
+Full narrative: `docs/WORKFLOW-DETAILED.md`.
 
-| Step | Agent name        | Role                        | Config file               |
-|------|-------------------|-----------------------------|---------------------------|
-| S1   | `nowu-intake`     | Intake briefs               | `.claude/nowu-intake.md`  |
-| S2   | `nowu-constraints`| Constraints analysis        | `.claude/nowu-constraints.md` |
-| S3   | `nowu-options`    | Design options              | `.claude/nowu-options.md` |
-| S4   | `nowu-decider`    | Record decision D-NNN       | `.claude/nowu-decider.md` |
-| S5   | `nowu-shaper`     | Shape tasks                 | `.claude/nowu-shaper.md`  |
-| S6+7 | `nowu-implementer`| Implement + VBR             | `.claude/nowu-implementer.md` |
-| S8   | `nowu-reviewer`   | Review (verify + validate)  | `.claude/nowu-reviewer.md`|
-| S9   | `nowu-curator`    | Capture + progress update   | `.claude/nowu-curator.md` |
-
-Each agent file defines its C4 scope, what it may load, what it must never load, and which artifact it produces.
-
-### 4.2 Skills (orchestration docs)
-
-Skills describe how to string agents together for common modes.
-
-| Skill doc                        | Mode and purpose                             |
-|----------------------------------|----------------------------------------------|
-| `skills/full-cycle/SKILL.md`         | Mode A — S1→S9 full development cycle.   |
-| `skills/architecture-only/SKILL.md`  | Mode D — S1→S4→S9 architecture-only.     |
-| `skills/implement-loop/SKILL.md`     | Mode B — S5→[S6–S7]×n→S8–S9.             |
-
-Skills encode entry conditions, which agents to invoke, validation gates, retries, and stopping conditions.
-
-### 4.3 Rules (architecture / workflow / code / testing)
-
-The `.claude/rules` directory captures hard rules for Claude to follow.
-
-| Rule file              | Purpose                                            |
-|------------------------|----------------------------------------------------|
-| `.claude/rules/architecture.md` | Enforces layer and module boundaries and step scoping. |
-| `.claude/rules/workflow.md`     | 9-step cycle, statuses, approval tiers, modes. |
-| `.claude/rules/code-style.md`   | Python style, naming, imports, docstrings. |
-| `.claude/rules/testing.md`      | TDD order, test naming, structure, coverage gate. |
-
-These rules compress the important parts of long docs (like `flow_vs_sdlc-*`) into short, enforceable checks.
-
-### 4.4 settings.json (hooks and external tools)
-
-`settings.json` wires hooks and external MCP servers into Claude Code.
-
-- **PreToolUse hooks**:
-  - `Bash(git commit*)`: before any `git commit`, run VBR: `pytest`, `mypy --strict`, `ruff`.
-  - `Write(*)`: before writing a file, enforce scope via `state/tasks/.active-scope`; block writes outside allowed files.
-
-- **MCP servers**:
-  - `know`: `know-mcp --data-dir ~/.know`, future external memory / CPG engine.
-
-This makes VBR and scope enforcement automatic instead of relying on agents remembering.
+**Connection point:** `state/intake/intake-NNN.md` with `status: READY_FOR_S1`
+**Feedback loop:** S9 `next_cycle_trigger` routes back to the appropriate pre-workflow phase
 
 ---
 
-## 5. How to run a normal feature with Claude
+## 2. C4 Levels and Context Scoping
 
-### 5.1 Start the session
+| Level | Name | Question answered | Main artifacts |
+|---|---|---|---|
+| Above L1 | Problem space | What problem? For whom? | `docs/vision.md`, `state/problems/` |
+| L1 — Context | System | What does the system do? | `docs/ARCHITECTURE.md` §1 |
+| L2 — Containers | Modules | How do modules interact? | `docs/ARCHITECTURE.md` §4, `contracts/` |
+| L3 — Components | Files / classes | What files exist, what do they expose? | file tree, `__init__.py` surfaces |
+| L4 — Code | Implementation | How does it work internally? | `src/`, `tests/` |
 
-1. Open a new Claude Code session.
-2. Paste `BOOTSTRAP.md` (or `BOOTSTRAP_lean.md` for a smaller load).
-3. Let Claude read the listed files and answer the bootstrap questions.
-
-### 5.2 Choose a skill mode
-
-Use the skill docs to choose the right mode:
-
-- New feature from scratch → **Mode A** (Full Cycle: S1→S9).  
-- Architecture/design spike only → **Mode D** (S1→S4→S9).  
-- Tasks already shaped → **Mode B** (S5→[S6–S7]×n→S8–S9).  
-- Single bugfix or small change → **Mode C** (Single Step S6–S9, per workflow rules).
-
-Ask Claude to follow the chosen skill step-by-step and invoke the right agents.
-
-### 5.3 S1–S4: problem and architecture (L1–L2)
-
-- S1 `nowu-intake` (L1): intake brief in `state/intake/…`.
-- S2 `nowu-constraints` (L1–L2): constraints sheet from ARCHITECTURE + DECISIONS + contracts.
-- S3 `nowu-options` (L2): options sheet with module-level designs and tradeoffs.
-- S4 `nowu-decider` (L2): D-NNN decision in `docs/DECISIONS.md` + handoff; validation gate.
-
-### 5.4 S5: shaping (L3)
-
-- S5 `nowu-shaper` (L3): task specs with `in_scope_files`, acceptance criteria, and `validation_trace`; human approval required.
-
-### 5.5 S6–S7: implementation + VBR (L4)
-
-- S6/S7 `nowu-implementer` (L4):
-  - Load only `task-NNN` + `in_scope_files` + tests + `pyproject.toml`.
-  - Follow TDD rules from `.claude/rules/testing.md`.
-  - VBR enforced automatically via `settings.json` on commit and via the skill loop.
-
-### 5.6 S8–S9: review + capture (L3–L1)
-
-- S8 `nowu-reviewer` (L3–L4): fresh context review with architecture rules, diff, task spec, and VBR evidence.
-- S9 `nowu-curator` (L1–L2): update PROGRESS, DECISIONS if needed, write capture record, suggest commit message.
+Each agent loads **only** the context appropriate to its C4 level.
+See `docs/WORKFLOW.md` for the full context scoping matrix.
 
 ---
 
-## 6. Approval tiers
+## 3. Files Reference
 
-From `.claude/rules/workflow.md`:
+### Core Documents
 
-- **Tier 1** — auto:
-  - Tests, docs, refactors following ADRs, within shaped scope.
-- **Tier 2** — batch:
-  - Feature implementation, design changes, new dependencies.
-- **Tier 3** — block:
-  - Merge to main, breaking change, new ADR, delete, architecture boundary violations.
+| File | Purpose | Who maintains |
+|---|---|---|
+| `CLAUDE.md` | Commands, approval tiers, failure modes | Human |
+| `BOOTSTRAP.md` | Full session start prompt | Human |
+| `BOOTSTRAP_lean.md` | Lean follow-up session prompt | Human |
+| `CLAUDE-SETUP.md` | This file — master reference | Human |
+| `docs/WORKFLOW.md` | S1–S9 reference table | Human |
+| `docs/WORKFLOW-DETAILED.md` | Full narrative workflow spec | Human |
+| `docs/PRE-WORKFLOW.md` | P0–P4 full specification | Human |
+| `docs/vision.md` | Product vision — highest authority | Human (agent-assisted draft) |
+| `docs/V1_PLAN.md` | Stage plan and active epics | Human |
+| `docs/ARCHITECTURE.md` | Module map, C4 L1/L2 | Human (agent-assisted) |
+| `docs/DECISIONS.md` | D-NNN decision registry (binding) | Human + nowu-decider |
+| `docs/USE_CASES.md` | UC-NNN use case registry | Human |
+| `docs/PROGRESS.md` | Execution status per stage | Human + nowu-curator |
 
-When unsure, treat a change as Tier 2.
+### State Files (agent-produced, human-approved)
+
+| Path | Produced at | Purpose |
+|---|---|---|
+| `state/SESSION-STATE.md` | Any step | Session bookmark — never source of truth |
+| `state/ideas/idea-NNN.md` | P0.1 | Raw captured ideas |
+| `state/pre-workflow/NNN-decomp.md` | P0.D | Idea classification and routing |
+| `state/discovery/disc-NNN-research.md` | P1.1 | Problem research and personas |
+| `state/problems/problem-NNN.md` | P1.2 / P1.3 | Approved problem statement |
+| `state/epics/epic-NNN.md` | P2.1 | Epic definition and story index |
+| `state/stories/story-NNN-*.md` | P2.1 / P2.2 | Approved stories with ACs |
+| `state/pre-workflow/NNN-constraint-check.md` | P3.1 | Architecture signal compatibility |
+| `state/arch/arch-pass-NNN.md` | P3.2 | C4 L1/L2 delta + ADR candidates |
+| `state/pre-workflow/NNN-readiness.md` | P4.1 | Gate check results |
+| `state/intake/intake-NNN.md` | P4.2 | Bridge: pre-workflow → S1–S9 |
+| `state/arch/intake-NNN-constraints.md` | S2 | Architecture risk analysis |
+| `state/arch/intake-NNN-options.md` | S3 | Design options (2–3) |
+| `state/arch/intake-NNN-decision.md` | S4 | Decision handoff for shaping |
+| `state/tasks/task-NNN.md` | S5 | Shaped task spec with ACs + validation trace |
+| `state/changes/changes-task-NNN.md` | S6 | Implementation notes |
+| `state/vbr/vbr-task-NNN.md` | S7 | VBR gate results |
+| `state/reviews/review-task-NNN.md` | S8 | Review report |
+| `state/capture/capture-task-NNN.md` | S9 | Capture record + next_cycle_trigger |
+| `state/health/` | Health checks | Health check reports |
+| `docs/architecture/adr/ADR-NNN-*.md` | P3.3 / S4 | Architecture Decision Records (created after first GAP run) |
 
 ---
 
-## 7. How to copy this setup to another repo
+## 4. Agents Reference
 
-To replicate the nowu + Claude + C4 workflow elsewhere:
+### Pre-Workflow Agents
 
-1. Copy and adapt docs:
-   - `CLAUDE.md`, `BOOTSTRAP*.md`
-   - `docs/WORKFLOW.md`, `docs/WORKFLOW-DETAILED.md`
-   - `docs/GLOBAL-MODEL.md` (update system description and module mapping)
-   - `docs/ARCHITECTURE.md`, `docs/DECISIONS.md`
-   - `docs/V1_PLAN.md`, `docs/PROGRESS.md`
+| Agent file | Invoked at | Model | Role |
+|---|---|---|---|
+| `vision-bootstrap.md` | P0.V | Sonnet | Vision creation / refresh via 5-question interview |
+| `idea-decomposition.md` | P0.D | Sonnet | Sizing, routing, stage mapping, seed idea queuing |
+| `use-case-agent.md` | P0.UC | Sonnet | Create or refresh docs/USE_CASES.md |
+| `discovery-agent.md` | P1.1 | Sonnet | Research, personas, outcomes, assumption flags |
+| `perspective-interview.md` | P1.2 | Sonnet | 3-role interview → problem-NNN.md draft |
+| `story-mapper.md` | P2.1 | Sonnet | Epic + story generation with scope hammering |
+| `constraint-check.md` | P3.1 | Haiku | Architecture signal compatibility check |
+| `architecture-bootstrap.md` | P3.2 | Sonnet | C4 L1/L2 delta + ADR candidates |
+| `readiness-checker.md` | P4.1–P4.2 | Haiku | Gate check + intake brief assembly |
 
-2. Copy agents, skills, settings:
-   - `.claude/nowu-*.md`, adjust module names and paths.
-   - Skill `SKILL.md` files for modes A/B/D.
-   - `.claude/rules/*.md` and `settings.json`, adjusting commands and paths.
+### GAP Agents (Global Architecture Pass)
 
-3. Create the state skeleton:
-   - `state/intake/`, `state/arch/`, `state/tasks/`,
-     `state/changes/`, `state/vbr/`, `state/reviews/`, `state/capture/`,
-     plus a `state/SESSION-STATE.md` template.
+| Agent file | Invoked at | Model | Role |
+|---|---|---|---|
+| `gap-detector.md` | G0 / `/gap-check` | Haiku | Passive sentinel — writes gap-trigger.md |
+| `gap-analyst.md` | G1 / `/gap-check run` | Sonnet | Analyses full product context, produces global-pass proposal |
+| `gap-writer.md` | G2 / `/gap-check apply` | Sonnet | Applies approved proposal to architecture docs + ADR stubs |
 
-4. Start using it:
-   - Start a Claude Code session, paste `BOOTSTRAP.md`.
-   - Choose a mode and follow the skills and rules.
+### Health Check Agents
 
+| Agent file | Command | Checks |
+|---|---|---|
+| `health-vision.md` | `/health-check vision` | Freshness, completeness, active work alignment |
+| `health-architecture.md` | `/health-check architecture` | C4 accuracy, ADR coverage, drift |
+| `health-goals.md` | `/health-check goals` | Story/backlog alignment with vision, staleness |
+| `health-use-cases.md` | `/health-check use-cases` | USE_CASES.md alignment with vision, plan, and active work |
+
+### S1–S9 Agents
+
+| Agent file | Step | Model | Role |
+|---|---|---|---|
+| `nowu-intake.md` | S1 | Haiku | Confirm intake readiness; thin step if from pre-workflow |
+| `nowu-constraints.md` | S2 | Sonnet | Architecture risk and constraint analysis |
+| `nowu-options.md` | S3 | Sonnet | Design option proposals with trade-offs |
+| `nowu-decider.md` | S4 | Sonnet | Decision record D-NNN |
+| `nowu-shaper.md` | S5 | Sonnet | Task specs with ACs and validation trace |
+| `nowu-implementer.md` | S6–S7 | Sonnet | TDD implementation + VBR gates |
+| `nowu-reviewer.md` | S8 | Sonnet | Verification + validation (fresh context) |
+| `nowu-curator.md` | S9 | Haiku | Capture record + next_cycle_trigger |
+
+---
+
+## 5. Skills Reference
+
+| Skill folder | Mode | Phases / Steps |
+|---|---|---|
+| `pre-workflow-runner/` | — | P0–P4 orchestration (Bootstrap / Full / Standard / Lite) |
+| `full-cycle/` | A | S1–S9 |
+| `implement-loop/` | B | S5 → [S6–S7]×n → S8–S9 |
+| `single-step/` | C | S6–S9 |
+| `architecture-only/` | D | S1–S4–S9 |
+| `health-sweep/` | health | Runs all four health agents; writes health-sweep-YYYY-MM-DD.md |
+| `gap-chain/` | HIGH | G0 (gap-detector) → G1 (gap-analyst) → G2 (gap-writer) |
+
+Skills orchestrate agents. Agents do the work. The main Claude session handles
+human communication and Tier 2/3 decisions.
+
+---
+
+## 6. Key Invariants (always true, cannot be overridden)
+
+1. S1 will not proceed without `intake-NNN.md [READY_FOR_S1]`.
+2. S6 loads only `in_scope_files` from the task spec. Nothing else.
+3. S8 always runs in a fresh context window.
+4. ADRs are binding. Contradict one only by creating a superseding ADR first.
+5. A human gate that can be skipped under pressure is not a gate.
+6. `validation_trace` in every task spec must be complete — no broken links.
+7. The readiness checker does not create an intake brief when status is BLOCKED.
+
+---
+
+## 7. How to Copy This Setup to Another Repo
+
+1. Copy root files: `CLAUDE.md`, `BOOTSTRAP.md`, `BOOTSTRAP_lean.md`, `CLAUDE-SETUP.md`
+2. Copy `docs/` directory. Update product-specific content in:
+   - `docs/vision.md` (or run `/pre-workflow run 001 --mode Bootstrap`)
+   - `docs/V1_PLAN.md` (human-authored from Stage Map)
+   - `docs/ARCHITECTURE.md` (adapt to your modules)
+   - `docs/DECISIONS.md` (start empty — add D-001 for first architecture decision)
+   - `docs/USE_CASES.md` (start with 3–5 core use cases)
+3. Copy `.claude/` directory entirely. Adjust module names and file paths in agents.
+4. Copy `templates/` directory.
+5. Create empty state skeleton:
+   ```bash
+   mkdir -p state/{ideas,discovery,problems,epics,stories,arch,pre-workflow,intake,tasks,changes,vbr,reviews,capture,health}
+   touch state/{ideas,discovery,problems,epics,stories,arch,pre-workflow,intake,tasks,changes,vbr,reviews,capture,health}/.gitkeep
+   ```
+6. Run vision bootstrap if no vision.md exists:
+   `/pre-workflow run 001 --mode Bootstrap`

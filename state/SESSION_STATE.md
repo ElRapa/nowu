@@ -1,28 +1,22 @@
-# nowu Session State
+---
+# Session State -- Bookmark Only
+# This is NOT a source of truth. Canonical state lives in S1-S9 artifacts.
+# Clear or reset after S9 Capture.
+---
 
-## Current Step
-# One of:
-# S1-INTAKE, S2-ARCH, S3-OPTIONS, S4-DECISION,
-# S5-SHAPE, S6-IMPLEMENT, S7-VBR, S8-REVIEW, S9-CAPTURE
-step: S1-INTAKE
-
-intake_id: intake-001
-decision_id: null
-task_id: null
-
-## Focus
-summary: >
-  Start the first full cycle for the next V1 plan item.
-  Create intake-001 from V1_PLAN.md and USE_CASES.md,
-  then hand off to the nowu-architect agent for constraints.
-
-## Open Threads
-- [ ] Decide which V1_PLAN item should become intake-001
-- [ ] Tag relevant use_case_ids for this intake
-- [ ] Confirm appetite (time/complexity budget) with human
-
-## Next Checkpoint
-when: "After intake-001 is written and approved"
-notes: >
-  Once intake-001 is approved, run the architecture-only
-  or full-cycle skill to continue with S2 (Constraints).
+current_step: S1  # P0-P4 or S1-S9
+current_ids:
+  intake_id: intake-NNN
+  decision_id: ~
+  task_id: ~
+  idea_id: idea-NNN
+focus_summary: |
+  [1-2 sentences: what are we working on right now]
+open_threads: |
+  [list with open threads]
+next_checkpoint: |
+  [What is the next concrete action needed -- human or agent]
+notes: |
+  [notes in case needed]
+last_updated: YYYY-MM-DDTHH:MM:SSZ
+health_check_last_run: ~  # date of last /health-check all

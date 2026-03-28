@@ -1,28 +1,32 @@
 ---
-# Change Set
-id: <task-id>-changes
+id: YYYY-MM-DD-task-id
 task_id: task-NNN
 created: YYYY-MM-DD
-status: READY_FOR_VBR
 ---
 
+# Changeset: task-NNN
+
 ## Files Changed
-| File | Change Type | Summary |
-|------|-------------|---------|
-| src/nowu/... | created/modified/deleted | ... |
 
-## Acceptance Criteria Status
+| File | Type | Lines Added | Lines Removed |
+|---|---|---|---|
+| [path] | added/modified/deleted | N | N |
+
+## Summary
+
+[What was implemented -- 2-3 sentences. No technical internals.]
+
+## AC Coverage
+
 | AC | Test Function | Status |
-|----|--------------|--------|
-| AC-1 | test_... | PASS |
+|---|---|---|
+| AC-1 | test_unit_scenario_expected | PASS |
+| AC-2 | test_unit_scenario_expected | PASS |
 
-## Implementation Notes
-<!-- Anything the reviewer should know about the approach -->
-
-## Handoff
+---
 ```yaml
 from_step: S6
 to_step: S7
-agent: nowu-implementer (VBR phase)
+agent: nowu-implementer (VBR)
 status: READY_FOR_VBR
 ```

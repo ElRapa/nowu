@@ -1,43 +1,53 @@
----
-# Constraints Sheet
-id: <intake-id>-constraints
-intake_id: intake-<YYYY-MM-DD>-<slug>
+***
+id: intake-id-constraints
+intake_id: intake-YYYY-MM-DD-slug
 created: YYYY-MM-DD
-status: DRAFT | READY_FOR_OPTIONS | BLOCKED
-c4_l1_update_needed: false
-affected_modules: [core]
----
+status: DRAFT | READY_FOR_OPTIONS
+arch_pass_ref: arch-pass-NNN | ~
+***
 
-## Fixed Constraints
-<!-- Each must reference a D-NNN or a hard technical fact -->
-- constraint: "..."
-  source: D-NNN | technical reason
+# Constraints Sheet: [intake-id]
 
-## Flexible Constraints
-<!-- What CAN be changed if needed -->
+> If `arch-pass-NNN` exists from pre-workflow, this sheet extends it — do not replace it.
+> Document divergences from arch-pass in the section below.
 
-## Risks
+## Affected Modules
+
+| Module | Container (C4 L2) | Impact | Confidence |
+|---|---|---|---|
+| [name] | [container] | add / modify / query | HIGH / MED / LOW |
+
+## Binding Decisions
+
+| D-ID | Title | How it constrains this work |
+|---|---|---|
+| D-NNN | [title] | [constraint description] |
+
+## Binding Contracts
+
+| Contract | Interface | Constraint |
+|---|---|---|
+| [name] | [method/protocol] | [what is and is not allowed] |
+
+## Architectural Risks
+
 | Risk | Severity | Mitigation |
-|------|----------|------------|
-| ...  | high/med/low | ... |
+|---|---|---|
+| [risk description] | HIGH / MED / LOW | [mitigation or "flag for S3"] |
 
-## Assumptions
-| Assumption | Validated |
-|-----------|-----------|
-| ...       | true/false/unknown |
+## Divergences from arch-pass (if applicable)
+
+| arch-pass says | This analysis says | Rationale |
+|---|---|---|
+| [quoted arch-pass text] | [revised assessment] | [why different] |
 
 ## Open Questions for S3
-<!-- What must Options Designer resolve? -->
 
-## C4 L1 Update (if needed)
-```mermaid
-<!-- Only include if c4_l1_update_needed = true -->
-```
+1. [question]
 
-## Handoff
+***
 ```yaml
 from_step: S2
 to_step: S3
 agent: nowu-options
 status: READY_FOR_OPTIONS
-```

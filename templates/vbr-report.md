@@ -1,26 +1,29 @@
 ---
-# VBR Report
-id: <task-id>-vbr
+id: vbr-task-NNN
 task_id: task-NNN
 created: YYYY-MM-DD
-status: READY_FOR_REVIEW | CHANGES_REQUESTED
+status: PASS | FAIL
 ---
 
-## Checks
-| Check | Status | Notes |
-|-------|--------|-------|
-| pytest | PASS/FAIL | N tests, N failed |
-| mypy --strict | PASS/FAIL | N errors |
-| ruff check | PASS/FAIL | N violations |
-| scope check | PASS/FAIL | files in diff vs .active-scope |
+# VBR Report: task-NNN
 
-## Raw Output Excerpts
-<!-- Paste failure output here if any checks fail -->
+## Gate Results
 
-## Handoff
+| Gate | Command | Result | Details |
+|---|---|---|---|
+| Tests | `pytest --tb=short -q` | PASS/FAIL | [detail if FAIL] |
+| Types | `mypy src --strict` | PASS/FAIL | [detail if FAIL] |
+| Lint | `ruff check .` | PASS/FAIL | [detail if FAIL] |
+| Scope | `git diff --name-only HEAD` | PASS/FAIL | [files outside in_scope if FAIL] |
+
+## Overall: PASS / FAIL
+
+[If FAIL: list specific issues and which AC or file they relate to]
+
+---
 ```yaml
 from_step: S7
 to_step: S8
 agent: nowu-reviewer
-status: READY_FOR_REVIEW | CHANGES_REQUESTED
+status: READY_FOR_REVIEW
 ```

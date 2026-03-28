@@ -1,115 +1,116 @@
-# nowu Workflow v5 — Unified Specification
+# nowu Workflow — Reference Specification
 
-> Last updated: 2026-03-17 | Replaces: v4
-
-## Overview
-
-The nowu workflow is a 9-step cycle that zooms in from system context to code,
-then zooms back out to capture decisions. Each step has a dedicated agent, a
-fixed context scope, and a defined output artifact. The workflow enforces both
-**verification** (built it right) and **validation** (built the right thing).
-
-The workflow runs in four modes:
-- **A: Full Cycle** — S1→S9 (new feature)
-- **B: Implement Loop** — S5→[S6-S7]×n→S8-S9 (execute shaped tasks)
-- **C: Single Step** — S6-S9 (bug fix, small change)
-- **D: Architecture Only** — S1→S4→S9 (design spike)
-
-For a detailed, narrative explanation of each step and the Octahedron model,
-see `docs/WORKFLOW-DETAILED.md`.
+> Read this file at session start. For full narrative and rationale, see `WORKFLOW-DETAILED.md`.
 
 ---
 
-## S0: Session Bookmark (optional)
+## Overview
 
-Before entering S1–S9, the human or main agent may update
-`state/SESSION-STATE.md` with:
+The nowu workflow is a 9-step cycle: zoom in from system context to code, then zoom back out
+to capture decisions. Every step has one agent, one context scope, and one output artifact.
+The cycle enforces both **verification** (built it right) and **validation** (built the right thing).
 
-- current step (S1–S9)
-- current `intake_id` / `decision_id` / `task_id`
-- brief summary of focus
-- next checkpoint
+**Entry point:** `state/intake/intake-NNN.md` with `status: READY_FOR_S1`.
+Intakes are produced by the **Pre-Workflow** (P0–P4). See `PRE-WORKFLOW.md`.
 
-This is a convenience bookmark for session continuity, not a source
-of truth. The canonical state always lives in the S1–S9 artifacts.
+**Exit point:** S9 sets `next_cycle_trigger` which routes back into pre-workflow or closes the cycle.
 
 ---
 
 ## Step Reference
 
-| Step | Name        | Agent           | C4 Level | Perspective        | Output Artifact            | Gate            |
-|------|-------------|-----------------|----------|--------------------|----------------------------|-----------------|
-| S1   | Intake      | nowu-intake     | L1       | System context     | Intake Brief               | —               |
-| S2   | Constraints | nowu-constraints| L1-2     | System→Module      | Constraints Sheet          | —               |
-| S3   | Options     | nowu-options    | L2       | Module interactions| Options Sheet              | —               |
-| S4   | Decision    | nowu-decider    | L2       | Module, choosing   | Decision Record (D-NNN)    | 🛑 VALIDATION   |
-| S5   | Shaping     | nowu-shaper     | L3       | Component (files)  | Task Spec(s)               | 🛑 VALIDATION   |
-| S6+S7| Implement+VBR| nowu-implementer| L4      | Code               | Change Set + VBR Report    | Tier 1 auto     |
-| S8   | Review      | nowu-reviewer   | L3-4     | Code←→Component    | Review Report              | Tier 1/2        |
-| S9   | Capture     | nowu-curator    | L1-2     | System (zooming out)| Capture Record            | Tier 1 auto     |
+| Step | Name | Agent | C4 Level | Output Artifact | Gate |
+|------|------|-------|----------|-----------------|------|
+| S0 | Session Bookmark | human / main | — | `state/SESSION-STATE.md` | — |
+| S1 | Intake | nowu-intake | Above C4 | `state/intake/intake-NNN.md` (updated) | — |
+| S2 | Constraints | nowu-constraints | L1–L2 | `state/arch/intake-NNN-constraints.md` | — |
+| S3 | Options | nowu-options | L2 | `state/arch/intake-NNN-options.md` | — |
+| S4 | Decision | nowu-decider | L2 | `docs/DECISIONS.md` + `state/arch/intake-NNN-decision.md` | 🛑 VALIDATION |
+| S5 | Shaping | nowu-shaper | L3 | `state/tasks/task-NNN.md` | 🛑 VALIDATION |
+| S6+S7 | Implement + VBR | nowu-implementer | L4 | `state/changes/` + `state/vbr/` | Tier 1 auto |
+| S8 | Review | nowu-reviewer | L3–L4 | `state/reviews/review-task-NNN.md` | Tier 1/2 |
+| S9 | Capture | nowu-curator | L1–L2 | `state/capture/capture-task-NNN.md` | Tier 1 auto |
+
+---
+
+## Workflow Modes
+
+| Mode | Steps | When to use |
+|------|-------|-------------|
+| A — Full Cycle | S1 → S9 | New feature or story from intake |
+| B — Implement Loop | S5 → [S6–S7]×n → S8–S9 | Tasks already shaped; execute in sequence |
+| C — Single Step | S6 → S9 | Bug fix, small refactor, docs |
+| D — Architecture Only | S1 → S4 → S9 | Design spike, no implementation yet |
 
 ---
 
 ## Context Scoping Rules
 
-The single most important rule: **each agent loads only context from its C4 level**.
+**The single most important rule:** each agent loads only context from its C4 level.
 Loading architecture docs during implementation causes re-litigation.
 Loading code during architecture analysis causes anchoring bias.
 
-| Agent           | Load                                          | Never Load                         |
-|-----------------|-----------------------------------------------|------------------------------------|
-| nowu-intake     | V1_PLAN, USE_CASES (by ID), PROGRESS          | src/, tests/, ARCHITECTURE, DECISIONS |
-| nowu-constraints| intake, ARCHITECTURE, DECISIONS, contracts/   | src/ internals, tests              |
-| nowu-options    | constraints, intake, contracts/, module __init__.py | full ARCHITECTURE, src/ internals |
-| nowu-decider    | options, DECISIONS                            | src/, tests, contracts             |
-| nowu-shaper     | decision handoff, file tree, contracts/, test structure | ARCHITECTURE, DECISIONS, vision   |
-| nowu-implementer| task spec, in_scope_files ONLY, pyproject.toml| everything else                    |
-| nowu-reviewer   | VBR, changeset, task spec, git diff, rules    | full arch docs, upstream artifacts |
-| nowu-curator    | review, DECISIONS, PROGRESS, git log          | src/, tests/                       |
-
-At a good stopping point in S6–S7 (e.g. after a major test passes), you may
-update `state/SESSION-STATE.md` so the next session can resume quickly.
-
-After S9 (Capture), you may clear or reset `state/SESSION-STATE.md` to
-indicate that the current cycle is complete.
+| Agent | Load | Never Load |
+|-------|------|------------|
+| nowu-intake | `intake-NNN.md`, `vision.md`, `V1_PLAN.md`, `USE_CASES.md`, `PROGRESS.md` | `src/`, `tests/`, `ARCHITECTURE.md`, `DECISIONS.md` |
+| nowu-constraints | `intake-NNN.md`, `ARCHITECTURE.md`, `DECISIONS.md`, `contracts/`, `arch-pass-NNN.md` (if exists) | `src/` internals, `tests/` |
+| nowu-options | `constraints sheet`, `contracts/`, module `__init__.py` surfaces | Full `ARCHITECTURE.md`, `src/` internals |
+| nowu-decider | `options sheet`, `DECISIONS.md` | `src/`, `tests/`, `contracts/` |
+| nowu-shaper | `decision handoff`, file tree, `contracts/`, test structure, `PROGRESS.md` | `ARCHITECTURE.md`, `DECISIONS.md`, vision |
+| nowu-implementer | `task-NNN.md` + `in_scope_files` ONLY, `pyproject.toml` | Everything else |
+| nowu-reviewer | `vbr report`, `changeset`, `task-NNN.md`, `git diff`, `.claude/rules/architecture.md`, `story-NNN.md` (via task.story_id) | Full arch docs, upstream artifacts |
+| nowu-curator | `review report`, `DECISIONS.md`, `PROGRESS.md`, `intake-NNN.md`, `git log` | `src/`, `tests/` |
 
 ---
 
 ## Verification vs. Validation
 
-**Verification** (S7, S8 checklist A): “Did we build it right?”
-- Tests pass, types clean, architecture respected, scope not exceeded.
+**Verification** (S7, S8 checklist A): "Did we build it right?"
+- Tests pass, types clean, linter clean, architecture respected, scope not exceeded.
 
-**Validation** (S4 gate, S5 gate, S8 checklist B): “Did we build the right thing?”
-- Implementation traces back through: code → test → AC → use_case → intake → vision.
+**Validation** (S4 gate, S5 gate, S8 checklist B): "Did we build the right thing?"
+- Implementation traces: `code → test → AC → use_case → intake → vision`
 - No link in this chain may be broken.
-
-The `validation_trace` field in every Task Spec is the machine-readable form of this chain.
+- The `validation_trace` field in every Task Spec is the machine-readable form of this chain.
 
 ---
 
-## Agent Design Rationale
+## S9 Feedback Loop
 
-Each step gets its own agent (not a shared “architect” agent) because:
+S9 `next_cycle_trigger` routes back into the pre-workflow:
 
-1. Context scope differs — the options designer needs contracts; the decider does not.
-2. Cognitive mode differs — constraints analysis is divergent; decision is convergent.
-3. Decision methods differ — S3 uses QA-style scoring; S4 uses a weighted matrix.
-4. Fresh context windows at S8 prevent accumulated bias from corrupting the review.
-
-Agents are concise (each ≤60 lines). Skills hold the step-by-step orchestration.
-The main Claude session handles human communication and Tier 2/3 decisions.
+| Value | Meaning | Re-entry point |
+|-------|---------|----------------|
+| `CONTINUE` | Next story from same epic | P2.1 (problem-NNN already approved) |
+| `ARCH_PIVOT` | Architecture assumptions proved wrong | P3.1 (re-run constraint check) |
+| `PRODUCT_PIVOT` | Problem definition changed | P1.1 (new discovery run) |
+| `COMPLETE` | Epic / product goal met | Pre-workflow closed for this cycle |
 
 ---
 
 ## Handoff Status Flow
 
-```text
-DRAFT → READY_FOR_ARCH → READY_FOR_OPTIONS → READY_FOR_DECISION
-     → READY_FOR_SHAPING → READY_FOR_IMPL → READY_FOR_VBR
-     → READY_FOR_REVIEW → READY_FOR_CAPTURE → DONE
-                                    ↕
-                           CHANGES_REQUESTED (loops back)
-                                    ↕
-                              BLOCKED (human needed)
 ```
+DRAFT → READY_FOR_ARCH → READY_FOR_OPTIONS → READY_FOR_DECISION
+      → READY_FOR_SHAPING → READY_FOR_IMPL → READY_FOR_VBR
+      → READY_FOR_VBR → READY_FOR_REVIEW → DONE
+                                  ↕
+                         CHANGES_REQUESTED (loops back to S5 or S6)
+                                  ↕
+                            BLOCKED (human needed)
+```
+
+---
+
+## Health Checks (run anytime)
+
+Run at session start if >7 days since last run, or when something feels misaligned.
+
+| Command | Agent | Output |
+|---------|-------|--------|
+| `/health-check vision` | `health-vision` | `state/health/vision-YYYY-MM-DD.md` |
+| `/health-check architecture` | `health-architecture` | `state/health/arch-YYYY-MM-DD.md` |
+| `/health-check goals` | `health-goals` | `state/health/goals-YYYY-MM-DD.md` |
+| `/health-check all` | All three | All three reports |
+
+Status: **GREEN** (no issues) / **YELLOW** (minor drift) / **RED** (blocking — address before next cycle).
