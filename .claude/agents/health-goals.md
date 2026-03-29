@@ -99,3 +99,18 @@ Flag idea IDs where queued stage does not match the current active stage.
 - Do not load source code or test files.
 - Traceability findings must cite specific artifact IDs (story-NNN, epic-NNN, UC-NNN).
 - Age calculations are approximate -- do not fail if exact dates are unclear.
+
+## Secondary Output (Analysis)
+
+After writing your primary health report, also write:
+`state/analysis/health-goals-{date}-analysis.md`
+
+Schema (full spec: `docs/ideas/workflow-learning-loop.md`):
+- Frontmatter: `step: health.goals`, `artifact_id`, `artifact_path`, `run_date`, `agent`, `outcome`
+- **What Was Straightforward** — checks that were immediately clear
+- **Friction Points** — what was ambiguous or hard to trace in goals artifacts
+- **Check Quality** — were the input docs complete enough to run all checks? HIGH | MEDIUM | LOW
+- **Improvement Signals** — 1–3 suggestions for story templates, health-goals checks, or traceability rules
+- **Tags** — `[step:health.goals, status:{GREEN|YELLOW|RED}, friction:{tag}, ...]`
+
+This file is NEVER read by subsequent workflow steps — it feeds the learning-sweep only.

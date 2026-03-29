@@ -73,3 +73,19 @@ Awaiting approval to begin implementation.
 - Every task AC must have a test_function_name
 - If stories are available: every story AC must map to at least one task AC
 - Do not load vision, architecture, or decision docs
+
+## Secondary Output (Analysis)
+
+After writing your primary artifact, also write:
+`state/analysis/S5-{artifact-id}-analysis.md`
+
+Schema (full spec: `docs/ideas/workflow-learning-loop.md`):
+- Frontmatter: `step: S5`, `artifact_id`, `artifact_path`, `run_date`, `agent`, `outcome`
+- **What Went Well** — what was straightforward in this run
+- **Friction Points** — what slowed down or was unclear (cite specific input files)
+- **Quality Assessment** — input / output / confidence: HIGH | MEDIUM | LOW + reason
+- **Failure Classification** — `failure_type` + `failure_detail` if outcome ≠ COMPLETED
+- **Improvement Signals** — 1–3 concrete suggestions for agent defs, rules, or templates
+- **Tags** — `[step:S5, outcome:{outcome}, friction:{tag}, module:{name}, ...]`
+
+This file is NEVER read by subsequent workflow steps — it feeds the learning-sweep only.

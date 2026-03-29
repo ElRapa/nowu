@@ -80,3 +80,19 @@ If human modifies the decision: update evaluation, then write.
 - D-NNN number must be the next available in DECISIONS.md (check current max)
 - If human overrides your recommendation: record their choice faithfully,
   note the override in the decision record, and proceed
+
+## Secondary Output (Analysis)
+
+After writing your primary artifact, also write:
+`state/analysis/S4-{artifact-id}-analysis.md`
+
+Schema (full spec: `docs/ideas/workflow-learning-loop.md`):
+- Frontmatter: `step: S4`, `artifact_id`, `artifact_path`, `run_date`, `agent`, `outcome`
+- **What Went Well** — what was straightforward in this run
+- **Friction Points** — what slowed down or was unclear (cite specific input files)
+- **Quality Assessment** — input / output / confidence: HIGH | MEDIUM | LOW + reason
+- **Failure Classification** — `failure_type` + `failure_detail` if outcome ≠ COMPLETED
+- **Improvement Signals** — 1–3 concrete suggestions for agent defs, rules, or templates
+- **Tags** — `[step:S4, outcome:{outcome}, friction:{tag}, module:{name}, ...]`
+
+This file is NEVER read by subsequent workflow steps — it feeds the learning-sweep only.

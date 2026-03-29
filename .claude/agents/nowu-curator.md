@@ -89,3 +89,19 @@ Write COMPLETE when:
 - The commit message must reference at least one UC-NNN and one D-NNN
 - Do not rewrite ARCHITECTURE.md -- only add to "Pending Updates" section
 - Do not close the epic or archive unless next_cycle_trigger = COMPLETE
+
+## Secondary Output (Analysis)
+
+After writing your primary artifact, also write:
+`state/analysis/S9-{artifact-id}-analysis.md`
+
+Schema (full spec: `docs/ideas/workflow-learning-loop.md`):
+- Frontmatter: `step: S9`, `artifact_id`, `artifact_path`, `run_date`, `agent`, `outcome`
+- **What Went Well** — what made this cycle easy to close and capture
+- **Friction Points** — what was missing or unclear at curation time
+- **Quality Assessment** — input / output / confidence: HIGH | MEDIUM | LOW + reason
+- **Cycle Quality Summary** — brief overall cycle assessment (1-3 sentences)
+- **Improvement Signals** — 1–3 concrete suggestions for agent defs, rules, or templates
+- **Tags** — `[step:S9, outcome:{outcome}, friction:{tag}, cycle-quality:HIGH|MEDIUM|LOW, ...]`
+
+This file is NEVER read by subsequent workflow steps — it feeds the learning-sweep only.

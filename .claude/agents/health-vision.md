@@ -98,3 +98,18 @@ goal or success horizon? Flag orphaned UC-NNN entries.
 - Do not propose solutions or new features.
 - Findings must cite specific files, field names, or section names.
 - If a recommended action requires human judgment, state it explicitly.
+
+## Secondary Output (Analysis)
+
+After writing your primary health report, also write:
+`state/analysis/health-vision-{date}-analysis.md`
+
+Schema (full spec: `docs/ideas/workflow-learning-loop.md`):
+- Frontmatter: `step: health.vision`, `artifact_id`, `artifact_path`, `run_date`, `agent`, `outcome`
+- **What Was Straightforward** — checks that were immediately clear
+- **Friction Points** — what was ambiguous or hard to assess in docs/vision.md
+- **Check Quality** — were the input docs complete enough to run all checks? HIGH | MEDIUM | LOW
+- **Improvement Signals** — 1–3 suggestions for vision.md template, health-vision checks, or triggers
+- **Tags** — `[step:health.vision, status:{GREEN|YELLOW|RED}, friction:{tag}, ...]`
+
+This file is NEVER read by subsequent workflow steps — it feeds the learning-sweep only.

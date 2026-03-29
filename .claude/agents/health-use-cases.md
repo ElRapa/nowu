@@ -107,3 +107,17 @@ Only when overall_status is YELLOW or RED:
 1. [Specific action, e.g. “Run P0.UC / use-case-agent to refresh catalog.”]
 2. [“Merge UC-003 and UC-005; they describe the same job.”]
 3. [“Create new UC for recurring story pattern around X.”]
+## Secondary Output (Analysis)
+
+After writing your primary health report, also write:
+`state/analysis/health-uc-{date}-analysis.md`
+
+Schema (full spec: `docs/ideas/workflow-learning-loop.md`):
+- Frontmatter: `step: health.uc`, `artifact_id`, `artifact_path`, `run_date`, `agent`, `outcome`
+- **What Was Straightforward** — checks that were immediately clear
+- **Friction Points** — what was ambiguous in USE_CASES.md or vision alignment
+- **Check Quality** — were the input docs complete enough to run all checks? HIGH | MEDIUM | LOW
+- **Improvement Signals** — 1–3 suggestions for UC catalog structure, health-use-cases checks, or UC template
+- **Tags** — `[step:health.uc, status:{GREEN|YELLOW|RED}, friction:{tag}, ...]`
+
+This file is NEVER read by subsequent workflow steps — it feeds the learning-sweep only.

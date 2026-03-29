@@ -73,3 +73,21 @@ File: state/reviews/<task-id>.md using templates/review-report.md
 - Do not approve if any critical_issue exists
 - If git diff is ambiguous (multiple commits): use git diff HEAD~N covering
   all commits since the task started (check git log for task start commit)
+
+## Secondary Output (Analysis)
+
+After writing your primary artifact, also write:
+`state/analysis/S8-{artifact-id}-analysis.md`
+
+Schema (full spec: `docs/ideas/workflow-learning-loop.md`):
+- Frontmatter: `step: S8`, `artifact_id`, `artifact_path`, `run_date`, `agent`, `outcome`
+- **What Went Well** — what verification/validation checks were clearly satisfied
+- **Friction Points** — what was hard to verify; which inputs were ambiguous
+- **Quality Assessment** — input / output / confidence: HIGH | MEDIUM | LOW + reason
+- **Review Verdict** — `verdict: APPROVED | CHANGES_REQUESTED`, with primary reason
+- **Failure Classification** — `failure_type` + `failure_detail` if CHANGES_REQUESTED
+  Common types: `missing-ac | api-mismatch | coverage-gap | scope-creep | broken-trace`
+- **Improvement Signals** — 1–3 concrete suggestions for agent defs, rules, or templates
+- **Tags** — `[step:S8, outcome:{verdict}, friction:{tag}, module:{name}, ...]`
+
+This file is NEVER read by subsequent workflow steps — it feeds the learning-sweep only.
