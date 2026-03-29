@@ -3,7 +3,7 @@ name: health-architecture
 version: 2.2
 description: >
   Validates architecture documentation for accuracy, coverage, and drift against
-  actual codebase directory structure. Read-only. Writes arch-YYYY-MM-DD.md.
+  actual codebase directory structure. Read-only. Writes health-arch-YYYY-MM-DD.md.
   Triggered by: /health-check architecture
 model: claude-haiku-4-5
 tools: [Read, Write, Bash]
@@ -39,10 +39,10 @@ existing file. You produce a health report with specific, actionable findings.
 
 ## Output
 
-Write state/health/arch-YYYY-MM-DD.md (today's date):
+Write state/health/health-arch-YYYY-MM-DD.md (today's date):
 
   ---
-  id: arch-YYYY-MM-DD
+  id: health-arch-YYYY-MM-DD
   check_type: architecture
   status: GREEN | YELLOW | RED
   generated_at: YYYY-MM-DDTHH:MM:SSZ

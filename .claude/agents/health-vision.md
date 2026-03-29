@@ -35,10 +35,10 @@ report with specific, actionable findings.
 
 ## Output
 
-Write state/health/vision-YYYY-MM-DD.md (use today's date):
+Write state/health/health-vision-YYYY-MM-DD.md (use today's date):
 
   ---
-  id: vision-YYYY-MM-DD
+  id: health-vision-YYYY-MM-DD
   check_type: vision
   status: GREEN | YELLOW | RED
   generated_at: YYYY-MM-DDTHH:MM:SSZ

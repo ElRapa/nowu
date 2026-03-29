@@ -3,7 +3,9 @@
 id: 2026-03-22-memory-integration-constraints
 intake_id: intake-2026-03-22-memory-integration
 created: 2026-03-22
-status: READY_FOR_OPTIONS
+status: SUPERSEDED
+superseded_at: 2026-03-29
+superseded_reason: References know v0.3 API (know.init(), know.today(), KnowAdapter.create_task()) which was replaced by v0.4.0 class-based API. A fresh S2 run against intake-001.md must produce a new constraints sheet using the current API surface.
 c4_l1_update_needed: false
 affected_modules: [core, know]
 ---

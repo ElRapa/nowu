@@ -3,8 +3,10 @@
 id: 2026-03-22-memory-integration-options
 intake_id: intake-2026-03-22-memory-integration
 created: 2026-03-22
-status: READY_FOR_DECISION
+status: SUPERSEDED
 recommended_option: B
+superseded_at: 2026-03-29
+superseded_reason: Options were designed against know v0.3 API which no longer exists. v0.4.0 class-based API changes the feasibility and tradeoffs of all three options. Archived as historical reference only. A fresh S3 run must follow the new S2 constraints sheet.
 ---
 
 > **⚠️ STALE**: This document references `know` v0.3 API (`know.init()`, `know.today()`, `KnowAdapter.create_task()`).

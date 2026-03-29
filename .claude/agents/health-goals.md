@@ -39,10 +39,10 @@ traceability chains. Read-only -- you do not modify any existing file.
 
 ## Output
 
-Write state/health/goals-YYYY-MM-DD.md (today's date):
+Write state/health/health-goals-YYYY-MM-DD.md (today's date):
 
   ---
-  id: goals-YYYY-MM-DD
+  id: health-goals-YYYY-MM-DD
   check_type: goals
   status: GREEN | YELLOW | RED
   generated_at: YYYY-MM-DDTHH:MM:SSZ

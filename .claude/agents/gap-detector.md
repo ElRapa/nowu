@@ -36,9 +36,9 @@ Required:
 - `docs/vision.md`                         # product scope boundary
 
 Optional (load if they exist):
-- `state/health/arch-*.md`                 # last 3 architecture health reports (newest first)
-- `state/health/goals-*.md`               # last 2 goals health reports
-- `state/health/vision-*.md`              # last 2 vision health reports
+- `state/health/health-arch-*.md`          # last 3 architecture health reports (newest first)
+- `state/health/health-goals-*.md`        # last 2 goals health reports
+- `state/health/health-vision-*.md`       # last 2 vision health reports
 - `state/arch/global-pass-*.md`           # last GAP summary (newest only)
 - `state/arch/gap-trigger.md`             # any existing trigger record (check if still open)
 
@@ -65,11 +65,11 @@ Evaluate each trigger condition. A condition is TRIGGERED or CLEAR.
 - If current stage > stage at last GAP: TRIGGERED.
 
 ### Trigger 3: Consecutive RED architecture health checks
-- Read last 3 `state/health/arch-*.md` files.
+- Read last 3 `state/health/health-arch-*.md` files.
 - If 2 or more have `status: RED`: TRIGGERED.
 
 ### Trigger 4: Vision scope expansion detected
-- Read the last `state/health/vision-*.md`.
+- Read the last `state/health/health-vision-*.md`.
 - If it contains: "new domain", "scope expanded", "new persona added", or
   `status: RED` AND the issue is a scope mismatch: TRIGGERED.
 
@@ -101,7 +101,7 @@ RECOMMENDED | NOT_RECOMMENDED
 |---|---|---|
 | No prior GAP | TRIGGERED / CLEAR | [one-line evidence] |
 | Stage advancement | TRIGGERED / CLEAR | [e.g., "V1_PLAN is Stage 2; last GAP was at Stage 1"] |
-| Consecutive RED arch checks | TRIGGERED / CLEAR | [e.g., "arch-2026-03-01 RED, arch-2026-03-10 RED"] |
+| Consecutive RED arch checks | TRIGGERED / CLEAR | [e.g., "health-arch-2026-03-01 RED, health-arch-2026-03-10 RED"] |
 | Vision scope expansion | TRIGGERED / CLEAR | [evidence or "none"] |
 | Human request | TRIGGERED / CLEAR | [evidence or "none"] |
 

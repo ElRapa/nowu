@@ -329,22 +329,28 @@ Scope: Create `docs/LEARNING.md` skeleton. Write `learning-sweep` skill. Run
 first sweep manually. Evaluate whether the analysis files produced in Phase 0
 are actually useful (validate the schema is capturing the right signals).
 
-If Phase 0 schema proves useful: expand to **P1 and P2 first** (before any
-other steps). Problem framing quality (P1) and story AC quality (P2) are where
-most downstream S8 failures originate — but that causal link is invisible in
-S8/S9 data alone. P1/P2 data closes that gap.
-Note: P1/P2 may need minor schema adaptation — their failure modes
-(ambiguous problem space, thin ACs) differ structurally from S4/S5/S8/S9.
+**First expansion target (if Phase 0 schema proves useful): P1 and P2.**
+Problem framing quality (P1/discovery-agent) and story AC quality (P2/story-mapper)
+are where most downstream S8 failures originate — but that causal link is invisible
+in S8/S9 data alone. P1/P2 data closes the gap between "the review rejected this"
+and "the problem was framed too narrowly in P1." These two steps are higher value
+than any remaining implementation step (S1/S2/S3/S6).
+
+Note: P1/P2 will need minor schema adaptation — their failure modes
+(ambiguous problem space, thin ACs, appetite not set) differ structurally from
+S4/S5/S8/S9. Do not copy the schema blindly; adapt the Failure Classification
+and Improvement Signals sections to pre-workflow failure modes.
 
 ### Phase 2 — After first learning-sweep
 Scope: Create `prompt-refiner` agent. Run first prompt-refiner pass. Apply first
 set of approved proposals. Evaluate ROI.
 
 ### Phase 3 — Stabilise
-Scope: Evaluate whether remaining steps (S1/S2/S3/S6) should be added based
-on whether Phase 0–2 analysis revealed blind spots in those steps. P1/P2
-will already have been added in Phase 1 if schema proved valuable.
-Wire learning-sweep and prompt-refiner triggers into CLAUDE.md as commands.
+Scope: Evaluate whether the remaining implementation-stage steps (S1, S2, S3,
+S6) should be added based on whether Phase 0–2 analysis revealed blind spots
+there. P1 and P2 will already be in scope from Phase 1 — Phase 3 does not
+revisit that decision. Wire learning-sweep and prompt-refiner triggers into
+CLAUDE.md as named commands (`/learning-sweep`, `/prompt-refiner`).
 
 ---
 

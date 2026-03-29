@@ -2,7 +2,10 @@
 # Intake Brief
 id: intake-2026-03-22-memory-integration
 created: 2026-03-22
-status: READY_FOR_ARCH
+status: SUPERSEDED
+superseded_by: state/intake/intake-001.md
+superseded_at: 2026-03-29
+superseded_reason: Renamed to canonical intake-NNN format as part of S1 run. Replaced by intake-001.md which is the active S2 input.
 appetite: 8h
 affected_modules: [core, know]
 use_case_ids: [NF-01, NF-02, PK-03, XP-01]

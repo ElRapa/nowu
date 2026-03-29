@@ -47,7 +47,7 @@ Optional (load if they exist):
 - `docs/architecture/adr/*.md`             # all existing ADRs
 - `docs/DECISIONS.md`                      # all binding decisions
 - `state/arch/global-pass-*.md`            # previous GAP summaries (newest 2 only)
-- `state/health/arch-*.md`                 # last architecture health report (newest only)
+- `state/health/health-arch-*.md`          # last architecture health report (newest only)
 
 ## What You NEVER Load
 
