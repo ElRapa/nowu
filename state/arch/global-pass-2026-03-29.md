@@ -1,11 +1,24 @@
 ---
 id: global-pass-2026-03-29
-status: PROPOSED
+status: APPLIED
 agent_version: gap-analyst@1.0
 generated_at: 2026-03-29T00:00:00Z
 trigger: "No prior GAP has ever run. Stage 1, Step 02 in progress. Validate architecture against accumulated decisions D-003/D-006/D-008/D-009 and full UC catalog before further steps ship."
 gap_scope: FULL_RESET
 product_stage_at_time: Stage 1 — v1 core (Step 02 of 7 in progress)
+applied_at: 2026-03-29T00:00:00Z
+applied_by: gap-writer@1.0
+artifacts_updated:
+  - docs/architecture/context.md
+  - docs/architecture/containers.md
+  - docs/architecture/adr/ADR-001-know-api-boundary-and-version-contract.md
+  - docs/architecture/adr/ADR-002-wal-and-session-summary-atom-strategy.md
+  - docs/architecture/adr/ADR-003-approval-queue-storage-format-and-lifecycle.md
+  - docs/architecture/adr/ADR-004-cross-project-isolation-model.md
+  - docs/architecture/adr/ADR-005-security-and-sensitivity-model-for-knowledge-atoms.md
+  - docs/architecture/adr/ADR-006-health-metrics-collection-architecture.md
+  - docs/architecture/adr/ADR-007-pattern-detection-and-lesson-persistence-mechanism.md
+  - docs/architecture/adr/ADR-008-dash-scope-dependencies-and-activation-trigger.md
 ---
 
 # Global Architecture Pass — 2026-03-29

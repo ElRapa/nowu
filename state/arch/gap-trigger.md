@@ -1,8 +1,10 @@
 ---
 id: gap-trigger
-status: OPEN
+status: CLOSED
 generated_at: 2026-03-29T00:00:00Z
 agent_version: gap-detector@1.0
+closed_at: 2026-03-29T00:00:00Z
+applied_by: gap-writer@1.0
 ---
 
 # GAP Trigger Assessment
