@@ -181,14 +181,29 @@ Do not proceed to P3/P4 with DRAFT stories.
 
 ---
 
-## 5. P3 — Architecture Bootstrap (mode-dependent)
+## 5. P3 — Architecture Phase (mode-dependent)
 
-Skip P3 entirely if:
+Mode gating:
 
-- `mode = LITE`, and
-- Stories clearly fit within existing containers and decisions.
+- **LITE**: Skip P3 entirely if stories clearly fit within existing containers
+  and decisions.
+- **STANDARD**: Run P3.1 only; skip P3.0 and P3.2–P3.6.
+- **FULL / BOOTSTRAP**: Run P3.0–P3.6 in full.
 
-Otherwise:
+> If `next_cycle_trigger = ARCH_PIVOT`, always run P3.1–P3.4 regardless of mode.
+
+---
+
+### P3.0 Domain Modeling (FULL / BOOTSTRAP only; optional)
+
+Only run if the problem introduces a new bounded context.
+
+If a domain-modeling agent is available in `.claude/agents/`, invoke it.
+Otherwise, skip this step and note the absence in the runner state file.
+
+- Output (if run): `state/arch/bounded-context-NNN.md`
+
+---
 
 ### P3.1 Constraint Check
 
@@ -196,30 +211,88 @@ Otherwise:
 - Inputs:
     - Approved `state/stories/story-NNN-*.md`
     - `docs/architecture/containers.md` (if exists)
+    - `docs/architecture/adr/` (if exists)
 - Output:
     - `state/pre-workflow/NNN-constraint-check.md`
 
 Human reviews conflicts (if any) and resolves before P3.2.
 
-### P3.2 Architecture Bootstrap
+---
 
-- Invoke `architecture-bootstrap`.
+### P3.2 QA Elicitation (FULL / BOOTSTRAP only)
+
+- Invoke `qa-elicitation`.
 - Inputs:
     - `state/problems/problem-NNN.md`
-    - Approved stories
+    - `docs/vision.md`
+    - `docs/architecture/quality.md` (optional; existing global QA registry)
+    - Approved `state/stories/story-NNN-*.md`
+- Output:
+    - `state/arch/NNN-qa-scenarios.md`
+
+Do not proceed to P3.3 if `NNN-constraint-check.md` has
+`status: CONFLICTS_FOUND` with unresolved conflicts.
+
+---
+
+### P3.3 Architecture Design (FULL / BOOTSTRAP only)
+
+- Invoke `architecture-design`.
+- Inputs:
+    - `state/problems/problem-NNN.md`
+    - Approved `state/stories/story-NNN-*.md`
+    - `state/arch/NNN-qa-scenarios.md`
     - `state/pre-workflow/NNN-constraint-check.md`
+    - `state/arch/bounded-context-NNN.md` (if produced in P3.0)
     - `docs/architecture/context.md` (if exists)
     - `docs/architecture/containers.md` (if exists)
+    - `docs/architecture/crosscutting.md` (if exists)
     - `docs/architecture/adr/` (if exists)
 - Output:
     - `state/arch/arch-pass-NNN.md`
 
+---
 
-### P3.3 ADR authoring (human)
+### P3.4 ATAM-Lite Evaluation (FULL / BOOTSTRAP only)
 
-- For each ADR candidate in `arch-pass-NNN.md`:
+- Invoke `atam-lite`.
+- Inputs:
+    - `state/arch/arch-pass-NNN.md`
+    - `state/arch/NNN-qa-scenarios.md`
+    - `docs/architecture/containers.md` (if exists)
+    - `docs/architecture/risks.md` (if exists)
+- Output:
+    - `state/arch/NNN-atam-lite.md`
+
+---
+
+### P3.5 ADR Authoring (human)
+
+- For each ADR candidate in `arch-pass-NNN.md` (section "ADR Candidates"):
     - Human writes `docs/architecture/adr/ADR-NNN-*.md`.
+- Review `state/arch/NNN-atam-lite.md`:
+    - Accept identified risks (status ACCEPTED with documented mitigation), or
+    - Request a design revision by looping back to P3.3 for any HIGH-impact
+      risk that remains unmitigated.
 - Update `docs/architecture/context.md` and `containers.md` as needed.
+
+Do not proceed to P3.6 while any HIGH-impact risks remain OPEN
+without a mitigation decision.
+
+---
+
+### P3.6 Architecture Documentation Update (human)
+
+After ADRs are in place, update `docs/architecture/` to reflect the new design:
+
+- `quality.md` — merge new QA scenarios from `state/arch/NNN-qa-scenarios.md`.
+- `crosscutting.md` — add or revise crosscutting decisions from `arch-pass-NNN.md`.
+- `runtime.md` — add C4 Dynamic scenarios for any new key flows.
+- `deployment.md` — update if a new topology was decided.
+- `risks.md` — promote new OPEN risks from `NNN-atam-lite.md` (append only).
+
+This step is human-driven. Agents write only to `state/arch/`;
+promotion to `docs/architecture/` is always manual.
 
 ---
 
@@ -277,8 +350,8 @@ Read the most recent `state/capture/capture-*.md` for this initiative.
     - Re-enter at P2/P4 → S1–S9.
 - `ARCH_PIVOT`
     - Implementation revealed an architecture mismatch.
-    - Re-run P3 (constraint-check + architecture-bootstrap) on the epic/problem
-before shaping further work.
+    - Re-run P3.1–P3.4 (constraint-check → qa-elicitation → architecture-design → atam-lite)
+      on the epic/problem before shaping further work.
 - `PRODUCT_PIVOT`
     - Discovery from implementation shows product direction should change.
     - Re-run:

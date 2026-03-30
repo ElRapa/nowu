@@ -29,6 +29,15 @@ If it exists (pre-workflow artifact):
   When present: use it as your starting point. Refine and confirm, not re-derive.
   Note any divergence from the arch-pass explicitly in arch_pass_divergences field.
 
+If they exist (extended P3 artifacts):
+- docs/architecture/crosscutting.md -- system-wide rules; flag any story signal
+  that contradicts a crosscutting rule (logging, auth, error handling, config)
+  as a CONFLICT in the constraints sheet.
+- state/arch/NNN-atam-lite.md -- pre-computed risk register for this problem;
+  reference identified HIGH/MEDIUM risks in your risks: field. Do not re-evaluate;
+  just note whether each risk is confirmed, partially addressed, or still open.
+  (Derive NNN from the intake id.)
+
 For public interface inspection only:
 - src/nowu/core/contracts/*.py (or equivalent contracts/ directory)
 - src/nowu/<affected_module>/__init__.py -- public surface only, not internals
@@ -49,6 +58,10 @@ Required fields:
 - fixed_constraints: each referencing a D-NNN
 - flexible_constraints: what CAN be changed
 - risks: severity (high/med/low) + mitigation per risk
+- qa_scenario_coverage: (only if state/arch/NNN-qa-scenarios.md exists for this intake)
+  For each QA scenario ID: one line -- ADEQUATE | INSUFFICIENT | UNKNOWN --
+  with a short reason citing existing decisions or gaps.
+  Omit this field entirely when no qa-scenarios file exists.
 - assumptions: validated (true/false) per assumption
 - open_questions: what needs S3 to resolve
 - c4_l1_update_needed: true/false -- if true, note which actor or system boundary changes

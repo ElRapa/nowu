@@ -30,6 +30,10 @@ If they exist (pre-workflow artifacts):
 - state/stories/story-NNN-*.md referenced in task.story_id
   Use to verify: do implemented task ACs satisfy the story ACs?
 
+If it exists:
+- docs/architecture/crosscutting.md -- load to verify that changed code
+  complies with system-wide logging, auth, and error-handling rules.
+
 ## What You NEVER Load
 
 - Full architecture docs, vision, plan (upstream -- not relevant here)
@@ -44,6 +48,15 @@ If they exist (pre-workflow artifacts):
 - [ ] mypy --strict clean (from VBR report)
 - [ ] ruff clean (from VBR report)
 - [ ] Changes follow relevant D-NNN decisions (check task.decision_id)
+
+If `docs/architecture/crosscutting.md` was loaded:
+- [ ] Logging: new log statements include required fields (timestamp, level,
+      component, trace_id; tenant_id where applicable). No secrets in logs.
+- [ ] Auth/authz: new endpoints or data-access paths apply role + tenant
+      scoping as specified in crosscutting.md. (Skip if no new data access.)
+- [ ] Error handling: domain errors map to correct HTTP codes; no stack
+      traces, internal IDs, or raw DB errors exposed externally.
+      (Skip if no new API or domain boundary introduced.)
 
 ## Validation Checklist ("built the right thing")
 

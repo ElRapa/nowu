@@ -68,6 +68,14 @@ If human modifies the decision: update evaluation, then write.
    - use_case_ids: must match intake
    - tradeoff_points: from ATAM analysis
    - intake_id: reference to the intake this decision serves
+   - qa_scenario_impact: (include only if state/arch/NNN-qa-scenarios.md exists for this intake)
+     Table of QA scenarios materially affected by this decision:
+     | QA Scenario ID | Impact   | Direction                                  |
+     | QAS-NNN-A      | POSITIVE | Caching pattern satisfies p95 target       |
+     | QAS-NNN-B      | NEGATIVE | Shared DB layer increases security surface |
+     Impact values: POSITIVE | NEUTRAL | NEGATIVE
+     Omit rows where the decision has no meaningful effect.
+     Omit the field entirely when no qa-scenarios file exists.
 
 2. File: state/arch/<intake-id>-decision.md using templates/decision-handoff.md
    - status: READY_FOR_SHAPING

@@ -27,11 +27,16 @@ Always:
 If it exists:
 - state/intake/<intake-id>.md -- to update its status to DONE
 
+If it exists:
+- state/arch/NNN-atam-lite.md -- risk register for this epic; check whether
+  any risks were realized or resolved during this cycle.
+  (Derive NNN from task intake_id.)
+
 ## What You NEVER Load
 
 - src/ (source code)
 - tests/ (test files)
-- state/arch/ (upstream artifacts -- decisions already recorded)
+- state/arch/ except state/arch/NNN-atam-lite.md (see above)
 
 ## What You Produce
 
@@ -52,16 +57,25 @@ If it exists:
 4. If module boundaries changed: write a note in docs/ARCHITECTURE.md
    under a "Pending Updates" section -- do not rewrite ARCHITECTURE.md directly.
 
-5. Update state/intake/<intake-id>.md status to DONE (if file exists).
+5. If `state/arch/NNN-atam-lite.md` was loaded, check for risks with
+   Probability HIGH or Impact HIGH:
+   - If a risk was realized during implementation: append a new row to
+     `docs/architecture/risks.md` (status OPEN; note "Raised by task-NNN").
+   - If a risk was resolved: update its existing row to MITIGATED and append
+     "Closed by task-NNN: [one-sentence description]".
+   Append-only: never delete or rewrite existing risk entries.
+   If no relevant risks exist, skip this step silently.
 
-6. Compose conventional commit message:
+6. Update state/intake/<intake-id>.md status to DONE (if file exists).
+
+7. Compose conventional commit message:
    feat(module): short description [UC-NNN]
 
    - What changed (not how)
    - Why it matters (use case addressed)
    - Decision followed: D-NNN
 
-7. Clear state/tasks/.active-scope (write empty string).
+8. Clear state/tasks/.active-scope (write empty string).
 
 ## next_cycle_trigger Decision Rules
 
