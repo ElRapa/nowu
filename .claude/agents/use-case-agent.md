@@ -184,6 +184,14 @@ from `vision.md` and the current plan.
         - Merge overlapping UCs if they describe the same job.
         - Split oversized UCs into clearer sub-UCs if they span very different
 personas or outcomes.
+3b. **Vision coverage check** (UPDATE mode only)
+    - For each top-level chapter of `vision.md` (The Problem, For Whom, Our Solution,
+      Success Horizons 6/12/24 months, What We Are NOT, Guiding Principles):
+        - Verify that ≥1 ACTIVE UC addresses the core job-to-be-done in that chapter.
+        - List any chapter with zero matching UCs as a **Gap Candidate** in the
+          Change Summary section of the output.
+    - This is a structural completeness audit, not a language-alignment pass.
+      Language alignment happens in step 3; this step catches missing domains entirely.
 4. **Map artifacts**
     - For each ACTIVE UC, list related `problem-*`, `epic-*`, `story-*` IDs.
     - For each APPROVED story without a UC mapping, propose:
@@ -228,3 +236,7 @@ but do not silently “create” it.
 - Never modify any file **in place** in UPDATE mode:
     - Only write `docs/USE_CASES.proposed.md`.
     - The human is responsible for copying it over to `docs/USE_CASES.md`.
+- Pending UCs must retain or produce **full UC tables** (Situation, Need, Success, Failure,
+    Open questions). Summary blurbs are never acceptable for Pending UCs — they must be
+    architecture-quality artifacts, usable in S2/S3 design work without the agent needing
+    to read additional sources.

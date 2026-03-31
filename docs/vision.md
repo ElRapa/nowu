@@ -34,7 +34,7 @@ still trust your own past reasoning.
 
 ### Primary Persona
 
-**Raphael — the multi‑project human.** Runs several things at once across different domains — software, a business venture, a creative project — and uses AI heavily for all of them. Loses context easily and feels the low‑grade guilt of stalled projects and half‑finished ideas, which he has to keep picking back up again. Wants steady, meaningful progress without having to keep everything in his head, and does not want to manage a system; wants a system that manages itself well enough that he can just show up and move forward.
+**Raphael — the multi‑project human.** Runs several things at once across different domains — software, a business venture, a creative project — and uses AI heavily for all of them. Loses context easily and feels the low‑grade guilt of stalled projects and half‑finished ideas, which he has to keep picking back up again. He's not always at his desk when this happens — ideas arrive or he wants to continue on a commute, at a supplier meeting, mid-dinner. nowu must meet him wherever he is. Wants steady, meaningful progress without having to keep everything in his head, and does not want to manage a system; wants a system that manages itself well enough that he can just show up and move forward.
 
 ### Secondary Personas
 
@@ -45,6 +45,8 @@ Anyone with a goal longer than a todo list — building a business, learning a s
 ## Our Solution
 
 nowu is a product‑centric AI workflow — the layer between having a goal and making it real. Where vibe‑coding gives you momentum inside a session, nowu makes the project progressively more defined across sessions: it holds the project's intent, decisions, and the reasoning behind them — so nothing disappears between sessions and the AI always knows what it's building toward. The more you use it, the more it knows — the vision sharpens, the decisions compound, and the knowledge becomes part of the product itself.
+
+The knowledge layer is atomic — every fact, decision, lesson, and idea is stored as a discrete unit with its own source, confidence grade, and relationships to other atoms. This same knowledge graph is rendered differently depending on who is reading it: condensed and visual for the human, structured and scoped for the AI agent — same data, different lenses.
 
 ## Core Value Proposition
 
