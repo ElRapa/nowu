@@ -2,7 +2,7 @@
 last_updated: 2026-03-31
 last_approved: 2026-03-31
 status: APPROVED
-version: 1.1
+version: 2.0
 stage: 1
 product: nowu
 workflow_level: Above C4

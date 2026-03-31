@@ -115,7 +115,7 @@ P-1: Mode Selection
 
 P0: Signal Capture
   P0.V  Vision Bootstrap Agent    [if vision.md missing or stale]
-  P0.1  Idea Note                 [Human, 5–10 min]
+  P0.1  Signal Capture            [signal-capture agent OR human — → idea-NNN.md]
   P0.D  Idea Decomposition        [Agent → NNN-decomp.md]
   P0.2  Vision Alignment Check    [Human, 2 min]
 
@@ -288,16 +288,27 @@ or `last_approved` is >90 days ago.
 Human must edit and set `status: APPROVED` before any other P0 work begins.
 The Vision Bootstrap Agent does not touch any other files.
 
-### P0.1 — Idea Note [Human, 5–10 min]
+### P0.1 — Signal Capture [signal-capture agent OR human]
 
-Create `state/ideas/idea-NNN.md` using `templates/pre-workflow/idea.md`.
+**Preferred path (agent):** Run `/capture` — `signal-capture` asks 5 questions in a
+single message and writes `state/ideas/idea-NNN.md` (NNN auto-incremented).
 
-Required fields:
+**Manual path (fallback):** Create `state/ideas/idea-NNN.md` using
+`templates/pre-workflow/idea.md` directly.
+
+**Agent:** `.claude/agents/signal-capture.md`
+**Inputs:** none (reads only `state/ideas/` directory listing for NNN)
+**Output:** `state/ideas/idea-NNN.md` [DRAFT]
+
+Required fields (either path):
 - Raw signal (1–5 sentences, unpolished)
-- Source (personal frustration / user feedback / market observation / technical opportunity)
-- Appetite guess (Tiny <2h / Small <1d / Medium 2–3d / Large 1w+)
-- Why now (one sentence: why does this matter at this moment)
+- Type (Idea / Bug / Problem observation / Architectural concern / Other)
+- Source (personal frustration / dogfooding / technical opportunity / market observation)
+- Appetite guess (Tiny <2h / Small <1d / Medium 2–3d / Large 1w+ / Unknown)
+- Why now (one sentence — optional if unclear)
 - Related context (optional): related idea-NNN, UC-NNN, D-NNN
+
+After writing, agent asks whether to proceed to P0.D (idea-decomposition). Human decides.
 
 ### P0.D — Idea Decomposition [Decomposition Agent]
 

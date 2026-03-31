@@ -18,6 +18,7 @@ If entering S1 directly (no pre-workflow), use `templates/intake-s1.md`.
 
 | Command | What happens |
 |---|---|
+| `/capture` | Run signal-capture agent — interview (5 questions) → writes `state/ideas/idea-NNN.md` |
 | `/pre-workflow run NNN` | Start pre-workflow for idea NNN (creates mode-record) |
 | `/pre-workflow status NNN` | Show current phase, status, and next required human action |
 | `/pre-workflow resume NNN --from P2` | Resume from specific phase after human gate |

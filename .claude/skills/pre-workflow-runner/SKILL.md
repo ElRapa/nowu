@@ -21,8 +21,9 @@ given initiative `NNN`, keeping:
 
 You have one of:
 
-- A raw idea.
-- An existing `state/ideas/idea-NNN.md` (P0).
+- A raw idea (human says "capture" or describes a signal — run `/capture` first
+  to write `state/ideas/idea-NNN.md`, then continue from P0.D).
+- An existing `state/ideas/idea-NNN.md` (P0.1 already done).
 - A `next_cycle_trigger` from the last capture record that tells you
   where to resume (e.g. `PRODUCT_PIVOT`).
 
@@ -31,8 +32,10 @@ You have one of:
 ## High-level flow
 
 1. **Determine mode** and resume point.
-2. Optionally run **P0.VISION** (vision health + update).
-3. Run **P0.UC** (use-case catalog maintenance) when needed.
+2. Run **P0.1 Signal Capture** if no `state/ideas/idea-NNN.md` exists yet
+   (invoke `signal-capture` agent via `/capture`, or human writes it manually).
+3. Optionally run **P0.VISION** (vision health + update).
+4. Run **P0.UC** (use-case catalog maintenance) when needed.
 4. Run **P1** (discovery + perspective interview).
 5. Run **P2** (story mapping + human gate).
 6. Optionally run **P3** (constraint check + architecture bootstrap).
