@@ -33,7 +33,6 @@ The `status` field uses a fixed enum that mirrors the PubNub subagent queue patt
 | `READY_FOR_IMPL` | S5 complete → S6 can start |
 | `READY_FOR_VBR` | S6 complete → S7 can start |
 | `READY_FOR_REVIEW` | S7 complete → S8 can start |
-| `READY_FOR_CAPTURE` | S8 complete → S9 can start |
 | `DONE` | S9 complete → cycle finished |
 | `BLOCKED` | Cannot proceed — needs human input |
 | `CHANGES_REQUESTED` | Returned from review — go back to S6 |
@@ -517,7 +516,7 @@ handoff:
   to_step: S9  # or back to S6 if changes requested
   justification: >
     [Why approved, or what needs to change]
-  status: READY_FOR_CAPTURE  # or CHANGES_REQUESTED
+  status: DONE  # or CHANGES_REQUESTED (if rejected, returns to S6)
 
 review:
   task_id: task-YYYYMMDD-XX
