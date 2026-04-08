@@ -25,7 +25,17 @@ Update this file after each step completes. It is the practical source of truth 
 
 **Now:** Step 02 - `know` integration layer (`MemoryService`)
 
+**Pre-workflow status:** v1-core P1→P4 complete. 4 epics APPROVED, 17 stories (16 APPROVED, 1 DRAFT/deferred). Ready for S1.
+
 ## Weekly Summary
+
+- 2026-04-08: Completed pre-workflow P1→P4 for v1-core. 4 epics + 17 stories shaped, reviewed, and approved.
+  - Epic 001 (Continuity & Capture): 1M + 3S approved; s005 (Strategic Drift) deferred to v1 pending idea-006 goal layer.
+  - Epic 002 (Building Trust: Decision Memory & Pipeline Quality): 7S approved; renamed to reflect goal-002 anchoring.
+  - Epic 003 (Project Bootstrap & Idea Lifecycle): 2S approved; namespace-separation language replacing "isolated memory".
+  - Epic 004 (Knowledge That Compounds): 4S approved.
+  - New: NF-15 (epistemic grades), NF-16 (strategic drift), idea-005, idea-006 (goal layer), story-v1core-002-s007.
+  - All epics assigned `parent_goal` frontmatter anchoring to goal-001/002/003 (TBD: idea-006).
 
 - 2026-03-04: Rebased architecture, plan, and workflow; created architect/shaper skills; captured key decisions to `know`.
 - 2026-03-04: Completed Step 01 scaffold, contracts, and import-boundary tests.
