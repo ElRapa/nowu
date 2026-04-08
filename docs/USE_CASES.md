@@ -1,12 +1,64 @@
 ---
-version: 2.1
-generated_by: use-case-agent@2.2
-generated_at: 2026-03-31
+version: 2.5
+generated_by: use-case-agent@2.3 (NF-15 added manually 2026-04-08; NF-16 added manually 2026-04-08)
+generated_at: 2026-04-08
 based_on_vision: v2.0 (approved 2026-03-31)
 status: ACCEPTED
 ---
 
 # nowu Framework — Use Cases & Requirements
+
+## Change Summary (v2.4 → v2.5)
+
+**Added:**
+- NF-16: Detect and Surface Strategic Drift (`v1`) — closes the gap between thread resumption
+  (NF-10/NF-01: "what did I do last?") and strategic alignment ("am I working on the right
+  things?"). Surfaced during v1-core epic review when the human noted that good, locally-coherent
+  sessions can accumulate into direction drift. This UC requires the goal layer (idea-006) and is
+  therefore v1, not v1-core. Story-v1core-001-s005 is the founding story (DRAFT, deferred).
+- Catalog now: **50 UCs, 50 ACTIVE, 0 Pending**
+
+---
+
+## Change Summary (v2.3 → v2.4)
+
+**Added:**
+- NF-15: Assign and Surface Epistemic Grades on Workflow Outputs (`v1-core`) — closes the
+  framework quality gap surfaced during pre-workflow v1core: agent outputs (options, decisions,
+  recommendations) carry no explicit confidence level, making it impossible for the human or
+  downstream agents to know how much trust to place in them. The `know` sibling library already
+  defines the canonical 5-level scale (SPECULATION → HYPOTHESIS → INFORMED_ESTIMATE →
+  EVIDENCE_BASED → VERIFIED_FACT); this UC commits the framework to use that vocabulary.
+- Catalog now: **49 UCs, 49 ACTIVE, 0 Pending**
+
+---
+
+## Change Summary (v2.2 → v2.3)
+
+**Added:**
+- PK-09: Access Domain Expertise On Demand (`v1.1`) — closes the expertise gap pain point surfaced
+  in disc-v1core-research.md. The multi-project human cannot be deeply expert in all domains
+  simultaneously. AI research and synthesis must fill those gaps and retain what was learned as
+  durable, reusable knowledge atoms — not as one-time session output.
+- Discovery research (disc-v1core-research.md): Theme 7, pain point, and Assumption 6 added
+  to anchor PK-09 in validated problem space.
+
+**Vision.md update (applied in parallel):**
+- Primary Persona: added expertise-gap sentence ("Running across this breadth...").
+
+- Catalog now: **48 UCs, 48 ACTIVE, 0 Pending** *(XP-02 was the sole Pending UC; confirmed
+  removed from catalog in v2.1 review; count corrected here from 47/46/1 to 47/47/0 + 1 new
+  = 48/48/0)*
+
+---
+
+## Change Summary (v2.1 → v2.2)
+
+**Decision:** PK-08 reclassified from `v1-core` → `v1` (human decision 2026-04-06, Option C).
+Rationale: the core CLI interface (bridge) must exist before mobile/remote access is meaningful.
+PK-08 delivers at the same 6-month horizon but after the v1-core framework is stable.
+
+---
 
 ## Change Summary (v2.0 → v2.1)
 
@@ -22,7 +74,7 @@ and the atomic knowledge layer.
 - NF-14: Track Human-AI Work Ratio (`v1.1`) — closes 6-month "90–99% AI" measurability gap
 - PK-07: Ingest and Integrate External Documents (`v1.1`) — closes "learns from new
   external sources" gap
-- PK-08: Interact with nowu from Any Interface (`v1-core`) — Idea 1: ubiquitous access,
+- PK-08: Interact with nowu from Any Interface (`v1`) — Idea 1: ubiquitous access,
   meets the human wherever they are
 - XP-08: Export Full Project State (`v1.1`) — closes "not a walled garden" principle gap
 - XP-11: Query Knowledge Graph in Role-Appropriate Format (`v1.1`) — Idea 2: atomic
@@ -135,9 +187,9 @@ Each use case follows this structure:
   between a project that compounds and one that resets.
 - **Current stage:** Stage 1 — v1-core framework. Step 02 (Memory Integration Layer) in progress.
 - **Scope of this catalog:**
-  - NF group: v1-core framework self-development (all 10 UCs, Stage 1 required)
+  - NF group: v1-core framework self-development (NF-01–NF-16; NF-08, NF-11, NF-14 are v1.1; NF-16 is v1)
   - AP, RE groups: v1 dogfooding (minimal 2-3 UCs per project, test nowu on real non-software work)
-  - PK group: v1-core (fast capture + today view) and v1.1 (rest)
+  - PK group: v1-core (fast capture + today view), v1 (ubiquitous access / PK-08), and v1.1 (rest)
   - XP group: v1-core (cross-project discovery) and v1.1/v2 (advanced cross-project features)
 
 ---
@@ -148,18 +200,20 @@ Each use case follows this structure:
 |--------|------------------------------------------------|--------------|-----------------------|-----------|
 | NF-01  | Resume Work After Context Loss                 | v1-core      | Agent / Human         | ACTIVE    |
 | NF-02  | Track and Enforce Architectural Decisions      | v1-core      | Agent / Human         | ACTIVE    |
-| NF-03  | Scope a Piece of Work Without Scope Creep      | v1-core      | Agent (Shaper)        | ACTIVE    |
-| NF-04  | Self-Assess Quality Without Human Intervention | v1-core      | Agent (Reviewer)      | ACTIVE    |
+| NF-03  | Scope a Piece of Work Without Scope Creep      | v1-core      | Agent (Scoping)       | ACTIVE    |
+| NF-04  | Self-Assess Quality Without Human Intervention | v1-core      | Agent (Quality)       | ACTIVE    |
 | NF-05  | Route Approvals Without Blocking Progress      | v1-core      | System / Human        | ACTIVE    |
 | NF-06  | Learn From Past Mistakes Across Sessions       | v1-core      | Curator / System      | ACTIVE    |
 | NF-07  | Bootstrap a New Project Using the Framework    | v1-core      | Human / Orchestrator  | ACTIVE    |
 | NF-08  | Measure and Visualize Framework Health         | v1.1         | Curator / Human       | ACTIVE    |
-| NF-09  | Ensure Every Deliverable Traces Back to a UC   | v1-core      | Reviewer / Shaper     | ACTIVE    |
+| NF-09  | Ensure Every Deliverable Traces Back to a UC   | v1-core      | Quality Agent / Scoping Agent | ACTIVE    |
 | NF-10  | Maintain the Thread for the Multi-Project Human| v1-core      | Multi-Project Human   | ACTIVE    |
 | NF-11  | Detect Vision Drift                            | v1.1         | Curator / Human       | ACTIVE    |
 | NF-12  | Explore a Vague Idea Without Structure         | v1-core      | Human / Framer Agent  | ACTIVE    |
-| NF-13  | Generate Multiple Options at Decision Point    | v1-core      | Decider Agent / Human | ACTIVE    |
+| NF-13  | Generate Multiple Options at Decision Point    | v1-core      | Decision Agent / Human | ACTIVE    |
 | NF-14  | Track Human-AI Work Ratio                      | v1.1         | Curator / Human       | ACTIVE    |
+| NF-15  | Assign and Surface Epistemic Grades on Workflow Outputs | v1-core | Decision Agent / Curator / Human | ACTIVE |
+| NF-16  | Detect and Surface Strategic Drift                      | v1      | Multi-Project Human / Orientation Agent | ACTIVE |
 | AP-01  | Track Regulatory Requirements as Living Knowledge | v1        | Human / Agent         | ACTIVE    |
 | AP-02  | Manage Product Formulation as Versioned Knowledge | v1        | Human / Agent         | ACTIVE    |
 | AP-03  | Model Supply Chain Relationships and Risks        | v1.2         | Human / Agent         | ACTIVE    |
@@ -181,7 +235,8 @@ Each use case follows this structure:
 | PK-05  | Build Understanding Incrementally Over a Topic | v1.1         | Human / Agent         | ACTIVE    |
 | PK-06  | Protect Sensitive Personal Knowledge           | v1.1         | Human / System        | ACTIVE    |
 | PK-07  | Ingest and Integrate External Documents        | v1.1         | Human / Ingestion Agent | ACTIVE  |
-| PK-08  | Interact with nowu from Any Interface          | v1-core      | Human (mobile/remote) | ACTIVE    |
+| PK-08  | Interact with nowu from Any Interface          | v1           | Human (mobile/remote) | ACTIVE    |
+| PK-09  | Access Domain Expertise On Demand              | v1.1         | Human / Research Agent | ACTIVE    |
 | XP-01  | Discover Connections Across Projects Automatically | v1-core  | System / Human        | ACTIVE    |
 | XP-03  | Transfer Lessons Learned Between Projects      | v1.1         | Agent / Human         | ACTIVE    |
 | XP-04  | Handle Conflicting High-Confidence Knowledge   | v1.1         | Curator / Human       | ACTIVE    |
@@ -211,11 +266,11 @@ dog food, these are the first use cases it must satisfy.
 | Field | Detail |
 |---|---|
 | **stage_target** | v1-core |
-| **Actor** | Any step agent (nowu-intake, nowu-constraints, nowu-options, nowu-decider, nowu-shaper, nowu-implementer, nowu-reviewer, nowu-curator); also the Multi-Project Human resuming a project |
+| **Actor** | Any AI agent operating at any phase of the workflow (discovery, analysis, options, decision, scoping, implementation, quality review, curation) — and the Multi-Project Human resuming a project |
 | **Situation** | A new session starts. The previous session ended mid-task — possibly abruptly (token limit, crash, human walked away). Neither the agent nor the human has the working memory of what happened. nowu must be the continuity layer that bridges the gap. |
 | **Need** | Reconstruct enough context to continue productive work without re-doing completed steps or asking the human to repeat themselves. For agents: read persisted state and identify the last verified checkpoint. For the human: receive a clear signal of where things stand so they can confidently resume direction. |
 | **Success looks like** | Agent reads persisted state, identifies the last verified checkpoint, and proposes the correct next action within the first response — without hallucinating progress that didn't happen. The human's first interaction with a resuming project feels like picking up where they left off, not restarting. |
-| **Failure looks like** | Agent starts over from scratch, contradicts previous decisions, or claims work is done that was never completed. Human loses trust and begins micromanaging. Projects drift because the continuity overhead is too high. |
+| **Failure looks like** | Agent starts over from scratch, contradicts previous decisions, or claims work is done that was never completed. Human loses trust and begins micromanaging. Projects drift because the continuity overhead is too high to pay repeatedly. |
 | **Open questions** | What's the minimum viable state that must survive a crash? *(Recovery approach resolved: agent reads `state/SESSION-STATE.md` bookmark and proposes next action — human confirms at S1 gate. See WORKFLOW.md §S0.)* How should the human-facing orientation differ from the agent-facing resumption protocol? |
 
 ---
@@ -239,7 +294,7 @@ dog food, these are the first use cases it must satisfy.
 | Field | Detail |
 |---|---|
 | **stage_target** | v1-core |
-| **Actor** | Shaper Agent; Human (as approver) |
+| **Actor** | Scoping Agent; Human (as approver) |
 | **Situation** | A raw idea exists ("add semantic search to the CLI"). It needs to become a bounded set of tasks that an Implementer can complete without spiraling into adjacent concerns. |
 | **Need** | Transform the idea into 3—7 tasks with explicit boundaries: what's in scope, what's explicitly out, what the acceptance criteria are, and what other work this depends on or blocks. |
 | **Success looks like** | Each task can be completed in < 4 hours of agent work. Scope boundaries prevent touching unrelated modules. The Implementer never needs to ask "should I also do X?" because the boundary already says no. |
@@ -253,7 +308,7 @@ dog food, these are the first use cases it must satisfy.
 | Field | Detail |
 |---|---|
 | **stage_target** | v1-core |
-| **Actor** | Implementer Agent; Reviewer Agent |
+| **Actor** | Implementation Agent; Quality Agent |
 | **Situation** | The Implementer has written code and claims it's done. Before requesting human review, the system needs to verify the claim independently. |
 | **Need** | Automatically verify that: tests pass, coverage meets threshold, the code compiles/runs, and the output matches the acceptance criteria from the task spec — without relying on the agent's self-report. |
 | **Success looks like** | The Verify Before Reporting (VBR) protocol runs actual tests in a sandbox. Only verified-passing work reaches the human review queue. False "done" claims are caught and recycled back to the Implementer. |
@@ -281,7 +336,7 @@ dog food, these are the first use cases it must satisfy.
 | Field | Detail |
 |---|---|
 | **stage_target** | v1-core |
-| **Actor** | nowu-curator (S9); pattern detection triggered by nowu-implementer and nowu-reviewer outputs |
+| **Actor** | Curation Agent; pattern detection from implementation and quality agent outputs |
 | **Situation** | A pattern emerges across sessions: the same type of bug keeps being introduced, or the same scoping mistake keeps being made. Capture records accumulate. The system has everything it needs to improve — but only if it runs the analysis and feeds results back into future behaviour. This is what "The system learns by running" means in practice. |
 | **Need** | Detect recurring patterns in session logs, code review feedback, and task outcomes. Surface them as "lessons learned" that actively influence future agent behaviour — not just passive documentation. Each cycle makes the system more aligned with what works. |
 | **Success looks like** | After the third time a date-parsing bug appears, the Implementer proactively adds timezone-aware handling before being told. After two failed scoping attempts on UI tasks, the Shaper adjusts its task size heuristic. Capture records reference prior lessons by ID, and the loop visibly closes. |
@@ -309,7 +364,7 @@ dog food, these are the first use cases it must satisfy.
 | Field | Detail |
 |---|---|
 | **stage_target** | v1.1 |
-| **Actor** | nowu-curator (S9, periodic health pass); Human (reviewing) |
+| **Actor** | Curation Agent (periodic health pass); Human (reviewing) |
 | **Situation** | The framework has been running for several weeks across multiple projects. The human wants to know: Is it actually working? Is quality improving? Are agents productive? |
 | **Need** | Collect and surface health metrics: task completion velocity, test coverage trend, decision documentation coverage, approval latency, memory integrity, agent loop frequency, recurring failure patterns. |
 | **Success looks like** | A weekly health report shows trends over time. The human can spot problems (declining velocity, rising loop frequency) before they become crises. The report is generated by agents, not manually compiled. |
@@ -323,7 +378,7 @@ dog food, these are the first use cases it must satisfy.
 | Field | Detail |
 |---|---|
 | **stage_target** | v1-core |
-| **Actor** | nowu-reviewer (S8); nowu-shaper (S5, as producer) |
+| **Actor** | Quality Agent (enforcer); Scoping Agent (as producer) |
 | **Situation** | The team (human + agents) has been building features and fixing bugs across multiple steps. Over time it becomes unclear whether some pieces of work were actually needed — or whether they drifted from the original intent. |
 | **Need** | Every implemented feature must carry an unbroken chain from code → test → acceptance criterion → use case ID → intake brief → project objective. This chain must be machine-checkable at review time, not reconstructed from memory. |
 | **Success looks like** | When nowu-reviewer runs S8 on a change set, it reads the `validation_trace` in the task spec and can follow every criterion back to a use case ID in this document. Any criterion without a traceable use case is flagged as a scope violation — not a suggestion, a blocker. |
@@ -351,7 +406,7 @@ dog food, these are the first use cases it must satisfy.
 | Field | Detail |
 |---|---|
 | **stage_target** | v1.1 |
-| **Actor** | Curator Agent; Human (reviewer) |
+| **Actor** | Curation Agent; Human (reviewer) |
 | **Situation** | The project has been running for several weeks. Work has been productive but gradually, without anyone noticing, the implementation focus has drifted from the stated vision — features are being built that aren’t connected to any goal, or the tone of decisions has shifted away from the original intent. |
 | **Need** | Periodically compare the current body of work (decisions, task specs, completed features) against the vision and goals artifacts. Surface meaningful drift as a flagged item for human review — not as a hard blocker, but as a visible signal. |
 | **Success looks like** | Monthly, the Curator surfaces: "3 of the last 8 tasks completed have no traceable connection to any current goal. 1 architectural decision contradicts the stated constraint in the vision." The human reviews, either updates the vision or re-aligns the work. |
@@ -379,7 +434,7 @@ dog food, these are the first use cases it must satisfy.
 | Field | Detail |
 |---|---|
 | **stage_target** | v1-core |
-| **Actor** | Decider Agent; Human (chooser) |
+| **Actor** | Decision Agent; Human (chooser) |
 | **Situation** | A key decision point has been reached — an architectural choice, a prioritization call, a strategic direction. The system may produce one recommendation. But the guiding principle says: generate at least two viable paths before committing. |
 | **Need** | At identified decision points, the system generates a minimum of two distinct, well-reasoned options with explicit tradeoffs — not just one recommendation with caveats. The human chooses or requests a third. The chosen path and the rationale for rejecting the alternatives are both recorded. |
 | **Success looks like** | When deciding between two architectural approaches, the Decider presents: Option A (simpler, slower to scale), Option B (more complex, future-proof), and Option C (defer the decision with a defined trigger point). The human picks Option A. Option B is archived with its rationale intact — findable if conditions change. |
@@ -393,12 +448,41 @@ dog food, these are the first use cases it must satisfy.
 | Field | Detail |
 |---|---|
 | **stage_target** | v1.1 |
-| **Actor** | Curator Agent; Human (reviewer) |
+| **Actor** | Curation Agent; Human (reviewer) |
 | **Situation** | The 6-month success horizon commits to 90–99% of work being handled by AI. Without measuring it, this commitment is unmeasurable and the experience of "genuinely enjoyable, low friction" is unverifiable. |
 | **Need** | Track and surface the ratio of human-input time to AI-handled time per cycle. Identify which steps, use cases, or agent types generate the most human intervention — and whether that intervention is high-value (decisions, direction) or low-value (corrections, clarifications). |
 | **Success looks like** | A cycle report shows: "This sprint: 94% AI-handled. Human touchpoints: 3 approval gates (12 min total), 1 direction correction (5 min). High-friction item: NF-03 scoping consistently requires human clarification — consider pre-loading more context." |
 | **Failure looks like** | The 90% AI goal is assumed but never measured. The human gradually takes on more manual work without noticing. The "genuinely enjoyable" experience erodes and nobody can identify why or when it started. |
 | **Open questions** | How do we measure "human time" without adding instrumentation that itself creates overhead? Should human corrections be weighted differently from approvals (corrections signal AI failure; approvals signal healthy governance)? |
+
+---
+
+### NF-15: Assign and Surface Epistemic Grades on Workflow Outputs
+
+| Field | Detail |
+|---|---|
+| **stage_target** | v1-core |
+| **Actor** | Decision Agent (producer); Curator (surface & track); Human (consumer of grade signal) |
+| **Situation** | The framework generates options, recommendations, decisions, and lessons. None currently carry an explicit confidence level. The human (and downstream agents) must judge trustworthiness from implicit cues — prose tone, source count, hedging language. This guess is often wrong, and the human is the only one who injects epistemic quality today by consulting external sources and asking hard questions. |
+| **Need** | Every significant workflow output — options sheets, decision records, discovery research, lessons, and recommendations — must carry an explicit epistemic grade drawn from the canonical 5-level scale: SPECULATION, HYPOTHESIS, INFORMED_ESTIMATE, EVIDENCE_BASED, VERIFIED_FACT. The grade must be justified (what evidence raises or limits it), surfaced to the human at review time, stored durably, and used by agents as a signal for how much weight to place on a piece of knowledge. The canonical vocabulary is defined in the `know` sibling library (`ontology.json`) and must be adopted now for forward compatibility. |
+| **Success looks like** | An options sheet for a key architecture decision shows: Option A (INFORMED_ESTIMATE — based on 2 framework comparisons, no production usage data), Option B (HYPOTHESIS — reasoning from analogy only, no comparable prior art found). The human immediately knows that neither option is EVIDENCE_BASED and chooses to do targeted research before committing. Six months later, a lesson marked HYPOTHESIS is reviewed: new evidence has been gathered and the lesson is promoted to EVIDENCE_BASED. The grade history is visible. |
+| **Failure looks like** | Options and decisions carry no grade. The human trusts an HYPOTHESIS-level recommendation as if it were EVIDENCE_BASED. A wrong architectural choice is made and not caught until the 12-month horizon. OR: grades exist but are never used by downstream agents, making them decorative overhead rather than actionable signal. |
+| **Open questions** | Who is authoritative for grade assignment — the producing agent or the human reviewer? Can a grade be promoted automatically (e.g., when a second independent source confirms it) or only by humans? How do we handle grades on composite outputs (e.g., an options sheet with options of different grades — what is the sheet's grade)? Should invalidation conditions be required for EVIDENCE_BASED and above? |
+
+---
+
+### NF-16: Detect and Surface Strategic Drift
+
+| Field | Detail |
+|---|---|
+| **stage_target** | v1 |
+| **Actor** | Multi-Project Human (consumer); Orientation Agent (producer) |
+| **Situation** | Sessions feel productive. Each next step follows naturally from the last. But at the end of a week, the human has worked on things that were not planned, not aligned to any named goal, and not driven by what matters most — just by what had momentum. No existing artifact asks: "Are we working on the right things?" NF-01/NF-10 handle "where was I?" but nothing handles "am I drifting?" |
+| **Need** | At session start (or on demand), the orientation surface shows: open goals with no active epic, DRAFT ideas with no derived story or intake, and ACTIVE UCs in the project's group that have no story coverage. A passive "drift signal" flags goals that have not been touched in N consecutive sessions. The human decides what to act on — the system never re-routes autonomously. |
+| **Success looks like** | Raphael starts a session and sees: "Goal 002 (Building Trust): no active work in last 4 sessions. Idea-007 (unaddressed). UC NF-16: no story coverage yet." He consciously chooses to address one of these rather than defaulting to the next task in the queue. Drift is intentional and visible, not accidental and invisible. |
+| **Failure looks like** | The alignment pulse fires constantly with noise, causing Raphael to ignore it. OR: it never fires because the coverage query has false negatives and everything looks covered when it isn't. OR: it fires correctly but offers no path to action, leaving Raphael informed but un-routed. |
+| **Open questions** | What is the right N for "not addressed in N sessions" before a drift signal fires? Is this per-project or global? Should the alignment pulse be part of s001's orientation artifact schema, or a separate artifact? How do we define "active work" — must there be an in-progress story, or does an approved story with no intake count? |
+| **Depends on** | Goal layer artifacts (`state/goals/goal-NNN.md`) from idea-006. Cannot be fully implemented until goal artifacts exist. |
 
 ---
 
@@ -704,6 +788,7 @@ foundation layer beneath all projects.
 | **Open questions** | Should sensitivity be per-atom, per-project, or per-tag? What are the default sensitivity levels? How should agents handle knowledge they can "see" exists but can't "read" due to sensitivity? |
 
 ---
+
 ### PK-07: Ingest and Integrate External Documents
 
 | Field | Detail |
@@ -722,7 +807,7 @@ foundation layer beneath all projects.
 
 | Field | Detail |
 |---|---|
-| **stage_target** | v1-core |
+| **stage_target** | v1 |
 | **Actor** | Human (mobile, voice, remote); Agent (async processor) |
 | **Situation** | The human is not at a computer — on a commute, at a supplier meeting, walking between tasks, mid-dinner. An idea, a decision trigger, or a relevant observation appears. The capture moment is brief and the interface is limited: a phone, a voice message, a quick text. And separately: the human needs to glance at today’s priorities or respond to an agent question, also not at a desk. |
 | **Need** | Support three interaction modes from any device or interface, with no required structure at the time of interaction: (1) **Capture** — record a thought, observation, or decision trigger with minimal friction; AI handles enrichment asynchronously. (2) **Review** — check today’s focus, project status, or last active thread without needing a computer. (3) **Light action** — approve an item, confirm a direction, answer a clarifying agent question — without opening a full session. |
@@ -731,6 +816,21 @@ foundation layer beneath all projects.
 | **Open questions** | What is the minimum viable capture interface for v1-core — a messaging bot, a web form, a voice API? Should the human confirm AI enrichment before it’s committed, or can enrichment be provisional and self-correcting? What’s the lightest viable “review” surface — a single daily digest message? |
 
 ---
+
+### PK-09: Access Domain Expertise On Demand
+
+| Field | Detail |
+|---|---|
+| **stage_target** | v1.1 |
+| **Actor** | Human (questioner); Research Agent (synthesiser) |
+| **Situation** | The human is running projects across domains where they are not deeply expert — food regulation, supply chain management, real-estate valuation, pili-nut processing, creative production. A decision emerges that requires specialist knowledge they do not personally hold: "What is the current excise tax escalation schedule for coconut-based spirits?" or "What are the cold-chain requirements for exporting pili nuts?" The human has no advisor on call and limited time to research from scratch. |
+| **Need** | Provide trustworthy, contextualised domain guidance on demand — synthesised from available sources, graded for confidence, and retained as durable knowledge atoms so the research does not need to be repeated when a related question arises later. The human should not need to be an expert in order to act like one in the domains their projects require. |
+| **Success looks like** | The human asks "What permits are required to sell coconut-based spirits in the Philippines?" The agent researches the current regulatory landscape, produces a structured answer with source provenance, confidence grades ("confirmed via FDA circular 2024-001" vs. "inferred from general food-safety law — verify"), and stores the result as knowledge atoms linked to the AP project. Three months later, when a related question arises, the system retrieves the prior research, flags any atoms that may have decayed, and builds the new answer on top of what was already learned rather than starting over. |
+| **Failure looks like** | The human asks a domain question and receives a confident but ungraded answer with no source provenance. They act on it without knowing it was inferred rather than verified. Or: the answer is correct but discarded at session end — the next time the same domain question arises, the research repeats and the human has no way to know the question was already answered. The expertise remains one-off, not compounding. |
+| **Open questions** | How should confidence grades for AI-derived expertise differ from grades for human-captured facts? What triggers a decay check on expertise atoms in fast-moving domains like tax law or regulatory compliance? Should the system proactively flag outdated expertise atoms when related work resumes? |
+
+---
+
 ## E. Cross-Project & Framework-Level
 
 These use cases describe capabilities that span multiple projects or operate at the
@@ -896,7 +996,7 @@ project within one interaction.
 
 **UCs in scope:**
 - NF-01, NF-02, NF-03, NF-04, NF-05, NF-06, NF-07, NF-09, NF-10, NF-12, NF-13
-- PK-01, PK-03, PK-08
+- PK-01, PK-03
 - XP-01
 
 V1_PLAN step-to-UC traceability:
@@ -920,6 +1020,7 @@ Stage 1 is declared done.
 
 **UCs in scope:**
 - AP-01, AP-02, AP-06 (aperitif project as test bed)
+- PK-08 (ubiquitous access — after v1-core CLI interface is stable)
 - RE-01, RE-06 (real estate as test bed)
 
 ---
@@ -1032,7 +1133,7 @@ None in this pass. No UCs have been removed.
 - Add use cases that are missing — especially edge cases from your real experience
 - Challenge the "open questions" — your answers will become ADRs
 
-**For AI agents (nowu-intake, nowu-constraints, nowu-options, nowu-decider, nowu-shaper, nowu-implementer, nowu-reviewer, nowu-curator):**
+**For AI agents (all pipeline agents — pre-workflow, implementation cycle, GAP, health checks):**
 - Use these use cases as the acceptance criteria source for all framework work
 - Every feature, task spec (S5), and decision record (S4) must reference the use case IDs it satisfies
 - When scoping work (S5 Shaping), populate the `validation_trace` field with use case IDs
@@ -1047,7 +1148,7 @@ None in this pass. No UCs have been removed.
 
 ---
 
-*47 use cases across 5 categories. 46 ACTIVE, 1 Pending. Solution-agnostic where possible.
+*48 use cases across 5 categories. 48 ACTIVE, 0 Pending. Solution-agnostic where possible.
 Anchored to vision v2.0, compound progress, continuity layer, and the multi-project human.*
 
 ***

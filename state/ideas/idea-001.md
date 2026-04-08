@@ -1,7 +1,7 @@
 ---
 id: idea-001
 created: 2026-03-31
-status: DRAFT
+status: APPROVED
 ---
 
 # Idea Note: idea-001
