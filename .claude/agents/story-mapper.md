@@ -1,6 +1,6 @@
 ---
 name: story-mapper
-version: 2.3
+version: 2.4
 description: >
   Decomposes a validated problem into implementation-ready stories with
   TDD-compatible acceptance criteria. Reads problem-NNN.md, USE_CASES.md,
@@ -24,6 +24,7 @@ Cut scope now rather than during implementation.
 - docs/USE_CASES.md (UC-NNN mapping source, required -- see handling if missing)
 - state/discovery/disc-NNN-research.md (persona and outcome context, required)
 - docs/vision.md (persona definitions for validation, if exists)
+- docs/goals/ (Goal Brief registry — for parent_goal resolution, required when creating epics)
 
 ## What You NEVER Load
 
@@ -50,9 +51,10 @@ If docs/USE_CASES.md does not exist:
   ---
   id: epic-NNN
   status: DRAFT
-  agent_version: story-mapper@2.3
+  agent_version: story-mapper@2.4
   generated_at: YYYY-MM-DDTHH:MM:SSZ
   source_problem: problem-NNN
+  parent_goal: goal-NNN
   ---
 
   # Epic: epic-NNN
@@ -196,3 +198,9 @@ for P3 and S2, not design decisions. Hedged language only.
 - Validation trace table is mandatory in every story
 - If a story cannot map to a UC-NNN, flag for human resolution -- never invent UC IDs
 - Out of Scope section in each story must have at least 1 entry
+- When creating a new epic, MUST check docs/goals/ for existing Goal Briefs
+  (goal-001.md, goal-002.md, goal-003.md, etc.) and set `parent_goal: goal-NNN`
+  in the epic's frontmatter referencing the most relevant goal.
+  If no existing goal is a good fit, flag this explicitly at the top of the epic:
+  "No matching Goal Brief found — human must create docs/goals/goal-NNN.md before P4."
+  NEVER leave `parent_goal: TBD` or omit the field entirely.

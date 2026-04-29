@@ -1,6 +1,6 @@
 ---
 name: health-goals
-version: 2.2
+version: 2.3
 description: >
   Validates that active stories, epics, and intakes remain aligned with vision
   and use cases. Checks for stale items and broken traceability. Read-only.
@@ -30,6 +30,7 @@ traceability chains. Read-only -- you do not modify any existing file.
 - state/intake/ (all intake files with status READY_FOR_S1 or DRAFT_FOR_REVIEW)
 - state/capture/ (latest 5 capture records, for DONE context)
 - state/pre-workflow/ (decomp files for queued ideas context, optional)
+- docs/goals/ (Goal Brief registry, required)
 
 ## What You NEVER Load
 
@@ -46,7 +47,7 @@ Write state/health/health-goals-YYYY-MM-DD.md (today's date):
   check_type: goals
   status: GREEN | YELLOW | RED
   generated_at: YYYY-MM-DDTHH:MM:SSZ
-  agent_version: health-goals@2.2
+  agent_version: health-goals@2.3
   ---
 
   # Goals Health Check: YYYY-MM-DD
@@ -92,6 +93,26 @@ Queued Ideas vs Active Stage (YELLOW if misaligned):
 Check decomp files in state/pre-workflow/. For queued seed ideas (QUEUED):
 do any appear stage-misaligned with the current stage in V1_PLAN.md?
 Flag idea IDs where queued stage does not match the current active stage.
+
+Goal Brief Validity (YELLOW if any issue, RED if goal files missing entirely):
+For each file in docs/goals/:
+- Verify status is one of: proposed | in_delivery | achieved | retired
+- Flag any file with status not in this list, with file name.
+
+Epic Parent Goal Coverage (RED if any epic has TBD or missing parent_goal):
+For each active epic in state/epics/:
+- Verify frontmatter has `parent_goal:` field set to a value other than TBD, blank, or missing.
+- Flag by epic ID and current parent_goal value.
+
+Active Goal Linkage (YELLOW if active goal has no linked epic):
+For each goal in docs/goals/ with status `in_delivery`:
+- Check that at least one active epic in state/epics/ references this goal via parent_goal.
+- Flag goal ID if no epic references it.
+
+Orphan Goal References (YELLOW if found):
+For each goal in docs/goals/ with status `achieved` or `retired`:
+- Check whether any active (non-DONE) epic references it via parent_goal.
+- Flag goal ID and the referencing epic ID if found.
 
 ## Hard Constraints
 
