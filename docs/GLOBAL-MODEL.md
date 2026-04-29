@@ -25,7 +25,7 @@ and which artifacts are primary?*
 
 | Phase / Step | Level | Primary Focus | Main Artifacts (read/write) |
 |--------------|-------|---------------|------------------------------|
-| P0 – Signal Capture (vision bootstrap, idea note, decomposition) | Above C4 | Idea, product vision, stage, appetite | `docs/vision.md`, `docs/V1_PLAN.md`, `state/ideas/idea-NNN.md`, `state/pre-workflow/NNN-decomp.md` |
+| P0 – Signal Capture (vision bootstrap, idea note, decomposition) | Above C4 | Idea, product vision, stage, appetite, outcome goals | `docs/vision.md`, `docs/V1_PLAN.md`, `state/ideas/idea-NNN.md`, `state/pre-workflow/NNN-decomp.md`, `docs/goals/goal-NNN.md` |
 | P1 – Discovery (research + interview + problem statement) | Above C4 | Problem, personas, outcomes, appetite | `state/discovery/disc-NNN-research.md`, `state/problems/problem-NNN.md` |
 | P2 – Story Mapping (epic + stories) | Above C4 → edge of L1 | User behaviour, use cases, acceptance criteria | `docs/USE_CASES.md`, `state/epics/epic-NNN.md`, `state/stories/story-NNN-*.md` |
 | P3 – Architecture Bootstrap | L1–L2 | System boundary, module map, invariants | `docs/architecture/context.md`, `docs/architecture/containers.md`, `state/arch/arch-pass-NNN.md`, `docs/architecture/adr/` |
@@ -42,6 +42,9 @@ and which artifacts are primary?*
 **Rule of thumb:**  
 - Pre‑workflow lives mostly **Above C4**, with a single dip into L1–L2 at P3.  
 - S1–S4 stay at **Above C4 → L2**, S5–S7 at **L3–L4**, S8 bridges **L4→L3**, S9 zooms back to **L1 / Above C4**.
+
+**Goal Briefs:**  
+`docs/goals/goal-NNN.md` is created at P0 after `docs/vision.md` is approved. It captures the outcome goal and solution shape for each Success Horizon. Goal Briefs are required before epics can be created at P2.
 
 ---
 

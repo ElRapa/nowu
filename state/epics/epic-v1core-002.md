@@ -4,7 +4,7 @@ source_problem: problem-002, problem-003, problem-004
 created: 2026-04-08
 status: APPROVED
 agent_version: story-mapper@2.3 (enriched)
-parent_goal: goal-002  # Building Trust — decisions traceable, confidence visible (TBD: idea-006)
+parent_goal: goal-002  # Building Trust — decisions traceable, confidence visible
 generated_at: 2026-04-08T00:00:00Z
 ---
 

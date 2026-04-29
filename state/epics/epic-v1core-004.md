@@ -4,7 +4,7 @@ source_problem: problem-007, problem-008
 created: 2026-04-08
 status: APPROVED
 agent_version: story-mapper@2.3 (enriched)
-parent_goal: goal-003  # Compounding Knowledge — accumulates within and across projects (TBD: idea-006)
+parent_goal: goal-003  # Compounding Knowledge — accumulates within and across projects
 generated_at: 2026-04-08T00:00:00Z
 ---
 

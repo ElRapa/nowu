@@ -209,4 +209,23 @@ Keeps v1 achievable while preserving expansion path for domain-specific capabili
 
 ---
 
+---
+
+## D-011 — Add Goal Brief artifact layer between vision and epics
+
+**Date**: 2026-04-29 | **Status**: ACCEPTED | **Level**: product
+
+### Context
+Strategy gap identified — epics were created ad-hoc without outcome anchoring to vision. Research (Oracle + 2 Librarian agents) confirmed that 70% of strategy execution fails without intermediate goal checkpoints. 6/7 PM frameworks address this gap.
+
+### Decision
+Add a Goal Brief artifact (`docs/goals/goal-NNN.md`) at P0 after vision approval. Each brief captures an outcome goal and solution shape in a unified artifact. Use unified approach (over separate goal + solution) because AI agents need both context dimensions simultaneously. Template at `templates/goal-brief.md`. Lifecycle: proposed → approved → in_delivery → partially_validated → achieved → retired.
+
+### Alternatives Considered
+1. Separate goal artifact + solution artifact — rejected: creates coordination overhead without benefit for solo builder
+2. No change (rely on vision + epics) — rejected: strategy gap causes vision drift over 6-month cycles
+
+### Consequences
+Epics must reference a non-TBD `parent_goal`. story-mapper and health-goals agents updated to enforce this.
+
 <!-- Add new decisions below this line using templates/decision.md -->
