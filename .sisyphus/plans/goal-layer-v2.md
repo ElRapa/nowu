@@ -910,19 +910,19 @@ Max Concurrent: 5 (Wave 2)
 
 > 4 review agents run in PARALLEL. ALL must APPROVE. Present consolidated results to user and get explicit "okay" before completing.
 
-- [ ] F1. **Plan Compliance Audit** — `oracle`
+- [x] F1. **Plan Compliance Audit** — `oracle`
   Read the plan end-to-end. For each "Must Have": verify implementation exists. For each "Must NOT Have": search for forbidden patterns. Check evidence files exist in .sisyphus/evidence/v2/.
   Output: `Must Have [N/N] | Must NOT Have [N/N] | Tasks [N/N] | VERDICT: APPROVE/REJECT`
 
-- [ ] F2. **Code Quality Review** — `unspecified-high`
+- [x] F2. **Code Quality Review** — `unspecified-high`
   Review all changed/created markdown files for: frontmatter consistency, broken cross-references, template conformance. Check for AI slop.
   Output: `Files [N clean/N issues] | VERDICT`
 
-- [ ] F3. **Real Manual QA** — `unspecified-high`
+- [x] F3. **Real Manual QA** — `unspecified-high`
   Execute EVERY QA scenario from EVERY task. Test cross-task integration (goal → UC traceability, doc cross-references).
   Output: `Scenarios [N/N pass] | Integration [N/N] | VERDICT`
 
-- [ ] F4. **Scope Fidelity Check** — `deep`
+- [x] F4. **Scope Fidelity Check** — `deep`
   For each task: read "What to do", read actual diff. Verify 1:1 — everything in spec was built, nothing beyond spec was built. Check "Must NOT do" compliance.
   Output: `Tasks [N/N compliant] | Unaccounted [CLEAN/N files] | VERDICT`
 
