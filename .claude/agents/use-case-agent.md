@@ -87,7 +87,7 @@ You MUST use this structure:
 # Use Cases Catalog (UC-NNN)
 
 version: X.Y
-generated_by: use-case-agent@2.2
+generated_by: use-case-agent@2.3
 generated_at: [ISO timestamp]
 
 ## 1. Catalog Overview

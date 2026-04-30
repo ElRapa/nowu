@@ -287,7 +287,7 @@ or `last_approved` is >90 days ago.
 **Output:** `docs/vision.md` [DRAFT]
 
 Human must edit and set `status: APPROVED` before any other P0 work begins.
-The Vision Bootstrap Agent does not touch any other files.
+The Vision Bootstrap Agent writes only `docs/vision.md` in P0.V mode. In P0.G mode (--goals-only flag), it writes `docs/goals/goal-NNN.md` files instead.
 
 ### P0.G — Goal Brief Creation
 

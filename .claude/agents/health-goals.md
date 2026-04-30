@@ -89,7 +89,7 @@ are any without an active story, approved story, or completed capture record?
 Flag UC-NNN IDs that have no work item and appear phase-relevant.
 
 Queued Ideas vs Active Stage (YELLOW if misaligned):
-Check decomp files in state/pre-workflow/. For queued seed ideas (QUEUED):
+Check state/ideas/ for queued seed ideas (QUEUED):
 do any appear stage-misaligned with the current stage in V1_PLAN.md?
 Flag idea IDs where queued stage does not match the current active stage.
 
