@@ -1,6 +1,6 @@
 ---
 name: health-goals
-version: 2.2
+version: 2.3
 description: >
   Validates that active stories, epics, and intakes remain aligned with vision
   and use cases. Checks for stale items and broken traceability. Read-only.
@@ -29,7 +29,7 @@ traceability chains. Read-only -- you do not modify any existing file.
 - state/stories/ (all story files with status APPROVED or DRAFT)
 - state/intake/ (all intake files with status READY_FOR_S1 or DRAFT_FOR_REVIEW)
 - state/capture/ (latest 5 capture records, for DONE context)
-- state/pre-workflow/ (decomp files for queued ideas context, optional)
+- docs/goals/ (Goal Brief registry — check all goal files for validity and coverage)
 
 ## What You NEVER Load
 
@@ -46,7 +46,7 @@ Write state/health/health-goals-YYYY-MM-DD.md (today's date):
   check_type: goals
   status: GREEN | YELLOW | RED
   generated_at: YYYY-MM-DDTHH:MM:SSZ
-  agent_version: health-goals@2.2
+  agent_version: health-goals@2.3
   ---
 
   # Goals Health Check: YYYY-MM-DD
@@ -93,7 +93,29 @@ Check decomp files in state/pre-workflow/. For queued seed ideas (QUEUED):
 do any appear stage-misaligned with the current stage in V1_PLAN.md?
 Flag idea IDs where queued stage does not match the current active stage.
 
-## Hard Constraints
+### Goal Brief Validity
+Severity: YELLOW (missing required section) | RED (invalid status value)
+For each file in docs/goals/: verify all 7 sections present and status is one of: proposed | in_delivery | achieved | retired
+
+### Epic Parent Goal Coverage
+Severity: RED
+For all active epics in state/epics/: verify parent_goal field exists, is not TBD/empty, and references an existing goal file in docs/goals/
+
+### Active Goal Linkage
+Severity: YELLOW
+For each goal with status: in_delivery: verify linked_epics list is not empty and at least one listed epic exists in state/epics/
+
+### Orphan Goal References
+Severity: YELLOW
+For each goal with status: achieved or retired: verify no active (non-DONE) epic still references it as parent_goal
+
+### UC Mapping Coverage
+Severity: YELLOW (NOT RED — mapping is filled progressively after use-case-agent runs)
+For each goal with status: in_delivery: flag if UC Mapping table is empty after use-case-agent has run at least once. Empty tables are expected during initial goal creation.
+
+### Phase Coverage Gaps
+Severity: YELLOW
+For each goal with status: in_delivery: flag if Phase Coverage table has no entry for the current active phase
 
 - Read-only. Never modify any file.
 - Do not load source code or test files.
