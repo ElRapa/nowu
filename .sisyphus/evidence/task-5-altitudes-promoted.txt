@@ -1,0 +1,8 @@
+Task 5: Promote ALTITUDES.md to docs/
+
+Command: git mv docs/ideas/ALTITUDES.md docs/ALTITUDES.md
+
+Verification:
+- docs/ALTITUDES.md: 311 lines ✓
+- status: ACTIVE found ✓
+- docs/ideas/ALTITUDES.md: No such file or directory ✓

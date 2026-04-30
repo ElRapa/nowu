@@ -1,0 +1,8 @@
+ADR-001-know-api-boundary-and-version-contract.md
+ADR-002-wal-and-session-summary-atom-strategy.md
+ADR-003-approval-queue-storage-format-and-lifecycle.md
+ADR-004-cross-project-isolation-model.md
+ADR-005-security-and-sensitivity-model-for-knowledge-atoms.md
+ADR-006-health-metrics-collection-architecture.md
+ADR-007-pattern-detection-and-lesson-persistence-mechanism.md
+ADR-008-dash-scope-dependencies-and-activation-trigger.md

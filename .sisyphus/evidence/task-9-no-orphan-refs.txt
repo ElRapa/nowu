@@ -1,0 +1,12 @@
+Task 9: Orphan Reference Check
+Date: 2026-04-30
+
+GREP COMMAND:
+grep -r "soul/SESSION-STATE|agents/archive|^archive/" --include="*.md" . | grep -v ".git" | grep -v "docs/archive" | grep -v ".sisyphus"
+
+RESULTS (historical references only, not active paths):
+1. state/archive/global-pass-2026-03-29.md - references soul/SESSION-STATE.md in historical ADR analysis (archived doc, not active)
+2. state/PROGRESS.md - mentions "Archived completed one-shot agents to agents/archive/" (historical progress note)
+
+VERDICT: No active code or config references to deleted directories.
+All matches are in archived/historical documents only.

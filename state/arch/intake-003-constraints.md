@@ -72,7 +72,7 @@ S3 is constrained to a two-option decision space: per-project SQLite files with 
 - `arch_pass_divergences`: No pre-workflow arch-pass exists for intake-003. Constraints derived cold from global-pass-2026-04-06 (PROPOSED) P3 bindings and existing DECISIONS.md entries D-001 through D-010.
 - XP-01 (v1-core) and XP-08 (v1.1) UC descriptions in USE_CASES.md v2.2 are taken as authoritative and verified by S1 (s1_validated_at: 2026-04-06).
 - The global-pass-2026-04-06 status is PROPOSED, not ACCEPTED. All P3 bindings referenced here are treated as directionally binding for this spike — they reflect the same architectural logic as the accepted decisions (D-002, D-003) they extend. If the global-pass is rejected or significantly revised before ADR-D is recorded, these constraints must be revisited.
-- No `docs/ARCHITECTURE.md` and no `docs/architecture/containers.md` exist yet. The global-pass is the sole C4 L2 reference.
+- No `docs/architecture/containers.md` exists yet. The global-pass is the sole C4 L2 reference.
 
 ## Open Questions Passed to S3
 

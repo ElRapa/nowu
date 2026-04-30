@@ -28,8 +28,8 @@ Loading context from the wrong level is the primary cause of design drift and re
 | Level | Scope | Main artifacts |
 |-------|-------|----------------|
 | Above C4 | Problem space: vision, use cases, requirements | `docs/vision.md`, `state/problems/` |
-| L1 — Context | Systems and external actors | `docs/ARCHITECTURE.md` §1 |
-| L2 — Containers/Modules | Major building blocks and interactions | `docs/ARCHITECTURE.md` §4 |
+| L1 — Context | Systems and external actors | `docs/architecture/containers.md` §1 |
+| L2 — Containers/Modules | Major building blocks and interactions | `docs/architecture/containers.md` §4 |
 | L3 — Components | Internal structure: files, classes, services | contracts, file tree |
 | L4 — Code | Classes, functions, tests | `src/`, `tests/` |
 
@@ -37,7 +37,7 @@ Loading context from the wrong level is the primary cause of design drift and re
 
 ## S0 — Session Bookmark (optional)
 
-Before entering S1–S9, update `state/SESSION-STATE.md` with:
+Before entering S1–S9, update `state/SESSION_STATE.md` with:
 - Current step (S1–S9)
 - Current `intake_id` / `decision_id` / `task_id`
 - Brief summary of focus
@@ -85,7 +85,7 @@ Consider running `/health-check all` at session start if >7 days since last run.
 
 **Requires:**
 - `state/intake/intake-NNN.md`
-- `docs/ARCHITECTURE.md`
+- `docs/architecture/containers.md`
 - `docs/DECISIONS.md`
 - `core/contracts/*.py` (or equivalent protocol interfaces)
 - `state/arch/arch-pass-NNN.md` (if produced by P3 — use as starting point, document divergences)
@@ -106,7 +106,7 @@ Consider running `/health-check all` at session start if >7 days since last run.
 **Purpose:** Propose 2–3 implementation approaches with explicit trade-offs.
 
 **Scope IN:** Constraints sheet, module protocols, public module surfaces (`__init__.py`)
-**Scope OUT:** Implementation internals, test structure, full ARCHITECTURE.md
+**Scope OUT:** Implementation internals, test structure, full `docs/architecture/containers.md`
 
 **Requires:**
 - `state/arch/intake-NNN-constraints.md`
@@ -198,7 +198,7 @@ This is the second validation gate: if all acceptance criteria pass, will the or
 **Produces:** `state/changes/changes-task-NNN.md`
 **Template:** `templates/changeset.md`
 
-At natural stopping points, optionally update `state/SESSION-STATE.md`.
+At natural stopping points, optionally update `state/SESSION_STATE.md`.
 
 ---
 
@@ -294,7 +294,7 @@ git diff --name-only HEAD    # verify against in_scope_files
 - `next_cycle_trigger` set in intake record
 - A clean commit
 
-After Capture, clear or reset `state/SESSION-STATE.md`.
+After Capture, clear or reset `state/SESSION_STATE.md`.
 
 ---
 

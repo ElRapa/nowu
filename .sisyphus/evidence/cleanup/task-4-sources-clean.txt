@@ -1,0 +1,14 @@
+ls: state/intake/intake-001.md: No such file or directory
+GONE
+ls: state/intake/2026-03-22-memory-integration.md: No such file or directory
+GONE
+ls: state/arch/2026-03-22-memory-integration-constraints.md: No such file or directory
+GONE
+ls: state/arch/2026-03-22-memory-integration-options.md: No such file or directory
+GONE
+ls: state/evaluations/s1-intake-evaluation.md: No such file or directory
+GONE
+ls: state/evaluations/s2-constraints-evaluation.md: No such file or directory
+GONE
+ls: state/evaluations/s3-options-evaluation.md: No such file or directory
+GONE

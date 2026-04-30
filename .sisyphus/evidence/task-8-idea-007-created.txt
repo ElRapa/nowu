@@ -1,0 +1,6 @@
+idea-007 created at state/ideas/idea-007.md
+id: idea-007
+status: DRAFT
+size: Story
+created: 2026-04-30
+title: Failing is a Valid Outcome

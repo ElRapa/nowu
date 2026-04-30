@@ -1,0 +1,3 @@
+## Goal Brief Status Update
+3. Update Phase Coverage table in goal file: set the row for this epic's phase to Status: Done
+4. If any goal file was modified: add `goal_status_change: goal-NNN → {new_status}` to capture record

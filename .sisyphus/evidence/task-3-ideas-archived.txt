@@ -1,0 +1,30 @@
+=== docs/archive/ideas/ ===
+atam-for-options-evaluation.md
+Evaluation on two new ideas that are not.md
+octahedron-model.md
+workflow-standardisation.md
+
+=== docs/ideas/ (should be empty) ===
+
+=== git status ===
+R  "docs/ideas/Evaluation on two new ideas that are not.md" -> "docs/archive/ideas/Evaluation on two new ideas that are not.md"
+R  docs/ideas/atam-for-options-evaluation.md -> docs/archive/ideas/atam-for-options-evaluation.md
+R  docs/ideas/octahedron-model.md -> docs/archive/ideas/octahedron-model.md
+R  docs/ideas/workflow-standardisation.md -> docs/archive/ideas/workflow-standardisation.md
+D  docs/ideas/ALTITUDES.md
+D  "docs/ideas/Paperclip Analysis/ARTIFACT-circuit-breaker.md"
+D  "docs/ideas/Paperclip Analysis/ARTIFACT-circuit-breaker.pdf"
+D  "docs/ideas/Paperclip Analysis/ARTIFACT-goal-ancestry.md"
+D  "docs/ideas/Paperclip Analysis/ARTIFACT-goal-ancestry.pdf"
+D  "docs/ideas/Paperclip Analysis/ARTIFACT-heartbeat-skill.md"
+D  "docs/ideas/Paperclip Analysis/ARTIFACT-heartbeat-skill.pdf"
+D  "docs/ideas/Paperclip Analysis/ARTIFACT-org-chart-pattern.md"
+D  "docs/ideas/Paperclip Analysis/ARTIFACT-org-chart-pattern.pdf"
+D  "docs/ideas/Paperclip Analysis/ARTIFACT-para-memory-pattern.md"
+D  "docs/ideas/Paperclip Analysis/ARTIFACT-para-memory-pattern.pdf"
+D  "docs/ideas/Paperclip Analysis/ARTIFACT-routine-template.md"
+D  "docs/ideas/Paperclip Analysis/ARTIFACT-routine-template.pdf"
+D  "docs/ideas/Paperclip Analysis/REPORT-paperclip-analysis.md"
+D  "docs/ideas/Paperclip Analysis/REPORT-paperclip-analysis.pdf"
+D  docs/ideas/cpg-as-know-graph.md
+D  docs/ideas/workflow-learning-loop.md

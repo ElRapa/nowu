@@ -12,7 +12,7 @@ This framework is self-developing: you help build it using the same workflow it 
 
 1. `CLAUDE.md`                           — commands, approval tiers, failure modes
 2. `docs/WORKFLOW.md`                    — S1–S9 reference table and context scoping rules
-2b. `docs/GLOBAL-MODEL.md`              — C4 levels mapped to S1–S9 steps (read ## 1. to ## 3. only )
+2b. `docs/ALTITUDES.md`                 — C4 levels mapped to S1–S9 steps (read ## 1. to ## 3. only )
 3. `docs/architecture/containers.md`    — module map (C4 L2)
 4. `docs/DECISIONS.md`                  — existing architectural decisions (binding)
 5. `docs/V1_PLAN.md`                    — current product stage and active epics

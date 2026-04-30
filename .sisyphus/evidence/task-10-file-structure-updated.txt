@@ -1,0 +1,21 @@
+Task 10: FILE-STRUCTURE.md updated
+Date: 2026-04-30
+Version: 2.3
+
+Changes made:
+- Version bumped to 2.3, date updated to 2026-04-30
+- Removed: docs/ARCHITECTURE.md entry
+- Removed: docs/GLOBAL-MODEL.md entry
+- Removed: state/ideas/parked/ entry
+- Added: docs/ALTITUDES.md entry
+- Added: docs/goals/ section with goal-NNN.md pattern
+- Added: docs/design/concepts/ entry
+- Added: docs/design/research/ entry
+- Updated: docs/architecture/ description to "Canonical C4 architecture docs (containers.md, context.md, adr/)"
+- Updated: docs/architecture/context.md and containers.md landmark labels (removed "post-GAP" qualifier)
+
+Verification:
+- grep for ARCHITECTURE.md (non-archive): no results
+- grep for GLOBAL-MODEL, ARCH-WORKFLOW, PRE-WORKFLOW-P0-UC, soul/, docs/inbox/, docs/ideas/: no results
+- grep for ideas/parked: no results
+- ALTITUDES.md, goals/, design/concepts/, design/research/ all present

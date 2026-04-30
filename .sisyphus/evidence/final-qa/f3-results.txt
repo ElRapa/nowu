@@ -1,0 +1,73 @@
+=== F3 FINAL QA RESULTS ===
+Date: 2026-04-29
+
+--- TASK 1: Template ---
+Scenario [task-1-template-lines]: PASS — 33 lines (< 60 required)
+Scenario [task-1-required-fields]: PASS — all 5 fields found: id, title, status, parent_vision_horizon (matches horizon:), linked_epics
+Scenario [task-1-forbidden-fields]: PASS — "architecture" appears only in prose comment ("no architecture prescriptions"), NOT as a YAML field. "measurement" and "dependency_map" not present at all.
+
+--- TASK 2: Goal files ---
+Scenario [task-2-goal-files]: PASS — goal-001.md, goal-002.md, goal-003.md all present
+Scenario [task-2-horizon-refs]: PASS — horizon refs confirmed via recursive grep:
+  goal-001: parent_vision_horizon: "6 Months — The workflow is yours"
+  goal-002: parent_vision_horizon: "6 Months — The workflow is yours"
+  goal-003: parent_vision_horizon: "12 Months — Knowledge compounds across projects"
+  (Note: plan grep pattern used "6-month|6mo" but actual values use "6 Months" — data is correct)
+Scenario [task-2-status-values]: PASS — all three files have status: proposed (valid)
+
+--- TASK 3: Epic backfill ---
+Scenario [task-3-no-tbd]: PASS — grep -r "parent_goal:.*TBD" state/epics/ → empty
+Scenario [task-3-parent-goal-refs]: PASS — all 4 epics have goal-00N references:
+  epic-v1core-001 → goal-001
+  epic-v1core-002 → goal-002
+  epic-v1core-003 → goal-001
+  epic-v1core-004 → goal-003
+
+--- TASK 4: PRE-WORKFLOW ---
+Scenario [task-4-pre-workflow]: PASS — found P0.G section, goal-NNN, docs/goals references (4 matches on lines 291, 295, 298, 299)
+
+--- TASK 5: GLOBAL-MODEL ---
+Scenario [task-5-global-model]: PASS — found docs/goals and "Goal Brief" in P0 context row (lines 28, 46, 47)
+
+--- TASK 6: ALTITUDES ---
+Scenario [task-6-altitudes]: PASS — line 97 contains "Goal Brief (docs/goals/goal-NNN.md)" in HIGH altitude ORIENT step
+
+--- TASK 7: CLAUDE.md ---
+Scenario [task-7-claude-context-row]: PASS — line 107: "| docs/goals/ | P0–P1, P2, P3, P4, GAP, S1, S2, S3–S5, S8, S9, Health | P0.UC, S6–S7 |"
+Scenario [task-7-s6s7-never]: PASS — S6–S7 is in the "Never Load" column for docs/goals/
+
+--- TASK 8: Agent files ---
+Scenario [task-8-story-mapper-matches]: PASS — 6 matches (lines 27, 57, 201, 202, 205, 206)
+Scenario [task-8-curator-matches]: PASS — 3 matches (lines 35, 82, 86, 87)
+Scenario [task-8-health-goals-matches]: PASS — multiple matches (lines 33, 97, 98, 102, 104, 105, 108, 109, 113, 114)
+Scenario [task-8-story-mapper-version]: PASS — version: 2.4
+Scenario [task-8-health-goals-version]: PASS — version: 2.3
+Scenario [task-8-curator-goal-brief-section]: PASS — "## Goal Brief Status Update" found
+Scenario [task-8-health-goals-4-checks]: PASS — all 4 checks found:
+  ✓ Goal Brief Validity
+  ✓ Epic Parent Goal Coverage
+  ✓ Active Goal Linkage
+  ✓ Orphan Goal References
+
+--- TASK 10: DECISIONS.md ---
+Scenario [task-10-d011]: PASS — D-011 entry found at line 214 with full rationale
+
+--- INTEGRATION ---
+Integration [goal-refs-valid]: PASS — all 4 epic→goal cross-references resolve to existing files:
+  epic-v1core-001 → docs/goals/goal-001.md ✓
+  epic-v1core-002 → docs/goals/goal-002.md ✓
+  epic-v1core-003 → docs/goals/goal-001.md ✓
+  epic-v1core-004 → docs/goals/goal-003.md ✓
+
+--- FINAL SUCCESS CRITERIA ---
+Scenario [final-goal-files-exist]: PASS — goal-001.md, goal-002.md, goal-003.md
+Scenario [final-no-tbd-epics]: PASS — empty
+Scenario [final-preworkflow-goal-brief]: PASS — found
+Scenario [final-global-model-goal-brief]: PASS — found
+Scenario [final-claude-docs-goals]: PASS — found
+Scenario [final-template-line-count]: PASS — 33 lines
+
+===========================
+Total: 25/25 pass
+VERDICT: APPROVE
+Reason: All verification scenarios passed. Template is within line limit, all required fields present, forbidden fields absent as YAML keys. Goal files exist with valid horizon and status values. All epics have non-TBD parent_goal pointing to existing goal files. PRE-WORKFLOW, GLOBAL-MODEL, ALTITUDES, CLAUDE.md all updated with docs/goals/ references. Agent versions correct, all 4 health-goals checks present, curator Goal Brief section present. D-011 decision recorded. Cross-reference integrity verified.

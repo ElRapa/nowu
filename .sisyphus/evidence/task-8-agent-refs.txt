@@ -1,0 +1,20 @@
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/story-mapper.md:27:- docs/goals/ (Goal Brief registry — for parent_goal resolution, required when creating epics)
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/story-mapper.md:57:  parent_goal: goal-NNN
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/story-mapper.md:201:- When creating a new epic, MUST check docs/goals/ for existing Goal Briefs
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/story-mapper.md:202:  (goal-001.md, goal-002.md, goal-003.md, etc.) and set `parent_goal: goal-NNN`
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/story-mapper.md:205:  "No matching Goal Brief found — human must create docs/goals/goal-NNN.md before P4."
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/story-mapper.md:206:  NEVER leave `parent_goal: TBD` or omit the field entirely.
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/nowu-curator.md:35:If parent_goal is set in the epic: docs/goals/{parent_goal}.md -- to check/update goal status
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/nowu-curator.md:82:## Goal Brief Status Update
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/nowu-curator.md:86:1. Load the `parent_goal` from the completed epic's frontmatter.
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/nowu-curator.md:87:2. Read `docs/goals/{parent_goal}.md`.
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/health-goals.md:33:- docs/goals/ (Goal Brief registry, required)
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/health-goals.md:97:Goal Brief Validity (YELLOW if any issue, RED if goal files missing entirely):
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/health-goals.md:98:For each file in docs/goals/:
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/health-goals.md:102:Epic Parent Goal Coverage (RED if any epic has TBD or missing parent_goal):
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/health-goals.md:104:- Verify frontmatter has `parent_goal:` field set to a value other than TBD, blank, or missing.
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/health-goals.md:105:- Flag by epic ID and current parent_goal value.
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/health-goals.md:108:For each goal in docs/goals/ with status `in_delivery`:
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/health-goals.md:109:- Check that at least one active epic in state/epics/ references this goal via parent_goal.
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/health-goals.md:113:For each goal in docs/goals/ with status `achieved` or `retired`:
+/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.claude/agents/health-goals.md:114:- Check whether any active (non-DONE) epic references it via parent_goal.

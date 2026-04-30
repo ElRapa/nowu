@@ -1,0 +1,3 @@
+ls: docs/design/workflow_design/goal-layer-research.md: No such file or directory
+ls: docs/goals/: No such file or directory
+ls: templates/goal-brief.md: No such file or directory

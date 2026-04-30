@@ -1,0 +1,22 @@
+1:# Goal Interview Design (Q6–Q9) for vision-bootstrap
+5:Define the post-vision interview extension that introduces Q6, Q7, Q8 (required) and Q9 (optional) in the vision-bootstrap flow.
+6:This design preserves existing Q1–Q5 unchanged and adds goal elicitation after vision synthesis is complete and the human has approved `docs/vision.md`.
+10:- In scope: interview design, synthesis rules, and target output sketch for generated `goal-NNN.md` files.
+16:The questions are asked **one at a time**, in the **same session**, only **after vision synthesis is complete** and `docs/vision.md` is approved.
+20:3. Ask Q6 and wait for complete answer.
+21:4. Ask Q7 and wait for complete answer.
+22:5. Ask Q8 and wait for complete answer.
+29:- If answers are incomplete, the agent should request clarification before synthesis.
+31:## Questions (Q6–Q9)
+33:### Q6 — Goal Identification (required)
+37:### Q7 — Success Criteria (required)
+41:### Q8 — Solution Shape / Key Capabilities (required)
+53:- Q6 answers → goal titles and **Outcome Goal** section.
+54:- Q7 answers → **Success Criteria** section.
+55:- Q8 answers → **Solution Shape / Key Capabilities** section.
+58:Additional synthesis rules:
+79:# Goal 001 — <Title from Q6>
+82:<Outcome statement from Q6>
+85:- <Criterion from Q7>
+88:- <Capability/system from Q8>
+21

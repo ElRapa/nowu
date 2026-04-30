@@ -1,0 +1,16 @@
+cpg-as-know-graph.md
+workflow-learning-loop.md
+ARTIFACT-circuit-breaker.md
+ARTIFACT-circuit-breaker.pdf
+ARTIFACT-goal-ancestry.md
+ARTIFACT-goal-ancestry.pdf
+ARTIFACT-heartbeat-skill.md
+ARTIFACT-heartbeat-skill.pdf
+ARTIFACT-org-chart-pattern.md
+ARTIFACT-org-chart-pattern.pdf
+ARTIFACT-para-memory-pattern.md
+ARTIFACT-para-memory-pattern.pdf
+ARTIFACT-routine-template.md
+ARTIFACT-routine-template.pdf
+REPORT-paperclip-analysis.md
+REPORT-paperclip-analysis.pdf

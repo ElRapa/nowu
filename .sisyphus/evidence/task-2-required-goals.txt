@@ -1,0 +1,6 @@
+=== docs/goals/goal-001.md ===
+EXISTS
+=== docs/goals/goal-002.md ===
+EXISTS
+=== docs/goals/goal-003.md ===
+EXISTS

@@ -1,0 +1,17 @@
+=== Stale entry check ===
+--- soul/ ---
+(not found)
+--- docs/inbox/ ---
+(not found)
+--- GLOBAL-MODEL ---
+(not found)
+--- ARCH-WORKFLOW ---
+(not found)
+--- PRE-WORKFLOW-P0-UC ---
+(not found)
+--- docs/ideas/ ---
+(not found)
+--- ideas/parked ---
+(not found)
+--- ARCHITECTURE.md (non-archive) ---
+(not found)

@@ -1,87 +1,128 @@
-# The nowu Octahedron — Global Product Model
+# GLOBAL-MODEL — C4 Model and Workflow Levels
 
-> This model is motivational and navigational. It answers: "Where are we?
-> What are we looking at? What have we already built?"
+## 1. Levels Overview
 
-## Concept
+Simon Brown’s C4 model provides four zoom levels for software architecture.
+Each level answers a different question and serves a different audience.
 
-The Octahedron combines two complementary models:
+| Level | Name | Question | Audience | nowu Artifact |
+|-------|------|----------|----------|---------------|
+| Above C4 | Problem Space | What problem? For whom? Why now? | Product owner, Stakeholders | `docs/vision.md`, `state/problems/`, `docs/V1_PLAN.md` |
+| L1 | System Context | What does the system do? Who uses it? | Stakeholders, Architect | `ARCHITECTURE.md` §1 |
+| L2 | Containers / Modules | How do modules interact? | Architect, Shaper | `ARCHITECTURE.md` §4.1 |
+| L3 | Components | What files/classes exist? | Shaper, Implementer | `core/contracts/`, file tree |
+| L4 | Code | How does it work internally? | Implementer, Reviewer | `src/`, `tests/` |
 
-**Upper Diamond (WHY)** — the problem space
-Borrowed from the Double Diamond design process (Design Council, 2005).
-Starts at the vision (single point), diverges through use cases and ideas,
-then converges through requirements and decisions.
+Above C4 is where **vision, product stages, and problem statements** live.
+C4 L1–L4 describe the **software system** that serves that vision.
 
-**Lower Pyramid (WHAT)** — the solution space
-Borrowed from the C4 Model (Simon Brown). Starts at the decision equator
-and materialises through system, modules, components, down to code.
+---
 
-**Equator (DECISIONS)** — the translation layer
-Every architectural decision sits on the equator. It connects WHY (what use
-case drove this) to WHAT (which C4 layer it affects). The `level` field on
-every D-NNN entry places it precisely: product | system | module | component | code
+## 2. Workflow × Level Mapping (P0–P4 and S1–S9)
 
-## The Shape
+This table answers: *for each phase/step, what “level” should agents and humans think at,
+and which artifacts are primary?*
 
-```
-        ▲  Vision (single point — the "why" apex)
-       ╱│╲
-      ╱ │ ╲  Discover: user research, pain points, opportunities
-     ╱  │  ╲
-    ──────────  Define: use cases, personas, problem statements
-     ╲  │  ╱
-      ╲ │ ╱  Develop: feature ideas, capability options
-       ╲│╱
-    ════════  DECISION EQUATOR (D-NNN entries with level field)
-       ╱│╲
-      ╱ │ ╲  C4 L1: System Context (actors, boundaries)
-     ╱  │  ╲
-    ──────────  C4 L2: Container / Module Map
-     ╲  │  ╱
-      ╲ │ ╱  C4 L3: Component (contracts, file structure)
-       ╲│╱
-        ▼  C4 L4: Code (the lower apex — most materialised)
-```
+| Phase / Step | Level | Primary Focus | Main Artifacts (read/write) |
+|--------------|-------|---------------|------------------------------|
+| P0 – Signal Capture (vision bootstrap, idea note, decomposition) | Above C4 | Idea, product vision, stage, appetite | `docs/vision.md`, `docs/V1_PLAN.md`, `state/ideas/idea-NNN.md`, `state/pre-workflow/NNN-decomp.md`, `docs/goals/goal-NNN.md` |
+| P1 – Discovery (research + interview + problem statement) | Above C4 | Problem, personas, outcomes, appetite | `state/discovery/disc-NNN-research.md`, `state/problems/problem-NNN.md` |
 
-## How It Fills In Over Time
+**Note:** Goal Briefs (`docs/goals/goal-NNN.md`) are PRODUCT-altitude artifacts.
+| P2 – Story Mapping (epic + stories) | Above C4 → edge of L1 | User behaviour, use cases, acceptance criteria | `docs/USE_CASES.md`, `state/epics/epic-NNN.md`, `state/stories/story-NNN-*.md` |
+| P3 – Architecture Bootstrap | L1–L2 | System boundary, module map, invariants | `docs/architecture/context.md`, `docs/architecture/containers.md`, `state/arch/arch-pass-NNN.md`, `docs/architecture/adr/` |
+| P4 – Readiness Assembly | Above C4 + pointers into L1–L2 | Handoff contract into S1 | `state/pre-workflow/NNN-readiness.md`, `state/intake/intake-NNN.md` |
+| S1 – Intake | Above C4 | Confirm problem, appetite, use cases | `state/intake/intake-NNN.md`, `docs/vision.md`, `docs/V1_PLAN.md`, `docs/PROGRESS.md`, `docs/USE_CASES.md` |
+| S2 – Constraints | L1–L2 | System + module constraints, risks | `docs/ARCHITECTURE.md`, `docs/DECISIONS.md`, `core/contracts/`, `state/arch/arch-pass-NNN.md` (if present) |
+| S3 – Options | L2 | Module interaction options | `state/arch/intake-NNN-constraints.md`, `core/contracts/`, module `__init__.py` |
+| S4 – Decision | L2 | Choose option, record decision | `state/arch/intake-NNN-options.md`, `docs/DECISIONS.md` |
+| S5 – Shaping | L3 | Files/classes, task boundaries | `state/arch/intake-NNN-decision.md`, file tree, `core/contracts/`, `tests/` structure, `state/tasks/task-NNN.md` |
+| S6–S7 – Implementation + VBR | L4 | Code and tests | `state/tasks/task-NNN.md`, `src/`, `tests/`, `state/changes/`, `state/vbr/` |
+| S8 – Review | L4 → L3 | Code vs component intent, story coverage | `state/vbr/vbr-task-NNN.md`, `state/changes/changes-task-NNN.md`, `state/tasks/task-NNN.md`, `state/stories/story-NNN-*.md`, `git diff` |
+| S9 – Capture | L1–Above C4 | System impact, product progress, next cycle | `state/reviews/review-task-NNN.md`, `docs/DECISIONS.md`, `docs/PROGRESS.md`, `state/intake/intake-NNN.md (next_cycle_trigger)`, `state/capture/capture-task-NNN.md` |
 
-The lower pyramid materialises with every completed task. After each S9 Capture:
-- A new module boundary is confirmed (L2 fills in)
-- New contracts are written (L3 fills in)
-- New tests and code exist (L4 fills in)
+**Rule of thumb:**  
+- Pre‑workflow lives mostly **Above C4**, with a single dip into L1–L2 at P3.  
+- S1–S4 stay at **Above C4 → L2**, S5–S7 at **L3–L4**, S8 bridges **L4→L3**, S9 zooms back to **L1 / Above C4**.
 
-This is the "house builder" effect: you can see what you've built.
-The lower pyramid grows denser and more defined sprint by sprint.
+---
 
-## Decision Level Mapping
+## 3. Global Architecture Pass (GAP)
 
-| Decision Level | Octahedron Position | Example |
-|---------------|---------------------|---------|
-| product | Upper diamond (wide) | "We build for solo developers first" |
-| system | Upper→Equator | "We use file-based memory, not a database" |
-| module | Equator | "know depends only on core" |
-| component | Equator→Lower | "SessionOrchestrator implements FlowProtocol" |
-| code | Lower pyramid | "Use dataclasses not Pydantic for domain models" |
+GAP sits **above** any single NNN and covers C4 L1/L2 for the whole product.
+It is implemented by the gap-chain skill: gap-detector → gap-analyst → gap-writer, operating on gap-trigger.md and global-pass-YYYY-MM-DD.md.
+- Triggered by: product stage change, large UC catalog changes, or repeated RED health-architecture checks.
+- Output: updated global ARCHITECTURE.md §1 and §4.1, plus ADRs capturing structural choices.
+- Effect: P3 Architecture Bootstrap for individual epics must respect GAP decisions unless explicitly proposing new ADRs.
 
-## Workflow Mapping
+GAP is the city plan; P3 is local building placement.
 
-| Workflow Steps | Octahedron Zone | Mode |
-|---------------|-----------------|------|
-| S1 Intake | Upper diamond (discover/define) | Divergent |
-| S2-S3 Constraints+Options | Approaching equator | Convergent |
-| S4 Decision | The equator itself | Decision point |
-| S5 Shaping | Top of lower pyramid (L3) | Materialising |
-| S6-S7 Implement+VBR | Lower pyramid (L4) | Building |
-| S8-S9 Review+Capture | Whole pyramid check + equator update | Validating |
+---
 
-## C4 vs CPG: Which to Use
+## 4. Practical C4 for nowu v1
 
-| Need | Use | Why |
-|------|-----|-----|
-| Explain architecture to humans | C4 (L1-L4 diagrams) | Human-readable, 4 zoom levels |
-| Enforce import boundaries | AST-based arch test | Practical, runs in pytest today |
-| Query code structure at scale | CPG (future, via `know`) | Machine-queryable supergraph |
-| Motivational progress model | C4 pyramid filling in | Visible materialisation over time |
+These are the concrete anchors for each level in *this* codebase:
 
-C4 is the primary model for nowu today. CPG is the future state of `know`.
-They do not contradict — C4 is for communication, CPG is for analysis.
+- **Above C4**  
+  - Vision and stages: `docs/vision.md`, `docs/V1_PLAN.md`  
+  - Problems/stories: `state/problems/`, `state/epics/`, `state/stories/`  
+
+- **L1 – System Context**  
+  - `ARCHITECTURE.md` §1 describes the system boundary and actors.  
+  - Updated when major external dependencies or user roles change (typically via P3/S2/S9).
+
+- **L2 – Containers / Modules**  
+  - `ARCHITECTURE.md` §4.1 defines the 5-module map (`core`, `flow`, `bridge`, `soul`, `know`).  
+  - Updated at **P3.2** (arch-pass) and reconciled at **S2/S9** when boundaries change.
+
+- **L3 – Components**  
+  - `core/contracts/*.py` protocol files *are* the component graph for agents.  
+  - S5 and S8 should treat these contracts + the file tree as the source of truth for L3.
+
+- **L4 – Code**  
+  - `src/` and `tests/` contain implementations.  
+  - AST-based tests (for example `tests/unit/core/test_architecture.py`) enforce import boundaries
+    and guard the L2/L3 rules at code level.
+
+---
+
+## 5. Code Property Graph (future — via `know`)
+
+A Code Property Graph (CPG) merges three representations into one queryable graph:
+
+- **AST** (Abstract Syntax Tree): syntactic structure — what the code *says*.  
+- **CFG** (Control Flow Graph): execution order — *when* things run.  
+- **PDG** (Program Dependence Graph): data dependencies — *what flows where*.
+
+CPG enables queries like:
+
+- “Show all paths from user input to file write.”  
+- “Which functions depend (directly or indirectly) on `MemoryService`?”  
+
+**Today (v1)**  
+- Use AST-based tests to enforce import and layering rules.  
+- Keep C4 diagrams as the human-facing model.
+
+**Future (v2+)**  
+- Store code atoms and edges (`CALLS`, `FLOWS_TO`, `IMPLEMENTS`) in `know`.  
+- Allow queries like `kb.subgraph(from="MODULE:flow", depth=3)` to reconstruct C4 views
+  without loading raw files.
+
+---
+
+## 6. Why C4 Is the Primary Visual Model
+
+CPG is for machines. It’s excellent for deep analysis but bad for motivation and communication.
+
+C4’s explicit **Above C4 → L1 → L2 → L3 → L4** zoom, plus your pre‑workflow and S1–S9,
+gives a clean narrative:
+
+- Start with **why** (vision, problems, outcomes).  
+- Decide **what** the system is and how it’s sliced (L1/L2).  
+- Shape **how** it’s implemented (L3/L4).  
+- Then zoom back out and update the vision/plan if reality changed.
+
+Use:
+
+- **C4 + pre‑workflow levels** for all diagrams, docs, onboarding, and agent scoping.  
+- **CPG‑style analysis** only when `know` has enough code atoms to make it worthwhile.

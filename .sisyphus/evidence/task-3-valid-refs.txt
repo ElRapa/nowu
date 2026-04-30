@@ -1,0 +1,4 @@
+epic-v1core-001 -> goal-001  # Continuity — thread survives interruptions
+epic-v1core-002 -> goal-002  # Building Trust — decisions traceable, confidence visible
+epic-v1core-003 -> goal-001  # Continuity — thread survives interruptions
+epic-v1core-004 -> goal-003  # Compounding Knowledge — accumulates within and across projects

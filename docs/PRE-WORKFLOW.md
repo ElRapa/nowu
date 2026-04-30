@@ -344,6 +344,42 @@ Read `docs/vision.md`. Answer: does this idea serve the current vision?
 - **NO** → park in `state/ideas/parked/idea-NNN.md` with one-line reason. Stop.
 - **UNSURE** → vision needs refresh. Run P0.V first, then re-check.
 
+### P0.UC — Use Case Catalog Maintenance [use-case-agent + human]
+
+**id:** P0.UC | **scope:** Above C4 (problem space, jobs-to-be-done) | **timebox:** 20–40 minutes
+
+**Purpose:** Keep `docs/USE_CASES.md` aligned with the current `docs/vision.md`,
+`docs/V1_PLAN.md`, and recent problems, epics, stories, and captures — so that
+discovery (P1), story mapping (P2), and S1–S9 always operate against a small,
+clear list of jobs-to-be-done.
+
+**When to run:**
+- When a new product repo is created (no `docs/USE_CASES.md` yet).
+- After a significant vision or plan change.
+- When a health-check (goals/vision) or the human suspects UC drift.
+- Before starting discovery for a **new stage** of the product.
+
+**Inputs:**
+- `docs/vision.md`
+- `docs/V1_PLAN.md` (if exists)
+- `docs/USE_CASES.md` (if exists)
+- Optionally: `docs/PROGRESS.md`, latest `state/problems/`, `state/epics/`, `state/stories/`, `state/capture/`
+
+**Steps:**
+
+1. **Human** (optional, 2–5 min) — Skim `docs/vision.md` and `docs/V1_PLAN.md`. Decide whether this run is **Bootstrap** (first catalog) or **Refresh** (existing catalog).
+
+2. **Agent — `use-case-agent`** (10–25 min wall-clock) — Reads inputs. Synthesizes or updates UC catalog per its instructions. Writes `docs/USE_CASES.md` (bootstrap) or `docs/USE_CASES.proposed.md` (update).
+
+3. **Human gate** (5–10 min):
+   - If bootstrap: quickly scan for obviously wrong UCs, then accept as `docs/USE_CASES.md`.
+   - If update: diff `docs/USE_CASES.md` vs `docs/USE_CASES.proposed.md`. Apply, edit, or reject changes. Overwrite `docs/USE_CASES.md` when satisfied.
+
+**Notes:**
+- P0.UC is an **Above C4** phase; it never touches architecture or code.
+- Run it **before** P1 for new products or new product stages.
+- Safe to skip when: vision and plan are stable, UC catalog is < 1 month old, and health checks are GREEN.
+
 ---
 
 ## Phase P1 — Discovery

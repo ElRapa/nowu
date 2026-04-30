@@ -1,0 +1,4 @@
+83:Behavior: Skip Q1–Q5 and vision synthesis entirely. Load existing `docs/vision.md`, extract Success Horizons. Jump directly to Goal Interview Protocol (Q6–Q9).
+86:## Goal Interview Protocol
+104:## Goal Synthesis
+120:## Goal Re-generation Policy

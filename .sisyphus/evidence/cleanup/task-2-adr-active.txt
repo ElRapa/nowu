@@ -1,0 +1,6 @@
+ADR-0001-module-boundary-enforcement.md
+ADR-0002-adapter-protocol-for-bridge.md
+ADR-0003-llm-client-architecture.md
+ADR-0004-database-isolation-model.md
+ADR-0005-messaging-bot-adapter-telegram.md
+ADR-0006-soul-flow-integration-pattern.md

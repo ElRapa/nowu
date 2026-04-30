@@ -1,0 +1,3 @@
+28:| P0 – Signal Capture (vision bootstrap, idea note, decomposition) | Above C4 | Idea, product vision, stage, appetite, outcome goals | `docs/vision.md`, `docs/V1_PLAN.md`, `state/ideas/idea-NNN.md`, `state/pre-workflow/NNN-decomp.md`, `docs/goals/goal-NNN.md` |
+46:**Goal Briefs:**  
+47:`docs/goals/goal-NNN.md` is created at P0 after `docs/vision.md` is approved. It captures the outcome goal and solution shape for each Success Horizon. Goal Briefs are required before epics can be created at P2.

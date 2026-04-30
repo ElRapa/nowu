@@ -76,8 +76,8 @@ Full narrative: `docs/WORKFLOW-DETAILED.md`.
 | Level | Name | Question answered | Main artifacts |
 |---|---|---|---|
 | Above L1 | Problem space | What problem? For whom? | `docs/vision.md`, `state/problems/` |
-| L1 — Context | System | What does the system do? | `docs/ARCHITECTURE.md` §1 |
-| L2 — Containers | Modules | How do modules interact? | `docs/ARCHITECTURE.md` §4, `contracts/` |
+| L1 — Context | System | What does the system do? | `docs/architecture/containers.md` §1 |
+| L2 — Containers | Modules | How do modules interact? | `docs/architecture/containers.md` §4, `contracts/` |
 | L3 — Components | Files / classes | What files exist, what do they expose? | file tree, `__init__.py` surfaces |
 | L4 — Code | Implementation | How does it work internally? | `src/`, `tests/` |
 
@@ -101,7 +101,7 @@ See `docs/WORKFLOW.md` for the full context scoping matrix.
 | `docs/PRE-WORKFLOW.md` | P0–P4 full specification | Human |
 | `docs/vision.md` | Product vision — highest authority | Human (agent-assisted draft) |
 | `docs/V1_PLAN.md` | Stage plan and active epics | Human |
-| `docs/ARCHITECTURE.md` | Module map, C4 L1/L2 | Human (agent-assisted) |
+| `docs/architecture/containers.md` | Module map, C4 L1/L2 | Human (agent-assisted) |
 | `docs/DECISIONS.md` | D-NNN decision registry (binding) | Human + nowu-decider |
 | `docs/USE_CASES.md` | UC-NNN use case registry | Human |
 | `docs/PROGRESS.md` | Execution status per stage | Human + nowu-curator |
@@ -217,7 +217,7 @@ human communication and Tier 2/3 decisions.
 2. Copy `docs/` directory. Update product-specific content in:
    - `docs/vision.md` (or run `/pre-workflow run 001 --mode Bootstrap`)
    - `docs/V1_PLAN.md` (human-authored from Stage Map)
-   - `docs/ARCHITECTURE.md` (adapt to your modules)
+   - `docs/architecture/containers.md` (adapt to your modules)
    - `docs/DECISIONS.md` (start empty — add D-001 for first architecture decision)
    - `docs/USE_CASES.md` (start with 3–5 core use cases)
 3. Copy `.claude/` directory entirely. Adjust module names and file paths in agents.

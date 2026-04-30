@@ -1,0 +1,7 @@
+14:## Outcome Goal
+22:## Success Criteria
+30:## UC Mapping
+37:## Phase Coverage
+44:## UC Completion
+52:## Solution Shape
+61:## Epic Seeds

@@ -1,0 +1,10 @@
+Task 6 — References Updated
+Date: 2026-04-30
+
+Files updated:
+- BOOTSTRAP.md line 15: `docs/GLOBAL-MODEL.md` → `docs/ALTITUDES.md`
+- BOOTSTRAP_lean.md line 14: `docs/GLOBAL-MODEL.md` → `docs/ALTITUDES.md`
+
+Verification:
+- grep GLOBAL-MODEL BOOTSTRAP.md: no matches ✓
+- grep GLOBAL-MODEL BOOTSTRAP_lean.md: no matches ✓

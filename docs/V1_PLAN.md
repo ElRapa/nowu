@@ -81,7 +81,7 @@ are prohibited - all memory access goes through MemoryService.
 Use cases: NF-01, NF-04
 
 Decision: WAL + mirrored session summary atom in `know` (over WAL-only, D-008).
-WAL appends events to soul/SESSION-STATE.md; a summary atom is persisted to `know` after
+WAL appends events to state/SESSION_STATE.md; a summary atom is persisted to `know` after
 each session for structured recall and cross-session auditability.
 
 ---

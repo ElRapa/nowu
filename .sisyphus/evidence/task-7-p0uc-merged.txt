@@ -1,0 +1,11 @@
+=== Task 7: P0.UC Merge Evidence ===
+
+PRE-WORKFLOW-P0-UC-spec.md deleted:
+ls: docs/PRE-WORKFLOW-P0-UC-spec.md: No such file or directory
+
+P0.UC section in PRE-WORKFLOW.md:
+### P0.UC — Use Case Catalog Maintenance [use-case-agent + human]
+**id:** P0.UC | **scope:** Above C4 (problem space, jobs-to-be-done) | **timebox:** 20–40 minutes
+- P0.UC is an **Above C4** phase; it never touches architecture or code.
+
+use-case-agent occurrences: 2

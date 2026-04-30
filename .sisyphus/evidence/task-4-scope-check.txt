@@ -1,0 +1,21 @@
+diff --git a/docs/PRE-WORKFLOW.md b/docs/PRE-WORKFLOW.md
+index d11f45e..c6de6ad 100644
+--- a/docs/PRE-WORKFLOW.md
++++ b/docs/PRE-WORKFLOW.md
+@@ -288,6 +288,16 @@ or `last_approved` is >90 days ago.
+ Human must edit and set `status: APPROVED` before any other P0 work begins.
+ The Vision Bootstrap Agent does not touch any other files.
+ 
++### P0.G — Goal Brief Creation
++
++**When:** After vision.md is APPROVED (P0.V or P0.2), before entering P1.
++**Who:** Human (with optional vision-bootstrap agent assistance).
++**Output:** `docs/goals/goal-NNN.md` using `templates/goal-brief.md`
++**Approval Tier:** Tier 2 (batch for human review)
++
++Create 3–5 Goal Briefs from vision.md Success Horizons. Each brief captures one outcome goal
++and its solution shape. Goal Briefs must exist before epics are created (P2).
++
+ ### P0.1 — Signal Capture [signal-capture agent OR human]
+ 
+ **Preferred path (agent):** Run `/capture` — `signal-capture` asks 5 questions in a

@@ -1,0 +1,5 @@
+docs/architecture/crosscutting.md:status: placeholder
+docs/architecture/deployment.md:status: placeholder
+docs/architecture/quality.md:status: placeholder
+docs/architecture/risks.md:status: placeholder
+docs/architecture/runtime.md:status: placeholder

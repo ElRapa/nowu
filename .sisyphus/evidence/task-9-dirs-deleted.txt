@@ -1,0 +1,19 @@
+Task 9: Orphaned Directories Deleted
+Date: 2026-04-30
+
+DELETED:
+- soul/ (contained: SESSION-STATE.md)
+- agents/ (contained: archive/step-01 through step-06 files)
+- archive/ (contained: prompts/general/*.md, skills/nowu-architect/*, skills/nowu-shaper/*)
+
+ALREADY GONE:
+- docs/inbox/ (deleted in Task 8)
+
+REMOVED (was empty):
+- docs/ideas/ (rmdir - was empty after Tasks 3-5)
+
+PRESERVED (active):
+- .claude/agents/ (active agents - NOT deleted)
+- docs/archive/ (destination dir - NOT deleted)
+
+git rm output confirmed all files staged for removal.

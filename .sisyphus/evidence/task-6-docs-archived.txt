@@ -1,0 +1,13 @@
+Task 6 — Docs Archived
+Date: 2026-04-30
+
+Actions:
+- docs/archive/GLOBAL-MODEL.md (pre-existing) renamed to docs/archive/GLOBAL-MODEL-old.md
+- docs/GLOBAL-MODEL.md → docs/archive/GLOBAL-MODEL.md (git mv)
+- docs/ARCH-WORKFLOW.md → docs/archive/ARCH-WORKFLOW.md (git mv)
+
+Verification:
+- docs/GLOBAL-MODEL.md: does not exist ✓
+- docs/ARCH-WORKFLOW.md: does not exist ✓
+- docs/archive/GLOBAL-MODEL.md: exists ✓
+- docs/archive/ARCH-WORKFLOW.md: exists ✓

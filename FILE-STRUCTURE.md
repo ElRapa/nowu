@@ -1,6 +1,6 @@
 # nowu — Canonical File Structure
 
-> Version: 2.2 | Updated: 2026-03-26
+> Version: 2.3 | Updated: 2026-04-30
 
 ---
 
@@ -17,25 +17,27 @@ project-root/
 │   ├── V1_PLAN.md                         ← Stage plan and active epics
 │   ├── USE_CASES.md                       ← UC-NNN catalogue (source of truth for validation traces)
 │   ├── DECISIONS.md                       ← D-NNN catalogue (binding implementation decisions)
-│   ├── ARCHITECTURE.md                    ← [LANDMARK] C4 L1+L2 — combined arch doc (pre-GAP)
+│   ├── ALTITUDES.md                       ← Altitude model — HIGH/MID/LOW framework unifying workflow steps
 │   ├── PROGRESS.md                        ← Cycle-level progress log (updated by S9 curator)
-│   ├── GLOBAL-MODEL.md                    ← C4 levels ↔ workflow steps mapping
 │   ├── WORKFLOW.md                        ← S1–S9 reference table
 │   ├── WORKFLOW-DETAILED.md               ← Full S1–S9 narrative spec
 │   ├── PRE-WORKFLOW.md                    ← P0–P4 full specification
 │   ├── CLAUDE-SETUP.md                    ← Agent/skill/file reference guide
-│   └── architecture/                      ← Created after first GAP run (gap-writer output)
-│       ├── context.md                     ← [LANDMARK post-GAP] C4 L1 — system context diagram
-│       ├── containers.md                  ← [LANDMARK post-GAP] C4 L2 — container diagram (binding)
+│   ├── goals/
+│   │   └── goal-NNN.md                    ← Product goals, linked to vision and use cases
+│   ├── design/
+│   │   ├── concepts/                      ← Future concept docs — ideas ready for pre-workflow
+│   │   └── research/                      ← Research artifacts and analysis
+│   └── architecture/                      ← Canonical C4 architecture docs (containers.md, context.md, adr/)
+│       ├── context.md                     ← [LANDMARK] C4 L1 — system context diagram
+│       ├── containers.md                  ← [LANDMARK] C4 L2 — container diagram (binding)
 │       ├── components-<module>.md         ← C4 L3 per module (updated by S2/S3)
 │       └── adr/
 │           └── ADR-NNN-title.md           ← Architecture Decision Records (binding)
 │
 ├── state/
 │   ├── ideas/
-│   │   ├── idea-NNN.md                    ← P0.1 output — raw idea note
-│   │   └── parked/
-│   │       └── idea-NNN.md                ← Ideas not aligned with vision
+│   │   └── idea-NNN.md                    ← P0.1 output — raw idea note
 │   ├── discovery/
 │   │   └── disc-NNN-research.md           ← P1.1 output — Discovery Agent research
 │   ├── problems/
@@ -188,7 +190,7 @@ state/intake/intake-NNN (READY_FOR_S1)
 |---|---|---|---|
 | `docs/vision.md` | Product intent + scope boundaries | Human (agent-assisted) | health-vision |
 | `docs/USE_CASES.md` | All UC-NNN entries (validation anchor) | Human + agents | readiness-checker, S8 |
-| `docs/ARCHITECTURE.md` (or `docs/architecture/containers.md` post-GAP) | C4 L2 — current system architecture | Human (agent-assisted) | health-architecture, S2 |
+| `docs/architecture/containers.md` | C4 L2 — current system architecture | Human (agent-assisted) | health-architecture, S2 |
 | `docs/DECISIONS.md` | All D-NNN decisions (binding) | S4 + human | S2, S5, S8 |
 | `state/intake/intake-NNN.md` | READY_FOR_S1 — current work queue | Readiness Checker + human | S1 |
 

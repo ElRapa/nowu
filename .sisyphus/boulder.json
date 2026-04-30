@@ -1,0 +1,58 @@
+{
+  "active_plan": "/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/.sisyphus/plans/repo-cleanup-v2.md",
+  "started_at": "2026-04-30T14:41:03.561Z",
+  "session_ids": [
+    "ses_22c872211ffeNspuUaDujumavJ"
+  ],
+  "session_origins": {
+    "ses_22c872211ffeNspuUaDujumavJ": "direct"
+  },
+  "plan_name": "repo-cleanup-v2",
+  "agent": "atlas",
+  "task_sessions": {
+    "todo:1": {
+      "task_key": "todo:1",
+      "task_label": "1",
+      "task_title": "Full Reference Audit",
+      "session_id": "ses_22127526fffe4jEON0u77W6YyO",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-04-30T14:46:44.396Z"
+    },
+    "todo:2": {
+      "task_key": "todo:2",
+      "task_label": "2",
+      "task_title": "Fix Stale ARCHITECTURE.md References in Active Docs",
+      "session_id": "ses_22123ec97ffee9P52r26czBlOF",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-04-30T14:51:13.491Z"
+    },
+    "todo:9": {
+      "task_key": "todo:9",
+      "task_label": "9",
+      "task_title": "Delete Orphaned Directories",
+      "session_id": "ses_2211eacafffeOz3D9ON64U4MOU",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-04-30T14:56:25.595Z"
+    },
+    "todo:10": {
+      "task_key": "todo:10",
+      "task_label": "10",
+      "task_title": "Update FILE-STRUCTURE.md",
+      "session_id": "ses_2211b35d8ffeMpRSXXPRYlHJr1",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-04-30T14:58:50.225Z"
+    },
+    "final-wave:f1": {
+      "task_key": "final-wave:f1",
+      "task_label": "F1",
+      "task_title": "**Plan Compliance Audit** — `oracle`",
+      "session_id": "ses_22118d91effezjAj7C6hib7ief",
+      "agent": "oracle",
+      "updated_at": "2026-04-30T15:00:40.156Z"
+    }
+  }
+}
