@@ -115,6 +115,7 @@ P-1: Mode Selection
 
 P0: Signal Capture
   P0.V  Vision Bootstrap Agent    [if vision.md missing or stale]
+  P0.G  Goal Brief Creation       [vision-bootstrap agent → goal-NNN.md]
   P0.1  Signal Capture            [signal-capture agent OR human — → idea-NNN.md]
   P0.D  Idea Decomposition        [Agent → NNN-decomp.md]
   P0.2  Vision Alignment Check    [Human, 2 min]
@@ -287,6 +288,14 @@ or `last_approved` is >90 days ago.
 
 Human must edit and set `status: APPROVED` before any other P0 work begins.
 The Vision Bootstrap Agent does not touch any other files.
+
+### P0.G — Goal Brief Creation
+
+**When:** After vision.md synthesis (same session as P0.V).
+**Who:** vision-bootstrap agent (v2.2+).
+**What:** Agent interviews for goals after vision synthesis, generates `docs/goals/goal-NNN.md`.
+**Output:** 3-8 Goal Brief files [DRAFT].
+**Human gate:** Review generated goals, edit as needed, approve as batch (Tier 2).
 
 ### P0.1 — Signal Capture [signal-capture agent OR human]
 

@@ -1,0 +1,5 @@
+118:  P0.G  Goal Brief Creation       [vision-bootstrap agent → goal-NNN.md]
+285:**Agent:** `.claude/agents/vision-bootstrap.md`
+292:### P0.G — Goal Brief Creation
+295:**Who:** vision-bootstrap agent (v2.2+).
+297:**Output:** 3-8 Goal Brief files [DRAFT].

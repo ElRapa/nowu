@@ -1,0 +1,2 @@
+| P0 – Signal Capture (vision bootstrap, idea note, decomposition) | Above C4 | Idea, product vision, stage, appetite | `docs/vision.md`, `docs/V1_PLAN.md`, `state/ideas/idea-NNN.md`, `state/pre-workflow/NNN-decomp.md`, `docs/goals/goal-NNN.md` |
+**Note:** Goal Briefs (`docs/goals/goal-NNN.md`) are PRODUCT-altitude artifacts.

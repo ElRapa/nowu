@@ -94,7 +94,7 @@ The terrain does not change. The resolution does.
 | Generic step | nowu activity | Primary artefact | Actor |
 |---|---|---|---|
 | 1. SIGNAL | stage change, major UC wave, RED arch checks | gap-trigger.md | gap-detector (auto) |
-| 2. ORIENT | review vision, plan, last GAP | vision.md, V1_PLAN.md | gap-detector reads these |
+| 2. ORIENT | review vision, plan, last GAP | vision.md, V1_PLAN.md, Goal Brief | gap-detector reads these |
 | 3. DISCOVER | UC-to-container analysis, structural risks | global-pass-YYYY-MM-DD.md (PROPOSED) | gap-analyst |
 | 4. SHAPE | decide container structure, ADR candidates | global-pass-YYYY-MM-DD.md (APPROVED by human) | human review |
 | 5. DECIDE | author ADRs, approve container changes | ADR-NNN-*.md | human |

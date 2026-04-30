@@ -1,0 +1,2 @@
+## D-012 — Goal Brief v2: Agent-created goals with measurement infrastructure
+Adopt Goal Brief v2 with the following key elements:

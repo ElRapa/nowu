@@ -1,0 +1,1 @@
+| 2. ORIENT | review vision, plan, last GAP | vision.md, V1_PLAN.md, Goal Brief | gap-detector reads these |

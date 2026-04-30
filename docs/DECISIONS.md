@@ -209,4 +209,44 @@ Keeps v1 achievable while preserving expansion path for domain-specific capabili
 
 ---
 
+## D-012 — Goal Brief v2: Agent-created goals with measurement infrastructure
+
+**Date:** 2026-04-30 | **Status**: ACCEPTED | **Level**: product  
+**Supersedes**: D-011 (reverted)  
+
+### Context
+D-011 proposed a minimal goal-layer approach, which was reverted due to lack of
+measurement infrastructure and bidirectional UC↔goal mapping. This decision
+revisits the goal layer with a more comprehensive approach.
+
+### Decision
+Adopt Goal Brief v2 with the following key elements:
+- Agent-created goals (not human-created) to align with the 90-99% AI work vision.
+- Bidirectional UC↔goal mapping for traceability.
+- Measurement infrastructure to track success criteria, phase coverage, and UC completion %.
+- Capability maps in Solution Shape to provide agents with "bigger picture" context.
+- Altitude/phase frontmatter for forward-compatible groundwork (idea-004).
+
+### Alternatives Considered
+1. **V1 Minimal Approach (D-011):**
+   - Pros: Faster to implement.
+   - Cons: Lacked measurement infrastructure and traceability.
+2. **V2 Full Approach (adopted):**
+   - Pros: Comprehensive, forward-compatible, aligns with AI-first vision.
+   - Cons: Higher initial complexity.
+3. **No Goals:**
+   - Pros: Simplifies architecture.
+   - Cons: No progress tracking, misaligned AI work.
+
+### Rationale
+- Agent-created goals ensure alignment with the AI-first vision.
+- Measurement infrastructure enables progress tracking and accountability.
+- Capability maps and altitude/phase frontmatter future-proof the system.
+
+### Dependencies
+- UC backfill of existing 50 UCs is deferred.
+- Measurement infrastructure requires updates to `state/` and `docs/USE_CASES.md`.
+
+---
+
 <!-- Add new decisions below this line using templates/decision.md -->

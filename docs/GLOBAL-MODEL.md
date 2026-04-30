@@ -25,8 +25,10 @@ and which artifacts are primary?*
 
 | Phase / Step | Level | Primary Focus | Main Artifacts (read/write) |
 |--------------|-------|---------------|------------------------------|
-| P0 – Signal Capture (vision bootstrap, idea note, decomposition) | Above C4 | Idea, product vision, stage, appetite | `docs/vision.md`, `docs/V1_PLAN.md`, `state/ideas/idea-NNN.md`, `state/pre-workflow/NNN-decomp.md` |
+| P0 – Signal Capture (vision bootstrap, idea note, decomposition) | Above C4 | Idea, product vision, stage, appetite | `docs/vision.md`, `docs/V1_PLAN.md`, `state/ideas/idea-NNN.md`, `state/pre-workflow/NNN-decomp.md`, `docs/goals/goal-NNN.md` |
 | P1 – Discovery (research + interview + problem statement) | Above C4 | Problem, personas, outcomes, appetite | `state/discovery/disc-NNN-research.md`, `state/problems/problem-NNN.md` |
+
+**Note:** Goal Briefs (`docs/goals/goal-NNN.md`) are PRODUCT-altitude artifacts.
 | P2 – Story Mapping (epic + stories) | Above C4 → edge of L1 | User behaviour, use cases, acceptance criteria | `docs/USE_CASES.md`, `state/epics/epic-NNN.md`, `state/stories/story-NNN-*.md` |
 | P3 – Architecture Bootstrap | L1–L2 | System boundary, module map, invariants | `docs/architecture/context.md`, `docs/architecture/containers.md`, `state/arch/arch-pass-NNN.md`, `docs/architecture/adr/` |
 | P4 – Readiness Assembly | Above C4 + pointers into L1–L2 | Handoff contract into S1 | `state/pre-workflow/NNN-readiness.md`, `state/intake/intake-NNN.md` |
