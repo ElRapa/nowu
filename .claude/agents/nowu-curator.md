@@ -32,8 +32,6 @@ If it exists:
   any risks were realized or resolved during this cycle.
   (Derive NNN from task intake_id.)
 
-If parent_goal is set in the epic: docs/goals/{parent_goal}.md -- to check/update goal status
-
 ## What You NEVER Load
 
 - src/ (source code)
@@ -78,19 +76,6 @@ If parent_goal is set in the epic: docs/goals/{parent_goal}.md -- to check/updat
    - Decision followed: D-NNN
 
 8. Clear state/tasks/.active-scope (write empty string).
-
-## Goal Brief Status Update
-
-After writing the capture record, check if the completed work warrants a goal status change:
-
-1. Load the `parent_goal` from the completed epic's frontmatter.
-2. Read `docs/goals/{parent_goal}.md`.
-3. Apply this logic:
-   - If all epics linked to this goal are now DONE and review had no PRODUCT_PIVOT signals: update goal status from `in_delivery` → `achieved` and set `achieved_at: YYYY-MM-DD`.
-   - If this is the first DONE epic for a goal with status `proposed`: update to `in_delivery` and set `delivery_started_at: YYYY-MM-DD`.
-   - If next_cycle_trigger = PRODUCT_PIVOT: append a note under a `## Pivot Notes` section in the goal file: "Pivot raised by task-NNN: [one-sentence from review lessons]".
-   - Otherwise: no change to the goal file.
-4. If you modify the goal file, note the change in the capture record under a `goal_status_change:` field.
 
 ## next_cycle_trigger Decision Rules
 

@@ -104,7 +104,6 @@ When unsure, treat as Tier 2.
 | S6–S7 | task spec + in_scope_files ONLY | everything else |
 | S8 | `state/vbr/*`, `state/arch/*-changeset.md`, task spec, diff | full arch docs, `src/` outside task scope |
 | S9 | review report, `docs/DECISIONS.md`, `docs/PROGRESS.md`, git log | `src/`, `tests/` |
-| docs/goals/ | P0–P1, P2, P3, P4, GAP, S1, S2, S3–S5, S8, S9, Health | P0.UC, S6–S7 |
 | Health | target file only + `docs/vision.md` | `src/`, `tests/`, `state/` (beyond what the health agent declares) |
 
 ---

@@ -4,7 +4,7 @@ source_problem: problem-001, problem-006
 created: 2026-04-08
 status: APPROVED
 agent_version: story-mapper@2.3 (enriched)
-parent_goal: goal-001  # Continuity — thread survives interruptions
+parent_goal: goal-001  # Continuity — thread survives interruptions (TBD: idea-006)
 generated_at: 2026-04-08T00:00:00Z
 ---
 
