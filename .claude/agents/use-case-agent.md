@@ -100,10 +100,10 @@ generated_at: [ISO timestamp]
 
 ## 2. Use Case Table (active)
 
-| UC-ID   | Title                           | Stage     | Primary Persona | parent_goal | Status   |
-|--------|---------------------------------|-----------|-----------------|----------|
-| UC-001 | Resume work after context loss  | v1-core   | Solo Dev        | ACTIVE   |
-| UC-002 | Enforce architecture decisions  | v1-core   | Architect       | ACTIVE   |
+| UC-ID   | Title                           | stage_target | Primary Persona | parent_goal | Status   |
+|---------|--------------------------------|--------------|-----------------|-------------|----------|
+| UC-001 | Resume work after context loss  | v1-core      | Solo Dev        | —           | ACTIVE   |
+| UC-002 | Enforce architecture decisions  | v1-core      | Architect       | —           | ACTIVE   |
 
 Status is one of: ACTIVE, CANDIDATE, DEPRECATED.
 

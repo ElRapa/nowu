@@ -93,7 +93,7 @@ When unsure, treat as Tier 2.
 |---|---|---|
 | docs/goals/ | P0–P1, P2, P3, P4, GAP, S1, S2, S3–S5, S8, S9, Health | S6–S7 |
 | P0–P1 | `docs/vision.md`, `state/ideas/idea-NNN.md` | `src/`, architecture docs |
-| **P0.UC** | `docs/vision.md`, `docs/V1_PLAN.md`, `docs/USE_CASES.md`, recent problems/epics/stories/captures | `docs/architecture/**`, `src/**`, `tests/**`, `state/arch/**`, `state/tasks/**` |
+| **P0.UC** | `docs/vision.md`, `docs/V1_PLAN.md`, `docs/USE_CASES.md`, `docs/goals/`, recent problems/epics/stories/captures | `docs/architecture/**`, `src/**`, `tests/**`, `state/arch/**`, `state/tasks/**` |
 | P2 | `state/problems/problem-NNN.md`, `docs/USE_CASES.md`, `state/discovery/disc-NNN*` | `src/`, architecture docs |
 | P3 | approved stories, `docs/architecture/containers.md`, `docs/DECISIONS.md` | `src/`, `tests/` |
 | P4 | all P0–P3 artifacts for NNN | `src/`, `tests/` |

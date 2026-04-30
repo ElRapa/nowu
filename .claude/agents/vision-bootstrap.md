@@ -79,7 +79,7 @@ Tell the human: "Please review `docs/vision.md`. Edit as needed, then set
 
 ## Goal-Only Mode
 
-Entry condition: vision.md exists with `status: APPROVED` and was last updated < 30 days ago.
+Entry condition: invoked with `--goals-only` flag, OR vision.md exists with `status: APPROVED` and was last updated < 30 days ago.
 Behavior: Skip Q1–Q5 and vision synthesis entirely. Load existing `docs/vision.md`, extract Success Horizons. Jump directly to Goal Interview Protocol (Q6–Q9).
 This allows invoking vision-bootstrap to generate or regenerate goals without rebuilding the vision.
 
