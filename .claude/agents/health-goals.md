@@ -4,7 +4,7 @@ version: 2.3
 description: >
   Validates that active stories, epics, and intakes remain aligned with vision
   and use cases. Checks for stale items and broken traceability. Read-only.
-  Writes state/health/goals-YYYY-MM-DD.md.
+  Writes state/health/health-goals-YYYY-MM-DD.md.
   Triggered by: /health-check goals
 model: claude-haiku-4-5
 tools: [Read, Write]

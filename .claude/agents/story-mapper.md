@@ -51,7 +51,7 @@ If docs/USE_CASES.md does not exist:
   ---
   id: epic-NNN
   status: DRAFT
-  agent_version: story-mapper@2.3
+  agent_version: story-mapper@2.4
   generated_at: YYYY-MM-DDTHH:MM:SSZ
   source_problem: problem-NNN
   parent_goal: goal-NNN  # which Goal Brief this epic delivers toward
