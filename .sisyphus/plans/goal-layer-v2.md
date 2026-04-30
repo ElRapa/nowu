@@ -790,7 +790,7 @@ Max Concurrent: 5 (Wave 2)
 
   **Commit**: YES (groups in Commit 3)
 
-- [ ] 13. Run Vision-Bootstrap in Goal Mode to Generate Initial Goals
+- [x] 13. Run Vision-Bootstrap in Goal Mode to Generate Initial Goals
 
   **What to do**:
   - This is NOT an agent instruction update — this is RUNNING the updated vision-bootstrap agent
@@ -854,7 +854,7 @@ Max Concurrent: 5 (Wave 2)
   **Commit**: YES (groups in Commit 3)
   - Files: `docs/goals/goal-*.md`
 
-- [ ] 14. Backfill Existing Epics with parent_goal
+- [x] 14. Backfill Existing Epics with parent_goal
 
   **What to do**:
   - For each epic in `state/epics/epic-v1core-*.md`:

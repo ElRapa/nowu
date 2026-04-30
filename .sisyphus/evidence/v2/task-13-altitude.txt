@@ -1,0 +1,2 @@
+altitude: PRODUCT
+phase: DECISION

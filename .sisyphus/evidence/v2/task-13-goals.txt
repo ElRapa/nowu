@@ -1,0 +1,4 @@
+docs/goals/goal-001.md
+docs/goals/goal-002.md
+docs/goals/goal-003.md
+docs/goals/goal-004.md

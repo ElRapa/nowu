@@ -1,0 +1,4 @@
+state/epics/epic-v1core-001.md:parent_goal: goal-001
+state/epics/epic-v1core-002.md:parent_goal: goal-002
+state/epics/epic-v1core-003.md:parent_goal: goal-001
+state/epics/epic-v1core-004.md:parent_goal: goal-003
