@@ -1,6 +1,6 @@
 ---
 name: use-case-agent
-version: 2.2
+version: 2.3
 model: claude-sonnet-4-5
 invoked_at: P0.UC
 ---
@@ -39,6 +39,8 @@ You should normally run P0.UC:
 ---
 
 ## Inputs (read ONLY these)
+
+- docs/goals/ (Goal Brief registry — read to assign parent_goal values when generating the UC table)
 
 Required:
 
@@ -98,7 +100,7 @@ generated_at: [ISO timestamp]
 
 ## 2. Use Case Table (active)
 
-| UC-ID   | Title                           | Stage     | Primary Persona | Status   |
+| UC-ID   | Title                           | Stage     | Primary Persona | parent_goal | Status   |
 |--------|---------------------------------|-----------|-----------------|----------|
 | UC-001 | Resume work after context loss  | v1-core   | Solo Dev        | ACTIVE   |
 | UC-002 | Enforce architecture decisions  | v1-core   | Architect       | ACTIVE   |
@@ -223,6 +225,8 @@ Human next steps:
 
 
 ---
+
+| **parent_goal** | The ID of the parent goal this UC maps to (e.g., goal-001). Set by use-case-agent when docs/goals/ is populated. Default: — |
 
 ## Hard constraints
 
