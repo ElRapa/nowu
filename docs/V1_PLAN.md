@@ -8,6 +8,11 @@ stage: 1
 
 # nowu v1 Plan
 
+> ⚠️ **UPDATE NEEDED** — This plan was written before the P1→P4 pre-workflow run (April 8, 2026)
+> and the goal-layer v2 update (April 30, 2026). It does not reflect the current epic/story
+> structure, 47+ use cases, or goal hierarchy. Treat as directional reference only.
+> See `state/epics/` and `docs/goals/` for current project structure.
+
 > **Lifecycle:** Read at P0 (idea alignment, decomposition), P0.UC (use-case-agent), and
 > S1 (nowu-intake). Updated by human after each completed step or stage transition.
 > Health checks (health-goals, health-use-cases) verify active work aligns with this file.

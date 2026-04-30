@@ -12,7 +12,7 @@ You are continuing work on a software project using the nowu framework.
 1. `CLAUDE.md`                           — commands, approval tiers, failure modes
 2. `docs/WORKFLOW.md`                    — S1–S9 reference table (refresh context scoping)
 2b. `docs/GLOBAL-MODEL.md`              — C4 levels mapped to S1–S9 steps (read ## 1. to ## 3. only )
-3. `docs/ARCHITECTURE.md`               — module map (C4 L2)
+3. `docs/architecture/containers.md`    — module map (C4 L2)
 4. `docs/DECISIONS.md`                  — existing decisions (binding — check for recent additions)
 5. `docs/V1_PLAN.md`                    — current stage and active epic
 6. `docs/CLAUDE-SETUP.md`              — agents, skills, and rules reference
