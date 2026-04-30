@@ -28,9 +28,7 @@ If it exists:
 - state/intake/<intake-id>.md -- to update its status to DONE
 
 If it exists:
-- state/arch/NNN-atam-lite.md -- risk register for this epic; check whether
-  any risks were realized or resolved during this cycle.
-  (Derive NNN from task intake_id.)
+- If parent_goal is set in the epic frontmatter: docs/goals/{parent_goal}.md — to check/update goal status
 
 ## What You NEVER Load
 
@@ -77,7 +75,17 @@ If it exists:
 
 8. Clear state/tasks/.active-scope (write empty string).
 
-## next_cycle_trigger Decision Rules
+## Goal Brief Status Update
+
+When a capture record is written and an epic has parent_goal set:
+
+1. Load docs/goals/{parent_goal}.md
+2. Check linked_epics list for completion status:
+   - If first DONE epic for a proposed goal → update status to `in_delivery`, set `delivery_started_at: YYYY-MM-DD`
+   - If all linked epics are DONE and no PRODUCT_PIVOT → update status to `achieved`, set `achieved_at: YYYY-MM-DD`
+   - If PRODUCT_PIVOT flag triggered → append pivot note to goal file with date and reason
+3. Update Phase Coverage table in goal file: set the row for this epic's phase to Status: Done
+4. If any goal file was modified: add `goal_status_change: goal-NNN → {new_status}` to capture record
 
 Write CONTINUE when:
   - Review APPROVED with no architectural surprises
