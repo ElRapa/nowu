@@ -2,6 +2,11 @@
 
 > Read this file at session start. For full narrative and rationale, see `WORKFLOW-DETAILED.md`.
 
+> **5×10 Model Context (D-013):** This workflow operates within the 5×10 altitude-phase model.
+> S1-S9 is the default traversal for feature intakes, zigzagging DELIVERY→ARCHITECTURE→DELIVERY→EXECUTION.
+> For the full model (altitudes, phases, epistemic grades, SYNTHESIS): see `docs/model/MODEL-REFERENCE.md`.
+> For binding workflow standards: see `docs/model/WORKFLOW-STANDARDS.md`.
+
 ---
 
 ## Overview

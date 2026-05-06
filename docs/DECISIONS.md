@@ -249,4 +249,208 @@ Adopt Goal Brief v2 with the following key elements:
 
 ---
 
+## D-013 — 5×10 Altitude-Phase Workflow Model
+
+**Date**: 2026-05-06 | **Status**: ACCEPTED | **Level**: system  
+**Intake**: — (workflow architecture session) | **Use Cases**: all  
+**Epistemic Grade**: EVIDENCE_BASED  
+**Evidence**: Anthony 1965, Shape Up, SYSMOD zigzag, Rombaut 2026, AFLOW (ICLR 2025)
+
+### Context
+The original workflow (S1-S9 with C4 levels) lacked explicit altitude coordination,
+had no mechanism for cross-cutting synthesis, and didn't prevent altitude drift
+(jumping from PRODUCT to DELIVERY without ARCHITECTURE).
+
+### Decision
+Adopt a 5×10 model: 5 altitudes (STRATEGIC > PRODUCT > ARCHITECTURE > DELIVERY > EXECUTION)
+× 10 phases (IDEA > PROBLEM > ANALYSIS > SYNTHESIS > OPTIONS > DECISION > EVALUATION >
+IMPLEMENTATION > VERIFICATION > LEARN). The matrix is a coordinate system (cognitive GPS),
+not a pipeline. S1-S9 is a default traversal within this space.
+
+### Consequences
+- **Good**: Explicit altitude tracking, SYNTHESIS forces global view, epistemic grades possible
+- **Bad**: More conceptual overhead; requires model documentation (→ `docs/model/`)
+
+### Review Trigger
+After 10+ intakes complete — validate the model reflects observed patterns.
+
+---
+
+## D-014 — SYNTHESIS as Altitude-Locked Phase at ARCHITECTURE
+
+**Date**: 2026-05-06 | **Status**: ACCEPTED | **Level**: system  
+**Intake**: — (workflow architecture session) | **Use Cases**: all  
+**Epistemic Grade**: INFORMED_ESTIMATE  
+**Evidence**: TOGAF Phase A, cross-cutting concern analysis
+
+### Context
+Approved UCs accumulate without global architectural view. Each S1-S9 intake
+starts from scratch. Result: patchwork architecture with misaligned features.
+
+### Decision
+SYNTHESIS is the 10th phase, locked to ARCHITECTURE altitude. It reads approved
+UCs, finds cross-cutting themes, and recommends ADRs. Triggered when ≥2 approved
+UCs have `architectural_implications: true` and no linked ADRs, or by human override.
+
+### Consequences
+- **Good**: Forces global view before individual intakes; prevents premature decomposition
+- **Bad**: Adds a blocking step before S1-S9 can run (intentional — that's the point)
+
+### Review Trigger
+After first manual SYNTHESIS run validates the process.
+
+---
+
+## D-015 — Epistemic Grades with Tiered Enforcement
+
+**Date**: 2026-05-06 | **Status**: ACCEPTED | **Level**: system  
+**Intake**: — (workflow architecture session) | **Use Cases**: NF-15  
+**Epistemic Grade**: INFORMED_ESTIMATE  
+**Evidence**: Novel mechanism; validated by Perplexity research (no comparable framework)
+
+### Context
+Agent outputs (options, decisions, ADRs) carry no explicit confidence level.
+Downstream consumers can't distinguish "first guess" from "battle-tested decision."
+
+### Decision
+Every artifact carries an epistemic grade: SPECULATION, HYPOTHESIS, INFORMED_ESTIMATE,
+EVIDENCE_BASED, VERIFIED_FACT. Enforcement is tiered:
+- Level 0 (v1-core): Syntax check only (grade field exists)
+- Level 1 (v1): Advisory warnings for altitude/grade violations
+- Level 2 (v1.1): Blocking at DECISION gates if below aspirational grade
+
+### Consequences
+- **Good**: Trust calibration; safe "write first, validate later" workflow
+- **Bad**: Requires discipline in grading; needs calibration from real usage
+
+### Review Trigger
+After 5+ intakes — calibrate thresholds empirically.
+
+---
+
+## D-016 — Architecture Vision Required Before Hypothesis ADRs
+
+**Date**: 2026-05-06 | **Status**: ACCEPTED | **Level**: product  
+**Intake**: — (workflow architecture session) | **Use Cases**: all  
+**Epistemic Grade**: INFORMED_ESTIMATE  
+**Evidence**: TOGAF Phase A (Architecture Vision distinct from ADRs)
+
+### Context
+SYNTHESIS produces themes and ADR recommendations. But themes alone don't establish
+"what kind of system is this?" — the narrative identity that makes ADRs coherent.
+
+### Decision
+SYNTHESIS → Architecture Vision → Hypothesis ADRs. Architecture Vision is a 1-page
+artifact: system classification, principles, quality attributes, risks. It answers
+"what kind of system solves these themes?" before ADRs answer "how?"
+
+### Consequences
+- **Good**: ADRs become coherent (share a vision); prevents contradictory decisions
+- **Bad**: One more artifact before implementation starts (short — 1 page)
+
+### Review Trigger
+When Architecture Vision is produced and validated through first intakes.
+
+---
+
+## D-017 — Minimum Viable Architecture (Hypothesis ADRs + Feedback Loop)
+
+**Date**: 2026-05-06 | **Status**: ACCEPTED | **Level**: system  
+**Intake**: — (workflow architecture session) | **Use Cases**: all  
+**Epistemic Grade**: INFORMED_ESTIMATE  
+**Evidence**: MVA literature, GitHub Spec Kit methodology
+
+### Context
+Two extremes: Big Design Upfront (slow, often wrong) vs. No Design (chaotic).
+Need a middle path that allows architecture to emerge through validated iteration.
+
+### Decision
+Write ADRs at HYPOTHESIS grade (deep enough for AI agents to follow, shallow enough
+to be wrong). Run 1-2 S1-S9 intakes against hypothesis. Refine based on friction.
+Promote grades: HYPOTHESIS → INFORMED_ESTIMATE (after 2 intakes) → EVIDENCE_BASED (after 5+).
+
+### Consequences
+- **Good**: Architecture evolves with evidence; no Big Design Upfront paralysis
+- **Bad**: Early intakes may hit friction from hypothesis ADRs (expected, that's learning)
+
+### Review Trigger
+After 2 intakes validate/invalidate hypothesis ADRs.
+
+---
+
+## D-018 — Phases Are Cognitive Modes (Not Altitude-Locked)
+
+**Date**: 2026-05-06 | **Status**: ACCEPTED | **Level**: system  
+**Intake**: — (workflow architecture session) | **Use Cases**: all  
+**Epistemic Grade**: EVIDENCE_BASED  
+**Evidence**: AFLOW operators, Rombaut loop primitives
+
+### Context
+Initial model assumed phases were locked to altitudes (e.g., IMPLEMENTATION = EXECUTION only).
+This doesn't match reality: writing an ADR is IMPLEMENTATION at ARCHITECTURE altitude.
+
+### Decision
+Phases are cognitive modes that can occur at multiple altitudes. IMPLEMENTATION works at
+ARCHITECTURE (writing ADRs), DELIVERY (creating task specs), and EXECUTION (code).
+Exception: SYNTHESIS is the ONLY altitude-locked phase (ARCHITECTURE only).
+
+### Consequences
+- **Good**: Model matches reality; agents can implement/verify at any altitude
+- **Bad**: The 5×10 grid isn't fully populated — many cells are rare/empty (that's fine)
+
+### Review Trigger
+Never — this is definitional to the model.
+
+---
+
+## D-019 — Router-Based Agent Architecture (Altitude-Agnostic Executors)
+
+**Date**: 2026-05-06 | **Status**: ACCEPTED | **Level**: system  
+**Intake**: — (workflow architecture session) | **Use Cases**: all  
+**Epistemic Grade**: INFORMED_ESTIMATE  
+**Evidence**: Hierarchical MAS research, Redis 2026 multi-agent patterns
+
+### Context
+Should S1-S9 agents know their altitude and behave differently, or should
+routing be centralized with agents remaining simple executors?
+
+### Decision
+90% of agents are altitude-AGNOSTIC (they execute their phase without knowing altitude).
+The orchestrator/router knows altitude and routes accordingly.
+10% are altitude-AWARE: only GAP/reflective agents that reason about cross-altitude patterns.
+
+### Consequences
+- **Good**: Agents stay simple; routing logic is centralized and testable
+- **Bad**: Router becomes a critical single point; must be well-tested
+
+### Review Trigger
+When orchestrator is implemented (v1, task A3 in STAGED-PLAN).
+
+---
+
+## D-020 — Staged Plan: Areas × Stages
+
+**Date**: 2026-05-06 | **Status**: ACCEPTED | **Level**: product  
+**Intake**: — (workflow architecture session) | **Use Cases**: all  
+**Epistemic Grade**: HYPOTHESIS  
+**Supersedes**: V1_PLAN.md 7-step linear approach
+
+### Context
+V1_PLAN.md was a linear 7-step plan focused only on Framework implementation.
+It didn't account for Workflow, Knowledge, or Agent areas as independent workstreams.
+
+### Decision
+Replace with 4 areas (Workflow, Knowledge, Agents, Framework) × 4 stages
+(v1-core, v1, v1.1, v2). Each cell is independently actionable with explicit dependencies.
+See `docs/STAGED-PLAN.md` for full detail.
+
+### Consequences
+- **Good**: Parallel progress possible; clear dependencies; no monolithic sequencing
+- **Bad**: More complex to track than linear steps (mitigated by STAGED-PLAN structure)
+
+### Review Trigger
+After v1-core gate passes (first S1-S9 intake end-to-end).
+
+---
+
 <!-- Add new decisions below this line using templates/decision.md -->

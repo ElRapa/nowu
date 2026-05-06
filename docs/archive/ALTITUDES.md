@@ -1,17 +1,11 @@
 ---
 title: ALTITUDES — Same Steps at Different Levels
 version: 1.0
-status: SUPERSEDED
-superseded_by: docs/model/MODEL-REFERENCE.md
+status: ACTIVE
 type: framework-pattern
 ---
 
 # ALTITUDES — The Universal Workflow Pattern
-
-> ⛔ **SUPERSEDED** — This file describes the earlier 3-altitude, 8-step generic loop model.
-> It has been superseded by the 5×10 model (5 altitudes × 10 phases) documented in
-> `docs/model/MODEL-REFERENCE.md` (2026-05-06). This file is retained as historical reference.
-> Canonical copy in `docs/archive/ALTITUDES.md`.
 
 > *The same eight steps, at every level of resolution.*
 > *Artifacts and agents change. The loop does not.*

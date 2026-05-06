@@ -1,7 +1,6 @@
 ---
 last_updated: 2026-03-26
-status: SUPERSEDED
-superseded_by: docs/STAGED-PLAN.md
+status: ACTIVE
 version: 1.1
 workflow_level: Above C4
 stage: 1
@@ -9,10 +8,10 @@ stage: 1
 
 # nowu v1 Plan
 
-> ⛔ **SUPERSEDED** — This file is superseded by `docs/STAGED-PLAN.md` (2026-05-06).
-> The staged plan introduces area × stage organization (Workflow, Knowledge, Agents, Framework)
-> and incorporates the 5×10 model decisions. This file is retained as historical reference only.
-> Canonical copy in `docs/archive/V1_PLAN.md`.
+> ⚠️ **UPDATE NEEDED** — This plan was written before the P1→P4 pre-workflow run (April 8, 2026)
+> and the goal-layer v2 update (April 30, 2026). It does not reflect the current epic/story
+> structure, 47+ use cases, or goal hierarchy. Treat as directional reference only.
+> See `state/epics/` and `docs/goals/` for current project structure.
 
 > **Lifecycle:** Read at P0 (idea alignment, decomposition), P0.UC (use-case-agent), and
 > S1 (nowu-intake). Updated by human after each completed step or stage transition.
