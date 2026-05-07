@@ -38,7 +38,7 @@ it fans out into a Stage Map and queued seed ideas before any discovery work beg
 
 ## Product Stages
 
-Products evolve through named stages. The current stage is recorded in `docs/V1_PLAN.md`.
+Products evolve through named stages. The current stage is recorded in `docs/STAGED-PLAN.md`.
 
 | Stage | Name | Done when |
 |---|---|---|
@@ -69,14 +69,14 @@ GAP is heavier and more strategic. It should not run every cycle.
 Run a Global Architecture Pass (via gap-chain) when:
 
 - A new product is bootstrapped (Stage 0 → Stage 1), or
-- The product stage increases (e.g., Stage 1 → Stage 2 in `V1_PLAN.md`), or
+- The product stage increases (e.g., v1-core → v1 in `STAGED-PLAN.md`), or
 - A large number of new use cases are added for the same product family, or
 - Health checks report **RED** on architecture drift for two consecutive runs.
 
 ### GAP Inputs
 
 - `docs/vision.md` (approved)
-- `docs/V1_PLAN.md` (current stage and steps)
+- `docs/STAGED-PLAN.md` (current stage and areas)
 - `docs/USE_CASES.md` (full catalog, not filtered)
 - Existing architecture docs: `docs/architecture/context.md`, `docs/architecture/containers.md`
 - Existing decisions: `docs/DECISIONS.md`, `docs/architecture/adr/*`
@@ -231,10 +231,12 @@ active work feels misaligned with stated goals. Vision should be refreshed, not 
 
 ---
 
-## Artifact: `docs/V1_PLAN.md`
+## Artifact: `docs/STAGED-PLAN.md`
 
-V1_PLAN is the product roadmap at stage resolution. It is created by the human
-after vision is approved (typically during or after Bootstrap mode P0.D).
+> **Note:** `docs/V1_PLAN.md` is SUPERSEDED. Use `docs/STAGED-PLAN.md` for all planning references.
+
+STAGED-PLAN is the product roadmap organized as **areas × stages**. It is created by
+the human after vision is approved and SYNTHESIS is complete.
 
 **Required sections:**
 
@@ -268,7 +270,7 @@ status: IN_PROGRESS
 ```
 
 **Who creates it:** Human, after reviewing the Stage Map output from `idea-decomposition` (P0.D).
-The decomposition agent produces a Stage Map draft; the human authors V1_PLAN.md from it.
+The decomposition agent produces a Stage Map draft; the human authors STAGED-PLAN.md from it.
 
 ---
 
@@ -322,17 +324,17 @@ After writing, agent asks whether to proceed to P0.D (idea-decomposition). Human
 ### P0.D — Idea Decomposition [Decomposition Agent]
 
 **Agent:** `.claude/agents/idea-decomposition.md`
-**Inputs:** `state/ideas/idea-NNN.md`, `docs/vision.md`, `docs/V1_PLAN.md` (if exists)
+**Inputs:** `state/ideas/idea-NNN.md`, `docs/vision.md`, `docs/STAGED-PLAN.md` (if exists)
 **Output:** `state/pre-workflow/NNN-decomp.md`
 
 The agent:
 1. Classifies idea size (Bug / Story / Epic / Product)
-2. Identifies current product stage from V1_PLAN.md (or notes it's missing)
+2. Identifies current product stage from STAGED-PLAN.md (or notes it's missing)
 3. Checks if idea is appropriate for the current stage
 4. For Product-size: produces a Stage Map (Stage 0–5 sketch) and queues 2–5 seed
    ideas as `state/ideas/idea-NNN-a.md`, `idea-NNN-b.md`, etc.
 5. Recommends pre-workflow mode (Lite / Standard / Full / Bootstrap)
-6. Flags if V1_PLAN.md is missing (human must create it before proceeding with Product mode)
+6. Flags if STAGED-PLAN.md is missing (human must create it before proceeding with Product mode)
 
 Human reviews and approves routing before any further steps.
 
@@ -349,7 +351,7 @@ Read `docs/vision.md`. Answer: does this idea serve the current vision?
 **id:** P0.UC | **scope:** Above C4 (problem space, jobs-to-be-done) | **timebox:** 20–40 minutes
 
 **Purpose:** Keep `docs/USE_CASES.md` aligned with the current `docs/vision.md`,
-`docs/V1_PLAN.md`, and recent problems, epics, stories, and captures — so that
+`docs/STAGED-PLAN.md`, and recent problems, epics, stories, and captures — so that
 discovery (P1), story mapping (P2), and S1–S9 always operate against a small,
 clear list of jobs-to-be-done.
 
@@ -361,13 +363,13 @@ clear list of jobs-to-be-done.
 
 **Inputs:**
 - `docs/vision.md`
-- `docs/V1_PLAN.md` (if exists)
+- `docs/STAGED-PLAN.md` (if exists)
 - `docs/USE_CASES.md` (if exists)
 - Optionally: `docs/PROGRESS.md`, latest `state/problems/`, `state/epics/`, `state/stories/`, `state/capture/`
 
 **Steps:**
 
-1. **Human** (optional, 2–5 min) — Skim `docs/vision.md` and `docs/V1_PLAN.md`. Decide whether this run is **Bootstrap** (first catalog) or **Refresh** (existing catalog).
+1. **Human** (optional, 2–5 min) — Skim `docs/vision.md` and `docs/STAGED-PLAN.md`. Decide whether this run is **Bootstrap** (first catalog) or **Refresh** (existing catalog).
 
 2. **Agent — `use-case-agent`** (10–25 min wall-clock) — Reads inputs. Synthesizes or updates UC catalog per its instructions. Writes `docs/USE_CASES.md` (bootstrap) or `docs/USE_CASES.proposed.md` (update).
 

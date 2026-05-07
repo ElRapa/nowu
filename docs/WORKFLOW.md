@@ -18,7 +18,32 @@ The cycle enforces both **verification** (built it right) and **validation** (bu
 **Entry point:** `state/intake/intake-NNN.md` with `status: READY_FOR_S1`.
 Intakes are produced by the **Pre-Workflow** (P0–P4). See `PRE-WORKFLOW.md`.
 
+**Pre-S1 architecture:** Before the first S1-S9 run, SYNTHESIS and Architecture Vision
+must be completed. See the SYNTHESIS section below. After that, hypothesis ADRs are written.
+Subsequent intakes skip SYNTHESIS unless significant new UCs are added.
+
 **Exit point:** S9 sets `next_cycle_trigger` which routes back into pre-workflow or closes the cycle.
+
+---
+
+## SYNTHESIS + Architecture Vision (W1–W2)
+
+> Run once before the first S1-S9 intake. Re-run when ≥10 new UCs added or new domain category appears.
+
+| Step | Name | Agent | Altitude | Output Artifact | Gate |
+|------|------|-------|----------|-----------------|------|
+| W1 | SYNTHESIS | `synthesis-agent` | ARCHITECTURE | `state/arch/SYNTHESIS-NNN.md` | 🛑 HUMAN REVIEW |
+| W2 | Architecture Vision | `architecture-vision-agent` | ARCHITECTURE | `docs/architecture/ARCHITECTURE-VISION.md` | 🛑 HUMAN REVIEW |
+
+**Skill:** `synthesis-vision` orchestrates W1 → human gate → W2 → human gate.
+
+**When to invoke:**
+- Before first S1-S9 intake (MANDATORY — cannot skip)
+- When `health-sweep` or `gap-detector` recommends a SYNTHESIS pass
+- When ≥10 new UCs are added or 2+ new domain categories appear
+
+**After W1+W2:** Write hypothesis ADRs (W3) from the Architecture Vision's ADR roadmap,
+then proceed to first S1-S9 intake (W4).
 
 ---
 
@@ -57,7 +82,7 @@ Loading code during architecture analysis causes anchoring bias.
 
 | Agent | Load | Never Load |
 |-------|------|------------|
-| nowu-intake | `intake-NNN.md`, `vision.md`, `V1_PLAN.md`, `USE_CASES.md`, `PROGRESS.md` | `src/`, `tests/`, `docs/architecture/containers.md`, `DECISIONS.md` |
+| nowu-intake | `intake-NNN.md`, `vision.md`, `STAGED-PLAN.md`, `USE_CASES.md`, `PROGRESS.md` | `src/`, `tests/`, `docs/architecture/containers.md`, `DECISIONS.md` |
 | nowu-constraints | `intake-NNN.md`, `docs/architecture/containers.md`, `DECISIONS.md`, `contracts/`, `arch-pass-NNN.md` (if exists) | `src/` internals, `tests/` |
 | nowu-options | `constraints sheet`, `contracts/`, module `__init__.py` surfaces | Full `docs/architecture/containers.md`, `src/` internals |
 | nowu-decider | `options sheet`, `DECISIONS.md` | `src/`, `tests/`, `contracts/` |

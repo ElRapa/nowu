@@ -14,10 +14,11 @@ project-root/
 │
 ├── docs/
 │   ├── vision.md                          ← [LANDMARK] Product vision (APPROVED before any work)
-│   ├── V1_PLAN.md                         ← Stage plan and active epics
+│   ├── STAGED-PLAN.md                     ← Implementation roadmap (areas × stages, supersedes V1_PLAN)
+│   ├── V1_PLAN.md                         ← ⛔ SUPERSEDED — historical reference only
 │   ├── USE_CASES.md                       ← UC-NNN catalogue (source of truth for validation traces)
 │   ├── DECISIONS.md                       ← D-NNN catalogue (binding implementation decisions)
-│   ├── ALTITUDES.md                       ← Altitude model — HIGH/MID/LOW framework unifying workflow steps
+│   ├── ALTITUDES.md                       ← ⛔ SUPERSEDED — see docs/model/MODEL-REFERENCE.md
 │   ├── PROGRESS.md                        ← Cycle-level progress log (updated by S9 curator)
 │   ├── WORKFLOW.md                        ← S1–S9 reference table
 │   ├── WORKFLOW-DETAILED.md               ← Full S1–S9 narrative spec
@@ -28,6 +29,13 @@ project-root/
 │   ├── design/
 │   │   ├── concepts/                      ← Future concept docs — ideas ready for pre-workflow
 │   │   └── research/                      ← Research artifacts and analysis
+│   ├── model/                             ← 5×10 altitude-phase model documentation
+│   │   ├── MODEL-REFERENCE.md             ← Canonical model spec
+│   │   ├── WORKFLOW-STANDARDS.md           ← Binding workflow rules
+│   │   ├── VERIFICATION-GUIDE.md          ← 4-level verification framework
+│   │   ├── IMPLEMENTATION-GUIDE.md        ← Implementation sequencing guide
+│   │   └── examples/                      ← Worked examples (SYNTHESIS, OPTIONS, GOAL)
+│   ├── research/                          ← External research, evaluations, session insights
 │   └── architecture/                      ← Canonical C4 architecture docs (containers.md, context.md, adr/)
 │       ├── context.md                     ← [LANDMARK] C4 L1 — system context diagram
 │       ├── containers.md                  ← [LANDMARK] C4 L2 — container diagram (binding)
@@ -119,6 +127,8 @@ project-root/
 │   │   ├── nowu-implementer.md
 │   │   ├── nowu-reviewer.md
 │   │   ├── nowu-curator.md
+│   │   ├── synthesis-agent.md
+│   │   ├── architecture-vision-agent.md
 │   │   ├── health-vision.md
 │   │   ├── health-architecture.md
 │   │   ├── health-goals.md
@@ -129,6 +139,7 @@ project-root/
 │   │   ├── implement-loop/SKILL.md
 │   │   ├── single-step/SKILL.md
 │   │   ├── architecture-only/SKILL.md
+│   │   ├── synthesis-vision/SKILL.md
 │   │   ├── health-sweep/SKILL.md
 │   │   └── gap-chain/SKILL.md
 │   └── rules/

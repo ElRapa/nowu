@@ -75,6 +75,11 @@ When unsure, treat as Tier 2.
 - S8: `nowu-reviewer`
 - S9: `nowu-curator`
 
+**SYNTHESIS + Architecture Vision (W1–W2, before first S1-S9):**
+- W1: `synthesis-agent` (cross-cutting theme extraction from all UCs)
+- W2: `architecture-vision-agent` (system classification + principles from themes)
+- Skill: `synthesis-vision` orchestrates W1 → human gate → W2 → human gate
+
 **Health checks (anytime):**
 - `health-vision`, `health-architecture`, `health-goals`, `health-use-cases`
 - `health-sweep` (runs all four and suggests entry point: P0.VISION, P0.UC, P1, P3, or DIRECT-IMPLEMENT)
@@ -93,12 +98,13 @@ When unsure, treat as Tier 2.
 |---|---|---|
 | docs/goals/ | P0–P1, P2, P3, P4, GAP, S1, S2, S3–S5, S8, S9, Health | S6–S7 |
 | P0–P1 | `docs/vision.md`, `state/ideas/idea-NNN.md` | `src/`, architecture docs |
-| **P0.UC** | `docs/vision.md`, `docs/V1_PLAN.md`, `docs/USE_CASES.md`, `docs/goals/`, recent problems/epics/stories/captures | `docs/architecture/**`, `src/**`, `tests/**`, `state/arch/**`, `state/tasks/**` |
+| **P0.UC** | `docs/vision.md`, `docs/STAGED-PLAN.md`, `docs/USE_CASES.md`, `docs/goals/`, recent problems/epics/stories/captures | `docs/architecture/**`, `src/**`, `tests/**`, `state/arch/**`, `state/tasks/**` |
 | P2 | `state/problems/problem-NNN.md`, `docs/USE_CASES.md`, `state/discovery/disc-NNN*` | `src/`, architecture docs |
 | P3 | approved stories, `docs/architecture/containers.md`, `docs/DECISIONS.md` | `src/`, `tests/` |
 | P4 | all P0–P3 artifacts for NNN | `src/`, `tests/` |
-| GAP | `docs/vision.md`, `docs/V1_PLAN.md`, `docs/USE_CASES.md`,  `docs/architecture/context.md`, `docs/architecture/containers.md`, `docs/architecture/adr/*.md`, `docs/DECISIONS.md`, `state/arch/gap-trigger.md`, `state/arch/global-pass-*.md`| `src/`, `tests/`, `state/problems/`, `state/tasks/`, `state/epics`, `state/stories`|
-| S1 | `state/intake/intake-NNN.md`, `docs/vision.md`, `docs/V1_PLAN.md`, `docs/USE_CASES.md`, `docs/PROGRESS.md` | `src/`, `tests/`, `docs/architecture/containers.md`, `docs/DECISIONS.md` |
+| GAP | `docs/vision.md`, `docs/STAGED-PLAN.md`, `docs/USE_CASES.md`,  `docs/architecture/context.md`, `docs/architecture/containers.md`, `docs/architecture/adr/*.md`, `docs/DECISIONS.md`, `state/arch/gap-trigger.md`, `state/arch/global-pass-*.md`| `src/`, `tests/`, `state/problems/`, `state/tasks/`, `state/epics`, `state/stories`|
+| SYNTHESIS | `docs/USE_CASES.md` (ALL), `docs/vision.md`, `docs/goals/goal-*.md`, `docs/DECISIONS.md`, `docs/architecture/adr/*.md`, `docs/STAGED-PLAN.md` | `src/`, `tests/`, `state/tasks/`, `state/stories/` |
+| S1 | `state/intake/intake-NNN.md`, `docs/vision.md`, `docs/STAGED-PLAN.md`, `docs/USE_CASES.md`, `docs/PROGRESS.md` | `src/`, `tests/`, `docs/architecture/containers.md`, `docs/DECISIONS.md` |
 | S2 | `state/intake/intake-NNN.md`, `docs/architecture/containers.md`, `docs/DECISIONS.md`, `contracts/`, `state/arch/arch-pass-NNN.md` (if exists) | `src/` internals, `tests/` |
 | S3–S4 | `state/arch/*-constraints.md`, binding contracts, module surfaces | `src/` internals |
 | S5 | `state/arch/*-decision.md`, file tree, contracts | `docs/architecture/containers.md`, `docs/vision.md` |

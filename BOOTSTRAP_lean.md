@@ -11,12 +11,12 @@ You are continuing work on a software project using the nowu framework.
 
 1. `CLAUDE.md`                           — commands, approval tiers, failure modes
 2. `docs/WORKFLOW.md`                    — S1–S9 reference table (refresh context scoping)
-2b. `docs/ALTITUDES.md`                 — C4 levels mapped to S1–S9 steps (read ## 1. to ## 3. only )
-3. `docs/architecture/containers.md`    — module map (C4 L2)
-4. `docs/DECISIONS.md`                  — existing decisions (binding — check for recent additions)
-5. `docs/V1_PLAN.md`                    — current stage and active epic
-6. `docs/CLAUDE-SETUP.md`              — agents, skills, and rules reference
-7. `state/tasks/` — run `ls` only       — see what tasks exist and their statuses
+3. `docs/model/MODEL-REFERENCE.md`       — 5×10 altitude-phase model (THE conceptual framework)
+4. `docs/architecture/containers.md`    — module map (C4 L2)
+5. `docs/DECISIONS.md`                  — existing decisions (binding — check for recent additions)
+6. `docs/STAGED-PLAN.md`               — current implementation roadmap (areas × stages)
+7. `docs/CLAUDE-SETUP.md`              — agents, skills, and rules reference
+8. `state/tasks/` — run `ls` only       — see what tasks exist and their statuses
 
 ## Load only if relevant to current work
 

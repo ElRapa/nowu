@@ -25,10 +25,20 @@ Use when you are **not yet at an intake brief**.
 
 | Situation | Skill | Mode | Outcome |
 |---|---|---|---|
-| New product / big idea (from zero) | `pre-workflow-runner` | Bootstrap | `docs/vision.md` + `docs/V1_PLAN.md` + first `intake-NNN` READY_FOR_S1 |
+| New product / big idea (from zero) | `pre-workflow-runner` | Bootstrap | `docs/vision.md` + `docs/STAGED-PLAN.md` + first `intake-NNN` READY_FOR_S1 |
 | New epic on existing product | `pre-workflow-runner` | Full | `problem-NNN`, `epic-NNN`, `story-NNN-*`, `arch-pass-NNN`, `intake-NNN` READY_FOR_S1 |
 | New story on existing epic (arch current) | `pre-workflow-runner` | Standard | new `story-NNN-*` + `intake-NNN` READY_FOR_S1, no arch pass |
 | Small feature / tweak on known project | `pre-workflow-runner` | Lite | 1–few approved stories + `intake-NNN` READY_FOR_S1 |
+
+### SYNTHESIS + Architecture Vision (W1–W2)
+
+Run ONCE before the first S1-S9 intake. Re-run when significant new UCs are added.
+
+| Situation | Skill | Outcome |
+|---|---|---|
+| UCs approved, no SYNTHESIS exists yet | `synthesis-vision` | `state/arch/SYNTHESIS-NNN.md` + `docs/architecture/ARCHITECTURE-VISION.md` |
+| ≥10 new UCs added or new domain category | `synthesis-vision` | Updated SYNTHESIS + Architecture Vision |
+| health-sweep recommends architecture pass | `synthesis-vision` | Re-run SYNTHESIS with new evidence |
 
 ### Implementation (S1–S9)
 
@@ -100,7 +110,8 @@ See `docs/WORKFLOW.md` for the full context scoping matrix.
 | `docs/WORKFLOW-DETAILED.md` | Full narrative workflow spec | Human |
 | `docs/PRE-WORKFLOW.md` | P0–P4 full specification | Human |
 | `docs/vision.md` | Product vision — highest authority | Human (agent-assisted draft) |
-| `docs/V1_PLAN.md` | Stage plan and active epics | Human |
+| `docs/STAGED-PLAN.md` | Implementation roadmap (areas × stages) | Human |
+| `docs/model/MODEL-REFERENCE.md` | 5×10 altitude-phase model spec | Human |
 | `docs/architecture/containers.md` | Module map, C4 L1/L2 | Human (agent-assisted) |
 | `docs/DECISIONS.md` | D-NNN decision registry (binding) | Human + nowu-decider |
 | `docs/USE_CASES.md` | UC-NNN use case registry | Human |
@@ -150,6 +161,13 @@ See `docs/WORKFLOW.md` for the full context scoping matrix.
 | `architecture-bootstrap.md` | P3.2 | Sonnet | C4 L1/L2 delta + ADR candidates |
 | `readiness-checker.md` | P4.1–P4.2 | Haiku | Gate check + intake brief assembly |
 
+### SYNTHESIS + Architecture Vision Agents
+
+| Agent file | Invoked at | Model | Role |
+|---|---|---|---|
+| `synthesis-agent.md` | W1 (via `synthesis-vision` skill) | Sonnet | Cross-cutting theme extraction from ALL UCs → `state/arch/SYNTHESIS-NNN.md` |
+| `architecture-vision-agent.md` | W2 (via `synthesis-vision` skill) | Sonnet | System classification + principles from themes → `docs/architecture/ARCHITECTURE-VISION.md` |
+
 ### GAP Agents (Global Architecture Pass)
 
 | Agent file | Invoked at | Model | Role |
@@ -187,6 +205,7 @@ See `docs/WORKFLOW.md` for the full context scoping matrix.
 | Skill folder | Mode | Phases / Steps |
 |---|---|---|
 | `pre-workflow-runner/` | — | P0–P4 orchestration (Bootstrap / Full / Standard / Lite) |
+| `synthesis-vision/` | W1–W2 | SYNTHESIS → human gate → Architecture Vision → human gate |
 | `full-cycle/` | A | S1–S9 |
 | `implement-loop/` | B | S5 → [S6–S7]×n → S8–S9 |
 | `single-step/` | C | S6–S9 |
@@ -201,7 +220,8 @@ human communication and Tier 2/3 decisions.
 
 ## 6. Key Invariants (always true, cannot be overridden)
 
-1. S1 will not proceed without `intake-NNN.md [READY_FOR_S1]`.
+1. SYNTHESIS must complete before the first S1-S9 intake (W1+W2 are prerequisites).
+2. S1 will not proceed without `intake-NNN.md [READY_FOR_S1]`.
 2. S6 loads only `in_scope_files` from the task spec. Nothing else.
 3. S8 always runs in a fresh context window.
 4. ADRs are binding. Contradict one only by creating a superseding ADR first.
@@ -216,7 +236,7 @@ human communication and Tier 2/3 decisions.
 1. Copy root files: `CLAUDE.md`, `BOOTSTRAP.md`, `BOOTSTRAP_lean.md`, `CLAUDE-SETUP.md`
 2. Copy `docs/` directory. Update product-specific content in:
    - `docs/vision.md` (or run `/pre-workflow run 001 --mode Bootstrap`)
-   - `docs/V1_PLAN.md` (human-authored from Stage Map)
+   - `docs/STAGED-PLAN.md` (human-authored roadmap, supersedes V1_PLAN.md)
    - `docs/architecture/containers.md` (adapt to your modules)
    - `docs/DECISIONS.md` (start empty — add D-001 for first architecture decision)
    - `docs/USE_CASES.md` (start with 3–5 core use cases)

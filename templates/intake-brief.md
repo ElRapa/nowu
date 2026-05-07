@@ -18,7 +18,7 @@ use_case_ids:
 
 ## Context
 
-<!-- What triggered this? Is it part of V1_PLAN.md phase X? -->
+<!-- What triggered this? Is it part of STAGED-PLAN.md area/stage X? -->
 
 ## Appetite
 
