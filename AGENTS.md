@@ -91,7 +91,7 @@ workflow (S1–S9) and a pre-workflow (P0–P4). **Each step has a dedicated age
 | Workflow reference (S1-S9) | `docs/WORKFLOW.md` |
 | Pre-workflow spec (P0-P4) | `docs/PRE-WORKFLOW.md` |
 | Binding decisions | `docs/DECISIONS.md` (D-001 through D-020) |
-| ADRs (binding) | `docs/architecture/adr/ADR-0001..0006` |
+| ADRs (binding) | `docs/architecture/adr/ADR-0001..0010` |
 | Implementation roadmap | `docs/STAGED-PLAN.md` |
 | Context scoping table | `CLAUDE.md` (Context Scoping section) |
 | Agent definitions | `.claude/agents/` (19 agents) |
@@ -134,6 +134,65 @@ Full scoping matrix in `CLAUDE.md` and `docs/WORKFLOW.md`.
 - Import order: stdlib → third party → local (ruff-enforced).
 - Contracts use frozen dataclasses. Treat as immutable transfer objects.
 - `contracts/__init__.py` is empty — import submodules directly (e.g., `from nowu.core.contracts.types import TaskSpec`).
+
+## How We Work (Session-Independent Core)
+
+These conventions apply to ALL sessions regardless of altitude, phase, or task type.
+
+### Artifacts & Metadata
+
+- Every artifact has **YAML frontmatter**: `artifact_type`, `status`, `created_at` at minimum.
+- **Naming**: `{type}-NNN.md` (e.g., `intake-001.md`, `task-023.md`, `SYNTHESIS-001.md`).
+- **Templates**: Always use the template from `templates/` when creating a new artifact.
+- **Status lifecycle**: DRAFT → APPROVED/ACCEPTED → consumed by next step. See CLAUDE.md for full lifecycle table.
+
+### Approval Tiers
+
+- **Tier 1 (auto):** Tests, docs, refactors within existing ADRs, work within shaped scope.
+- **Tier 2 (batch):** Feature implementation, design changes, new dependencies.
+- **Tier 3 (STOP):** Merges to main, breaking changes, new ADRs, deletes, architecture boundary violations.
+- When unsure → Tier 2.
+
+### Quality Gates (Before Any Review)
+
+```bash
+uv run pytest --tb=short -q
+uv run mypy src/ --strict
+uv run ruff check .
+```
+
+All three must pass before S8 review or any merge.
+
+### Decisions & ADRs Are Binding
+
+- `docs/DECISIONS.md` (D-001 through D-020) — never contradict.
+- `docs/architecture/adr/ADR-0001..0006` — never contradict without a superseding ADR (Tier 3).
+- New decisions get the next D-NNN number. New ADRs start at HYPOTHESIS grade.
+
+### Session Entry (Do NOT Load Everything)
+
+Start sessions with a **skill invocation** that matches your work type — not BOOTSTRAP.md:
+
+| Session Type | Skill | What It Loads |
+|---|---|---|
+| New feature from intake | `full-cycle` | Intake → S1-S9 context per step |
+| Already-shaped tasks | `implement-loop` | Task spec + in_scope_files only |
+| Small fix | `single-step` | Task spec + in_scope_files only |
+| Design spike | `architecture-only` | Architecture docs, decisions, constraints |
+| SYNTHESIS/Vision | `synthesis-vision` | All UCs, vision, goals, decisions |
+| New idea | `pre-workflow-runner` | Vision, ideas, discovery artifacts |
+| Health check | `health-sweep` | Health targets + vision |
+| GAP analysis | `gap-chain` | Architecture docs, health reports |
+| Capture learnings | `session-learning` | Session artifacts, git diff |
+| Full orientation | Read `BOOTSTRAP.md` | Everything (reference only, rare) |
+
+Each skill defines exactly what context to load. This prevents context bloat and
+enforces the context scoping rules from CLAUDE.md.
+
+### Learnings & Optimization
+
+Session learnings are captured in `state/learnings/` via the `session-learning` skill.
+Running index at `state/learnings/INDEX.md`. Run at end of significant sessions.
 
 ## Gotchas
 

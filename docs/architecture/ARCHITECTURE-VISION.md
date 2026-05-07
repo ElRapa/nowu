@@ -44,6 +44,13 @@ they are specialized AI agents with defined cognitive roles. And its "memory" is
 passive storage — it is a managed knowledge graph with active lifecycle (decay,
 verification, contradiction detection).
 
+**Open question (for ADR-0011):** The OS analogy is missing a kernel/user space boundary.
+Framework modules (`core`, `flow`, `soul`, `know`, `bridge`) are kernel space. But where
+does project-specific state live? Initial hypothesis: each project gets an isolated state
+directory and knowledge scope — `know` manages memory for both framework and projects, like
+an OS kernel manages memory for itself and user processes. This needs to be resolved when
+the Domain Extension Model (ADR-0011) is written.
+
 **System identity statement:**
 
 > nowu is the operating environment for AI-native project work. It provides continuity,

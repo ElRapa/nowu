@@ -549,6 +549,18 @@ T3 (Orchestration) is independent but touches everything at handoff boundaries.
 T4 (Epistemic) is pervasive — it infects every other theme's metadata model.
 ```
 
+**Refined ADR dependency graph** (from Perplexity review, 2026-05-07):
+```
+ADR-0008 (atom schema) ← foundational, everything depends on this
+    ↓
+ADR-0010 (grades) + ADR-0007 (continuity) — PARALLEL, both depend on atom schema
+    ↓                                         (T1: "session state IS knowledge atoms")
+ADR-0009 (orchestration) — depends on having continuity protocol + graded artifacts to route
+```
+Note: ADR-0007 depends on ADR-0008 because continuity state uses the atom model
+(session checkpoints ARE knowledge atoms about project state). This was implicit in
+the original dependency description but the graph now makes it explicit.
+
 ---
 
 ## ADR Recommendations

@@ -214,3 +214,57 @@ adapt. Order matters more than completeness.
 4. **Write ADR-0009** (Orchestration Handoff) — enables first S1-S9
 5. **Run first S1-S9 intake** against the hypothesis architecture
 6. **Build Synthesis and Architecture Vision agents/skills** using these learnings
+
+---
+
+## Addendum: Perplexity Review Insights (2026-05-07)
+
+External review by Perplexity of SYNTHESIS-001 and ARCHITECTURE-VISION.
+Source: `state/arch/2026-05-07_1_review_synthesis001+architecture-vision_perplexity.md`
+
+### Validated
+
+- SYNTHESIS-001 rated as "research-grade" — evidence-based theme extraction confirmed
+- ARCHITECTURE-VISION rated as "theory-grounded" — OS analogy praised as precise, not marketing
+- STAGED-PLAN rated as "buildable" — Areas × Stages structure confirmed correct
+- Session learnings rated as "goldmine metadata" — D-SYN-02 and Insight 2 highlighted
+
+### Refinements Applied
+
+#### R1: ADR Dependency Graph Made Explicit
+
+**Problem:** ADR-0007 (continuity) implicitly depends on ADR-0008 (atom schema) because
+"session state IS knowledge atoms." The dependency was stated in text but not in the graph.
+
+**Fix:** Updated SYNTHESIS-001 dependency graph to show:
+```
+ADR-0008 → ADR-0010 + ADR-0007 (parallel) → ADR-0009
+```
+
+**Learning:** Dependency graphs should be verifiable from the graph alone, without
+reading surrounding text. If a dependency is mentioned in prose but not in the diagram,
+it will be missed during implementation.
+
+#### R2: OS Analogy Missing Kernel/User Space
+
+**Problem:** The OS analogy maps modules to OS concepts but doesn't specify where
+project-specific state lives (the equivalent of "user space").
+
+**Fix:** Added open question to ARCHITECTURE-VISION §1 for resolution in ADR-0011.
+Hypothesis: each project gets isolated state directory + knowledge scope.
+
+**Learning:** Analogies must be complete to be useful. A partial analogy that maps 5
+of 6 concepts creates false confidence — the unmapped concept becomes a blind spot.
+
+#### R3: W3.5 Fitness Functions Before W4
+
+**Problem:** W4 (first S1-S9 intake) runs without automated architectural guardrails.
+If code violates ADR-0008 (atom schema) or ADR-0001 (import boundaries), detection is manual.
+
+**Disposition:** Valid but premature for W3. ADR-0008 hasn't defined the atom schema yet.
+F2 (boundary enforcement test) already provides basic guardrails. Added W3.5 to
+STAGED-PLAN as a lightweight task between W3 and W4.
+
+**Learning:** Fitness functions need something to test. Writing checks before the
+schema they validate exists is inverted — but the CONCEPT of "add guardrails before
+first real usage" is sound and should be a standard step in any ADR→implementation flow.

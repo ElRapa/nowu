@@ -454,3 +454,32 @@ After v1-core gate passes (first S1-S9 intake end-to-end).
 ---
 
 <!-- Add new decisions below this line using templates/decision.md -->
+
+## D-021 — Hypothesis ADRs Written in Dependency Order (W3 Complete)
+
+**Date**: 2026-05-07 | **Status**: ACCEPTED | **Level**: system  
+**Intake**: W3 (STAGED-PLAN) | **Use Cases**: all  
+**Epistemic Grade**: INFORMED_ESTIMATE
+
+### Context
+SYNTHESIS-001 (W1) and Architecture Vision (W2) produced 9 architectural themes and a
+dependency-ordered ADR roadmap. W3 required writing the first 4 hypothesis ADRs to unblock
+the first S1-S9 intake (W4).
+
+### Decision
+Write 4 hypothesis ADRs in dependency order:
+1. **ADR-0008** (Knowledge Atom Model) — foundational; adopts `know` module's `KnowledgeAtom`
+2. **ADR-0010** (Epistemic Grades) — assignment rules, propagation, decay
+3. **ADR-0007** (Session Continuity) — two-layer checkpoint (machine + human bookmark)
+4. **ADR-0009** (Orchestration Protocol) — typed handoff contract, state machine, failure recovery
+
+All at HYPOTHESIS grade per D-017 (Minimum Viable Architecture).
+
+Perplexity review (2026-05-07) validated the synthesis and vision work, identified 3 refinements:
+refined ADR dependency graph (ADR-0007 depends on ADR-0008), user space boundary gap (deferred
+to ADR-0011), and W3.5 fitness functions (added to STAGED-PLAN).
+
+### Consequences
+- W3 is complete; critical path advances to W3.5 → W4
+- 4 new ADRs provide architectural context for first S1-S9 intake
+- ADRs are HYPOTHESIS — expected to be refined through implementation feedback
