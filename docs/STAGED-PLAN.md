@@ -51,13 +51,13 @@ decisions: [D-WF-001 through D-WF-013]
 | W1 | Manual SYNTHESIS on approved UCs | `state/arch/SYNTHESIS-001.md` — 9 themes + ADR recommendations | Approved UCs exist ✅ | ✅ DONE (2026-05-06) |
 | W2 | Architecture Vision | `docs/architecture/ARCHITECTURE-VISION.md` — system identity, principles, quality attributes | W1 | ✅ DONE (2026-05-06) |
 | W3 | Hypothesis ADRs from SYNTHESIS themes | ADR-0007, ADR-0008, ADR-0009, ADR-0010 at HYPOTHESIS grade | W1 + W2 | ✅ DONE (2026-05-07) |
-| W3.5 | Minimal fitness functions for hypothesis ADRs | Python checks validating ADR-0008 atom schema presence + ADR-0001 import boundaries | W3 | ⬜ NEXT |
-| W4 | First S1-S9 intake (end-to-end) | Complete state/intake/ → state/tasks/ → implementation → capture cycle | W3.5 | ⬜ BLOCKED (W3.5) |
+| W3.5 | Minimal fitness functions for hypothesis ADRs | Python checks validating ADR-0008 atom schema presence + ADR-0001 import boundaries | W3 | ✅ DONE (2026-05-07) |
+| W4 | First S1-S9 intake (end-to-end) | Complete state/intake/ → state/tasks/ → implementation → capture cycle | W3.5 | ⬜ NEXT |
 | W5 | Validate 5×10 coordinates on W4 artifacts | Annotate all artifacts from W4 with altitude + phase | W4 | ⬜ BLOCKED (W4) |
 
-**Unblocking chain:** ~~W1~~ → ~~W2~~ → ~~W3~~ → **W3.5** → W4 → W5
+**Unblocking chain:** ~~W1~~ → ~~W2~~ → ~~W3~~ → ~~W3.5~~ → **W4** → W5
 
-**Current state:** W1 + W2 + W3 complete. Next: **W3.5** — lightweight fitness functions for hypothesis ADRs before first intake (W4). W3.5 is small (per Perplexity review recommendation) — just enough automated checks to catch obvious violations during W4.
+**Current state:** W1 + W2 + W3 + W3.5 complete. Next: **W4** — first S1-S9 intake end-to-end.
 
 ### Knowledge (v1-core)
 
@@ -207,12 +207,7 @@ decisions: [D-WF-001 through D-WF-013]
 
 The critical path is **Workflow v1-core**: ~~W1~~ → ~~W2~~ → ~~W3~~ → **W3.5** → W4 → W5.
 
-**Next session should execute W3.5:**
-1. Write minimal fitness function for ADR-0008 (validate atom schema required fields exist in `know`)
-2. Write minimal fitness function for ADR-0001 (import boundary enforcement — already exists as F2, verify it still passes)
-3. Verify quality suite passes: `uv run pytest && uv run mypy src/ --strict && uv run ruff check .`
-
-**Then execute W4:**
+**Next session should execute W4:**
 1. Select first intake for S1-S9 end-to-end (recommend NF-01 or a small NF UC)
 2. Run full S1-S9 cycle using hypothesis ADRs as architectural context
 3. Capture session learnings — validate or refine ADR hypotheses

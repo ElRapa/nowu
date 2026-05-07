@@ -182,6 +182,158 @@ sequential, but the DEPENDENCY is a DAG, not a chain.
 | STAGED-PLAN update | `docs/STAGED-PLAN.md` | ACTIVE | W3 DONE, W3.5 added |
 | Review integration | Multiple files | DONE | Perplexity insights applied |
 
+## Addendum: Perplexity W3 Output Evaluation (2026-05-07, session 2)
+
+### Review Source
+
+`state/arch/2026-05-07_2_perplexity_review_W3.md` — two-part review:
+1. **Mock workflow traversal**: Full 5×9 model validation from human prompt to shipped code
+2. **W3 deliverable evaluation**: Rating A+ (9/10), 4 minor gaps identified
+
+### Insights Applied
+
+| # | Insight | Valid? | Action |
+|---|---------|--------|--------|
+| R1 | Frontmatter inconsistency (`source_themes` vs `source_synthesis`) | ❌ False positive | Verified: all 4 ADRs already have both keys |
+| R2 | ADR-0009 missing ADR-0006 cross-reference | ❌ False positive | Verified: ADR-0009 Related section already lists ADR-0006 (line 284) |
+| R3 | ADR-0008 truncation | ❌ Search artifact | Verified: file is complete (190 lines, Related section intact) |
+| R4 | No `depended_on_by` backlinks | ❌ False positive | Verified: ADR-0008 already has `depended_on_by` (lines 188-190) |
+| M1 | ADR fills GOAL→UC gap for cross-module work | ✅ Valid | Noted for W4 routing — skip condition documented |
+| M2 | Grade thresholds vary by altitude | ⚠️ Conflicts with D-017 | Deferred to W6 (calibration) |
+| M3 | Research sub-loop concept | ✅ Valid (v1) | Recorded for Level 2 implementation |
+| M4 | Security in EVALUATION, not separate phase | ✅ Valid | Recorded for future ATAM-lite template |
+
+### Additional Process Insights from W3 Evaluation
+
+#### Insight 5: External review of OUTPUT validates depth calibration
+
+**Observation:** The Perplexity evaluation confirmed our hypothesis ADRs are at the right
+depth — "implementation-ready specifications" not "vague architectural statements." This
+validates D-017's "deep enough for agents to follow, shallow enough to be wrong" criterion
+empirically. The reviewer independently concluded the ADRs are "production-grade hypothesis
+architecture."
+
+**Type:** workflow-process
+
+**Implication:** D-017's depth criterion is well-calibrated for HYPOTHESIS grade. After W4,
+we can check whether agents can actually implement from these specs — that's the definitive
+validation.
+
+---
+
+#### Insight 6: External reviewers on truncated context produce false positive "gaps"
+
+**Observation:** All 4 "minor gaps" identified by the Perplexity reviewer (frontmatter
+inconsistency, missing cross-refs, truncation, missing backlinks) were false positives.
+The ADRs already had all the things the reviewer said were missing. The reviewer was working
+from truncated search result snippets, not full file content.
+
+**Type:** workflow-process
+
+**Implication:** When soliciting external reviews, provide FULL artifacts — not search
+snippets or partial views. Alternatively, ask reviewers to qualify confidence in their
+"gap" findings. A review that produces 4 false positives on minor points still validated
+the overall architecture (A+ rating) — the structural assessment was correct even when
+the detail checks were wrong.
+
+---
+
+#### Insight 7: Altitude-based routing rules belong in the orchestrator
+
+**Observation:** The mock workflow traversal revealed that cross-module work REQUIRES the
+ARCHITECTURE altitude (ADR is the "global solution"), while single-module work can skip
+directly from PRODUCT to DELIVERY. This is a routing decision the orchestrator should make
+based on the intake's `affected_modules` field.
+
+**Type:** domain-insight
+
+**Implication:** ADR-0009's orchestrator state machine should eventually support altitude
+skipping for single-module intakes. Not needed for v1-core (first intake will be small),
+but critical for v1 when multiple intake types coexist.
+
+---
+
+#### Insight 8: Bidirectional traceability (backlinks) catches orphan dependencies
+
+**Observation:** The reviewer identified that ADR-0008 should list `depended_on_by:
+[ADR-0007, ADR-0010, ADR-0009]`. Without backlinks, if ADR-0008 is amended, there's no
+machine-readable way to know which downstream ADRs are affected. This is the same problem
+Git solves with `git log --follow` vs forward references.
+
+**Type:** workflow-process
+
+**Implication:** All ADRs should carry both `depends_on` and `depended_on_by` in frontmatter.
+This creates a bidirectional dependency graph that enables impact analysis when amending
+hypothesis ADRs.
+
+---
+
+## Addendum: Perplexity+Human Review #3 — ADR Refinements (2026-05-07, session 3)
+
+### Review Source
+
+`state/arch/2026-05-07_3_perplexity+human_review_ADRs.md` — three questions from human,
+evaluated by Perplexity with concrete recommendations.
+
+### Insights Applied
+
+| # | Question | Valid? | Action |
+|---|----------|--------|--------|
+| Q1 | Multi-session support in ADR-0007 | ✅ Valid | Added "Known Limitations" section to ADR-0007 — v1-core simplification acknowledged, session types + storage hierarchy defined for v1 |
+| Q2 | Architecture docs becoming atoms | ✅ Valid | Added "Artifact-to-Atom Extraction" section to ADR-0008 — docs produce atoms, they don't become atoms. S9 curator is the extraction point. |
+| Q3 | OPTIONS/DECISION cycle for agent creation | ✅ Valid for high-impact work | Recorded as process insight — apply full cycle for orchestrator and other high-impact agents, skip for routine work |
+
+### Additional Process Insights from Review #3
+
+#### Insight 9: Hypothesis ADRs need explicit "Known Limitations" sections
+
+**Observation:** ADR-0007's single-session assumption was only implicit — the ADR never
+stated "this is a simplification." The human correctly identified the gap through real
+usage thinking ("what if we have multiple open sessions?"). Adding a "Known Limitations"
+section makes simplifications explicit and prevents future readers from assuming the ADR
+covers all cases.
+
+**Type:** workflow-process
+
+**Implication:** Every hypothesis ADR should have a "Known Limitations" section listing
+v1-core simplifications. This serves as a built-in refinement backlog — each limitation
+is a candidate for v1 extension. It also prevents the anti-pattern of assuming HYPOTHESIS
+means "complete design" rather than "minimum viable architecture."
+
+---
+
+#### Insight 10: The artifact→atom extraction pattern is a key architectural concept
+
+**Observation:** The distinction between artifacts (files, full documents) and atoms
+(queryable facts extracted from those documents) is fundamental to how nowu manages
+knowledge. Documents don't *become* atoms — they **produce** atoms. S9 curator is the
+extraction point. This pattern was implicit in ADR-0008 but making it explicit (with a
+concrete extraction table) clarifies the boundary for implementation.
+
+**Type:** domain-insight
+
+**Implication:** When writing S9 curator logic, this extraction table becomes the
+implementation spec. Each artifact type has a defined number of atoms to extract and
+their KnowledgeTypes. This is concrete enough to implement from.
+
+---
+
+#### Insight 11: Full OPTIONS/DECISION cycle improves quality for high-impact artifacts
+
+**Observation:** The current process writes agents and ADRs reactively (one approach,
+justified after the fact). NF-13 requires "at least 2 viable approaches before committing."
+Applying the full cycle at ARCHITECTURE altitude (always) and DELIVERY altitude (for agents
+and workflows) would increase quality at a 2-3x time cost.
+
+**Type:** workflow-process
+
+**Implication:** When creating the orchestrator agent (the `flow` module router), use the
+full INTAKE→ANALYSIS→OPTIONS→DECISION→IMPLEMENTATION→VERIFICATION cycle. This is the
+highest-impact agent in the system (D-019) — it deserves deliberate design, not reactive
+implementation.
+
+---
+
 ## What Should Happen Next
 
 1. **Execute W3.5**: Write minimal fitness functions for ADR-0008 (atom schema validation)

@@ -169,6 +169,28 @@ during AP/RE domain dogfooding and formalized in ADR-0011 (Domain Extension Mode
 - The `MemoryService` Protocol in `core/contracts/memory.py` will need to be updated to
   expose the full `KnowledgeAtom` field set (currently a minimal surface)
 
+## Artifact-to-Atom Extraction
+
+Large structured artifacts (ADRs, SYNTHESIS, Architecture Vision) are NOT stored as atoms
+directly. They remain as files — the source of truth. At acceptance or S9 capture, key
+facts are extracted as individual atoms:
+
+| Artifact Type | Extracts To | KnowledgeType | Example |
+|---|---|---|---|
+| ADR (accepted) | 2-5 atoms | `constraint`, `principle`, `rule` | "Session continuity requires two-layer checkpoints" |
+| SYNTHESIS | 5-10 atoms | `concept`, `constraint` | "T2: knowledge lifecycle spans 17+ UCs" |
+| Architecture Vision | 3-5 atoms | `principle`, `concept` | "Principle P2: artifacts are the interface" |
+| S4 Decision | 1 atom | `decision` | "Chose Typer for CLI (rejected Click)" |
+| S9 Capture | 1-3 atoms | `lesson`, `decision` | "VBR caught 3 type errors in module X" |
+
+The S9 curator (`nowu-curator`) is the extraction point — it reads session artifacts,
+identifies durable knowledge, and creates atoms via `MemoryService`. The full artifact
+remains as a file; the atoms make its essence queryable and cross-referenceable across
+projects.
+
+**Key distinction:** Documents don't *become* atoms — they **produce** atoms. The document
+is the narrative source of truth; the atoms are the queryable index into that narrative.
+
 ## Alternatives Considered
 
 | Option | Pros | Cons | Rejected because |

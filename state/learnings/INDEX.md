@@ -18,7 +18,8 @@ below the table. Recurring patterns are high-priority candidates for workflow ch
 
 | Date | Session | Key Learnings | Types | File |
 |------|---------|---------------|-------|------|
-| 2026-05-07 | W3 — Hypothesis ADRs + Perplexity Review | External review catches structural gaps self-review misses; Ground ADRs in existing code (adopt not invent); Write ADRs in dependency order for natural forward refs; Two-layer pattern (machine + human) recurs across concerns | workflow-process, domain-insight | `state/learnings/session-2026-05-07-w3-hypothesis-adrs.md` |
+| 2026-05-07 | W3.5 — Fitness Functions + ADR Refinements | Perplexity gap findings on truncated context are unreliable; architecture tests document ADR requirements; iCloud path-with-spaces breaks editable .pth installs; Known Limitations sections better than silence | workflow-process, tooling | `state/learnings/session-2026-05-07-w35-fitness-functions.md` |
+| 2026-05-07 | W3 — Hypothesis ADRs + Perplexity Review Integration | External review catches structural gaps self-review misses; Ground ADRs in existing code (adopt not invent); Write ADRs in dependency order for natural forward refs; Two-layer pattern (machine + human) recurs across concerns | workflow-process, domain-insight | `state/learnings/session-2026-05-07-w3-hypothesis-adrs.md` |
 | 2026-05-06 | SYNTHESIS + Architecture Vision | 9 themes not 6; Knowledge model is foundational ADR; Synthesis requires breadth reading not sampling | workflow-process, domain-insight | `state/arch/session-learnings-synthesis-2026-05-06.md` |
 
 > Note: The 2026-05-06 entry predates the `state/learnings/` directory. File remains at

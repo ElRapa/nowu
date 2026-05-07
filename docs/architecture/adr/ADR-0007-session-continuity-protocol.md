@@ -228,6 +228,24 @@ and creating atoms. The checkpoint is discarded (archived) after capture.
   step-boundary approach. Fine-grained WAL may be reconsidered at v1.1 if step-boundary
   granularity proves insufficient.
 
+## Known Limitations (v1-core Simplifications)
+
+1. **Single-session assumption.** This ADR assumes one active session at a time with a
+   single `checkpoint-latest.json`. Real usage will require concurrent sessions with
+   different lifecycle properties:
+   - **Assistant session** — always active, daily entry point (PK-03 "today view")
+   - **Intake session** — task-bounded (S1→S9), checkpointed at step boundaries
+   - **Exploration session** — ephemeral (NF-12), may never reach S1
+
+   Extension for v1: add `session_type` (ASSISTANT | INTAKE | EXPLORATION | ARCHITECTURE)
+   to checkpoint schema and change storage to `state/sessions/{type}-{id}/`. The two-layer
+   checkpoint design remains correct — only storage hierarchy and session type taxonomy
+   need extension.
+
+2. **No concurrent session conflict resolution.** If two sessions modify the same
+   artifact, there is no merge strategy. v1-core avoids this by limiting to one active
+   implementation session. v1 must address this.
+
 ## Alternatives Considered
 
 | Option | Pros | Cons | Rejected because |
