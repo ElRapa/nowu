@@ -434,7 +434,7 @@ For implementing the orchestrator layer specifically:
 **For this specific session (orchestrator implementation):**
 
 1. **Start prompt:** "Read BOOTSTRAP-ARCHITECTURE.md, then I will give you orchestrator-specific context."
-2. **After bootstrap confirmation:** Attach the 5 orchestrator files (research report + 3 agents + update section + README)
+2. **After bootstrap confirmation:** Attach the 5 orchestrator files (research report + 3 agents + update section + README) `docs/research/sessions/2026-05-08_1_perplexity_orchestrator/` and say "Now read these files for your orchestrator implementation work."
 3. **Then say:** "Your work: integrate the orchestrator layer into nowu. This means:
    - Create 3 agent definitions in `.claude/agents/orchestrator/`
    - Update `docs/model/MODEL-REFERENCE.md` with orchestrator section
