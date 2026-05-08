@@ -1,39 +1,26 @@
 # nowu Bootstrap — Lean Session Start Prompt
 
 > Use this for follow-up sessions on a project where you already have full context.
-> For a brand-new session or a new product, use `BOOTSTRAP.md` instead.
+> For a brand-new session, use the altitude-specific bootstrap (see `BOOTSTRAP.md` routing index).
 
 ---
 
-You are continuing work on a software project using the nowu framework.
+You are continuing work on the nowu framework. **If you need to refresh context, read the altitude-specific bootstrap:**
+- STRATEGIC/PRODUCT: `BOOTSTRAP-STRATEGIC.md`
+- ARCHITECTURE: `BOOTSTRAP-ARCHITECTURE.md`
+- DELIVERY/EXECUTION: `BOOTSTRAP-DELIVERY.md`
+- RETROSPECTIVE: `BOOTSTRAP-RETROSPECTIVE.md`
 
-## Read in this exact order
+Otherwise, proceed directly to your skill invocation.
 
-1. `CLAUDE.md`                           — commands, approval tiers, failure modes
-2. `docs/WORKFLOW.md`                    — S1–S9 reference table (refresh context scoping)
-3. `docs/model/MODEL-REFERENCE.md`       — 5×10 altitude-phase model (THE conceptual framework)
-4. `docs/architecture/containers.md`    — module map (C4 L2)
-5. `docs/DECISIONS.md`                  — existing decisions (binding — check for recent additions)
-6. `docs/STAGED-PLAN.md`               — current implementation roadmap (areas × stages)
-7. `docs/CLAUDE-SETUP.md`              — agents, skills, and rules reference
-8. `state/tasks/` — run `ls` only       — see what tasks exist and their statuses
+## Minimal Refresh (if needed)
 
-## Load only if relevant to current work
+1. `CLAUDE.md`                           — commands, approval tiers
+2. `docs/model/MODEL-REFERENCE.md`       — 5x10 altitude-phase model
+3. `docs/DECISIONS.md`                   — check for new decisions since last session
+4. `docs/STAGED-PLAN.md`                 — current implementation roadmap
 
-- `docs/WORKFLOW-DETAILED.md`   — if you need narrative depth on a specific step
-- `docs/PRE-WORKFLOW.md`        — if you are starting from an idea (P0–P4 mode)
-- `docs/PROGRESS.md`            — current execution status
-- `state/SESSION-STATE.md`      — session bookmark only — NEVER treat as source of truth
-- `.claude/rules/workflow.md`   — statuses, tiers, modes
-- `.claude/rules/architecture.md` — boundaries
-- `.claude/rules/testing.md`    — TDD rules
-- `.claude/rules/code-style.md` — style rules
-
----
-
-## Health Check
-
-Run at session start if you are unsure about alignment:
+## Health Check (if unsure)
 
 ```
 /health-check all
@@ -41,18 +28,12 @@ Run at session start if you are unsure about alignment:
 
 If any returns RED, tell me before proceeding.
 
----
+## Confirm Understanding
+1. What altitude are you working in? (STRATEGIC, ARCHITECTURE, DELIVERY, RETROSPECTIVE)
+2. What is the current roadmap stage and active work item?
+3. Are there any BLOCKED or CHANGES_REQUESTED items in state/tasks/?
 
-## Confirm your understanding by telling me
-
-1. What is the current product stage and what is the active epic or task?
-2. What are the main modules and their layers?
-3. What are the available skill modes (A/B/C/D + pre-workflow) and when to use each?
-4. What does each approval tier (Tier 1/2/3) mean?
-5. Are there any BLOCKED or CHANGES_REQUESTED items in `state/tasks/` right now?
-6. Did any health check return YELLOW or RED?
-
-## Then wait for my approval before touching any files.
+## Then wait for user approval before touching files.
 
 ---
 

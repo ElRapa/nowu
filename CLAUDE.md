@@ -7,8 +7,8 @@
 ## Quick Start
 
 Start sessions with a **skill invocation** that matches your work type (see
-`AGENTS.md` → "Session Entry" table). Use `BOOTSTRAP.md` only for full
-framework orientation or onboarding.
+`AGENTS.md` → "Session Entry" table). Or use the altitude-specific bootstrap
+(see `BOOTSTRAP.md` routing index → choose STRATEGIC, ARCHITECTURE, DELIVERY, or RETROSPECTIVE).
 Choose a mode and follow the skill. Every step has an agent and an artifact.
 
 Every idea enters through the pre-workflow. Every feature enters S1 via a READY_FOR_S1 intake.

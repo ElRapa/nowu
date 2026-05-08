@@ -171,7 +171,8 @@ All three must pass before S8 review or any merge.
 
 ### Session Entry (Do NOT Load Everything)
 
-Start sessions with a **skill invocation** that matches your work type — not BOOTSTRAP.md:
+Start sessions with a **skill invocation** that matches your work type, or read the
+altitude-specific bootstrap (see `BOOTSTRAP.md` routing index):
 
 | Session Type | Skill | What It Loads |
 |---|---|---|
@@ -184,7 +185,18 @@ Start sessions with a **skill invocation** that matches your work type — not B
 | Health check | `health-sweep` | Health targets + vision |
 | GAP analysis | `gap-chain` | Architecture docs, health reports |
 | Capture learnings | `session-learning` | Session artifacts, git diff |
-| Full orientation | Read `BOOTSTRAP.md` | Everything (reference only, rare) |
+| Full orientation | Read `BOOTSTRAP.md` | Altitude routing index → choose bootstrap |
+
+**Altitude-specific bootstraps** (use when no skill matches your work type):
+
+| Altitude | Bootstrap File | Use When |
+|---|---|---|
+| STRATEGIC / PRODUCT | `BOOTSTRAP-STRATEGIC.md` | Vision, goals, roadmap, SYNTHESIS, P0-P4 |
+| ARCHITECTURE | `BOOTSTRAP-ARCHITECTURE.md` | ADRs, module design, contracts, orchestrator |
+| DELIVERY / EXECUTION | `BOOTSTRAP-DELIVERY.md` | S1-S9 workflow, task shaping, implementation |
+| RETROSPECTIVE | `BOOTSTRAP-RETROSPECTIVE.md` | GAP analysis, health checks, learnings |
+
+For lean follow-up sessions: `BOOTSTRAP_lean.md`.
 
 Each skill defines exactly what context to load. This prevents context bloat and
 enforces the context scoping rules from CLAUDE.md.

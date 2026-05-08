@@ -1,6 +1,6 @@
-# nowu Bootstrap — Full Framework Orientation
+# nowu Bootstrap — Session Start Routing
 
-> **Reference document.** Use this for full onboarding or when switching project context.
+> **Choose the bootstrap that matches your work altitude.**
 >
 > For focused work sessions, **start with a skill invocation instead** — see the
 > Session Entry table in `AGENTS.md` → "How We Work" section. Each skill loads
@@ -10,47 +10,20 @@
 
 ---
 
-You are helping develop a software project using the nowu framework.
-This framework is self-developing: you help build it using the same workflow it runs.
+## Altitude Routing
 
-## Read in this exact order
+| Altitude | Bootstrap File | Use When |
+|---|---|---|
+| **STRATEGIC** | `BOOTSTRAP-STRATEGIC.md` | Vision, goals, roadmap, SYNTHESIS, Architecture Vision |
+| **PRODUCT** | `BOOTSTRAP-STRATEGIC.md` | Use case discovery, P0-P4 pre-workflow |
+| **ARCHITECTURE** | `BOOTSTRAP-ARCHITECTURE.md` | ADRs, module design, contracts, hypothesis ADRs, orchestrator implementation |
+| **DELIVERY** | `BOOTSTRAP-DELIVERY.md` | S1-S9 workflow execution, task shaping, implementation loops |
+| **EXECUTION** | `BOOTSTRAP-DELIVERY.md` | Code, tests, S6-S7 implementation, S8 review |
+| **RETROSPECTIVE** | `BOOTSTRAP-RETROSPECTIVE.md` | GAP analysis, health checks, session learnings |
 
-### Core (always read)
-
-1. `CLAUDE.md`                              — commands, approval tiers, failure modes
-2. `docs/WORKFLOW.md`                       — S1–S9 reference table and context scoping rules
-3. `docs/model/MODEL-REFERENCE.md`          — 5×10 altitude-phase model (THE conceptual framework)
-4. `docs/model/WORKFLOW-STANDARDS.md`       — binding workflow rules (epistemic grades, phases)
-5. `docs/architecture/containers.md`        — module map (C4 L2)
-6. `docs/DECISIONS.md`                      — architectural decisions (D-001 through D-020, binding)
-7. `docs/STAGED-PLAN.md`                    — current implementation roadmap (areas × stages)
-8. `docs/CLAUDE-SETUP.md`                   — how agents, skills, health checks, and rules fit together
-
-### Workflow detail (read when executing S1-S9 or P0-P4)
-
-9. `docs/WORKFLOW-DETAILED.md`              — full narrative spec (read S1–S9 sections)
-10. `docs/PRE-WORKFLOW.md`                  — P0–P4 specification (read if starting from an idea)
-11. `state/tasks/` — run `ls` only          — see what tasks currently exist
-
-### Context (read when orienting)
-
-12. `docs/vision.md`                        — product vision (APPROVED)
-13. `docs/USE_CASES.md`                     — 50 approved use cases
-14. `docs/goals/`                           — goal-001 through goal-004
-
-### Rules (skim, then reference when needed)
-
-15. `.claude/rules/workflow.md`             — statuses, tiers, iteration modes
-16. `.claude/rules/architecture.md`         — layer and module boundaries
-17. `.claude/rules/testing.md`              — TDD and coverage rules
-18. `.claude/rules/code-style.md`           — style, naming, imports
-
-### State (check before acting)
-
-19. `state/SESSION-STATE.md` (if filled)    — session bookmark only — NEVER treat as source of truth
-20. `state/arch/` — run `ls`                — architecture artifacts, SYNTHESIS, handoffs
-
-> For skill mode details (A/B/C/D and pre-workflow), see `.claude/skills/`.
+If you are unsure which altitude you are in:
+- Read `docs/model/MODEL-REFERENCE.md` → "Altitude x Phase Examples" table
+- Or start with `BOOTSTRAP-STRATEGIC.md` (most general)
 
 ---
 
@@ -68,7 +41,6 @@ This framework is self-developing: you help build it using the same workflow it 
 | How do I verify correctness? | `docs/model/VERIFICATION-GUIDE.md` |
 | What's the module architecture? | `docs/architecture/containers.md` + ADRs |
 | What research informed the model? | `docs/research/` |
-| What did we learn in design sessions? | `docs/research/5x10-session-insights-*.md` |
 | What templates exist for artifacts? | `templates/` |
 | What's an example of a good artifact? | `docs/model/examples/` |
 
@@ -76,7 +48,7 @@ This framework is self-developing: you help build it using the same workflow it 
 
 ## Health Check (run before confirming)
 
-After reading, run:
+After reading your altitude bootstrap, run:
 
 ```
 /health-check all
@@ -84,21 +56,6 @@ After reading, run:
 
 If any health check returns RED, tell me before proceeding. Do not start implementation work
 with a RED health check outstanding.
-
----
-
-## Confirm your understanding by telling me
-
-1. What is this product, who is it for, and what problem does it solve? (from vision.md)
-2. What are the 5 altitudes and 10 phases in the model? What's the S1-S9 zigzag?
-3. What are the main modules/containers and which layer does each belong to?
-4. What is the current stage and what's the critical path? (from STAGED-PLAN)
-5. Which agent handles each step: P0–P4, S1, S2, S3, S4, S5, S6/S7, S8, S9?
-6. Which skill modes exist (A/B/C/D + pre-workflow modes) and when to use each?
-7. What do Tier 1, Tier 2, and Tier 3 approval mean — give one example of each.
-8. What is the current block? (hint: SYNTHESIS hasn't run yet)
-
-## Then wait for my approval before touching any files.
 
 ---
 
