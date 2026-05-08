@@ -25,10 +25,5 @@
 ### Tools
 11. `CLAUDE.md`                            — commands (especially /health-check)
 
-## Confirm Understanding
-1. What is the RETROSPECTIVE altitude and how does it differ from EXECUTION?
-2. What are the three GAP steps (G0, G1, G2)?
-3. What health check categories exist? (architecture, workflow, knowledge, quality)
-4. What is the epistemic grade scale and when does grade improve?
-
-## Then wait for user approval before touching files.
+## Before Proceeding
+Verify: ☐ I know the RETROSPECTIVE altitude and how it differs from EXECUTION ☐ I know the GAP steps (G0-G2) ☐ I know the health check categories ☐ I know the epistemic grade scale. If any unclear, re-read the relevant file above.
