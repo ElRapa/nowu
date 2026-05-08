@@ -21,7 +21,7 @@ project-root/
 │   ├── WORKFLOW.md                        ← S1–S9 reference table
 │   ├── WORKFLOW-DETAILED.md               ← Full S1–S9 narrative spec
 │   ├── PRE-WORKFLOW.md                    ← P0–P4 full specification
-│   ├── CLAUDE-SETUP.md                    ← Agent/skill/file reference guide
+│   ├── ONBOARDING.md                      ← Setting up nowu in a new repository
 │   ├── goals/
 │   │   └── goal-NNN.md                    ← Product goals, linked to vision and use cases
 │   ├── design/

@@ -174,14 +174,43 @@ All three must pass before S8 review or any merge.
 Start sessions with a **skill invocation** that matches your work type, or read the
 altitude-specific bootstrap (see `BOOTSTRAP.md` routing index):
 
-| Session Type | Skill | What It Loads |
+#### Pre-Workflow (P0-P4)
+
+Use when you are **not yet at an intake brief**.
+
+| Situation | Skill | Mode | Outcome |
+|---|---|---|---|
+| New product / big idea (from zero) | `pre-workflow-runner` | Bootstrap | `docs/vision.md` + `docs/STAGED-PLAN.md` + first `intake-NNN` READY_FOR_S1 |
+| New epic on existing product | `pre-workflow-runner` | Full | `problem-NNN`, `epic-NNN`, `story-NNN-*`, `arch-pass-NNN`, `intake-NNN` READY_FOR_S1 |
+| New story on existing epic | `pre-workflow-runner` | Standard | new `story-NNN-*` + `intake-NNN` READY_FOR_S1, no arch pass |
+| Small feature / tweak | `pre-workflow-runner` | Lite | 1-few approved stories + `intake-NNN` READY_FOR_S1 |
+
+#### SYNTHESIS + Architecture Vision + ADRs (W1-W3.5)
+
+Run ONCE before the first S1-S9 intake. Re-run W1-W2 when significant new UCs are added.
+
+| Situation | Step | Skill / Agent | Outcome |
+|---|---|---|---|
+| UCs approved, no SYNTHESIS yet | W1+W2 | `synthesis-vision` | `state/arch/SYNTHESIS-NNN.md` + `docs/architecture/ARCHITECTURE-VISION.md` |
+| ≥10 new UCs added | W1+W2 | `synthesis-vision` | Updated SYNTHESIS + Architecture Vision |
+| Arch Vision approved, write ADRs | W3 | `hypothesis-adr-writer` | `docs/architecture/adr/ADR-NNNN-*.md` (HYPOTHESIS grade) |
+| ADRs written, validate contracts | W3.5 | `fitness-function-writer` | `tests/architecture/test_adr_fitness.py` |
+
+#### Implementation (S1-S9)
+
+Use when you **already have `state/intake/intake-NNN.md [READY_FOR_S1]`**.
+
+| Situation | Skill | Mode | Entry |
+|---|---|---|---|
+| Full feature from intake | `full-cycle` | A | `intake-NNN.md [READY_FOR_S1]` |
+| Already-shaped tasks | `implement-loop` | B | `task-NNN [READY_FOR_IMPL]` |
+| Quick bugfix / refactor / docs | `single-step` | C | thin `task-NNN` or direct |
+| Architecture / design spike, no code | `architecture-only` | D | `intake-NNN.md [READY_FOR_S1]` |
+
+#### Health, GAP & Learnings
+
+| Situation | Skill | What It Loads |
 |---|---|---|
-| New feature from intake | `full-cycle` | Intake → S1-S9 context per step |
-| Already-shaped tasks | `implement-loop` | Task spec + in_scope_files only |
-| Small fix | `single-step` | Task spec + in_scope_files only |
-| Design spike | `architecture-only` | Architecture docs, decisions, constraints |
-| SYNTHESIS/Vision | `synthesis-vision` | All UCs, vision, goals, decisions |
-| New idea | `pre-workflow-runner` | Vision, ideas, discovery artifacts |
 | Health check | `health-sweep` | Health targets + vision |
 | GAP analysis | `gap-chain` | Architecture docs, health reports |
 | Capture learnings | `session-learning` | Session artifacts, git diff |
