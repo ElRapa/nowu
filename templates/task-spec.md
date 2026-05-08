@@ -11,6 +11,8 @@ primary_module: core | flow | bridge | soul | know
 depends_on: []  # other task IDs, if any
 use_case_ids:
   - UC-NNN
+docs_to_update:  # canonical docs affected by this task (validated at S8 review)
+  - None  # or: docs/DECISIONS.md, docs/architecture/containers.md, etc.
 ---
 
 # Task Spec: task-NNN
