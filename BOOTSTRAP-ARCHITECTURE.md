@@ -26,9 +26,12 @@
 11. `state/arch/SYNTHESIS-001.md` (if exists) — architectural themes
 12. `docs/architecture/ARCHITECTURE-VISION.md` (if exists) — architectural principles, risks
 
+### State (awareness)
+13. `state/sessions/` — run `ls`            — checkpoint storage per ADR-0007 (may be empty)
+
 ### Tools & Verification
-13. `CLAUDE.md`                            — commands, approval tiers
-14. `docs/model/VERIFICATION-GUIDE.md`     — how to verify ADRs
+14. `CLAUDE.md`                            — commands, approval tiers
+15. `docs/model/VERIFICATION-GUIDE.md`     — how to verify ADRs
 
 ## What You NEVER Load at This Altitude
 - `src/` or `tests/` — no code during architecture work (prevents anchoring bias)

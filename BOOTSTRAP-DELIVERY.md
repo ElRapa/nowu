@@ -17,6 +17,7 @@
 6. `docs/WORKFLOW-DETAILED.md`             — full narrative spec (read relevant S1-S9 sections)
 7. `state/tasks/` — run `ls`               — see what tasks exist and their statuses
 8. `state/tasks/.active-scope`             — current scope (if filled)
+9. `state/sessions/` — run `ls`            — checkpoint storage per ADR-0007 (may be empty)
 
 ### Tools & Rules
 9. `CLAUDE.md`                             — commands, approval tiers

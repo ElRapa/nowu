@@ -7,6 +7,8 @@
 > only the context it needs, keeping your session focused and lean.
 >
 > For lean follow-up sessions, see `BOOTSTRAP_lean.md`.
+>
+> For full onboarding with maximum context, see `BOOTSTRAP-FULL.md`.
 
 ---
 
