@@ -34,16 +34,21 @@ Subsequent intakes skip SYNTHESIS unless significant new UCs are added.
 |------|------|-------|----------|-----------------|------|
 | W1 | SYNTHESIS | `synthesis-agent` | ARCHITECTURE | `state/arch/SYNTHESIS-NNN.md` | 🛑 HUMAN REVIEW |
 | W2 | Architecture Vision | `architecture-vision-agent` | ARCHITECTURE | `docs/architecture/ARCHITECTURE-VISION.md` | 🛑 HUMAN REVIEW |
+| W3 | Hypothesis ADRs | `hypothesis-adr-writer` | ARCHITECTURE | `docs/architecture/adr/ADR-NNNN-*.md` (HYPOTHESIS grade) | 🛑 HUMAN REVIEW |
+| W3.5 | Fitness Functions | `fitness-function-writer` | ARCHITECTURE | `tests/architecture/test_adr_fitness.py` | Tier 1 auto (tests pass) |
 
 **Skill:** `synthesis-vision` orchestrates W1 → human gate → W2 → human gate.
+**W3:** `hypothesis-adr-writer` writes ADRs in dependency order from the Architecture Vision ADR roadmap.
+**W3.5:** `fitness-function-writer` writes structural pytest checks validating ADR contracts exist in code.
 
 **When to invoke:**
 - Before first S1-S9 intake (MANDATORY — cannot skip)
 - When `health-sweep` or `gap-detector` recommends a SYNTHESIS pass
 - When ≥10 new UCs are added or 2+ new domain categories appear
 
-**After W1+W2:** Write hypothesis ADRs (W3) from the Architecture Vision's ADR roadmap,
-then proceed to first S1-S9 intake (W4).
+**After W1+W2:** Write hypothesis ADRs (W3) using `hypothesis-adr-writer` from the Architecture Vision's ADR roadmap.
+Then write fitness functions (W3.5) using `fitness-function-writer` to validate the ADR structural contracts.
+Then proceed to first S1-S9 intake (W4).
 
 ---
 

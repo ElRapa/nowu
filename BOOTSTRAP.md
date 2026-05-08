@@ -1,7 +1,12 @@
-# nowu Bootstrap — Full Session Start Prompt
+# nowu Bootstrap — Full Framework Orientation
 
-> Paste this at the start of every new Claude Code session on a new product.
-> For follow-up sessions on a project you already know, use `BOOTSTRAP_lean.md` instead.
+> **Reference document.** Use this for full onboarding or when switching project context.
+>
+> For focused work sessions, **start with a skill invocation instead** — see the
+> Session Entry table in `AGENTS.md` → "How We Work" section. Each skill loads
+> only the context it needs, keeping your session focused and lean.
+>
+> For lean follow-up sessions, see `BOOTSTRAP_lean.md`.
 
 ---
 

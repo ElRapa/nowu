@@ -258,13 +258,16 @@ Execute Package 1 in this exact order.
 - Populate initial graph links in `cross-references.json`
 - Set current lifecycle value in `status-index.json`
 
-### Task 5: Create ALTITUDES.md v2.0
+### Task 5: ~~Create ALTITUDES.md v2.0~~ → ABSORBED INTO MODEL-REFERENCE
 
-Must include:
-
-- A zigzag execution diagram
-- A phase-to-multi-altitude applicability table
-- Implementation-facing guidance for artifact placement
+> **Status: DONE (2026-05-07)** — The intended content of ALTITUDES.md v2.0 has been
+> absorbed directly into `docs/model/MODEL-REFERENCE.md`:
+> - Zigzag execution diagram → Section 7 (S1-S9 Mapping)
+> - Phase-to-altitude applicability table → Section 4 (Multi-Altitude Phase Table)
+> - Implementation-facing artifact placement → Section 12 (Artifact→Position Mapping)
+> - Routing vocabulary → Section 16 (Routing Vocabulary)
+>
+> `docs/ALTITUDES.md` (v1.0, 3-altitude model) remains as historical reference with SUPERSEDED banner.
 
 ### Task 6: Create 10 agent definitions
 
@@ -347,7 +350,7 @@ Use this condensed sequence for execution tracking:
 2. Initialize empty indexes.
 3. Add frontmatter to all legacy artifacts.
 4. Populate knowledge indexes.
-5. Author ALTITUDES.md v2.0.
+5. ~~Author ALTITUDES.md v2.0.~~ → Absorbed into MODEL-REFERENCE Sections 4, 7, 12, 16 (DONE 2026-05-07)
 6. Author 10 phase-agent definitions.
 7. Author SYNTHESIS-001.md.
 8. Produce Package 1 report.

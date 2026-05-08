@@ -21,7 +21,7 @@ proposing solutions, implementations, or architecture.
 
 - state/ideas/idea-NNN.md (primary input, required)
 - docs/vision.md (product vision and persona definitions, required)
-- docs/V1_PLAN.md (current product stage, optional -- load only if it exists)
+- docs/STAGED-PLAN.md (current product stage, optional -- load only if it exists)
 
 ## What You NEVER Load
 

@@ -33,7 +33,7 @@ Run this agent when:
 You should normally run P0.UC:
 
 - Once when a new product repo is created.
-- Then roughly every 2–4 weeks, or when `docs/V1_PLAN.md` changes stage.
+- Then roughly every 2–4 weeks, or when `docs/STAGED-PLAN.md` changes stage.
 - Before a major P1 discovery cycle for a new “stage” of the product.
 
 ---
@@ -45,7 +45,7 @@ You should normally run P0.UC:
 Required:
 
 - `docs/vision.md`          # product purpose, horizons
-- `docs/V1_PLAN.md`         # current stage / version plan (if missing, treat as PLAN-ABSENT)
+- `docs/STAGED-PLAN.md`         # current stage / version plan (if missing, treat as PLAN-ABSENT)
 
 Optional (load if they exist):
 
@@ -164,7 +164,7 @@ List UCs that were removed or folded into others. Include a one-line reason.
 ## Process
 
 1. **Classify product stage**
-    - Read `docs/V1_PLAN.md` and `docs/PROGRESS.md` (if present).
+    - Read `docs/STAGED-PLAN.md` and `docs/PROGRESS.md` (if present).
     - Determine current stage label (e.g., “v1 core”, “v1.1 reliability”).
     - If no plan exists, use `PLAN-ABSENT` as the stage label and note this in the overview.
     - Extract any explicit “primary v1 use cases” if the plan mentions them.

@@ -22,13 +22,13 @@ This skill glues three agents together:
 ## When to use
 
 - After `health-sweep` reports architecture or vision as RED and suggests P3.
-- After a product stage change in `docs/V1_PLAN.md`.
+- After a product stage change in `docs/STAGED-PLAN.md`.
 - When you explicitly suspect global architecture drift or scope expansion.
 
 ## Inputs
 
 - `docs/vision.md`
-- `docs/V1_PLAN.md`
+- `docs/STAGED-PLAN.md`
 - `docs/USE_CASES.md`
 - `docs/architecture/context.md` (if exists)
 - `docs/architecture/containers.md` (if exists)

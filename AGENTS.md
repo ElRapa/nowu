@@ -94,7 +94,7 @@ workflow (S1–S9) and a pre-workflow (P0–P4). **Each step has a dedicated age
 | ADRs (binding) | `docs/architecture/adr/ADR-0001..0010` |
 | Implementation roadmap | `docs/STAGED-PLAN.md` |
 | Context scoping table | `CLAUDE.md` (Context Scoping section) |
-| Agent definitions | `.claude/agents/` (19 agents) |
+| Agent definitions | `.claude/agents/` (32 agents) |
 | Skills (modes) | `.claude/skills/` (full-cycle, implement-loop, single-step, etc.) |
 | Architecture rules | `.claude/rules/architecture.md` |
 | Code style rules | `.claude/rules/code-style.md` |

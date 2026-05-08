@@ -22,7 +22,7 @@ or source code.
 
 Always:
 - docs/vision.md -- product vision and personas (Above C4 context; do not load if absent)
-- docs/V1_PLAN.md -- current phase and priorities (if missing: note it and proceed)
+- docs/STAGED-PLAN.md -- current phase and priorities (if missing: note it and proceed)
 - docs/USE_CASES.md -- scan for relevant UC-NNN by ID (do not load everything)
 - docs/PROGRESS.md -- check for duplicate work in progress
 

@@ -30,15 +30,16 @@ Use when you are **not yet at an intake brief**.
 | New story on existing epic (arch current) | `pre-workflow-runner` | Standard | new `story-NNN-*` + `intake-NNN` READY_FOR_S1, no arch pass |
 | Small feature / tweak on known project | `pre-workflow-runner` | Lite | 1–few approved stories + `intake-NNN` READY_FOR_S1 |
 
-### SYNTHESIS + Architecture Vision (W1–W2)
+### SYNTHESIS + Architecture Vision + ADRs (W1–W3.5)
 
-Run ONCE before the first S1-S9 intake. Re-run when significant new UCs are added.
+Run ONCE before the first S1-S9 intake. Re-run W1–W2 when significant new UCs are added.
 
-| Situation | Skill | Outcome |
-|---|---|---|
-| UCs approved, no SYNTHESIS exists yet | `synthesis-vision` | `state/arch/SYNTHESIS-NNN.md` + `docs/architecture/ARCHITECTURE-VISION.md` |
-| ≥10 new UCs added or new domain category | `synthesis-vision` | Updated SYNTHESIS + Architecture Vision |
-| health-sweep recommends architecture pass | `synthesis-vision` | Re-run SYNTHESIS with new evidence |
+| Situation | Step | Agent | Outcome |
+|---|---|---|---|
+| UCs approved, no SYNTHESIS exists yet | W1+W2 | `synthesis-vision` skill | `state/arch/SYNTHESIS-NNN.md` + `docs/architecture/ARCHITECTURE-VISION.md` |
+| ≥10 new UCs added or new domain category | W1+W2 | `synthesis-vision` skill | Updated SYNTHESIS + Architecture Vision |
+| Architecture Vision approved, write ADRs | W3 | `hypothesis-adr-writer` | `docs/architecture/adr/ADR-NNNN-*.md` (HYPOTHESIS grade, dependency-ordered) |
+| ADRs written, validate structural contracts | W3.5 | `fitness-function-writer` | `tests/architecture/test_adr_fitness.py` (structural pytest checks) |
 
 ### Implementation (S1–S9)
 
@@ -50,6 +51,12 @@ Use when you **already have `state/intake/intake-NNN.md [READY_FOR_S1]`**.
 | You have shaped tasks, just execute | `implement-loop` | B | `task-NNN [READY_FOR_IMPL]` |
 | Quick bugfix / refactor / docs | `single-step` | C | thin `task-NNN` or direct |
 | Architecture / design spike, no code | `architecture-only` | D | `intake-NNN.md [READY_FOR_S1]` |
+
+### Session Learnings (run at end of significant sessions)
+
+| Situation | Skill | Output |
+|---|---|---|
+| End of any significant work session | `session-learning` | `state/learnings/session-YYYY-MM-DD-{slug}.md` + updated `state/learnings/INDEX.md` |
 
 ### Health Checks (run anytime)
 

@@ -15,10 +15,8 @@ project-root/
 ├── docs/
 │   ├── vision.md                          ← [LANDMARK] Product vision (APPROVED before any work)
 │   ├── STAGED-PLAN.md                     ← Implementation roadmap (areas × stages, supersedes V1_PLAN)
-│   ├── V1_PLAN.md                         ← ⛔ SUPERSEDED — historical reference only
 │   ├── USE_CASES.md                       ← UC-NNN catalogue (source of truth for validation traces)
 │   ├── DECISIONS.md                       ← D-NNN catalogue (binding implementation decisions)
-│   ├── ALTITUDES.md                       ← ⛔ SUPERSEDED — see docs/model/MODEL-REFERENCE.md
 │   ├── PROGRESS.md                        ← Cycle-level progress log (updated by S9 curator)
 │   ├── WORKFLOW.md                        ← S1–S9 reference table
 │   ├── WORKFLOW-DETAILED.md               ← Full S1–S9 narrative spec
@@ -129,6 +127,8 @@ project-root/
 │   │   ├── nowu-curator.md
 │   │   ├── synthesis-agent.md
 │   │   ├── architecture-vision-agent.md
+│   │   ├── hypothesis-adr-writer.md
+│   │   ├── fitness-function-writer.md
 │   │   ├── health-vision.md
 │   │   ├── health-architecture.md
 │   │   ├── health-goals.md
@@ -141,7 +141,8 @@ project-root/
 │   │   ├── architecture-only/SKILL.md
 │   │   ├── synthesis-vision/SKILL.md
 │   │   ├── health-sweep/SKILL.md
-│   │   └── gap-chain/SKILL.md
+│   │   ├── gap-chain/SKILL.md
+│   │   └── session-learning/SKILL.md
 │   └── rules/
 │       ├── architecture.md
 │       ├── workflow.md
@@ -226,6 +227,7 @@ If any landmark is stale, run the corresponding health check before proceeding.
 | `state/reviews/` | Review reports | Reviewer | S9 |
 | `state/capture/` | Cycle closure records | Curator | next cycle P0 |
 | `state/health/` | Health check reports | Health agents | Human review |
+| `state/learnings/` | Session learnings + running INDEX.md | session-learning skill | Workflow optimization, future sessions |
 | `state/pre-workflow/` | Mode records, constraint checks, readiness checks | Various agents | P4, S1 |
 
 ---

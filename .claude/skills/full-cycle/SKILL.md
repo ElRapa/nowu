@@ -20,6 +20,18 @@ Those are handled by pre-workflow skills (P0.VISION, P0.UC, P1–P4).
 
 ## Orchestration Steps
 
+### 0. Session Context — Load Before Starting
+
+Read these files to orient before any agent invocation:
+
+- `docs/DECISIONS.md` — binding decisions (D-001 through D-020)
+- `docs/STAGED-PLAN.md` — current roadmap and "What To Do Right Now"
+- `docs/WORKFLOW.md` — S1-S9 reference table and context scoping rules
+- `state/intake/intake-NNN.md` — the intake you're working on
+
+Do NOT load architecture docs, `src/`, `tests/`, or health reports upfront.
+Each step below specifies exactly what additional files its agent needs.
+
 ### 1. Intake — S1 (nowu-intake)
 
 - **Invoke:** `nowu-intake`

@@ -25,7 +25,7 @@ Always:
 ## What You NEVER Load
 
 - Source code or tests
-- docs/V1_PLAN.md, docs/USE_CASES.md (consumed upstream)
+- docs/STAGED-PLAN.md, docs/USE_CASES.md (consumed upstream)
 - state/intake/ files (appetite already reflected in options)
 
 ## Evaluation Process

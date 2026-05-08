@@ -38,7 +38,7 @@ and confirming RECOMMENDED.
 Required:
 - `state/arch/gap-trigger.md`              # trigger context and scope
 - `docs/vision.md`                         # product purpose, personas, horizons
-- `docs/V1_PLAN.md`                        # current stage, steps, exit criteria
+- `docs/STAGED-PLAN.md`                        # current stage, steps, exit criteria
 - `docs/USE_CASES.md`                      # full UC catalog
 
 Optional (load if they exist):

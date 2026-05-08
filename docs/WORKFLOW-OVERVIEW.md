@@ -59,6 +59,20 @@ flowchart LR
     end
   end
 
+  %% ARCHITECTURE FOUNDATION W1-W3.5 (once before first S1-S9)
+  subgraph ARCH["Architecture Foundation (W1–W3.5)\nRun once before first S1-S9"]
+    direction TB
+    W1[\"W1 SYNTHESIS\n(synthesis-agent → SYNTHESIS-NNN.md)\"]
+    W1G[\"W1 Human Review 🛑\"]
+    W2[\"W2 Architecture Vision\n(architecture-vision-agent → ARCHITECTURE-VISION.md)\"]
+    W2G[\"W2 Human Review 🛑\"]
+    W3[\"W3 Hypothesis ADRs\n(hypothesis-adr-writer → ADR-NNNN-*.md)\"]
+    W35[\"W3.5 Fitness Functions\n(fitness-function-writer → test_adr_fitness.py)\"]
+    class W1,W2,W3,W35 agentStep
+    class W1G,W2G humanGate
+    W1 --> W1G --> W2 --> W2G --> W3 --> W35
+  end
+
   %% DELIVERY LOOP S1..S9
   subgraph S["Delivery Loop (S1–S9)"]
     direction LR
@@ -93,6 +107,10 @@ flowchart LR
 
   %% Readiness to intake
   P41 --> P42 --> P43
+
+  %% Architecture Foundation runs once before first S1-S9
+  P02 -.->|"First time only:\nrun W1-W3.5 before S1-S9"| W1
+  W35 -->|"ADRs + fitness functions in place"| S1
   P43 -->|state/intake/intake-NNN READY_FOR_S1| S1
 
   %% DELIVERY MAIN LINE

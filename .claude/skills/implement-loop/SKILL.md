@@ -17,6 +17,17 @@ Stop points:
 
 ## Orchestration Steps
 
+### 0. Session Context — Load Before Starting
+
+Read ONLY these files. Nothing else.
+
+- `state/tasks/task-NNN.md` — the task spec you're implementing
+- Files listed in `in_scope_files` from the task spec
+
+Do NOT load `docs/architecture/`, `docs/vision.md`, `docs/WORKFLOW.md`,
+or any other framework docs. Implementation context is the task spec +
+source files. Period.
+
 ### 1. Task Validation (S5 sanity)
 
 For each candidate `task-NNN`:

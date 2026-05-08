@@ -23,7 +23,7 @@ traceability chains. Read-only -- you do not modify any existing file.
 
 - docs/vision.md (vision personas and success horizons, required)
 - docs/USE_CASES.md (use case registry for traceability checks, required)
-- docs/V1_PLAN.md (current stage and active phase, required)
+- docs/STAGED-PLAN.md (current stage and active phase, required)
 - state/problems/ (all problem files, filter to APPROVED)
 - state/epics/ (all epic files, filter to active)
 - state/stories/ (all story files with status APPROVED or DRAFT)

@@ -226,14 +226,24 @@ Conflating the two causes either design-free testing or untestable “evaluation
 | Discovery agent | PRODUCT | ANALYSIS | — |
 | Perspective interview | PRODUCT | PROBLEM | — |
 | Story mapper | DELIVERY | OPTIONS | — |
+| Signal capture | STRATEGIC/PRODUCT | IDEA | — |
+| Idea decomposition | PRODUCT | ANALYSIS | — |
+| Health-vision | STRATEGIC | VERIFICATION | — |
 | Health-goals | STRATEGIC | VERIFICATION | — |
+| Health-architecture | ARCHITECTURE | VERIFICATION | — |
+| Health-use-cases | PRODUCT | VERIFICATION | — |
 | Gap detector (G0) | ARCHITECTURE | IDEA | — |
 | Gap analyst (G1) | ARCHITECTURE | ANALYSIS | C4 L1/L2 |
 | Gap writer (G2) | ARCHITECTURE | IMPLEMENTATION | — |
 | Architecture bootstrap | ARCHITECTURE | OPTIONS | C4 L1/L2 |
+| Architecture design | ARCHITECTURE | OPTIONS | C4 L1/L2 |
 | Constraint check | ARCHITECTURE | ANALYSIS | — |
 | QA elicitation | ARCHITECTURE | ANALYSIS | — |
 | ATAM-lite | ARCHITECTURE | EVALUATION | — |
+| Synthesis agent (W1) | ARCHITECTURE | SYNTHESIS | all UCs |
+| Architecture vision agent (W2) | ARCHITECTURE | SYNTHESIS→DECISION | C4 L1/L2 |
+| Hypothesis ADR writer (W3) | ARCHITECTURE | DECISION | C4 L2 |
+| Fitness function writer (W3.5) | ARCHITECTURE | VERIFICATION | C4 L3/L4 |
 | Readiness checker | DELIVERY | EVALUATION | — |
 | Intake analyst (S1) | DELIVERY | IDEA | C4 L1 |
 | Constraints analyst (S2) | ARCHITECTURE | ANALYSIS | C4 L1-2 |
@@ -300,7 +310,7 @@ Always valid within altitude and expected to follow loop order. Not every phase 
 | state/capture/capture-task-NNN.md | EXECUTION→DELIVERY | LEARN |
 | state/health/arch-*.md | ARCHITECTURE | VERIFICATION |
 | state/analysis/session-review-*.md | DELIVERY | LEARN |
-| V1_PLAN.md | STRATEGIC | IMPLEMENTATION |
+| docs/STAGED-PLAN.md | STRATEGIC | IMPLEMENTATION |
 
 ## 13. SYNTHESIS Phase Details
 
@@ -353,3 +363,52 @@ Key design decisions established by the concept draft and preserved in this cano
 - Phases are multi-altitude (not single-layer locked).
 - Epistemic grades are tiered by altitude and gate.
 - Migration is forward-only via explicit transition/promotion rules.
+
+## 16. Routing Vocabulary
+
+Consistent language for describing where you are and where to go. Use these terms in handoffs,
+agent prompts, session bookmarks, and capture records.
+
+| Term | Meaning |
+|---|---|
+| **Altitude** | Which of the 5 layers (STRATEGIC / PRODUCT / ARCHITECTURE / DELIVERY / EXECUTION) |
+| **Phase** | Which of the 10 cognitive modes (IDEA / PROBLEM / ANALYSIS / … / LEARN) |
+| **Position** | Altitude + Phase (e.g., "ARCHITECTURE / SYNTHESIS") |
+| **Artifact** | The file that carries the output of a phase step |
+| **Gate** | A human-approval checkpoint between phases or steps |
+| **Trigger** | The event that starts a loop at a given altitude (see Section 13 for SYNTHESIS trigger) |
+| **Handoff** | The artifact transfer from one altitude or step to the next |
+| **Pivot** | A LEARN phase output that routes to a different altitude/phase: `ARCH_PIVOT`, `PRODUCT_PIVOT` |
+| **Drift** | Growing gap between what an artifact says and current reality (detected by health agents) |
+| **GAP** | An ARCHITECTURE-altitude ANALYSIS loop run specifically for global architecture correction |
+| **Pass** | A single run of one altitude loop (e.g., "arch pass", "GAP pass", "synthesis pass") |
+| **W-step** | Architecture Foundation steps (W1-W3.5) that run once before the first S1-S9 cycle |
+
+### "Where Are We?" Quick Lookup
+
+At any point, the newest incomplete artifact tells you your current position:
+
+```
+Artifact                                         → Position
+──────────────────────────────────────────────────────────────────
+state/arch/gap-trigger.md OPEN                  → ARCHITECTURE / IDEA
+state/arch/global-pass-*.md PROPOSED            → ARCHITECTURE / ANALYSIS
+docs/architecture/adr/*.md HYPOTHESIS           → ARCHITECTURE / DECISION (W3)
+tests/architecture/test_adr_fitness.py new      → ARCHITECTURE / VERIFICATION (W3.5)
+state/health/arch-*.md RED                      → ARCHITECTURE / VERIFICATION
+state/ideas/idea-NNN.md                         → STRATEGIC or PRODUCT / IDEA
+state/pre-workflow/NNN-mode.md                  → PRODUCT / ANALYSIS
+state/discovery/disc-NNN-research.md            → PRODUCT / ANALYSIS
+state/problems/problem-NNN.md DRAFT             → PRODUCT / PROBLEM
+state/stories/story-NNN-*.md DRAFT              → DELIVERY / OPTIONS
+state/arch/arch-pass-NNN.md                     → ARCHITECTURE / OPTIONS
+state/intake/intake-NNN.md DRAFT_FOR_REVIEW     → DELIVERY / EVALUATION
+state/intake/intake-NNN.md READY_FOR_S1         → DELIVERY / DECISION (handoff to S1)
+state/arch/*-constraints.md                     → ARCHITECTURE / ANALYSIS (S2)
+state/arch/*-options.md                         → ARCHITECTURE / OPTIONS (S3)
+state/arch/*-decision.md                        → ARCHITECTURE / DECISION (S4)
+state/tasks/task-NNN.md READY_FOR_IMPL          → EXECUTION / IMPLEMENTATION (S6-S7)
+state/vbr/vbr-task-NNN.md                       → EXECUTION / VERIFICATION (S7)
+state/reviews/review-task-NNN.md                → EXECUTION / EVALUATION (S8)
+state/capture/capture-task-NNN.md               → EXECUTION / LEARN (S9)
+```

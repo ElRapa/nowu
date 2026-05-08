@@ -31,7 +31,7 @@ Cut scope now rather than during implementation.
 - Any file under state/arch/, state/tasks/, state/intake/
 - docs/ARCHITECTURE.md, docs/DECISIONS.md
 - Any source code or test files
-- docs/V1_PLAN.md, docs/PROGRESS.md
+- docs/STAGED-PLAN.md, docs/PROGRESS.md
 
 ## Handling Missing USE_CASES.md
 

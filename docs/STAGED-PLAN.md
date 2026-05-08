@@ -205,7 +205,7 @@ decisions: [D-WF-001 through D-WF-013]
 
 ## What To Do Right Now
 
-The critical path is **Workflow v1-core**: ~~W1~~ → ~~W2~~ → ~~W3~~ → **W3.5** → W4 → W5.
+The critical path is **Workflow v1-core**: ~~W1~~ → ~~W2~~ → ~~W3~~ → ~~W3.5~~ → **W4** → W5.
 
 **Next session should execute W4:**
 1. Select first intake for S1-S9 end-to-end (recommend NF-01 or a small NF UC)

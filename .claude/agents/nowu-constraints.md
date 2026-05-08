@@ -46,7 +46,7 @@ For public interface inspection only:
 
 - Source file internals (anything beyond __init__.py and contracts/)
 - tests/
-- docs/V1_PLAN.md (consumed in S1)
+- docs/STAGED-PLAN.md (consumed in S1)
 - docs/USE_CASES.md (consumed in S1)
 
 ## What You Produce

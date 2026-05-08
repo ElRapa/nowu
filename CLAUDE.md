@@ -6,7 +6,9 @@
 
 ## Quick Start
 
-Paste `BOOTSTRAP.md` at the start of every new session.
+Start sessions with a **skill invocation** that matches your work type (see
+`AGENTS.md` → "Session Entry" table). Use `BOOTSTRAP.md` only for full
+framework orientation or onboarding.
 Choose a mode and follow the skill. Every step has an agent and an artifact.
 
 Every idea enters through the pre-workflow. Every feature enters S1 via a READY_FOR_S1 intake.
@@ -80,6 +82,10 @@ When unsure, treat as Tier 2.
 - W2: `architecture-vision-agent` (system classification + principles from themes)
 - Skill: `synthesis-vision` orchestrates W1 → human gate → W2 → human gate
 
+**Hypothesis ADRs + Fitness Functions (W3–W3.5, after W2, before W4):**
+- W3: `hypothesis-adr-writer` (writes hypothesis ADRs from SYNTHESIS ADR roadmap, dependency-ordered)
+- W3.5: `fitness-function-writer` (writes pytest checks in `tests/architecture/` validating ADR structural properties)
+
 **Health checks (anytime):**
 - `health-vision`, `health-architecture`, `health-goals`, `health-use-cases`
 - `health-sweep` (runs all four and suggests entry point: P0.VISION, P0.UC, P1, P3, or DIRECT-IMPLEMENT)
@@ -126,6 +132,7 @@ When unsure, treat as Tier 2.
 | `architecture-only` | Mode D — design spike | S1–S4 + S9 |
 | `health-sweep` | health | Runs all health agents and writes `health-sweep-YYYY-MM-DD.md` |
 | `gap-chain` | HIGH | G0 (gap-detector) → G1 (gap-analyst) → G2 (gap-writer)|
+| `session-learning` | any | Captures decisions, insights, anti-patterns at end of session |
 
 ---
 
