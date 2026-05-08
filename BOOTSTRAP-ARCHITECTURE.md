@@ -27,21 +27,16 @@
 12. `docs/architecture/ARCHITECTURE-VISION.md` (if exists) — architectural principles, risks
 
 ### State (awareness)
-13. `state/sessions/` — run `ls`            — checkpoint storage per ADR-0007 (may be empty)
+13. `state/sessions/` — run `ls`            — checkpoint storage per ADR-0007 (checkpoint storage per ADR-0007, may be empty until first session)
 
 ### Tools & Verification
 14. `CLAUDE.md`                            — commands, approval tiers
 15. `docs/model/VERIFICATION-GUIDE.md`     — how to verify ADRs
 
 ## What You NEVER Load at This Altitude
-- `src/` or `tests/` — no code during architecture work (prevents anchoring bias)
+- `src/` or `tests/` — no code during pure architecture work (prevents anchoring bias). Exception: when implementing architectural contracts/types, load only `src/nowu/core/contracts/`.
 - `state/tasks/` — no implementation tasks (architecture precedes shaping)
 - `state/SESSION_STATE.md` — session bookmark, not relevant to architecture
 
-## Confirm Understanding
-1. What are the 5 modules (core, flow, bridge, soul, know) and their import rules?
-2. What are the binding ADRs (ADR-0001 through ADR-0010) and their status?
-3. What is the current roadmap stage and what architectural work is on the critical path?
-4. What are the approval tiers for architecture work? (Hint: new ADRs are Tier 3)
-
-## Then wait for user approval before touching files.
+## Before Proceeding
+Verify: ☐ I know the 5 modules and their import rules ☐ I loaded all ACCEPTED ADRs ☐ I know which roadmap stage is active. If any unclear, re-read the relevant file above.

@@ -17,7 +17,7 @@
 6. `docs/WORKFLOW-DETAILED.md`             — full narrative spec (read relevant S1-S9 sections)
 7. `state/tasks/` — run `ls`               — see what tasks exist and their statuses
 8. `state/tasks/.active-scope`             — current scope (if filled)
-9. `state/sessions/` — run `ls`            — checkpoint storage per ADR-0007 (may be empty)
+9. `state/sessions/` — run `ls`            — checkpoint storage per ADR-0007 (checkpoint storage per ADR-0007, may be empty until first session)
 
 ### Tools & Rules
 9. `CLAUDE.md`                             — commands, approval tiers
@@ -34,10 +34,5 @@ Each workflow step loads ONLY its C4-level context:
 
 Violating context scoping causes anchoring bias or re-litigation.
 
-## Confirm Understanding
-1. What is the S1-S9 workflow and which step are you in now?
-2. What are the context scoping rules for your current step?
-3. What are the approval tiers and which tier does your current work fall into?
-4. What quality gates must pass before S8 review? (pytest, mypy, ruff)
-
-## Then wait for user approval before touching files.
+## Before Proceeding
+Verify: ☐ I know which S1-S9 step I'm in ☐ I know the context scoping rules for my step ☐ I know my approval tier ☐ I know the quality gates (pytest, mypy, ruff). If any unclear, re-read the relevant file above.
