@@ -17,7 +17,7 @@ purpose: "Master catalog of research sessions, traceability to decisions"
 | 2026-05-08 | `2026-05-08_3_perplexity_Document Maintenance Strategy` | Where should research outputs live? Who maintains docs? | (this INDEX + template changes) |
 | 2026-05-08 | `2026-05-08_2_perplexity_Context Loading Strategy` | How should bootstrap context loading work? | Bootstrap architecture (BOOTSTRAP-*.md files) |
 | 2026-05-08 | `2026-05-08_1_perplexity_orchestrator implementation` | How should the orchestrator layer work? | (pending — D-022, orchestrator agents) |
-| 2026-05-06 | `2026-05-06_5_practical-implementation-grid-adr-contracts_perplexity.md` | Practical implementation grid for ADRs and contracts | STAGED-PLAN structure |
+| 2026-05-06 | `2026-05-06_5_practical-implementation-grid-adr-contracts_perplexity.md` | Practical implementation grid for ADRs and contracts | ROADMAP-001 structure |
 | 2026-05-06 | `2026-05-06_4_7-critical-questions-nowu-workflow-model_perplexity.md` | 7 critical questions about workflow model | D-013..D-015 (model refinements) |
 | 2026-05-06 | `2026-05-06_3_strategic-analysis-for-you_perplexity.md` | Strategic analysis of nowu approach | Vision validation |
 | 2026-05-06 | `2026-05-06_3_directive-to-sisyphus_perplexity.md` | Directive for AI agent calibration | Agent prompt patterns |

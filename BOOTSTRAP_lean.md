@@ -18,7 +18,7 @@ Otherwise, proceed directly to your skill invocation.
 1. `CLAUDE.md`                           — commands, approval tiers
 2. `docs/model/MODEL-REFERENCE.md`       — 5x10 altitude-phase model
 3. `docs/DECISIONS.md`                   — check for new decisions since last session
-4. `docs/STAGED-PLAN.md`                 — current implementation roadmap
+4. `docs/ROADMAP-001.md`                 — current implementation roadmap
 5. `state/PROGRESS.md`                   — cycle-level execution status
 
 ## Health Check (if unsure)

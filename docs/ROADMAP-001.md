@@ -1,4 +1,6 @@
 ---
+artifact_type: ROADMAP
+version: 1
 created_at: 2026-05-06
 status: ACTIVE
 epistemic_grade: INFORMED_ESTIMATE
@@ -7,7 +9,7 @@ source: state/arch/5x10-session-synthesis-2026-05-06.md
 decisions: [D-WF-001 through D-WF-013]
 ---
 
-# nowu Staged Implementation Plan
+# nowu Implementation Roadmap v1
 
 > Areas × Stages. Each cell is independently actionable.
 > Dependencies are explicit. No cell assumes another is complete unless stated.

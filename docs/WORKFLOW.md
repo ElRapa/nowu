@@ -87,7 +87,7 @@ Loading code during architecture analysis causes anchoring bias.
 
 | Agent | Load | Never Load |
 |-------|------|------------|
-| nowu-intake | `intake-NNN.md`, `vision.md`, `STAGED-PLAN.md`, `USE_CASES.md`, `PROGRESS.md` | `src/`, `tests/`, `docs/architecture/containers.md`, `DECISIONS.md` |
+| nowu-intake | `intake-NNN.md`, `vision.md`, `ROADMAP-001.md`, `USE_CASES.md`, `PROGRESS.md` | `src/`, `tests/`, `docs/architecture/containers.md`, `DECISIONS.md` |
 | nowu-constraints | `intake-NNN.md`, `docs/architecture/containers.md`, `DECISIONS.md`, `contracts/`, `arch-pass-NNN.md` (if exists) | `src/` internals, `tests/` |
 | nowu-options | `constraints sheet`, `contracts/`, module `__init__.py` surfaces | Full `docs/architecture/containers.md`, `src/` internals |
 | nowu-decider | `options sheet`, `DECISIONS.md` | `src/`, `tests/`, `contracts/` |

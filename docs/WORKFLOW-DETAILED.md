@@ -62,7 +62,7 @@ Consider running `/health-check all` at session start if >7 days since last run.
 **Requires:**
 - `state/intake/intake-NNN.md` (READY_FOR_S1 — produced by P4)
 - `docs/PROGRESS.md` (current phase context)
-- `docs/STAGED-PLAN.md` (plan alignment)
+- `docs/ROADMAP-001.md` (plan alignment)
 - `docs/USE_CASES.md` (UC-NNN verification)
 
 **Produces:** `state/intake/intake-NNN.md` status updated to `READY_FOR_ARCH`

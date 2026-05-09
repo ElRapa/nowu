@@ -196,7 +196,67 @@ Conflating the two causes either design-free testing or untestable “evaluation
 
 **S1–S9 is a zigzag across altitudes, not a flat EXECUTION loop.** It starts at DELIVERY, rises to ARCHITECTURE for S2-S4, drops to DELIVERY for S5, drops again to EXECUTION for S6-S8, and the curator zooms back up for S9.
 
-## 8. Pre-Workflow Mapping (P0–P4)
+## 8. Orchestrator Layer (External to 5×10)
+
+The orchestrator is a **meta-layer** that sits **outside** the 5×10 execution grid. It decides what work enters the field, when, and in what sequence. The orchestrator is not a phase type — it is a separate system that operates on the field from the outside.
+
+### Why the Orchestrator is External
+
+Every mature workflow system separates:
+- **Execution**: The actual work (SENSE, PROBLEM, ANALYSIS, etc. inside the 5×10 field)
+- **Orchestration**: Deciding what work happens next (external to the field)
+
+Industry precedent: Shape Up's betting table, SAFe's PI Planning, Temporal's workflow tasks, AFLOW's optimizer, AgentOrchestra's Planning Agent, and HTN's compound tasks all separate execution from orchestration.
+
+### Orchestrator Agents (Meta-Level)
+
+These agents live in `.claude/agents/` alongside execution agents but are **not part of the execution agent roster**. They operate at the orchestrator layer.
+
+| Agent | Trigger | Altitude | Phase | Input | Output |
+|---|---|---|---|---|---|
+| `roadmap-creator` | P0.V+P0.G complete, 10+ UCs exist | STRATEGIC | IMPLEMENTATION | vision, goals, partial UCs | ROADMAP-001.md |
+| `roadmap-updater` | SYNTHESIS complete, Arch Vision complete, stage gates | STRATEGIC | LEARN | current ROADMAP-NNN.md + milestone artifact | ROADMAP-NNN+1.md |
+| `work-scheduler` | User asks "what's next?" or agent completes task | N/A (meta) | N/A (query) | current ROADMAP-NNN.md + system state | Next work item decision (console output) |
+
+### Orchestrator Artifacts
+
+| Artifact | Location | Versioned? | Grade Progression |
+|---|---|---|---|
+| `ROADMAP-NNN.md` | `docs/` | Yes (version in filename + frontmatter) | HYPOTHESIS → INFORMED_ESTIMATE → EVIDENCE_BASED |
+
+ROADMAP lives in `docs/` (not `state/`) because it is project-level canonical documentation, not session-specific.
+
+### Orchestrator vs. Execution Layer
+
+| Property | 5×10 Execution Layer | Orchestrator Layer |
+|---|---|---|
+| **What it does** | Executes work (SENSE, PROBLEM, ANALYSIS, etc.) | Decides what work to execute next |
+| **Where it lives** | Inside the 5×10 grid (altitude × phase) | Outside the grid (meta-level) |
+| **Agents** | Execution agents (nowu-intake, nowu-shaper, etc.) | 3 meta-agents (roadmap-creator, roadmap-updater, work-scheduler) |
+| **State location** | `state/` (session artifacts) | `docs/` (versioned roadmap) |
+| **Triggered by** | Orchestrator or user | Milestones (SYNTHESIS, Arch Vision, stage gates) or user query |
+
+### Invocation Points
+
+The orchestrator is invoked at **milestone boundaries**, not during execution:
+
+```
+P0.V + P0.G complete, 10+ UCs → 🔵 roadmap-creator → ROADMAP-001.md
+W1 SYNTHESIS complete           → 🔵 roadmap-updater → ROADMAP-002.md
+W3 Hypothesis ADRs complete     → 🔵 roadmap-updater → ROADMAP-003.md
+v1-core stage gate passes       → 🔵 roadmap-updater → ROADMAP-004.md
+Any time: "what's next?"        → 🔵 work-scheduler  → console output
+```
+
+### Hard Constraints
+
+1. Orchestrator agents MUST NOT execute work inside the 5×10 field
+2. ROADMAP-NNN.md is the single source of truth for sequencing
+3. Orchestrator artifacts MUST be versioned (every update creates a new version)
+4. Epistemic grade MUST NOT decrease (can only improve or stay same)
+5. work-scheduler is read-only (never modifies the roadmap)
+
+## 9. Pre-Workflow Mapping (P0–P4)
 
 | Step | Agent | Altitude | Phase |
 |---|---|---|---|
@@ -207,7 +267,7 @@ Conflating the two causes either design-free testing or untestable “evaluation
 | P3 | Architecture | ARCHITECTURE | OPTIONS → DECISION |
 | P4 | Readiness/betting | DELIVERY | EVALUATION → DECISION |
 
-## 9. GAP Cycle Mapping
+## 10. GAP Cycle Mapping
 
 | Step | Agent | Altitude | Phase |
 |---|---|---|---|
@@ -217,7 +277,7 @@ Conflating the two causes either design-free testing or untestable “evaluation
 
 **Note:** GAP is an ARCHITECTURE-altitude loop that runs IDEA → ANALYSIS → IMPLEMENTATION.
 
-## 10. Full Agent Contract Table
+## 11. Full Agent Contract Table
 
 | Agent | Altitude | Phase | C4 Scope |
 |---|---|---|---|
@@ -253,8 +313,12 @@ Conflating the two causes either design-free testing or untestable “evaluation
 | Implementer (S6-S7) | EXECUTION | IMPLEMENTATION + VERIFICATION | C4 L4 |
 | Reviewer (S8) | EXECUTION | EVALUATION | C4 L3-4 |
 | Curator (S9) | EXECUTION→STRATEGIC | LEARN | C4 L1-2 |
+| **Orchestrator Meta-Agents** | | | |
+| Roadmap creator | STRATEGIC | IMPLEMENTATION | above-C4 |
+| Roadmap updater | STRATEGIC | LEARN | above-C4 |
+| Work scheduler | N/A (meta) | N/A (query) | all |
 
-## 11. Promotion and Transition Rules
+## 12. Promotion and Transition Rules
 
 ### Downward Flow (Normal)
 
@@ -287,7 +351,7 @@ Always valid within altitude and expected to follow loop order. Not every phase 
 - Upward promotion without LEARN phase
 - Re-entering higher altitude without trigger
 
-## 12. Artifact→Position Mapping
+## 13. Artifact→Position Mapping
 
 | Artifact | Altitude | Phase |
 |---|---|---|
@@ -310,9 +374,9 @@ Always valid within altitude and expected to follow loop order. Not every phase 
 | state/capture/capture-task-NNN.md | EXECUTION→DELIVERY | LEARN |
 | state/health/arch-*.md | ARCHITECTURE | VERIFICATION |
 | state/analysis/session-review-*.md | DELIVERY | LEARN |
-| docs/STAGED-PLAN.md | STRATEGIC | IMPLEMENTATION |
+| docs/ROADMAP-001.md | STRATEGIC | IMPLEMENTATION |
 
-## 13. SYNTHESIS Phase Details
+## 14. SYNTHESIS Phase Details
 
 ### Trigger
 
@@ -336,7 +400,7 @@ At least two approved use cases where:
 - Proposing concrete solutions too early instead of naming cross-cutting themes.
 - Operating on product-level concerns rather than architectural concerns.
 
-## 14. Security Integration
+## 15. Security Integration
 
 ### Trigger Conditions
 
@@ -352,7 +416,7 @@ Security integration is required when an ADR introduces any of the following:
 
 For ADRs with security implications, the EVALUATION section must explicitly address all applicable OWASP Top 10 categories (A01 through A10), from Broken Access Control through SSRF.
 
-## 15. Concept Draft Reference
+## 16. Concept Draft Reference
 
 **Source:** `.sisyphus/drafts/idea-004-2d-altitude-phase-model.md`
 
@@ -364,7 +428,7 @@ Key design decisions established by the concept draft and preserved in this cano
 - Epistemic grades are tiered by altitude and gate.
 - Migration is forward-only via explicit transition/promotion rules.
 
-## 16. Routing Vocabulary
+## 17. Routing Vocabulary
 
 Consistent language for describing where you are and where to go. Use these terms in handoffs,
 agent prompts, session bookmarks, and capture records.
@@ -376,7 +440,7 @@ agent prompts, session bookmarks, and capture records.
 | **Position** | Altitude + Phase (e.g., "ARCHITECTURE / SYNTHESIS") |
 | **Artifact** | The file that carries the output of a phase step |
 | **Gate** | A human-approval checkpoint between phases or steps |
-| **Trigger** | The event that starts a loop at a given altitude (see Section 13 for SYNTHESIS trigger) |
+| **Trigger** | The event that starts a loop at a given altitude (see Section 14 for SYNTHESIS trigger) |
 | **Handoff** | The artifact transfer from one altitude or step to the next |
 | **Pivot** | A LEARN phase output that routes to a different altitude/phase: `ARCH_PIVOT`, `PRODUCT_PIVOT` |
 | **Drift** | Growing gap between what an artifact says and current reality (detected by health agents) |

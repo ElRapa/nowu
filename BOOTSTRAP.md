@@ -38,7 +38,7 @@ If you are unsure which altitude you are in:
 | What are the binding rules? | `docs/model/WORKFLOW-STANDARDS.md` + `docs/DECISIONS.md` |
 | How do I execute S1-S9? | `docs/WORKFLOW.md` + `docs/WORKFLOW-DETAILED.md` |
 | How do I start from a vague idea? | `docs/PRE-WORKFLOW.md` |
-| What's the implementation roadmap? | `docs/STAGED-PLAN.md` |
+| What's the implementation roadmap? | `docs/ROADMAP-001.md` |
 | What are we building for users? | `docs/USE_CASES.md` + `docs/goals/` |
 | How do I verify correctness? | `docs/model/VERIFICATION-GUIDE.md` |
 | What's the module architecture? | `docs/architecture/containers.md` + ADRs |

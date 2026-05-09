@@ -22,7 +22,7 @@
 9. Skim PROPOSED/HYPOTHESIS ADRs (ADR-0007 through ADR-0010) for awareness
 
 ### Strategic Context (for alignment)
-10. `docs/STAGED-PLAN.md`                  — current implementation roadmap
+10. `docs/ROADMAP-001.md`                  — current implementation roadmap
 11. `state/arch/SYNTHESIS-001.md` (if exists) — architectural themes
 12. `docs/architecture/ARCHITECTURE-VISION.md` (if exists) — architectural principles, risks
 
