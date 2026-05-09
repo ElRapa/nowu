@@ -18,6 +18,7 @@ below the table. Recurring patterns are high-priority candidates for workflow ch
 
 | Date | Session | Key Learnings | Types | File |
 |------|---------|---------------|-------|------|
+| 2026-05-08 | Documentation Maintenance Strategy — Research Evaluation | Research docs propose more than needed — curate ruthlessly (<30%); YAGNI applies to process artifacts too; Minimal template changes (one field + one checklist) have high leverage for workflow behavior | workflow-process, domain-insight | `state/learnings/session-2026-05-08-docs-maintenance-strategy.md` |
 | 2026-05-08 | Bootstrap Review & Cleanup — Context Loading Strategy Evaluation | "Confirm Understanding" quizzes are token-wasting AI-slop — use gate checklists; Absolute rules need escape hatches for adjacent work (contracts at ARCHITECTURE altitude); Research docs are historical, separate timeless decisions from ephemeral session planning | workflow-process, agent-behavior | `state/learnings/session-2026-05-08-bootstrap-review-cleanup.md` |
 | 2026-05-08 | Altitude-Stratified Bootstrap Architecture | Research doc file paths go stale — always validate against repo; Monolithic bootstraps violate altitude-aware context scoping; Routing indexes preserve cross-cutting content while splitting altitude-specific content | workflow-process, domain-insight | `state/learnings/session-2026-05-08-altitude-stratified-bootstraps.md` |
 | 2026-05-07 | W3.5 — Fitness Functions + ADR Refinements | Perplexity gap findings on truncated context are unreliable; architecture tests document ADR requirements; iCloud path-with-spaces breaks editable .pth installs; Known Limitations sections better than silence | workflow-process, tooling | `state/learnings/session-2026-05-07-w35-fitness-functions.md` |
@@ -29,4 +30,10 @@ below the table. Recurring patterns are high-priority candidates for workflow ch
 
 ## Recurring Patterns
 
-_No recurring patterns identified yet. Patterns are promoted here when they appear in 3+ sessions._
+### RP-001: Research docs propose more than needed — implement <30%
+
+**Sessions:** 2026-05-08 (altitude-stratified-bootstraps), 2026-05-08 (bootstrap-review-cleanup), 2026-05-08 (docs-maintenance-strategy)
+
+**Pattern:** Perplexity research outputs are comprehensive but contain substantial future-work, over-engineering, and speculative structure. Wholesale implementation creates maintenance burden. Effective approach: separate "actionable now" from "interesting but future" and implement only the minimal viable subset.
+
+**Action:** When consuming any research doc, apply YAGNI filter: implement only what's immediately verifiable and defer the rest. Default to <30% of what's proposed.

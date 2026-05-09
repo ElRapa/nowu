@@ -22,11 +22,19 @@ status: APPROVED | CHANGES_REQUESTED | BLOCKED
 
 | Check | Result | Notes |
 |---|---|---|
-| Each AC tests observable behavior (not just “code runs”) | PASS/FAIL | |
+| Each AC tests observable behavior (not just "code runs") | PASS/FAIL | |
 | Each UC-NNN in validation_trace is covered by ≥1 AC | PASS/FAIL | |
 | Story-level ACs covered across all tasks in this epic | PASS/FAIL | |
 | Behavior matches original intake intent | PASS/FAIL | |
 | No hidden scope additions | PASS/FAIL | |
+
+## Documentation Validation
+
+| Check | Result | Notes |
+|---|---|---|
+| All docs declared in `docs_to_update` are modified in changeset | PASS/FAIL | |
+| If `docs_to_update: None`, confirm no binding decisions or module changes made | PASS/FAIL | |
+| If new ADR created, it is referenced in DECISIONS.md | PASS/FAIL | |
 
 ## Status: APPROVED / CHANGES_REQUESTED / BLOCKED
 
