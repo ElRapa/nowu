@@ -1,0 +1,53 @@
+# Structured Research Artifact Schema v1.0
+# For Perplexity → OmO handoff
+
+research_artifact:
+  version: string                    # "1.0"
+  date: string                       # ISO 8601 format YYYY-MM-DD
+  topic: string                      # Brief topic (max 60 chars)
+  perplexity_session_id: string      # Optional: link back to Perplexity session
+  
+  problem_statement:
+    diagnosis: string                # What's the current issue/gap?
+    context: string                  # Why does this matter? What triggered this?
+    scope: string                    # What's in/out of scope?
+  
+  evaluation_criteria:
+    - criterion: string              # e.g., "AI agent interpretability"
+      weight: string                 # "high" | "medium" | "low"
+      rationale: string              # Why does this matter?
+  
+  alternatives:
+    - id: string                     # "A" | "B" | "C"
+      name: string                   # Short descriptive name
+      summary: string                # 1-2 sentence description
+      changes:                       # Concrete file changes
+        - file: string               # File path
+          action: string             # "create" | "edit" | "delete"
+          change: string             # What changes in this file
+      pros: list[string]             # Benefits
+      cons: list[string]             # Drawbacks
+      effort: string                 # "low" | "medium" | "high"
+      risk: string                   # "low" | "medium" | "high"
+      evaluation: dict               # Score against each criterion
+        criterion_name: string       # "excellent" | "good" | "acceptable" | "poor"
+  
+  recommendation:
+    chosen: string                   # "A" | "B" | "C"
+    rationale: string                # Why this one?
+    runner_up: string                # Optional: "If X constraint changes, consider Y"
+  
+  implementation:
+    prerequisites: list[string]      # What must exist first?
+    steps:                           # Ordered implementation steps
+      - step: string
+        verify: string               # How to verify this step worked
+    validation:                      # How to know the whole thing worked
+      - test: string
+        expected: string
+  
+  context_for_omo:
+    files_to_review: list[string]    # Files OmO should read before implementing
+    decisions_informed: list[string] # D-NNN, ADR-NNNN references
+    related_artifacts: list[string]  # Other docs/artifacts relevant to this
+    constraints: list[string]        # Hard constraints (e.g., "no new dependencies")
