@@ -1,14 +1,19 @@
 ---
+superseded_by: docs/ROADMAP-003.md
 artifact_type: ROADMAP
 version: 2
 created_at: 2026-05-06
 updated_at: 2026-05-10
-status: ACTIVE
+status: SUPERSEDED
 epistemic_grade: INFORMED_ESTIMATE
 supersedes: docs/V1_PLAN.md (directional only — that file is retained as historical reference)
 source: state/arch/5x10-session-synthesis-2026-05-06.md
 decisions: [D-013 through D-022]
 ---
+
+> **⚠️ SUPERSEDED** — This roadmap has been superseded by `docs/ROADMAP-003.md` (version 3).
+> Refer to ROADMAP-003 for current project status and work items.
+> This file is retained as historical reference.
 
 # nowu Implementation Roadmap v1
 

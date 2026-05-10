@@ -18,6 +18,43 @@ status: ACTIVE
 
 ---
 
+## Status Dashboard
+
+> Last updated: 2026-05-10
+> Source: `docs/ROADMAP-003.md` (v3)
+
+#### Current Position
+- **Stage**: v1-core — Bootstrap
+- **Current Work Item**: W4 — First S1-S9 intake (end-to-end cycle)
+- **Agent to Invoke**: pre-workflow-runner (to create intake-001) then nowu-intake (S1)
+
+#### Milestones
+| Milestone | Status | Date |
+|-----------|--------|------|
+| W1: SYNTHESIS | ✅ Done | 2026-05-06 |
+| W2: Architecture Vision | ✅ Done | 2026-05-06 |
+| W3: Hypothesis ADRs | ✅ Done | 2026-05-07 |
+| W3.5: Fitness Functions | ✅ Done | 2026-05-07 |
+| W-orch: Orchestrator Layer | ✅ Done | 2026-05-09 |
+| W-log: Session Log | ✅ Done | 2026-05-10 |
+| W4: First S1-S9 Intake | ⬜ NEXT | — |
+
+#### Blocked Items
+- W5: Validate 5×10 coordinates on W4 artifacts — BLOCKED_BY_W4
+- W6: 5×10 model refactor with full agent-grid mapping — BLOCKED_BY_W4
+- W29: NF-15 Level 0 epistemic enforcement implementation — BLOCKED_BY_W4
+- W32: Epistemic threshold calibration — BLOCKED_BY_W4
+- W27: AP domain project bootstrap (AP-01/AP-02/AP-06) — BLOCKED_BY_W4
+- W28: RE domain project bootstrap (RE-01/RE-06) — BLOCKED_BY_W4
+
+#### Goal Progress
+| Goal | Active UCs | Linked to Epics |
+|------|-----------|----------------|
+| goal-001: Momentum | 31/31 | 6/31 |
+| goal-002: AI-led Workflow | 37/37 | 6/37 |
+| goal-003: Knowledge Compounds | 26/26 | 3/26 |
+| goal-004: Infrastructure | 34/34 | 0/34 |
+
 ## Entries
 
 ### 2026-05-10 — Roadmap alignment + session log + 5×10 refactoring proposal

@@ -1,6 +1,7 @@
 ---
+superseded_by: docs/ROADMAP-003.md
 artifact_type: ROADMAP
-version: 3
+version: 2
 altitude: STRATEGIC
 phase: IMPLEMENTATION
 epistemic_grade: INFORMED_ESTIMATE
@@ -9,9 +10,13 @@ updated_at: 2026-05-10
 source_synthesis: SYNTHESIS-001
 source_vision: ARCHITECTURE-VISION
 supersedes: ROADMAP-001
-status: ACTIVE
+status: SUPERSEDED
 decisions: [D-013 through D-022]
 ---
+
+> **⚠️ SUPERSEDED** — This roadmap has been superseded by `docs/ROADMAP-003.md` (version 3).
+> Refer to ROADMAP-003 for current project status and work items.
+> This file is retained as historical reference.
 
 # nowu Implementation Roadmap v2
 
