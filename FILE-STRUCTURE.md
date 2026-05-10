@@ -14,7 +14,7 @@ project-root/
 │
 ├── docs/
 │   ├── vision.md                          ← [LANDMARK] Product vision (APPROVED before any work)
-│   ├── STAGED-PLAN.md                     ← Implementation roadmap (areas × stages, supersedes V1_PLAN)
+│   ├── ROADMAP-001.md                     ← Implementation roadmap (areas × stages, supersedes V1_PLAN)
 │   ├── USE_CASES.md                       ← UC-NNN catalogue (source of truth for validation traces)
 │   ├── DECISIONS.md                       ← D-NNN catalogue (binding implementation decisions)
 │   ├── PROGRESS.md                        ← Cycle-level progress log (updated by S9 curator)

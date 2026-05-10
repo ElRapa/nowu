@@ -424,7 +424,7 @@ The orchestrator/router knows altitude and routes accordingly.
 - **Bad**: Router becomes a critical single point; must be well-tested
 
 ### Review Trigger
-When orchestrator is implemented (v1, task A3 in STAGED-PLAN).
+When orchestrator is implemented (v1, task A3 in ROADMAP-001).
 
 ---
 
@@ -442,11 +442,11 @@ It didn't account for Workflow, Knowledge, or Agent areas as independent workstr
 ### Decision
 Replace with 4 areas (Workflow, Knowledge, Agents, Framework) × 4 stages
 (v1-core, v1, v1.1, v2). Each cell is independently actionable with explicit dependencies.
-See `docs/STAGED-PLAN.md` for full detail.
+See `docs/ROADMAP-001.md` for full detail.
 
 ### Consequences
 - **Good**: Parallel progress possible; clear dependencies; no monolithic sequencing
-- **Bad**: More complex to track than linear steps (mitigated by STAGED-PLAN structure)
+- **Bad**: More complex to track than linear steps (mitigated by ROADMAP-001 structure)
 
 ### Review Trigger
 After v1-core gate passes (first S1-S9 intake end-to-end).
@@ -458,7 +458,7 @@ After v1-core gate passes (first S1-S9 intake end-to-end).
 ## D-021 — Hypothesis ADRs Written in Dependency Order (W3 Complete)
 
 **Date**: 2026-05-07 | **Status**: ACCEPTED | **Level**: system  
-**Intake**: W3 (STAGED-PLAN) | **Use Cases**: all  
+**Intake**: W3 (ROADMAP-001) | **Use Cases**: all  
 **Epistemic Grade**: INFORMED_ESTIMATE
 
 ### Context
@@ -477,9 +477,60 @@ All at HYPOTHESIS grade per D-017 (Minimum Viable Architecture).
 
 Perplexity review (2026-05-07) validated the synthesis and vision work, identified 3 refinements:
 refined ADR dependency graph (ADR-0007 depends on ADR-0008), user space boundary gap (deferred
-to ADR-0011), and W3.5 fitness functions (added to STAGED-PLAN).
+to ADR-0011), and W3.5 fitness functions (added to ROADMAP-001).
 
 ### Consequences
 - W3 is complete; critical path advances to W3.5 → W4
 - 4 new ADRs provide architectural context for first S1-S9 intake
 - ADRs are HYPOTHESIS — expected to be refined through implementation feedback
+
+---
+
+## D-022 — Orchestrator Layer: External Meta-Workflow
+
+**Date**: 2026-05-09 | **Status**: ACCEPTED | **Level**: system  
+**Intake**: Perplexity research session (2026-05-08) | **Use Cases**: all  
+**Epistemic Grade**: INFORMED_ESTIMATE  
+**Builds on**: D-019 (Router-Based Agent Architecture), D-020 (Staged Plan: Areas × Stages)
+
+### Context
+
+The nowu 5×10 workflow model defines execution phases (SENSE, PROBLEM, ANALYSIS, etc.)
+but lacks a formal mechanism for deciding what work enters the field next. ROADMAP-001.md
+(formerly STAGED-PLAN.md) was created manually outside the formal workflow model, revealing
+the gap between execution (the work) and orchestration (deciding what work happens next).
+
+Industry research validates this separation as universal: Shape Up's betting table, SAFe's
+PI Planning, Temporal's workflow tasks, AFLOW's optimizer, AgentOrchestra's Planning Agent,
+and HTN's compound tasks all distinguish execution from orchestration.
+
+D-019 established that the orchestrator/router is the centralized routing authority. This
+decision formalizes the orchestrator as a layer with dedicated agents and artifacts.
+
+### Decision
+
+Introduce an **orchestrator layer** that sits **outside** the 5×10 execution field:
+
+Three meta-agents (not part of the execution agent roster):
+1. `roadmap-creator`: Bootstraps initial roadmap from vision + goals + early UCs (STRATEGIC/IMPLEMENTATION)
+2. `roadmap-updater`: Integrates new evidence at milestone boundaries (STRATEGIC/LEARN)
+3. `work-scheduler`: Read-only query agent that decides next work item (no altitude — pure orchestration)
+
+One versioned artifact:
+- `docs/ROADMAP-NNN.md` with epistemic grade progression (HYPOTHESIS → INFORMED_ESTIMATE → EVIDENCE_BASED)
+
+The orchestrator is **not part of the 5×10 grid** — it decides what work enters the grid.
+ROADMAP-001.md (formerly STAGED-PLAN.md) is retroactively formalized as the first roadmap artifact.
+
+### Consequences
+
+- **Good**: Formalizes "what's next?" logic that was previously implicit
+- **Good**: Validates existing ROADMAP-001.md with proper lineage and versioning
+- **Good**: Aligns nowu with industry-standard separation of execution vs. orchestration
+- **Bad**: Adds three new meta-agents that must be maintained
+- **Bad**: Introduces versioned roadmap artifact that must be kept in sync with reality
+
+### Review Trigger
+
+If the orchestrator becomes a bottleneck (too slow, too manual, too rigid),
+revisit and consider automated work scheduling based on dependency graphs.
