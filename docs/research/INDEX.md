@@ -14,6 +14,8 @@ purpose: "Master catalog of research sessions, traceability to decisions"
 
 | Date | Session | Key Question | Informed Decisions | Processed |
 |---|---|---|---|---|
+| 2026-05-10 | `2026-06-10_3_perplexity_roadmap-session-log-proposal` | How should ROADMAP-001, stale state files, and session-log be aligned? | ROADMAP-001 v2 update; session-log creation; stale file marking | Yes |
+| 2026-05-10 | `2026-06-10_2_perplexity_refactor-5x10-workflow-proposal` | How should the 5×10 model be refactored to map all agents into the grid? | W6 (5×10 refactoring) added to ROADMAP-001 | No |
 | 2026-05-10 | `2026-05-10_1_perplexity_workflow_triage_update` | How should ROADMAP items be triaged so work-scheduler can prioritize READY items? | ROADMAP triage; work-scheduler integration | No |
 | 2026-05-09 | `2026-05-09_1_perplexity_Research-to-Ship Skillset` | What is the structured research artifact schema & how should OmO evaluate/convert research into decisions or implementation? | Research artifact schema; /evaluate-research skill | No |
 | 2026-05-08 | `2026-05-08_3_perplexity_Document Maintenance Strategy` | Where should research outputs live? Who maintains docs? | (this INDEX + template changes) | No |
