@@ -1,6 +1,9 @@
 ---
-# Session State -- Bookmark Only
-# This is NOT a source of truth. Canonical state lives in S1-S9 artifacts.
+# Session State -- TEMPLATE ONLY
+# This file was never populated with real data.
+# For actual session history, see: state/session-log.md
+# For current project status, see: docs/ROADMAP-001.md
+# This template is retained in case the S0 protocol needs a bookmark format.
 # Clear or reset after S9 Capture.
 ---
 
