@@ -1,7 +1,7 @@
 ---
 name: architecture-design
 version: 3.0
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 invoked_at: P3.3
 ---
 

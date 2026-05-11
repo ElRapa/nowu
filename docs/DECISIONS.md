@@ -534,3 +534,59 @@ ROADMAP-001.md (formerly STAGED-PLAN.md) is retroactively formalized as the firs
 
 If the orchestrator becomes a bottleneck (too slow, too manual, too rigid),
 revisit and consider automated work scheduling based on dependency graphs.
+
+---
+
+## D-023 — Use Cases Must Not Reference Implementation Artifacts
+
+**Date**: 2026-05-11 | **Status**: ACCEPTED | **Level**: product  
+**Intake**: Validity audit of USE_CASES.md (2026-05-11) | **Use Cases**: NF-09  
+**Epistemic Grade**: EVIDENCE_BASED  
+**Builds on**: D-013 (Altitude Discipline), D-020 (Staged Plan)
+
+### Context
+
+Use cases in `docs/USE_CASES.md` accumulated inline references to implementation
+artifacts — specific filenames (`state/SESSION-STATE.md`, `V1_PLAN Step 05`),
+directory paths (`state/goals/goal-NNN.md`), and resolved implementation details
+(`in_scope_files` in Task Spec). These references broke repeatedly as the codebase
+evolved: filenames changed (SESSION_STATE vs SESSION-STATE), files were archived
+(V1_PLAN → docs/archive/), directories moved (goals from state/ to docs/), and
+the session-state methodology was replaced entirely (session-log.md).
+
+Use cases are written *before* implementation and describe *what* the system must
+do, not *how* it does it. Embedding implementation references couples a stable
+strategic document to an unstable implementation surface, violating altitude
+discipline (D-013 Principle 4).
+
+### Decision
+
+**Strategic and product altitude documents (vision, goals, use cases) must not
+reference implementation artifacts by filepath or filename.** Specifically:
+
+1. **Reference stable IDs, not files.** Use decision IDs (D-NNN), ADR IDs
+   (ADR-NNNN), and UC IDs (NF-01) — never filenames or directory paths.
+
+2. **Resolved open questions reference the decision, not the artifact.** Instead
+   of `*(Resolved: agent reads state/SESSION-STATE.md...)*`, write
+   `*(Resolved: see ADR-0007 for session continuity protocol.)*`
+
+3. **UC-to-implementation traceability lives in the ROADMAP.** ROADMAP-NNN
+   Section 3 (UC-to-Stage Mapping) is the canonical place for linking UCs to
+   work items and implementation details. It is expected to change frequently.
+
+4. **No V1_PLAN-era traceability sections in USE_CASES.md.** Stage mapping is
+   now owned by the roadmap artifact per D-020.
+
+### Consequences
+
+- **Good**: USE_CASES.md stops breaking when filenames change
+- **Good**: Enforces altitude discipline — UCs stay at product altitude
+- **Good**: Reduces maintenance burden on strategic documents
+- **Good**: Traceability is centralized in the roadmap where it belongs
+- **Bad**: Existing resolved open questions need a cleanup pass (one-time cost)
+
+### Review Trigger
+
+Never — this is a documentation hygiene constraint that follows directly from
+altitude discipline (D-013).

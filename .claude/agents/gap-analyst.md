@@ -7,7 +7,7 @@ description: >
   GAP proposal: what the global L1/L2 architecture should look like, what
   ADRs need to be written, and what constraints downstream P3 passes must
   respect. Does not modify canonical docs — produces proposals only.
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 tools: [Read, Write]
 invoked_at: "G1 — after human confirms gap-trigger.md OPEN"
 ---

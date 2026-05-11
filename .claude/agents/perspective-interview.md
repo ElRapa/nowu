@@ -5,7 +5,7 @@ description: >
   Conducts a structured 8-question interview (3 roles: User Advocate, Skeptic,
   Scope Enforcer) to synthesize a problem-NNN.md draft. Human edits and approves
   the draft -- does not write from scratch. Reads disc-NNN-research.md and vision.md.
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 tools: [Read, Write]
 invoked_at: P1.2
 ---

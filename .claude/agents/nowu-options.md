@@ -6,7 +6,7 @@ description: >
   estimate, and migration path. If a pre-workflow arch-pass exists, evaluates
   it as a candidate option rather than ignoring it.
 tools: Read, Grep, Glob
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 memory: project
 ---
 

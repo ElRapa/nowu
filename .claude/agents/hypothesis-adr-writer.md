@@ -6,7 +6,7 @@ description: >
   in existing code (adopt-not-invent), at the depth calibrated by D-017: "deep enough
   for agents to follow, shallow enough to be wrong."
 tools: Read, Grep, Glob, Bash
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 memory: project
 ---
 

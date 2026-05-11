@@ -6,7 +6,7 @@ description: >
   When a pre-workflow arch-pass exists, refines it rather than starting cold.
   Produces a Constraints Sheet.
 tools: Read, Grep, Glob, Bash
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 memory: project
 ---
 

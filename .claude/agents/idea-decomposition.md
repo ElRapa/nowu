@@ -5,7 +5,7 @@ description: >
   Classifies an idea by size (Bug/Story/Epic/Product), assesses product stage fit,
   and for Product-size ideas decomposes into a Stage Map with queued seed idea stubs.
   Reads idea-NNN.md, vision.md, and V1_PLAN.md. Writes NNN-decomp.md.
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 tools: [Read, Write]
 invoked_at: P0.D
 ---

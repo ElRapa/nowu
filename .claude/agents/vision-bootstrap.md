@@ -1,7 +1,7 @@
 ---
 name: vision-bootstrap
 version: 2.2
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 invoked_at: P0.V
 ---
 

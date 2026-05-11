@@ -6,7 +6,7 @@ description: >
   Produces ROADMAP-NNN+1.md with integrated evidence, updated dependencies,
   and promoted epistemic grade. Not part of the execution agent roster —
   operates at the orchestrator layer external to the 5×10 field.
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 tools: [Read, Write]
 invoked_at: "After SYNTHESIS, Arch Vision, or stage gate completion"
 altitude: STRATEGIC

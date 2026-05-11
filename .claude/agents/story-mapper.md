@@ -5,7 +5,7 @@ description: >
   Decomposes a validated problem into implementation-ready stories with
   TDD-compatible acceptance criteria. Reads problem-NNN.md, USE_CASES.md,
   and disc-NNN-research.md. Writes epic-NNN.md and story-NNN-*.md [DRAFT].
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 tools: [Read, Write]
 invoked_at: P2.1
 ---

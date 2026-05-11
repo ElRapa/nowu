@@ -7,7 +7,7 @@ description: >
   assert structural properties of the codebase (schema fields exist, boundaries
   respected, contracts defined). Does NOT test behavior — only structure.
 tools: Read, Grep, Glob, Bash, Write, Edit
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 memory: project
 ---
 

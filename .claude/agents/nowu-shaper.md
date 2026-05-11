@@ -6,7 +6,7 @@ description: >
   validation_trace linking every criterion back to a use case and story AC.
   STOPS for human approval.
 tools: Read, Write, Grep, Glob, Bash
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 memory: project
 ---
 

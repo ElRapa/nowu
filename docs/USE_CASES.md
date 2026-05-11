@@ -1,12 +1,30 @@
 ---
-version: 2.5
-generated_by: use-case-agent@2.3 (NF-15 added manually 2026-04-08; NF-16 added manually 2026-04-08)
-generated_at: 2026-04-08
+version: 2.6
+generated_by: use-case-agent@2.3 (NF-15, NF-16 added manually 2026-04-08; v2.6 cleanup 2026-05-11)
+generated_at: 2026-05-11
 based_on_vision: v2.0 (approved 2026-03-31)
 status: ACCEPTED
 ---
 
 # nowu Framework — Use Cases & Requirements
+
+## Change Summary (v2.5 → v2.6)
+
+**Cleanup pass — D-023 compliance (UCs must not reference implementation artifacts):**
+- Removed all inline filepath references from UC open questions and situation fields
+  (SESSION-STATE.md, V1_PLAN, in_scope_files, state/goals/). Resolved open questions
+  now reference decision IDs (D-NNN, ADR-NNNN) instead of filenames per D-023.
+- Removed stale "V1_PLAN step-to-UC traceability" section from v1-core stage mapping.
+  UC-to-implementation traceability is now owned by ROADMAP-003 Section 3 (per D-020).
+- Fixed summary statistics — counts were stale since v2.1 and internally contradictory.
+- Updated Catalog Overview to reflect current stage (W4 per ROADMAP-003).
+- Removed leftover "Human next steps" section referencing non-existent proposed file.
+- Added NF-15 to v1-core UC list, NF-16 to v1 list, PK-09 to v1.1 list (all were
+  added in v2.3–v2.5 but never added to stage UC lists).
+- **Count correction**: v2.3–v2.5 change summaries each claimed "0 Pending" but XP-02
+  remained PENDING throughout. Correct counts: **50 UCs, 49 ACTIVE, 1 Pending**.
+
+---
 
 ## Change Summary (v2.4 → v2.5)
 
@@ -116,7 +134,7 @@ Key new language from the vision: *compound progress*, *continuity layer*, *mult
 **Promoted (stage advanced):**
 - PK-01: Fast Capture → `v1-core` (was unlabeled; now essential for the 6-month vision
   "at least two real projects outside software are active and growing")
-- PK-03: Today View → `v1-core` (confirms V1_PLAN Step 05 requirement; referenced in intake-001)
+- PK-03: Today View → `v1-core` (confirms CLI surface requirement; referenced in intake-001)
 - XP-01: Cross-Project Discovery → `v1-core` (was v1 nice-to-have; the 12-month vision
   explicitly requires "shared, queryable knowledge base" across projects)
 
@@ -185,7 +203,7 @@ Each use case follows this structure:
   knows — the vision sharpens, the decisions compound, and the knowledge becomes part of the
   product itself. For the multi-project human who loses context easily: nowu is the difference
   between a project that compounds and one that resets.
-- **Current stage:** Stage 1 — v1-core framework. Step 02 (Memory Integration Layer) in progress.
+- **Current stage:** Stage 1 — v1-core framework. W4 (First S1-S9 intake) is the current work item per ROADMAP-003.
 - **Scope of this catalog:**
   - NF group: v1-core framework self-development (NF-01–NF-16; NF-08, NF-11, NF-14 are v1.1; NF-16 is v1)
   - AP, RE groups: v1 dogfooding (minimal 2-3 UCs per project, test nowu on real non-software work)
@@ -271,7 +289,7 @@ dog food, these are the first use cases it must satisfy.
 | **Need** | Reconstruct enough context to continue productive work without re-doing completed steps or asking the human to repeat themselves. For agents: read persisted state and identify the last verified checkpoint. For the human: receive a clear signal of where things stand so they can confidently resume direction. |
 | **Success looks like** | Agent reads persisted state, identifies the last verified checkpoint, and proposes the correct next action within the first response — without hallucinating progress that didn't happen. The human's first interaction with a resuming project feels like picking up where they left off, not restarting. |
 | **Failure looks like** | Agent starts over from scratch, contradicts previous decisions, or claims work is done that was never completed. Human loses trust and begins micromanaging. Projects drift because the continuity overhead is too high to pay repeatedly. |
-| **Open questions** | What's the minimum viable state that must survive a crash? *(Recovery approach resolved: agent reads `state/SESSION-STATE.md` bookmark and proposes next action — human confirms at S1 gate. See WORKFLOW.md §S0.)* How should the human-facing orientation differ from the agent-facing resumption protocol? |
+| **Open questions** | What's the minimum viable state that must survive a crash? *(Resolved: see ADR-0007 for session continuity protocol.)* How should the human-facing orientation differ from the agent-facing resumption protocol? |
 
 ---
 
@@ -299,7 +317,7 @@ dog food, these are the first use cases it must satisfy.
 | **Need** | Transform the idea into 3—7 tasks with explicit boundaries: what's in scope, what's explicitly out, what the acceptance criteria are, and what other work this depends on or blocks. |
 | **Success looks like** | Each task can be completed in < 4 hours of agent work. Scope boundaries prevent touching unrelated modules. The Implementer never needs to ask "should I also do X?" because the boundary already says no. |
 | **Failure looks like** | A task balloons from "add a CLI flag" into "refactor the entire search module." Or: tasks are so vague that two agents produce conflicting implementations. |
-| **Open questions** | *(Both resolved: boundaries are file-level via `in_scope_files` in Task Spec (S5 output). nowu-shaper loads the file tree. See WORKFLOW.md context scoping rules.)* |
+| **Open questions** | *(Resolved: scope boundaries are file-level via Task Spec (S5 output). See D-009 for workflow standardization.)* |
 
 ---
 
@@ -397,7 +415,7 @@ dog food, these are the first use cases it must satisfy.
 | **Need** | Give the human a fast, trustworthy orientation into any project at any time — pulling together the current state, the last active thread, the most recent decisions, and the next logical action — without requiring them to read through a transcript or commit history. The experience must make progress feel compounding, not resetting. |
 | **Success looks like** | The human opens a project they haven't touched in 10 days. Within one interaction, they know: what was completed, what's in progress, the last key decision and why it was made, and the recommended next step. The "thread" has been held. They can make a meaningful contribution in minutes rather than re-investing an hour to re-load context. |
 | **Failure looks like** | Every return to a project requires a 20-minute archaeological dig through files, notes, and commit logs. The human carries the context burden in their own head. Projects stall not because of insufficient work, but because the re-orientation cost is too high to pay repeatedly. Progress resets instead of compounds. |
-| **Open questions** | What is the minimum viable orientation artifact — can it be synthesised from existing structured state (`SESSION-STATE.md`, `DECISIONS.md`, `PROGRESS.md`) or does it need dedicated session-summary atoms in `know`? Should orientation be triggered explicitly by the human ("catch me up") or offered automatically when a project is opened after an absence? How does orientation for a first-time human visitor differ from the owner resuming? |
+| **Open questions** | What is the minimum viable orientation artifact — can it be synthesised from existing structured state or does it need dedicated session-summary atoms in `know`? Should orientation be triggered explicitly by the human ("catch me up") or offered automatically when a project is opened after an absence? How does orientation for a first-time human visitor differ from the owner resuming? |
 
 ---
 
@@ -482,7 +500,7 @@ dog food, these are the first use cases it must satisfy.
 | **Success looks like** | Raphael starts a session and sees: "Goal 002 (Building Trust): no active work in last 4 sessions. Idea-007 (unaddressed). UC NF-16: no story coverage yet." He consciously chooses to address one of these rather than defaulting to the next task in the queue. Drift is intentional and visible, not accidental and invisible. |
 | **Failure looks like** | The alignment pulse fires constantly with noise, causing Raphael to ignore it. OR: it never fires because the coverage query has false negatives and everything looks covered when it isn't. OR: it fires correctly but offers no path to action, leaving Raphael informed but un-routed. |
 | **Open questions** | What is the right N for "not addressed in N sessions" before a drift signal fires? Is this per-project or global? Should the alignment pulse be part of s001's orientation artifact schema, or a separate artifact? How do we define "active work" — must there be an in-progress story, or does an approved story with no intake count? |
-| **Depends on** | Goal layer artifacts (`state/goals/goal-NNN.md`) from idea-006. Cannot be fully implemented until goal artifacts exist. |
+| **Depends on** | Goal layer artifacts (from idea-006). Cannot be fully implemented until goal artifacts exist. |
 
 ---
 
@@ -739,7 +757,7 @@ foundation layer beneath all projects.
 |---|---|
 | **stage_target** | v1-core |
 | **Actor** | Human |
-| **Situation** | Raphael wears multiple hats across concurrent projects. Each morning, he needs to know: what's due today? What's overdue? What's the most important thing to focus on? This requires pulling from multiple projects and personal reminders — without him assembling it manually from four different systems. V1_PLAN Step 05 delivers the CLI surface that makes this possible. Referenced in intake-001. |
+| **Situation** | Raphael wears multiple hats across concurrent projects. Each morning, he needs to know: what's due today? What's overdue? What's the most important thing to focus on? This requires pulling from multiple projects and personal reminders — without him assembling it manually from four different systems. |
 | **Need** | A unified daily view that aggregates tasks, reminders, and upcoming deadlines across all projects and personal knowledge. Sorted by actual urgency and importance, not just by project. Able to distinguish "buy groceries" (low importance, time-sensitive) from "FDA application deadline" (high importance, time-sensitive). |
 | **Success looks like** | The human starts the day with a single view showing 3-5 focus items and 10-15 background items. The focus items are genuinely the most important things to do today. The view adapts as items are completed and new work is added. No external system needs to be consulted. |
 | **Failure looks like** | The human checks 4 different systems (project boards, to-do lists, calendar, notes) to assemble their own daily plan. Important items from one project are eclipsed by urgent-but-unimportant items from another. |
@@ -846,7 +864,7 @@ framework level.
 | **Actor** | System (semantic search); Human (evaluator) |
 | **Situation** | The 12-month vision horizon requires "knowledge accumulates within each project and starts to connect usefully across them through a shared, queryable knowledge base." The human's coconut plantation (real-estate project) is also a potential supply source for the aperitif business. A technical pattern learned while building the framework might solve a problem in the real-estate project. These connections aren't explicitly created — they emerge from overlapping knowledge. |
 | **Need** | When working in one project's context, discover and surface relevant knowledge from other projects based on semantic similarity, shared entities, or shared concepts — without requiring the human to manually link everything. This is essential for the multi-project human to benefit from the full scope of what they know. |
-| **Success looks like** | While planning the aperitif supply chain, the system surfaces the coconut plantation property from the real-estate project as a potential supplier. The human doesn't need to remember it exists or maintain the link manually. Referenced in V1_PLAN Step 02 and intake-001. |
+| **Success looks like** | While planning the aperitif supply chain, the system surfaces the coconut plantation property from the real-estate project as a potential supplier. The human doesn't need to remember it exists or maintain the link manually. |
 | **Failure looks like** | Projects exist in complete isolation. The human manually cross-references by memory. Obvious connections are missed, and the "shared, queryable knowledge base" remains aspirational because it only works within project walls. |
 | **Open questions** | How should cross-project discovery be balanced against project focus (too much cross-pollination is distracting)? Should cross-project connections be explicit (create a link) or implicit (just surface in search)? How to handle conflicting knowledge across projects? |
 
@@ -995,18 +1013,11 @@ capture an idea from anywhere, check today's focus across all projects, and resu
 project within one interaction.
 
 **UCs in scope:**
-- NF-01, NF-02, NF-03, NF-04, NF-05, NF-06, NF-07, NF-09, NF-10, NF-12, NF-13
+- NF-01, NF-02, NF-03, NF-04, NF-05, NF-06, NF-07, NF-09, NF-10, NF-12, NF-13, NF-15
 - PK-01, PK-03
 - XP-01
 
-V1_PLAN step-to-UC traceability:
-- Step 01 (Done): NF-01, NF-02, NF-03
-- Step 02 (In Progress): NF-01, NF-02, NF-09, PK-03, XP-01 ← intake-001
-- Step 03: NF-01, NF-04
-- Step 04: NF-02, NF-03, NF-04
-- Step 05: NF-05, NF-07, PK-01, PK-03
-- Step 06: NF-06, PK-04, XP-04
-- Step 07: NF-07, XP-01, XP-03
+*For UC-to-work-item traceability, see ROADMAP-003 Section 3 (per D-020).*
 
 ---
 
@@ -1019,6 +1030,7 @@ unstructured information across very different domains. These UCs must be tested
 Stage 1 is declared done.
 
 **UCs in scope:**
+- NF-16 (strategic drift detection)
 - AP-01, AP-02, AP-06 (aperitif project as test bed)
 - PK-08 (ubiquitous access — after v1-core CLI interface is stable)
 - RE-01, RE-06 (real estate as test bed)
@@ -1037,7 +1049,7 @@ with each cycle.
 **UCs in scope:**
 - NF-08, NF-11, NF-14
 - AP-04
-- PK-02, PK-04, PK-05, PK-06, PK-07
+- PK-02, PK-04, PK-05, PK-06, PK-07, PK-09
 - XP-03, XP-04, XP-08, XP-11
 
 ---
@@ -1116,12 +1128,12 @@ None in this pass. No UCs have been removed.
 
 | Category | Total | ACTIVE (this catalog) | Pending |
 |---|---|---|---|
-| nowu Framework (NF) | 14 | 14 (v1-core: 11, v1.1: 3) | 0 |
+| nowu Framework (NF) | 16 | 16 (v1-core: 12, v1.1: 3, v1: 1) | 0 |
 | Aperitif Business (AP) | 7 | 7 (v1: 3, v1.1: 1, v1.2: 3) | 0 |
 | Real Estate (RE) | 7 | 7 (v1: 2, v1.2: 4, v2: 1) | 0 |
-| Personal Knowledge (PK) | 8 | 8 (v1-core: 3, v1.1: 5) | 0 |
+| Personal Knowledge (PK) | 9 | 9 (v1-core: 2, v1: 1, v1.1: 6) | 0 |
 | Cross-Project (XP) | 11 | 10 (v1-core: 1, v1.1: 4, v2: 5) | 1 (uncertain) |
-| **Total** | **47** | **46 ACTIVE** | **1 Pending** |
+| **Total** | **50** | **49 ACTIVE** | **1 Pending** |
 
 ---
 
@@ -1148,19 +1160,5 @@ None in this pass. No UCs have been removed.
 
 ---
 
-*48 use cases across 5 categories. 48 ACTIVE, 0 Pending. Solution-agnostic where possible.
+*50 use cases across 5 categories. 49 ACTIVE, 1 Pending (XP-02). Solution-agnostic per D-023.
 Anchored to vision v2.0, compound progress, continuity layer, and the multi-project human.*
-
-***
-Human next steps:
-
-1. Review `docs/USE_CASES.proposed.md` against `docs/USE_CASES.md`.
-2. Pay particular attention to:
-   - NF-10 (new) — does it describe the right job-to-be-done for the multi-project human?
-   - UC demotion choices (AP-03/04/05/07, RE-02–05/07) — does the v1 dogfooding scope feel right?
-   - Stage targets on PK-01 and XP-01 (both promoted to v1-core) — agree?
-3. If changes look correct, replace the canonical file:
-   - Overwrite `docs/USE_CASES.md` with this content.
-   - Remove `docs/USE_CASES.proposed.md`.
-4. Commit with a message like:
-   `chore: refresh use cases catalog v2.0 (NF-10 added, stage_target for all UCs)`

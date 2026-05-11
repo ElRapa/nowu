@@ -6,7 +6,7 @@ description: >
   structure, area breakdown, dependency graph, stage gates, and risk register.
   Not part of the execution agent roster — operates at the orchestrator layer
   external to the 5×10 field.
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 tools: [Read, Write]
 invoked_at: "After P0.V + P0.G complete and 10+ UCs exist"
 altitude: STRATEGIC

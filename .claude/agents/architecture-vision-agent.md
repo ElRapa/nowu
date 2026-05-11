@@ -7,7 +7,7 @@ description: >
   architectural principles (evidence-derived, not aspirational), quality
   attribute priorities (ranked tradeoffs), key risks, and ADR roadmap.
   Does not modify canonical docs — produces the Architecture Vision document.
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 tools: [Read, Write]
 invoked_at: "W2 — after SYNTHESIS-NNN is complete"
 altitude: ARCHITECTURE

@@ -1,5 +1,5 @@
 ---
-last_updated: 2026-03-31
+last_updated: 2026-05-11
 last_approved: 2026-03-31
 status: APPROVED
 version: 2.0
@@ -12,7 +12,8 @@ workflow_level: Above C4
 
 > **Lifecycle:** Created/updated by `vision-bootstrap` agent (P0.V) via structured interview.
 > Human must set `status: APPROVED` and `last_approved` before any new epic is started.
-> To refresh: run `/health-check vision`. If YELLOW or RED, re-run `/pre-workflow P0.V`.
+> To refresh: run the `health-sweep` skill or invoke the `health-vision` agent directly.
+> If YELLOW or RED, re-run the `pre-workflow-runner` skill in P0.V mode.
 > This file is read at: P0.2 (alignment check), P0.UC (use-case-agent), P1.1 (discovery-agent),
 > S1 (nowu-intake), health-vision, health-goals, health-use-cases.
 

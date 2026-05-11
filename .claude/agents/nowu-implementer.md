@@ -5,7 +5,7 @@ description: >
   then runs VBR (pytest + mypy + ruff + scope check). Produces a Change Set
   and VBR Report. Narrowest context window of any agent -- only in_scope_files.
 tools: Read, Write, Edit, Bash, Glob, Grep
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 memory: project
 ---
 

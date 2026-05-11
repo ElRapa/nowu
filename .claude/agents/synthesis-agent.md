@@ -7,7 +7,7 @@ description: >
   cannot be solved by any single UC alone. Produces SYNTHESIS-NNN artifacts
   with theme-to-UC mapping, interaction analysis, and ADR recommendations.
   Does not modify canonical docs — produces analysis artifacts only.
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 tools: [Read, Write]
 invoked_at: "W1 — SYNTHESIS phase, after USE_CASES.md is ACCEPTED"
 altitude: ARCHITECTURE

@@ -5,7 +5,7 @@ description: >
   and Validation (built the right thing). Has a FRESH context window -- no
   accumulated bias. Produces a Review Report with approve/reject verdict.
 tools: Read, Grep, Glob, Bash
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 memory: project
 ---
 

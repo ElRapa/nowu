@@ -1,7 +1,7 @@
 ---
 name: use-case-agent
 version: 2.3
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 invoked_at: P0.UC
 ---
 

@@ -337,7 +337,7 @@ Measure: ...
 ---
 name: qa-elicitation
 version: 1.0
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 invoked_at: P3.2
 ---
 
@@ -402,7 +402,7 @@ If it has changed, flag it as NEEDS_UPDATE.
 ---
 name: architecture-design
 version: 3.0
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 invoked_at: P3.3
 ---
 
@@ -499,7 +499,7 @@ Hard constraints S2 must respect.
 ---
 name: atam-lite
 version: 1.0
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 invoked_at: P3.4
 ---
 

@@ -4,7 +4,7 @@ version: 2.2
 description: >
   Product discovery researcher for P1.1. Reads idea-NNN.md and vision.md.
   Writes disc-NNN-research.md. Constitutionally prohibited from proposing solutions.
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 tools: [Read, Write]
 invoked_at: P1.1
 ---

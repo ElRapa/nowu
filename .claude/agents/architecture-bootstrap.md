@@ -6,7 +6,7 @@ description: >
   project. Directionally correct, not final -- S2 refines. Reads problem,
   approved stories, constraint check, existing arch docs, and vision.md.
   Writes arch-pass-NNN.md.
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 tools: [Read, Write]
 invoked_at: P3.2
 ---

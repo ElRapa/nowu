@@ -5,7 +5,7 @@ description: >
   tradeoff analysis) to the options, records the chosen decision as D-NNN, and
   produces the handoff artifact for shaping. STOPS for human approval before writing.
 tools: Read, Write, Grep
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 memory: project
 ---
 
