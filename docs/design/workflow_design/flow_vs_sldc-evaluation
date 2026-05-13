@@ -31,7 +31,7 @@ Here's the core framework: each workflow phase operates at a specific abstractio
 | Task Shaping | LLD (Component) | 3 | Contracts, file tree, test structure | Architecture docs, vision |
 | Implementation + VBR | Code | 4 | In-scope files ONLY + tests | Architecture, plan, use cases |
 | Review | LLD + Code | 3-4 | Git diff, acceptance criteria, rules | Full architecture docs |
-| Capture & Close | HLD (System) | 1-2 | DECISIONS.md, PROGRESS.md, git log | Source code, tests |
+| Capture & Close | HLD (System) | 1-2 | DECISIONS.md, docs/ROADMAP-003.md, state/session-log.md, git log | Source code, tests |
 ## Why Context Scoping Matters for AI
 Anthropic's own research on context engineering confirms your instinct. Three key findings: [anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
 
@@ -48,7 +48,7 @@ Your Claude Code subagents (from our previous setup) naturally enforce context s
 - **`nowu-architect`** (Read-only tools): Can't accidentally load or edit code during architecture analysis. Operates at C4 Level 1-2. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/64120149/4d9cb7d0-fc8f-4bd6-938a-a8d20d2bb82f/ARCHITECTURE.md)
 - **`nowu-shaper`** (Read + Bash): Explores file structure but doesn't see implementation internals. Operates at C4 Level 3. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/64120149/2b69e660-c251-4975-8a51-ad1b684eab2c/WORKFLOW.md)
 - **`nowu-reviewer`** (Read + Bash): Gets fresh eyes on code without accumulated context pollution from earlier phases. [chkk](https://www.chkk.io/blog/your-ai-agent-needs-minimal-relevant-context-at-the-right-time)
-- **`nowu-curator`** (Read + Write docs only): Can update DECISIONS.md and PROGRESS.md but cannot touch source code — ensuring capture stays at the system level. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/64120149/cc179415-fd38-4770-b162-cb21ffa3680a/DECISIONS.md)
+- **`nowu-curator`** (Read + Write docs only): Can update DECISIONS.md, docs/ROADMAP-003.md, and state/session-log.md but cannot touch source code — ensuring capture stays at the system level. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/64120149/cc179415-fd38-4770-b162-cb21ffa3680a/DECISIONS.md)
 
 The full context scoping guide with implementation details and anti-patterns is in the downloadable artifact:
 ## Future: `know` as the Context Engine

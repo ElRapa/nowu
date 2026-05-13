@@ -62,6 +62,9 @@ Note from USE_CASES.md: the Step 02 (In Progress) mapping lists NF-01, NF-02, NF
 
 docs/PROGRESS.md does not exist. No duplicate work detected. Note surfaced as open question below.
 
+*Note (2026-05-13): PROGRESS.md is now fully obsolete. This open question is resolved — the PROGRESS.md file was created during the intake's S9 step, then subsequently tombstoned. Current status tracking uses `docs/ROADMAP-003.md`.*
+
+
 ### Field Completeness Check
 
 | Field | Present | Valid |

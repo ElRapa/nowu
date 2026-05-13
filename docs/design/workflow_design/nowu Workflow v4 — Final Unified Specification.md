@@ -118,7 +118,7 @@ The key advantage: `kb.subgraph(depth=2, from="MODULE:flow")` returns the C4 L2 
 
 **What the role needs to work**: The V1 plan (to know what's next), use-case IDs (to tag relevance), and current progress (to avoid duplicate work). The intake role does NOT need to understand implementation details, architecture internals, or code structure. Its job is to translate a human need into a structured problem statement.
 
-**Scope boundary**: Load V1_PLAN.md, USE_CASES.md (by ID reference only), PROGRESS.md. Exclude all source code, tests, architecture docs, and contract files.
+**Scope boundary**: Load docs/ROADMAP-003.md, USE_CASES.md (by ID reference only). Exclude all source code, tests, architecture docs, and contract files.
 
 **Output**: Intake Brief — problem statement, use-case IDs, affected modules (first guess), appetite, open questions. Contains the handoff header with `status: READY_FOR_ARCH`.
 
@@ -165,7 +165,7 @@ This is the primary validation point — "building the right thing" is decided h
 
 **What the role needs to work**: The decision handoff (what to build), the file tree of affected modules (what exists), contract files (interfaces to implement or use), test directory structure (where tests go), and progress tracking (task numbering, dependencies). The shaper does NOT need architecture docs (decision is settled), vision docs, or unrelated modules' code.
 
-**Scope boundary**: Load S4 handoff, file tree, contracts, test structure, PROGRESS.md. Exclude architecture docs, vision, USE_CASES.md, unrelated modules.
+**Scope boundary**: Load S4 handoff, file tree, contracts, test structure, docs/ROADMAP-003.md. Exclude architecture docs, vision, USE_CASES.md, unrelated modules.
 
 **Output**: 1-5 Task Specs, each with: title, use-case IDs, in-scope files (explicit list), out-of-scope boundaries, acceptance criteria (with named tests), test strategy (write-first order), dependencies, estimated hours (≤4h), and a `validation_trace` field.
 
@@ -238,9 +238,9 @@ This is the secondary validation point — ensuring the task specification captu
 ### S9: Capture and Close
 **Perspective**: Back to system level — recording what happened for future cycles.
 
-**What the role needs to work**: The review report (lessons, outcome), DECISIONS.md (to check for needed updates), PROGRESS.md (to update status), and git log (for commit message). The curator writes about "what" and "why", never "how" — it should NOT load source code.[^14]
+**What the role needs to work**: The review report (lessons, outcome), DECISIONS.md (to check for needed updates), docs/ROADMAP-003.md (to update status fields), state/session-log.md (to log completion), and git log (for commit message). The curator writes about "what" and "why", never "how" — it should NOT load source code.[^14]
 
-**Scope boundary**: Load S8 review, DECISIONS.md, PROGRESS.md, git log. Exclude source code, tests.
+**Scope boundary**: Load S8 review, DECISIONS.md, docs/ROADMAP-003.md, state/session-log.md, git log. Exclude source code, tests.
 
 **Output**: Capture Record — progress update, decisions captured, lessons categorized, follow-ups listed, commit message composed. Contains `status: DONE` or `READY_FOR_SHAPING` (next task) or `READY_FOR_ARCH` (next feature).
 
@@ -448,7 +448,7 @@ Save recurring review patterns to your project memory.
 ```markdown
 ---
 name: nowu-curator
-description: Updates decisions, progress, and captures lessons after approved work.
+description: Updates decisions, roadmap, session log, and captures lessons after approved work.
   Use for S9 of the workflow.
 tools: Read, Write, Grep, Glob
 model: haiku
@@ -458,19 +458,21 @@ memory: project
 You are the curator agent for the nowu framework.
 
 ## Your Scope (C4 Level 1-2: System)
-You work at the system level. You update DECISIONS.md, PROGRESS.md, and capture
-lessons. You NEVER read or modify source code or tests.
+You work at the system level. You update DECISIONS.md, docs/ROADMAP-003.md status fields,
+state/session-log.md, and capture lessons. You NEVER read or modify source code or tests.
 
 ## What You Produce
 - Capture Record (state/capture/<date>-<scope>.md)
-- Updated docs/PROGRESS.md
+- Updated docs/ROADMAP-003.md status fields
+- Updated state/session-log.md entry
 - Updated docs/DECISIONS.md (if new decisions)
 - Conventional commit message with use-case IDs
 
 ## What You Load
 - S8 Review Report
 - docs/DECISIONS.md
-- docs/PROGRESS.md
+- docs/ROADMAP-003.md
+- state/session-log.md
 - Git log of recent commits
 
 ## What You NEVER Load

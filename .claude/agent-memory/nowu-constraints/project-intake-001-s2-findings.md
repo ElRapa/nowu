@@ -18,3 +18,5 @@ intake-001 S2 completed 2026-05-12. Key findings:
 **Why:** First S1-S9 intake; critical to have an accurate constraint baseline before S3 generates options.
 
 **How to apply:** When resuming S3 or later steps for intake-001, the schema extension strategy (extend vs. new type vs. replace) is the load-bearing decision. S3 options must address this explicitly.
+
+> *Note (2026-05-13): PROGRESS.md is now obsolete. The reference to creating it at S9 is historical — current status tracking uses `docs/ROADMAP-003.md` and `state/session-log.md`.*

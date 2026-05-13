@@ -7,6 +7,16 @@ agent: nowu-curator (bedrock/eu.anthropic.claude-sonnet-4-6)
 outcome: COMPLETE
 ---
 
+**Note (2026-05-13): PROGRESS.md is now fully obsolete.**
+This analysis discusses the creation of `docs/PROGRESS.md` during intake-001's S9 step.
+As of this date, PROGRESS.md has been tombstoned: do not read or write it for current
+status. Use `docs/ROADMAP-003.md` for roadmap status and `state/session-log.md` +
+`state/capture/capture-*.md` for chronology. The historical content below is preserved
+as a record of what happened during this intake.
+
+---
+
+
 # S9 Analysis: capture-intake-001
 
 ## What Went Well

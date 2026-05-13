@@ -600,7 +600,7 @@ S2's job shifts from "discover constraints" to "verify and refine the pre-design
 | S5 (Shaping) | `decision-handoff.md`, file tree, contracts | Break into tasks; `crosscutting.md` constrains every task's scope |
 | S6/S7 (Implement) | Task spec + `inscopefiles` ONLY | `crosscutting.md` approach applied but docs not loaded |
 | S8 (Review) | `.claude/rules/architecture.md`, story files | Verify QA constraints not violated |
-| S9 (Capture) | `docs/DECISIONS.md`, `docs/PROGRESS.md` | Update risk register if new risks discovered |
+| S9 (Capture) | `docs/DECISIONS.md`, `docs/ROADMAP-003.md` | Update risk register if new risks discovered |
 
 ***
 ## Health Checks — What Else to Check

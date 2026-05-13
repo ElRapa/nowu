@@ -83,11 +83,13 @@ Invoke: `nowu-curator`
 Input:
 - `state/reviews/review-task-NNN.md`
 - `docs/DECISIONS.md`
-- `docs/PROGRESS.md`
+  - `docs/ROADMAP-003.md`
+  - `state/session-log.md`
 
 Output:
 - `state/capture/capture-task-NNN.md`
-- Updated `docs/PROGRESS.md`
+  - Updated `docs/ROADMAP-003.md` status fields
+  - Updated `state/session-log.md` entry
 - Commit message suggestion
 - `next_cycle_trigger`
 

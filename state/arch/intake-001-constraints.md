@@ -142,3 +142,6 @@ agent: nowu-options
 intake_id: intake-001
 status: READY_FOR_OPTIONS
 ```
+
+**Note (2026-05-13): PROGRESS.md now fully obsolete.** The constraints above that reference `docs/PROGRESS.md` were written when the file did not yet exist. It was subsequently created during S9 and then tombstoned. For current status, use `docs/ROADMAP-003.md` and `state/session-log.md`.
+

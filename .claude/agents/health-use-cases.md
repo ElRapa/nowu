@@ -26,7 +26,7 @@ Required:
 - `docs/STAGED-PLAN.md`        # if missing, treat plan as PLAN-ABSENT (YELLOW, not RED)
 
 Optional (if they exist):
-- `docs/PROGRESS.md`
+- `docs/ROADMAP-003.md`
 - `state/problems/`        # latest ~20 `problem-*.md`
 - `state/epics/`           # latest ~20 `epic-*.md`
 - `state/stories/`         # latest ~50 APPROVED `story-*.md`

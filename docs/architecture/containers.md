@@ -155,7 +155,7 @@ defines an `AdapterProtocol` that both the CLI and future adapters implement (se
 
 **NF-10 note:** Orientation synthesis (what to surface and in what order) may require a
 `soul`-level analysis before v1.1. For v1-core, orientation is read-only from structured
-state: SESSION-STATE.md, DECISIONS.md, and PROGRESS.md. Dedicated orientation atoms (if
+state: SESSION-STATE.md, DECISIONS.md, and ROADMAP-003.md. Dedicated orientation atoms (if
 needed) are a v1.1 decision.
 
 ---

@@ -50,7 +50,7 @@ Required:
 Optional (load if they exist):
 
 - `docs/USE_CASES.md`       # existing UC catalog
-- `docs/PROGRESS.md`        # where current effort sits on the plan
+- `docs/ROADMAP-003.md`        # where current effort sits on the plan
 - `state/problems/`         # latest ~10 `problem-*.md`
 - `state/epics/`            # latest ~10 `epic-*.md`
 - `state/stories/`          # latest ~20 APPROVED `story-*.md`
@@ -164,7 +164,7 @@ List UCs that were removed or folded into others. Include a one-line reason.
 ## Process
 
 1. **Classify product stage**
-    - Read `docs/STAGED-PLAN.md` and `docs/PROGRESS.md` (if present).
+    - Read `docs/STAGED-PLAN.md` and `docs/ROADMAP-003.md` (if present).
     - Determine current stage label (e.g., “v1 core”, “v1.1 reliability”).
     - If no plan exists, use `PLAN-ABSENT` as the stage label and note this in the overview.
     - Extract any explicit “primary v1 use cases” if the plan mentions them.

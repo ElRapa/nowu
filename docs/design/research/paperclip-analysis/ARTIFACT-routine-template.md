@@ -9,6 +9,8 @@
 A routine is a standing task that recurs on a schedule. Unlike a one-off intake, it doesn't go through the full P0–P4 pre-workflow. It has a fixed template, a fixed agent, and a fixed output.
 
 ---
+*Note (2026-05-13): `docs/PROGRESS.md` is now fully obsolete. For current status, use `docs/ROADMAP-003.md` and `state/session-log.md`. The template reference to PROGRESS.md below is retained as historical design intent.*
+
 
 ## Built-in nowu Routines
 

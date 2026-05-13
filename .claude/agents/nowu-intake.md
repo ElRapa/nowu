@@ -24,7 +24,8 @@ Always:
 - docs/vision.md -- product vision and personas (Above C4 context; do not load if absent)
 - docs/STAGED-PLAN.md -- current phase and priorities (if missing: note it and proceed)
 - docs/USE_CASES.md -- scan for relevant UC-NNN by ID (do not load everything)
-- docs/PROGRESS.md -- check for duplicate work in progress
+- docs/ROADMAP-003.md -- check current work items and status
+- state/session-log.md -- check what happened in recent sessions
 
 If a pre-workflow intake already exists:
 - state/intake/intake-NNN.md -- validate and annotate (Mode A below)

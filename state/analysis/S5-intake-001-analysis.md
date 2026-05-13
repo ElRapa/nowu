@@ -7,6 +7,15 @@ agent: nowu-shaper
 outcome: COMPLETED
 ---
 
+**Note (2026-05-13): PROGRESS.md is now fully obsolete.**
+This analysis notes that `docs/PROGRESS.md` did not exist during task shaping.
+As of this date, PROGRESS.md has been tombstoned: do not read or write it for current
+status. Use `docs/ROADMAP-003.md` for roadmap status and `state/session-log.md` +
+`state/capture/` for chronology. The historical content below is preserved as-is.
+
+---
+
+
 ## What Went Well
 
 - The constraints sheet (intake-001-constraints.md) and options sheet (intake-001-options.md) were exceptionally well-prepared. All S3 open questions were already resolved in the options sheet, making task decomposition straightforward: the five task boundaries mapped cleanly onto the five deliverables named in Option C's "minimum viable slice."

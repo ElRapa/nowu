@@ -54,7 +54,7 @@ Optional (load if they exist):
 - `src/`, `tests/` (code is L4; GAP is Above-C4 / L1-L2)
 - `state/problems/`, `state/epics/`, `state/stories/`, `state/tasks/`
   (per-NNN artefacts are too fine-grained for global architecture)
-- `docs/PROGRESS.md` (implementation progress is irrelevant to structure)
+- `docs/ROADMAP-003.md` (implementation progress is irrelevant to structure)
 - Any file not in the list above
 
 ---

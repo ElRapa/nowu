@@ -42,6 +42,9 @@ below the table. Recurring patterns are high-priority candidates for workflow ch
 
 **Action:** When consuming any research doc, apply YAGNI filter: implement only what's immediately verifiable and defer the rest. Default to <30% of what's proposed.
 
+*Note (2026-05-13): The PROGRESS.md vs. ROADMAP-001 example in the pattern above is now fully resolved. PROGRESS.md has been tombstoned and all workflow references redirect to ROADMAP-003 and session-log.*
+
+
 ### RP-002: Superseded artifacts accumulate silently — mark immediately
 
 **Sessions:** 2026-05-08 (bootstrap-review-cleanup), 2026-05-09 (orchestrator-layer), 2026-05-10 (roadmap-global-view)

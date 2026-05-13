@@ -134,7 +134,7 @@ to_step: S9
 agent: nowu-curator
 status: APPROVED
 next_action: >
-  S9 (nowu-curator): capture D-024 learnings, update docs/PROGRESS.md,
+  S9 (nowu-curator): capture D-024 learnings, update docs/ROADMAP-003.md status fields,
   write state/capture/capture-intake-001.md. Flag W-1 (pyyaml) as a
   pyproject.toml fix for the next task cycle.
 ```
