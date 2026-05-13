@@ -36,10 +36,26 @@ class DecisionRecord:
 
 @dataclass(frozen=True)
 class SessionSnapshot:
-    """Minimal durable session snapshot required for recovery."""
+    """Deprecated — use SessionCheckpoint. Retained for compatibility; will be removed in v1."""
 
     session_id: str
     active_project: str
     active_role: RoleName
     next_action: str
     blockers: list[str] = field(default_factory=list)
+
+
+@dataclass(frozen=True)
+class SessionCheckpoint:
+    """Durable session checkpoint with epistemic grade and workflow context."""
+
+    session_id: str
+    active_project: str
+    active_role: RoleName
+    next_action: str
+    active_step: str
+    last_artifact_path: str
+    checkpoint_grade: str
+    active_ids: dict[str, str] = field(default_factory=dict)
+    completed_steps: list[str] = field(default_factory=list)
+    schema_version: str = "v1"

@@ -1,7 +1,8 @@
 ---
 id: goal-001
 title: "Project momentum survives interruptions and compounds over time"
-status: proposed
+status: in_delivery
+delivery_started_at: 2026-05-13
 parent_vision_horizon: "6mo"
 created: 2026-04-30
 linked_epics: []
@@ -64,7 +65,7 @@ retired_reason: ""
 
 | Phase | Epic | Slice Delivered | Status |
 | --- | --- | --- | --- |
-| v1-core | epic-v1core-001 | Continuity & Capture: session orientation, agent checkpoint resumption, frictionless capture, cross-project Today view | APPROVED |
+| v1-core | epic-v1core-001 | Continuity & Capture: session orientation, agent checkpoint resumption, frictionless capture, cross-project Today view | IN PROGRESS (s002 DONE 2026-05-13; s001/s003/s004 pending) |
 | v1-core | epic-v1core-003 | Project Bootstrap & Idea Lifecycle: lightweight idea exploration, single-session project bootstrap for any domain | APPROVED |
 
 ## UC Completion

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat \"/Users/Raphael.Weidemann/Library/Mobile Documents/com~apple~CloudDocs/nowu/repos/nowu/docs/DECISIONS.md\")",
+      "Read(//tmp/**)",
+      "Bash(uv run *)"
+    ]
+  }
+}

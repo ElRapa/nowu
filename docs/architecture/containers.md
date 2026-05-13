@@ -336,3 +336,28 @@ C4Container
     Rel(soul, core, "Uses contracts")
     Rel(know, core, "Uses contracts")
 ```
+
+---
+
+## Pending Updates
+
+> This section records C4 L2 deltas identified at S9 capture. Do not rewrite above sections
+> directly — apply during next architecture review (gap-check or P3 pass).
+
+### intake-001 (2026-05-13) — Session persistence surfaces now live
+
+`flow` module now owns two concrete session persistence surfaces not previously documented:
+
+- **`flow/session_store.py` (`FileSessionStore`)** — writes an atomic JSON checkpoint and a
+  YAML bookmark. The YAML bookmark path is `state/SESSION_STATE.md` (the canonical
+  human-readable artifact for session state on resume).
+- **`core/contracts/session.py` (`SessionStore` protocol)** — the binding protocol for
+  session persistence, now updated to `save(checkpoint: SessionCheckpoint)` and
+  `load() -> SessionCheckpoint | None`. `@runtime_checkable` decorator added.
+- **`core/contracts/types.py` (`SessionCheckpoint`)** — 10-field versioned dataclass
+  (schema_version, last_step, next_action, active_task, completed_steps, active_intake,
+  active_epic, project_root, git_branch, notes). Replaces 5-field `SessionSnapshot`.
+
+These are C4 L3 surfaces within the existing `core` and `flow` containers. No new containers
+or cross-module imports were introduced. Module boundary rules (D-002, D-003) were respected
+throughout. Decision: D-024.

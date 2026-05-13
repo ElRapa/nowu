@@ -1,14 +1,14 @@
 ---
 artifact_type: INTAKE_BRIEF
 intake_id: intake-001
-status: READY_FOR_ARCH
+status: DONE
 created_at: 2026-05-10
 s1_validated_at: 2026-05-11T00:00:00Z
 workflow_mode: A
 use_case_ids: [NF-01, NF-02, NF-09, PK-03, XP-01]
 affected_modules: [core, flow, know]
-appetite: small
-appetite_hours: 8h (to be confirmed)
+appetite: medium
+appetite_hours: 14h (extended S4 decision: comprehensive test coverage required)
 priority: high
 source: docs/ROADMAP-003.md (W4)
 ---

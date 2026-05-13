@@ -1,0 +1,1 @@
+- [intake-001 S2 findings](project-intake-001-s2-findings.md) — Contract gaps, ADR-0007 hypothesis status, SESSION_STATE.md placeholder, scope boundaries for NF-01 v1-core
