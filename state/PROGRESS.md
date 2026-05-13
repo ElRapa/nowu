@@ -2,8 +2,10 @@
 
 > **⚠️ SUPERSEDED** — This file tracks the old V1_PLAN linear steps (00-07).
 > That plan was superseded by `docs/ROADMAP-001.md` (D-020, 2026-05-06).
+> 
+> **As of 2026-05-13, this file is fully obsolete.**
 > For current project status, see:
-> - **Roadmap:** `docs/ROADMAP-001.md` (Areas × Stages tracker)
+> - **Roadmap:** `docs/ROADMAP-003.md` (canonical plan/progress tracker)
 > - **Session Log:** `state/session-log.md` (what happened, when, and why)
 > - **Learnings:** `state/learnings/INDEX.md` (session learnings + recurring patterns)
 >

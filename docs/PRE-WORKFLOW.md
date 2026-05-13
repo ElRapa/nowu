@@ -365,7 +365,7 @@ clear list of jobs-to-be-done.
 - `docs/vision.md`
 - `docs/ROADMAP-001.md` (if exists)
 - `docs/USE_CASES.md` (if exists)
-- Optionally: `docs/PROGRESS.md`, latest `state/problems/`, `state/epics/`, `state/stories/`, `state/capture/`
+- Optionally: `docs/ROADMAP-003.md`, latest `state/problems/`, `state/epics/`, `state/stories/`, `state/capture/`
 
 **Steps:**
 

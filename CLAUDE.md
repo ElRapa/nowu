@@ -110,13 +110,13 @@ When unsure, treat as Tier 2.
 | P4 | all P0–P3 artifacts for NNN | `src/`, `tests/` |
 | GAP | `docs/vision.md`, `docs/ROADMAP-001.md`, `docs/USE_CASES.md`,  `docs/architecture/context.md`, `docs/architecture/containers.md`, `docs/architecture/adr/*.md`, `docs/DECISIONS.md`, `state/arch/gap-trigger.md`, `state/arch/global-pass-*.md`| `src/`, `tests/`, `state/problems/`, `state/tasks/`, `state/epics`, `state/stories`|
 | SYNTHESIS | `docs/USE_CASES.md` (ALL), `docs/vision.md`, `docs/goals/goal-*.md`, `docs/DECISIONS.md`, `docs/architecture/adr/*.md`, `docs/ROADMAP-001.md` | `src/`, `tests/`, `state/tasks/`, `state/stories/` |
-| S1 | `state/intake/intake-NNN.md`, `docs/vision.md`, `docs/ROADMAP-001.md`, `docs/USE_CASES.md`, `docs/PROGRESS.md` | `src/`, `tests/`, `docs/architecture/containers.md`, `docs/DECISIONS.md` |
+| S1 | `state/intake/intake-NNN.md`, `docs/vision.md`, `docs/ROADMAP-003.md`, `docs/USE_CASES.md` | `src/`, `tests/`, `docs/architecture/containers.md`, `docs/DECISIONS.md` |
 | S2 | `state/intake/intake-NNN.md`, `docs/architecture/containers.md`, `docs/DECISIONS.md`, `contracts/`, `state/arch/arch-pass-NNN.md` (if exists) | `src/` internals, `tests/` |
 | S3–S4 | `state/arch/*-constraints.md`, binding contracts, module surfaces | `src/` internals |
 | S5 | `state/arch/*-decision.md`, file tree, contracts | `docs/architecture/containers.md`, `docs/vision.md` |
 | S6–S7 | task spec + in_scope_files ONLY | everything else |
 | S8 | `state/vbr/*`, `state/arch/*-changeset.md`, task spec, diff | full arch docs, `src/` outside task scope |
-| S9 | review report, `docs/DECISIONS.md`, `docs/PROGRESS.md`, git log | `src/`, `tests/` |
+| S9 | review report, `docs/DECISIONS.md`, `docs/ROADMAP-003.md`, git log | `src/`, `tests/` |
 | Health | target file only + `docs/vision.md` | `src/`, `tests/`, `state/` (beyond what the health agent declares) |
 
 ---

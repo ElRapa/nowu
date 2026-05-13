@@ -94,7 +94,7 @@ artifacts. These are the foundational documents that give the roadmap its shape 
 
 | Artifact | Path | Superseded By | Action |
 |---|---|---|---|
-| PROGRESS.md | `state/PROGRESS.md` | This roadmap (D-020) | Marked SUPERSEDED. Refer to ROADMAP-001. |
+| PROGRESS.md | `state/PROGRESS.md` | This roadmap (D-020) | Marked SUPERSEDED. Refer to ROADMAP-003. |
 | SESSION_STATE.md | `state/SESSION_STATE.md` | `state/session-log.md` | Template only — never populated with real data. |
 | Health reports (March 2026) | `state/health/*.md` | Need re-run post-architecture rework | Stale — predate 5×10 model, SYNTHESIS, and ADRs. |
 | V1_PLAN.md | `docs/archive/V1_PLAN.md` | This roadmap (D-020) | Archived. Framework steps mapped in §Relationship below. |
