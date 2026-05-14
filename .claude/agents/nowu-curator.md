@@ -49,10 +49,24 @@ If it exists:
    - lessons: key learnings from the review report
    - next_cycle_trigger: CONTINUE | ARCH_PIVOT | PRODUCT_PIVOT | COMPLETE
 
-2. Update docs/ROADMAP-003.md:
-   Mark task as DONE or update status fields. Note next task or trigger.
-3. Update state/session-log.md:
-   Add a brief entry recording what was completed, what was learned, and what's next.
+2. Update docs/ROADMAP-003.md (ALL of the following):
+   a. Mark completed work item as ✅ DONE in **both** the work grid (Section 2) and
+      the dependency graph (Section 4). Add `evidence:` list to the dep graph entry.
+   b. Update **Section 7** `next_work_item` to the next READY item from the dep graph.
+      Include `description`, `current_stage`, `agent_to_invoke`, `input_artifacts`, `status_hint`.
+   c. **Cascade dependencies:** For each item in Section 4 that has the completed item
+      in its `depends_on` list, check if ALL its dependencies are now complete. If yes,
+      update its status from PLANNED → READY. Update the corresponding work grid row too.
+   d. Update stage gate criteria checkboxes (Section 5) if the completed work advances any gate.
+
+3. Update state/session-log.md (ALL of the following):
+   a. Add a new entry under `## Entries` (newest first) with What/Artifacts/Decisions/Next.
+   b. Update `## Status Dashboard`:
+      - Update "Current Work Item" to match ROADMAP Section 7.
+      - Update "Next Work Items" list.
+      - Add completed milestones to the milestones table.
+      - Update "Blocked Items" to reflect newly unblocked items (from cascade)
+        and remove items that are now DONE.
 
 4. Update docs/DECISIONS.md if review raised new decisions:
    Append D-NNN entries for any new decisions.
@@ -81,6 +95,32 @@ If it exists:
 9. Clear state/tasks/.active-scope (write empty string).
 
 10. Verify all produced artifacts carry correct `artifact_type`, `altitude`, and `phase` in YAML frontmatter (per MODEL-REFERENCE §13 vocabulary)
+
+11. **Branch strategy** (D-025):
+    - **Mode A/B** (full-cycle, implement-loop): Work on a feature branch named
+      `feat/{work-item-id}` (e.g., `feat/W8`). Commit per completed task within the branch.
+      When S9 capture completes and all tasks for the intake are done, the branch is ready
+      for merge to main (Tier 3 — human-gated).
+    - **Mode C** (single-step): Commit directly to main. No branch needed for small fixes.
+
+12. **Execute commit** (not just suggest):
+    Stage and commit the following paths (if modified):
+    `state/capture/*`, `state/session-log.md`, `docs/ROADMAP-003.md`, `docs/DECISIONS.md`,
+    `docs/goals/*.md`, `state/analysis/S9-*.md`, `state/tasks/*.md`, `state/intake/*.md`.
+    Use the conventional commit message from step 8.
+    Do NOT stage `src/` or `tests/` — those are committed by the implementer (S6/S7).
+    Do NOT push to remote — that is the orchestrator's or human's decision.
+
+13. **Conditional session-learning** (D-026):
+    After capture is complete, evaluate whether session-learning should run:
+    - **Auto-invoke** if ANY of: session modified 5+ files, or 3+ tasks were completed,
+      or the session introduced new decisions (D-NNN), or `next_cycle_trigger` is
+      ARCH_PIVOT or PRODUCT_PIVOT.
+    - **Skip** if the session was a single-step Mode C with ≤4 files changed and no
+      new decisions.
+    When invoked: run the `session-learning` skill to produce
+    `state/learnings/session-YYYY-MM-DD-{slug}.md` and update `state/learnings/INDEX.md`.
+    Include the learnings files in the commit.
 
 ## Goal Brief Status Update
 

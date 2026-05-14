@@ -621,3 +621,59 @@ Implement Option C: Versioned Schema.
 ### Review Trigger
 
 After S6-S7: verify migration complete, schema translation tested, atomicity proven.
+
+---
+
+## D-025 — Branch Strategy: Mode-Dependent Git Workflow
+
+**Date**: 2026-05-14 | **Status**: ACCEPTED | **Level**: system
+**Intake**: — (workflow optimization) | **Use Cases**: NF-01, NF-09
+
+### Context
+
+Commit behavior was inconsistent across workflow skills: full-cycle said "Commit message / commit",
+implement-loop and single-step said "Commit message suggestion". No branching strategy existed.
+Tier 3 rules require human-gated merges to main, but nothing enforced working on branches.
+
+### Decision
+
+Branch strategy is mode-dependent:
+- **Mode A/B** (full-cycle, implement-loop): Work on feature branch `feat/{work-item-id}`.
+  Commit per task within the branch. Merge to main is Tier 3 (human-gated).
+- **Mode C** (single-step): Commit directly to main. No branch overhead for small fixes.
+
+Curator executes the commit (not just suggests a message). Staged paths are restricted to
+`state/`, `docs/`, and `state/learnings/` — never `src/` or `tests/` (those are S6/S7 territory).
+
+### Consequences
+
+- **Good**: Consistent git workflow; heavy work is isolated on branches; small fixes stay fast
+- **Bad**: Mode A/B requires branch creation/switching overhead; merge conflicts possible
+
+---
+
+## D-026 — Conditional Auto-Invocation of Session-Learning
+
+**Date**: 2026-05-14 | **Status**: ACCEPTED | **Level**: system
+**Intake**: — (workflow optimization) | **Use Cases**: NF-06
+
+### Context
+
+Session-learning was documented as "run after S9" but never auto-invoked. In 3 of 5 recent
+sessions it was forgotten, losing process insights. Always auto-invoking would generate noise
+for trivial single-file fixes.
+
+### Decision
+
+Session-learning auto-invokes after S9 capture when ANY condition is met:
+1. Session modified 5+ files
+2. 3+ tasks were completed
+3. Session introduced new decisions (D-NNN)
+4. `next_cycle_trigger` is ARCH_PIVOT or PRODUCT_PIVOT
+
+Skip if the session was Mode C with ≤4 files changed and no new decisions.
+
+### Consequences
+
+- **Good**: Process insights captured consistently; recurring patterns detected earlier
+- **Bad**: Adds ~2 minutes to S9 for qualifying sessions; learnings files accumulate

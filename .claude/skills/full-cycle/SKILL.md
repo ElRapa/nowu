@@ -147,13 +147,25 @@ For each task spec in dependency order:
   - `state/reviews/review-task-NNN.md`
   - `docs/DECISIONS.md`
   - `docs/ROADMAP-003.md`
+  - `state/session-log.md`
   - `git log`
 - **Outputs:**
-  - Updated `docs/ROADMAP-003.md` status fields
-  - Updated `state/session-log.md`
-  - Optional updates to `docs/DECISIONS.md`
   - `state/capture/capture-task-NNN.md`
-  - Commit message / commit
+  - Updated `docs/ROADMAP-003.md`: work grid + dep graph + Section 7 + dependency cascade
+  - Updated `state/session-log.md`: entry + dashboard (milestones, blocked items, current work)
+  - Optional updates to `docs/DECISIONS.md`
+  - Commit (not just message) on feature branch `feat/{work-item-id}` (D-025)
+
+**Branch strategy (Mode A — full-cycle):**
+- Work on branch `feat/{work-item-id}` (e.g., `feat/W8`).
+- Curator commits capture artifacts + roadmap/session-log updates to the branch.
+- Merge to main is Tier 3 (human-gated).
+
+**Session-learning (D-026):**
+- After capture completes, curator evaluates whether to auto-invoke session-learning.
+- Auto-invoke if: 5+ files changed, 3+ tasks completed, new D-NNN decisions,
+  or `next_cycle_trigger` is ARCH_PIVOT/PRODUCT_PIVOT.
+- Produces `state/learnings/session-*.md` + updates `state/learnings/INDEX.md`.
 
 `capture-task-NNN.md` includes:
 

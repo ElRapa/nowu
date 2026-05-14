@@ -56,14 +56,15 @@ Lightweight review allowed for docs/refactors, but must still confirm:
 Invoke: `nowu-curator`  
 Input:
 - `state/reviews/review-task-NNN.md`
-  - `docs/ROADMAP-003.md`
-  - `state/session-log.md`
+- `docs/ROADMAP-003.md`
+- `state/session-log.md`
 
 Output:
 - `state/capture/capture-task-NNN.md`
-  - Updated `docs/ROADMAP-003.md` status fields
-  - Updated `state/session-log.md` entry
-- Commit message suggestion
+- Updated `docs/ROADMAP-003.md`: work grid + dep graph + Section 7 + dependency cascade
+- Updated `state/session-log.md`: entry + dashboard
+- Commit directly to main (D-025, Mode C = no branch for small fixes)
+- Session-learning: skip unless session was unusually large (D-026 conditional rules apply)
 
 Done when:
 - `capture.status = DONE`

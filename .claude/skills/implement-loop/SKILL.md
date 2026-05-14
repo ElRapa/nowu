@@ -83,14 +83,15 @@ Invoke: `nowu-curator`
 Input:
 - `state/reviews/review-task-NNN.md`
 - `docs/DECISIONS.md`
-  - `docs/ROADMAP-003.md`
-  - `state/session-log.md`
+- `docs/ROADMAP-003.md`
+- `state/session-log.md`
 
 Output:
 - `state/capture/capture-task-NNN.md`
-  - Updated `docs/ROADMAP-003.md` status fields
-  - Updated `state/session-log.md` entry
-- Commit message suggestion
+- Updated `docs/ROADMAP-003.md`: work grid + dep graph + Section 7 + dependency cascade
+- Updated `state/session-log.md`: entry + dashboard (milestones, blocked items, current work)
+- Commit on feature branch `feat/{work-item-id}` (D-025, Mode B = branch)
+- Conditional session-learning invocation (D-026)
 - `next_cycle_trigger`
 
 Done when:
