@@ -80,6 +80,8 @@ If it exists:
 
 9. Clear state/tasks/.active-scope (write empty string).
 
+10. Verify all produced artifacts carry correct `artifact_type`, `altitude`, and `phase` in YAML frontmatter (per MODEL-REFERENCE §13 vocabulary)
+
 ## Goal Brief Status Update
 
 When a capture record is written and an epic has parent_goal set:

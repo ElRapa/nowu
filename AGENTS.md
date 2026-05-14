@@ -55,6 +55,53 @@ templates/               # Markdown templates for every workflow artifact
 .claude/                 # Agent definitions (35 agents: 32 execution + 3 orchestrator) + rules + skills
 ```
 
+## Agent Grid — 5×10 Model Mapping
+
+Canonical mapping of all 35 agents to 5×10 altitude/phase positions. This table is the single source of truth for agent-to-grid assignments. Agent frontmatter `altitude:` and `phase:` fields mirror this table.
+
+| Agent | File | Step | Altitude | Phase | Notes |
+|-------|------|------|----------|-------|-------|
+| **S1–S9 Pipeline** | | | | | |
+| nowu-intake | `.claude/agents/nowu-intake.md` | S1 | DELIVERY | IDEA | Intake brief at DELIVERY/IDEA per MODEL §7. |
+| nowu-constraints | `.claude/agents/nowu-constraints.md` | S2 | ARCHITECTURE | ANALYSIS | Constraints analyst; no design proposals. |
+| nowu-options | `.claude/agents/nowu-options.md` | S3 | ARCHITECTURE | OPTIONS | Options generation per MODEL §7. |
+| nowu-decider | `.claude/agents/nowu-decider.md` | S4 | ARCHITECTURE | DECISION | Records D-NNN decision; MODEL §7 decision step. |
+| nowu-shaper | `.claude/agents/nowu-shaper.md` | S5 | DELIVERY | EVALUATION | Scope/AC fit evaluation before implementation. |
+| nowu-implementer | `.claude/agents/nowu-implementer.md` | S6+S7 | EXECUTION | IMPLEMENTATION | Primary IMPLEMENTATION; secondary VERIFICATION via built-in VBR gate. |
+| nowu-reviewer | `.claude/agents/nowu-reviewer.md` | S8 | EXECUTION | EVALUATION | S8 review/evaluation pass; not VBR. |
+| nowu-curator | `.claude/agents/nowu-curator.md` | S9 | EXECUTION | LEARN | Capture + `next_cycle_trigger` promotion. |
+| **Pre-Workflow** | | | | | |
+| vision-bootstrap | `.claude/agents/vision-bootstrap.md` | P0.V (+P0.G) | STRATEGIC | DECISION | Vision + goal brief creation; MODEL §9 P0.V. |
+| signal-capture | `.claude/agents/signal-capture.md` | P0.1 | STRATEGIC | IDEA | Signal intake at idea stage; STRATEGIC primary. |
+| idea-decomposition | `.claude/agents/idea-decomposition.md` | P0.D | PRODUCT | ANALYSIS | Classifies/routes ideas by size and stage fit. |
+| use-case-agent | `.claude/agents/use-case-agent.md` | P0.UC | PRODUCT | PROBLEM | UC catalog maintenance at PRODUCT problem-space. |
+| discovery-agent | `.claude/agents/discovery-agent.md` | P1.1 | PRODUCT | ANALYSIS | Discovery research; no-solution constraint. |
+| perspective-interview | `.claude/agents/perspective-interview.md` | P1.2 | PRODUCT | PROBLEM | Produces `problem-NNN.md`; PROBLEM per MODEL §11. |
+| story-mapper | `.claude/agents/story-mapper.md` | P2.1 | DELIVERY | OPTIONS | Decomposes into epic/stories and candidate slices. |
+| constraint-check | `.claude/agents/constraint-check.md` | P3.1 | ARCHITECTURE | ANALYSIS | Constraint compatibility analysis; no design proposals. |
+| architecture-bootstrap | `.claude/agents/architecture-bootstrap.md` | P3.2 | ARCHITECTURE | OPTIONS | L1/L2 architecture shaping; decision deferred to ADR gate. |
+| readiness-checker | `.claude/agents/readiness-checker.md` | P4.1–P4.2 | DELIVERY | EVALUATION | Readiness gate before human P4.3 → READY_FOR_S1. |
+| qa-elicitation | `.claude/agents/qa-elicitation.md` | P3.2 (parallel) | ARCHITECTURE | ANALYSIS | Elicits/prioritizes QA scenarios; architecture inputs only. |
+| **SYNTHESIS + Architecture** | | | | | |
+| synthesis-agent | `.claude/agents/synthesis-agent.md` | W1 | ARCHITECTURE | SYNTHESIS | Frontmatter pre-set; values confirmed correct. |
+| architecture-vision-agent | `.claude/agents/architecture-vision-agent.md` | W2 | ARCHITECTURE | ANALYSIS | Frontmatter pre-set; W2 derivation pass. |
+| architecture-design | `.claude/agents/architecture-design.md` | P3.3 | ARCHITECTURE | OPTIONS | ADD-based structural optioning at C4 L1/L2. |
+| atam-lite | `.claude/agents/atam-lite.md` | P3.4 | ARCHITECTURE | EVALUATION | ATAM-style risk/sensitivity/tradeoff evaluation. |
+| hypothesis-adr-writer | `.claude/agents/hypothesis-adr-writer.md` | W3 | ARCHITECTURE | DECISION | Formalizes chosen decisions into hypothesis ADRs. |
+| fitness-function-writer | `.claude/agents/fitness-function-writer.md` | W3.5 | ARCHITECTURE | VERIFICATION | Structural fitness checks that verify ADR constraints. |
+| **Health / GAP** | | | | | |
+| health-vision | `.claude/agents/health-vision.md` | `/health-check vision` | STRATEGIC | VERIFICATION | Validates vision freshness/completeness/alignment. |
+| health-goals | `.claude/agents/health-goals.md` | `/health-check goals` | STRATEGIC | VERIFICATION | Goal/traceability integrity vs active work. |
+| health-architecture | `.claude/agents/health-architecture.md` | `/health-check architecture` | ARCHITECTURE | VERIFICATION | Architecture drift/coverage verification. |
+| health-use-cases | `.claude/agents/health-use-cases.md` | `health.UC` | PRODUCT | VERIFICATION | UC catalog validity against vision/plan/activity. |
+| gap-detector | `.claude/agents/gap-detector.md` | G0 | ARCHITECTURE | IDEA | GAP loop trigger/sentinel detection; MODEL §10. |
+| gap-analyst | `.claude/agents/gap-analyst.md` | G1 | ARCHITECTURE | ANALYSIS | GAP analysis step; MODEL §10. |
+| gap-writer | `.claude/agents/gap-writer.md` | G2 | ARCHITECTURE | IMPLEMENTATION | Applies approved global-pass deltas to canonical artifacts. |
+| **Orchestrator + Meta** | | | | | |
+| roadmap-creator | `.claude/agents/roadmap-creator.md` | Orchestrator milestone | STRATEGIC | IMPLEMENTATION | Frontmatter pre-set; MODEL §8 confirmed. |
+| roadmap-updater | `.claude/agents/roadmap-updater.md` | Orchestrator milestone | STRATEGIC | LEARN | Frontmatter pre-set; MODEL §8 confirmed. |
+| work-scheduler | `.claude/agents/work-scheduler.md` | Orchestrator query | STRATEGIC | EVALUATION | Meta-layer query agent; mapped for table normalization. |
+
 ## Import Boundary Rules (Enforced by Test)
 
 Defined in `src/nowu/core/boundaries.py`, enforced by `tests/architecture/test_import_boundaries.py`:
