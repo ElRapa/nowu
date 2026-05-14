@@ -31,6 +31,12 @@ If it exists (pre-workflow artifact):
   When present: use it as your starting point. Refine and confirm, not re-derive.
   Note any divergence from the arch-pass explicitly in arch_pass_divergences field.
 
+If they exist (linked ideas with human action required):
+- Scan state/ideas/ for files where `linked_work_items` includes the current work item ID.
+  If any have a `human_action_required` field, surface that request to the human before
+  proceeding with constraints analysis. This ensures human-provided reference materials
+  (source code, docs, external systems) are available when needed.
+
 If they exist (extended P3 artifacts):
 - docs/architecture/crosscutting.md -- system-wide rules; flag any story signal
   that contradicts a crosscutting rule (logging, auth, error handling, config)
