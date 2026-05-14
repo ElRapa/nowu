@@ -60,11 +60,11 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Workflow | W3 | Hypothesis ADR pack (ADR-0007..0010) | v1-core | W1, W2 | NF-01, NF-15 | ✅ DONE |
 | Workflow | W3.5 | Minimal fitness checks for hypothesis ADRs | v1-core | W3 | NF-04, NF-09 | ✅ DONE |
 | Workflow | W4 | First S1-S9 intake (end-to-end cycle) | v1-core | W3.5 | NF-01..NF-13, PK-01, PK-03, XP-01 | ✅ DONE |
-| Workflow | W5 | Validate 5×10 coordinates on W4 artifacts | v1-core | W4 | NF-03, NF-09 | READY |
-| Workflow | W6 | 5×10 model refactor with full agent-grid mapping | v1-core | W4 | NF-02, NF-03 | READY |
+| Workflow | W5 | Validate 5×10 coordinates on W4 artifacts | v1-core | W4 | NF-03, NF-09 | ✅ DONE |
+| Workflow | W6 | 5×10 model refactor with full agent-grid mapping | v1-core | W4 | NF-02, NF-03 | ✅ DONE |
 | Workflow | W-orch | Orchestrator layer formalized (roadmap-creator/updater/scheduler) | v1-core | W3 | NF-05, NF-10 | ✅ DONE |
 | Workflow | W-log | Session-log + roadmap alignment | v1-core | none | NF-10, NF-06 | ✅ DONE |
-| Workflow | W-UCGOAL | Backfill UC↔goal mappings in goal files | v1-core | none | NF-09, NF-11, NF-16 | READY |
+| Workflow | W-UCGOAL | Backfill UC↔goal mappings in goal files | v1-core | none | NF-09, NF-11, NF-16 | ✅ DONE |
 | Workflow | W7 | SYNTHESIS trigger automation | v1 | W1 validated | NF-06, NF-11 | PLANNED |
 | Workflow | W8 | Level 1 advisory enforcement (altitude/grade violations) | v1 | W32 | NF-15, NF-02 | PLANNED |
 | Workflow | W9 | Promote hypothesis ADRs via intake evidence | v1 | 2+ intakes | NF-02, NF-15, AP-06 | PLANNED |
@@ -188,7 +188,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 
 ## 4. Dependency Graph
 
-**Critical path:** **W1 ✅ → W2 ✅ → W3 ✅ → W3.5 ✅ → W4 ✅ → W5 (READY) → v1-core→v1 gate**
+**Critical path:** **W1 ✅ → W2 ✅ → W3 ✅ → W3.5 ✅ → W4 ✅ → W5 ✅ → W6 ✅ → K2 (READY) → v1-core→v1 gate**
 
 ```yaml
 dependency_graph:
@@ -210,8 +210,8 @@ dependency_graph:
     status: "✅ complete"
     evidence: ["state/intake/intake-001.md", "state/tasks/", "Branch: w4-first-intake"]
 
-  W5: {depends_on: ["W4"], status: "READY"}
-  W6: {depends_on: ["W4"], status: "READY"}
+  W5: {depends_on: ["W4"], status: "✅ complete", evidence: ["state/arch/w5-5x10-validation.md", "state/learnings/session-2026-05-14-w5-5x10-validation.md"]}
+  W6: {depends_on: ["W4"], status: "✅ complete", evidence: ["state/arch/w6-5x10-refactor-summary.md", "AGENTS.md (agent grid)", "docs/model/MODEL-REFERENCE.md (§7/§11/§13 fixes)"]}
   K1: {depends_on: ["W4"], status: "ACTIVE"}
   K2: {depends_on: ["W4"], status: "READY"}
   A1: {depends_on: ["W4"], status: "ACTIVE"}
@@ -233,7 +233,7 @@ dependency_graph:
   W27: {depends_on: ["W4"], status: "PLANNED"}
   W28: {depends_on: ["W4"], status: "PLANNED"}
   W29: {depends_on: ["W4", "ADR-0010"], status: "PLANNED"}
-  W32: {depends_on: ["W4", "W5"], status: "BLOCKED_BY_W5"}
+  W32: {depends_on: ["W4", "W5"], status: "READY"}
   K3: {depends_on: ["K1"], status: "PLANNED"}
   A3: {depends_on: ["W5"], status: "PLANNED"}
   F6: {depends_on: ["F1"], status: "PLANNED"}
@@ -334,15 +334,16 @@ adr_status_snapshot:
 ## 7. Current Work Item
 
 ```yaml
-next_work_item: W5
-description: Validate 5×10 coordinates on W4 artifacts
+next_work_item: K2
+description: Forward/backward trace validation
 current_stage: v1-core
 agent_to_invoke: single-step
 input_artifacts:
   - state/intake/intake-001.md
   - state/tasks/
   - state/capture/capture-intake-001.md
-status_hint: READY (W4 complete; validate the first intake artifact chain)
+  - state/arch/w5-5x10-validation.md
+status_hint: READY (W4+W5+W6 complete; last v1-core→v1 gate criterion)
 ```
 
 ## Appendix A: ROADMAP-002 Change Disposition

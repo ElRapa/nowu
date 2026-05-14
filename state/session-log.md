@@ -24,9 +24,9 @@ status: ACTIVE
 > Source: `docs/ROADMAP-003.md` (v3)
 
 #### Current Position
-- **Stage**: v1-core — Foundation validated
-- **Current Work Item**: W5 — Validate 5×10 coordinates on W4 artifacts (DONE)
-- **Next Work Items**: W6 (5×10 model refactor), K2 (forward/backward trace validation)
+- **Stage**: v1-core — Foundation validated, nearing v1 gate
+- **Current Work Item**: K2 — Forward/backward trace validation (READY)
+- **Next Work Items**: W32 (epistemic threshold calibration), K1 (traceability metadata — ACTIVE)
 
 #### Milestones
 | Milestone | Status | Date |
@@ -39,11 +39,11 @@ status: ACTIVE
 | W-log: Session Log | ✅ Done | 2026-05-10 |
 | W4: First S1-S9 Intake | ✅ Done | 2026-05-13 |
 | W5: 5×10 Coordinate Validation | ✅ Done | 2026-05-14 |
+| W6: 5×10 Model Refactor + Agent Grid | ✅ Done | 2026-05-14 |
 
 #### Blocked Items
-- W6: 5×10 model refactor with full agent-grid mapping — READY (W5 findings available)
 - W32: Epistemic threshold calibration — READY (W4+W5 complete)
-- W29: NF-15 Level 0 epistemic enforcement implementation — BLOCKED_BY_W4 (requires ADR-0010)
+- W29: NF-15 Level 0 epistemic enforcement implementation — READY (W4 complete, ADR-0010 available)
 - W27: AP domain project bootstrap (AP-01/AP-02/AP-06) — READY
 - W28: RE domain project bootstrap (RE-01/RE-06) — READY
 
@@ -56,6 +56,35 @@ status: ACTIVE
 | goal-004: Infrastructure | 34/34 | 0/34 |
 
 ## Entries
+
+### 2026-05-14 — W6: 5×10 model refactor + agent grid mapping
+
+**What:** Full 5×10 model refactor across 13 implementation tasks in 5 waves, verified by
+4-agent final review (oracle + 3 reviewers, all APPROVED). Fixed S7/S8 mapping bug in
+MODEL-REFERENCE §7/§11 and WORKFLOW-STANDARDS §1.1. Expanded §13 artifact coverage (+6
+entries) and added §13.1 canonical artifact_type vocabulary (29 types). Added altitude/phase
+frontmatter to all 35 agent specs. Created canonical 35-agent 5×10 grid in AGENTS.md.
+Updated S9 curator checklist. Also: fixed work-scheduler grid mapping to N/A (meta) | N/A
+(query) per §8, and planted phase-operator vision breadcrumbs in 4 docs for v1.1+ design
+intent rediscoverability.
+
+**Artifacts touched:**
+- `docs/model/MODEL-REFERENCE.md` — §7/§11 S7/S8 fixed; §13 expanded; §13.1 vocabulary added; §5 "Future: Phase Operators" subsection
+- `docs/model/WORKFLOW-STANDARDS.md` — §1.1 S8 phase VERIFICATION→EVALUATION
+- `docs/model/IMPLEMENTATION-GUIDE.md` — Package 2 phase-agent design intent added
+- `.claude/agents/*.md` — all 35 agents now carry altitude/phase frontmatter
+- `AGENTS.md` — canonical 35-agent 5×10 grid added; work-scheduler updated to N/A
+- `.claude/agents/nowu-curator.md` — S9 checklist item 10 (verify frontmatter)
+- `state/arch/w6-5x10-refactor-summary.md` — W6 completion artifact
+- `docs/ROADMAP-003.md` — phase-operator architecture direction note
+- `state/learnings/session-2026-05-14-w5-5x10-validation.md` — Future Direction section added
+
+**Decisions:** None new. Applied W5 findings (S7/S8 fix, §13 gaps) and D-013 (5×10 model).
+
+**Next:** K2 (forward/backward trace validation — last v1-core→v1 gate criterion) or
+W32 (epistemic threshold calibration — now READY with W5 complete).
+
+---
 
 ### 2026-05-14 — W5: 5×10 coordinate validation on W4 artifacts
 
