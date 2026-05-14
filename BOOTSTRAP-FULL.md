@@ -44,7 +44,7 @@ This framework is self-developing: you help build it using the same workflow it 
 18. `state/SESSION_STATE.md` (if filled)    — session bookmark only — NEVER treat as source of truth
 19. `state/arch/` — run `ls`                — architecture artifacts, SYNTHESIS, handoffs
 20. `state/sessions/` — run `ls`            — checkpoint storage per ADR-0007 (checkpoint storage per ADR-0007, may be empty until first session)
-21. `state/PROGRESS.md`                     — cycle-level execution status
+21. `docs/ROADMAP-003.md`                     — cycle-level execution status
 
 > For skill mode details (A/B/C/D and pre-workflow), see `.claude/skills/`.
 

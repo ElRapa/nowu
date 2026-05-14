@@ -1,29 +1,53 @@
 #!/usr/bin/env python3
 """verify-artifact.py — Level 0 syntax verification for nowu 5x10 artifacts."""
+
 import sys
 import yaml
 from pathlib import Path
 
 REQUIRED_FIELDS_KNOWLEDGE = [
-    "artifact_class", "artifact_type", "id", "title",
-    "origin_altitude", "origin_phase", "consumer_altitudes",
-    "epistemic_grade", "grade_justification", "status",
-    "created_at", "last_edited_at"
+    "artifact_class",
+    "artifact_type",
+    "id",
+    "title",
+    "origin_altitude",
+    "origin_phase",
+    "consumer_altitudes",
+    "epistemic_grade",
+    "grade_justification",
+    "status",
+    "created_at",
+    "last_edited_at",
 ]
 
 REQUIRED_FIELDS_WORKFLOW = [
-    "artifact_class", "altitude", "phase",
-    "session_id", "epistemic_grade", "grade_justification"
+    "artifact_class",
+    "altitude",
+    "phase",
+    "session_id",
+    "epistemic_grade",
+    "grade_justification",
 ]
 
 VALID_ALTITUDES = ["STRATEGIC", "PRODUCT", "ARCHITECTURE", "DELIVERY", "EXECUTION"]
 VALID_PHASES = [
-    "IDEA", "PROBLEM", "ANALYSIS", "SYNTHESIS", "OPTIONS",
-    "DECISION", "EVALUATION", "IMPLEMENTATION", "VERIFICATION", "LEARN"
+    "IDEA",
+    "PROBLEM",
+    "ANALYSIS",
+    "SYNTHESIS",
+    "OPTIONS",
+    "DECISION",
+    "EVALUATION",
+    "IMPLEMENTATION",
+    "VERIFICATION",
+    "LEARN",
 ]
 VALID_GRADES = [
-    "SPECULATION", "HYPOTHESIS", "INFORMED_ESTIMATE",
-    "EVIDENCE_BASED", "VERIFIED_FACT"
+    "SPECULATION",
+    "HYPOTHESIS",
+    "INFORMED_ESTIMATE",
+    "EVIDENCE_BASED",
+    "VERIFIED_FACT",
 ]
 VALID_STATUS = ["ACTIVE", "SUPERSEDED", "DEPRECATED"]
 
@@ -75,23 +99,20 @@ def verify_artifact(filepath: Path) -> list[str]:
         violations.append(f"Invalid origin_altitude: {metadata['origin_altitude']}")
     if "phase" in metadata and metadata["phase"] not in VALID_PHASES:
         violations.append(f"Invalid phase: {metadata['phase']}")
-    if (
-        "origin_phase" in metadata
-        and metadata["origin_phase"] not in VALID_PHASES
-    ):
+    if "origin_phase" in metadata and metadata["origin_phase"] not in VALID_PHASES:
         violations.append(f"Invalid origin_phase: {metadata['origin_phase']}")
     if metadata.get("epistemic_grade") not in VALID_GRADES:
-        violations.append(
-            f"Invalid epistemic_grade: {metadata.get('epistemic_grade')}"
-        )
+        violations.append(f"Invalid epistemic_grade: {metadata.get('epistemic_grade')}")
     if artifact_class == "knowledge" and metadata.get("status") not in VALID_STATUS:
         violations.append(f"Invalid status: {metadata.get('status')}")
 
     # Check file path matches altitude
     alt_key = (
-        "altitude" if "altitude" in metadata else
-        "origin_altitude" if "origin_altitude" in metadata else
-        None
+        "altitude"
+        if "altitude" in metadata
+        else "origin_altitude"
+        if "origin_altitude" in metadata
+        else None
     )
     if alt_key:
         expected_dir = f"state/artifacts/{metadata[alt_key].lower()}"

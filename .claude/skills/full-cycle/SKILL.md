@@ -95,7 +95,7 @@ On approval:
   - `state/arch/intake-NNN-decision.md`
   - File tree of affected modules
   - Test structure
-  - `docs/PROGRESS.md`
+  - `docs/ROADMAP-003.md`
 - **Output:** `state/tasks/task-NNN.md` (1–5 files)
 - **STOP:** agent outputs shaped tasks.
 - **Human gate:** review and approve shaped tasks.
@@ -146,10 +146,11 @@ For each task spec in dependency order:
 - **Input:**
   - `state/reviews/review-task-NNN.md`
   - `docs/DECISIONS.md`
-  - `docs/PROGRESS.md`
+  - `docs/ROADMAP-003.md`
   - `git log`
 - **Outputs:**
-  - Updated `docs/PROGRESS.md`
+  - Updated `docs/ROADMAP-003.md` status fields
+  - Updated `state/session-log.md`
   - Optional updates to `docs/DECISIONS.md`
   - `state/capture/capture-task-NNN.md`
   - Commit message / commit

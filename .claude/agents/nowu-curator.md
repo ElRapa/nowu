@@ -1,7 +1,7 @@
 ---
 name: nowu-curator
 description: >
-  S9 -- Curator. Updates decisions, progress, and knowledge after a Review
+  S9 -- Curator. Updates decisions, roadmap, session log, and knowledge after a Review
   shows APPROVED. Writes the Capture Record and composes the commit message.
   Sets next_cycle_trigger to guide the next cycle. Never touches source code.
 tools: Read, Write, Grep, Glob
@@ -21,7 +21,8 @@ You update the knowledge base so the next cycle starts with accurate context.
 Always:
 - state/reviews/<task-id>.md -- lessons, outcome, verdict
 - docs/DECISIONS.md -- check if any decisions need updating
-- docs/PROGRESS.md -- update task status
+- docs/ROADMAP-003.md -- update status fields
+- state/session-log.md -- add completion entry
 - git log --oneline -10 -- recent commits for continuity
 
 If it exists:
@@ -46,16 +47,18 @@ If it exists:
    - lessons: key learnings from the review report
    - next_cycle_trigger: CONTINUE | ARCH_PIVOT | PRODUCT_PIVOT | COMPLETE
 
-2. Update docs/PROGRESS.md:
-   Mark task COMPLETED. Note next task or trigger.
+2. Update docs/ROADMAP-003.md:
+   Mark task as DONE or update status fields. Note next task or trigger.
+3. Update state/session-log.md:
+   Add a brief entry recording what was completed, what was learned, and what's next.
 
-3. Update docs/DECISIONS.md if review raised new decisions:
+4. Update docs/DECISIONS.md if review raised new decisions:
    Append D-NNN entries for any new decisions.
 
-4. If module boundaries changed: write a note in docs/ARCHITECTURE.md
+5. If module boundaries changed: write a note in docs/ARCHITECTURE.md
    under a "Pending Updates" section -- do not rewrite ARCHITECTURE.md directly.
 
-5. If `state/arch/NNN-atam-lite.md` was loaded, check for risks with
+6. If `state/arch/NNN-atam-lite.md` was loaded, check for risks with
    Probability HIGH or Impact HIGH:
    - If a risk was realized during implementation: append a new row to
      `docs/architecture/risks.md` (status OPEN; note "Raised by task-NNN").
@@ -64,28 +67,28 @@ If it exists:
    Append-only: never delete or rewrite existing risk entries.
    If no relevant risks exist, skip this step silently.
 
-6. Update state/intake/<intake-id>.md status to DONE (if file exists).
+7. Update state/intake/<intake-id>.md status to DONE (if file exists).
 
-7. Compose conventional commit message:
+8. Compose conventional commit message:
    feat(module): short description [UC-NNN]
 
    - What changed (not how)
    - Why it matters (use case addressed)
    - Decision followed: D-NNN
 
-8. Clear state/tasks/.active-scope (write empty string).
+9. Clear state/tasks/.active-scope (write empty string).
 
 ## Goal Brief Status Update
 
 When a capture record is written and an epic has parent_goal set:
 
-1. Load docs/goals/{parent_goal}.md
-2. Check linked_epics list for completion status:
+2. Load docs/goals/{parent_goal}.md
+3. Check linked_epics list for completion status:
    - If first DONE epic for a proposed goal → update status to `in_delivery`, set `delivery_started_at: YYYY-MM-DD`
    - If all linked epics are DONE and no PRODUCT_PIVOT → update status to `achieved`, set `achieved_at: YYYY-MM-DD`
    - If PRODUCT_PIVOT flag triggered → append pivot note to goal file with date and reason
-3. Update Phase Coverage table in goal file: set the row for this epic's phase to Status: Done
-4. If any goal file was modified: add `goal_status_change: goal-NNN → {new_status}` to capture record
+4. Update Phase Coverage table in goal file: set the row for this epic's phase to Status: Done
+5. If any goal file was modified: add `goal_status_change: goal-NNN → {new_status}` to capture record
 
 Write CONTINUE when:
   - Review APPROVED with no architectural surprises

@@ -17,7 +17,7 @@ project-root/
 │   ├── ROADMAP-001.md                     ← Implementation roadmap (areas × stages, supersedes V1_PLAN)
 │   ├── USE_CASES.md                       ← UC-NNN catalogue (source of truth for validation traces)
 │   ├── DECISIONS.md                       ← D-NNN catalogue (binding implementation decisions)
-│   ├── PROGRESS.md                        ← Cycle-level progress log (updated by S9 curator)
+│   ├── PROGRESS.md                        ← SUPERSEDED — see ROADMAP-003.md and session-log.md
 │   ├── WORKFLOW.md                        ← S1–S9 reference table
 │   ├── WORKFLOW-DETAILED.md               ← Full S1–S9 narrative spec
 │   ├── PRE-WORKFLOW.md                    ← P0–P4 full specification
@@ -190,7 +190,7 @@ state/intake/intake-NNN (READY_FOR_S1)
   → S7: nowu-implementer (VBR) → state/vbr/vbr-task-NNN.md
   → S8: nowu-reviewer → state/reviews/review-task-NNN.md
   → S9: nowu-curator → state/capture/capture-task-NNN.md
-                         → updates docs/DECISIONS.md, docs/PROGRESS.md
+                         → updates docs/DECISIONS.md, docs/ROADMAP-003.md
                          → sets next_cycle_trigger
 ```
 

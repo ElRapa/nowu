@@ -61,7 +61,7 @@ Consider running `/health-check all` at session start if >7 days since last run.
 
 **Requires:**
 - `state/intake/intake-NNN.md` (READY_FOR_S1 — produced by P4)
-- `docs/PROGRESS.md` (current phase context)
+- `docs/ROADMAP-003.md` (current phase context)
 - `docs/ROADMAP-001.md` (plan alignment)
 - `docs/USE_CASES.md` (UC-NNN verification)
 
@@ -161,7 +161,7 @@ This is the first validation gate: "Are we planning to build the right thing?"
 - File tree of affected modules (`tree src/<module>`)
 - `core/contracts/*.py`
 - `tests/` structure (`ls tests/`)
-- `docs/PROGRESS.md`
+- `docs/ROADMAP-003.md`
 
 **Human validates before approving:**
 - Does each task's `validation_trace` connect to the right use cases?
@@ -270,14 +270,14 @@ git diff --name-only HEAD    # verify against in_scope_files
 **Scope IN:**
 - `state/reviews/review-task-NNN.md`
 - `docs/DECISIONS.md`
-- `docs/PROGRESS.md`
+- `docs/ROADMAP-003.md`
 - `state/intake/intake-NNN.md` (to update status and set next_cycle_trigger)
 - `git log`
 
 **Scope OUT:** `src/` and `tests/` (implementation details)
 
 **Actions:**
-1. Update task status to DONE in `state/tasks/` and `docs/PROGRESS.md`
+1. Update task status to DONE in `state/tasks/` and `docs/ROADMAP-003.md`
 2. Append new decisions to `docs/DECISIONS.md` if review surfaced any
 3. Write `state/capture/capture-task-NNN.md` with what/why/lessons
 4. Set `next_cycle_trigger` in `state/intake/intake-NNN.md`:
@@ -288,7 +288,7 @@ git diff --name-only HEAD    # verify against in_scope_files
 5. Compose commit message and ensure code is committed
 
 **Produces:**
-- Updated `docs/PROGRESS.md`
+- Updated `docs/ROADMAP-003.md`
 - Optional updates to `docs/DECISIONS.md`
 - `state/capture/capture-task-NNN.md`
 - `next_cycle_trigger` set in intake record

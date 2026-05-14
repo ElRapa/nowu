@@ -1,0 +1,1 @@
+- [intake-001 S1 status](project_intake001_status.md) — intake-001 (NF-01) passed S1, set READY_FOR_ARCH on 2026-05-11; 5 open questions for S2

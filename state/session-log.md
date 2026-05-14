@@ -60,7 +60,7 @@ status: ACTIVE
 ### 2026-05-10 — Roadmap alignment + session log + 5×10 refactoring proposal
 
 **What:** Updated ROADMAP-001 with full artifact landscape, marked stale state files
-(PROGRESS.md, SESSION_STATE.md), created this session log, added 5×10 refactoring (W6)
+(SUPERSEDED: PROGRESS.md, SESSION_STATE.md), created this session log, added 5×10 refactoring (W6)
 to the roadmap. Two Perplexity research sessions produced proposals for 5×10 refactoring
 and roadmap/session-log alignment.
 

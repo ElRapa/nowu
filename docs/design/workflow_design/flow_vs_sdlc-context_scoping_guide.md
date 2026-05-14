@@ -115,7 +115,8 @@ This is the core deliverable. Each phase should load ONLY the context relevant t
 - `core/contracts/*.py` (what interfaces exist)
 - File tree of affected modules (`ls -R src/nowu/<module>/`)
 - Existing test structure for affected modules
-- `PROGRESS.md` (what's done, what's next)
+- `docs/ROADMAP-003.md` (current status and roadmap position)
+- `state/session-log.md` (recent chronology)
 
 **Do NOT load**:
 - Architecture docs (decisions are already made at this point)
@@ -187,7 +188,8 @@ This is the core deliverable. Each phase should load ONLY the context relevant t
 
 **Load**:
 - `DECISIONS.md` (to check for duplicates before adding)
-- `PROGRESS.md` (to update status)
+- `docs/ROADMAP-003.md` (to update status)
+- `state/session-log.md` (to log completion)
 - Git log of recent commits (what changed)
 - The shaped task's acceptance criteria (what was the goal)
 

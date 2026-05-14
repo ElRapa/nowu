@@ -1,14 +1,19 @@
 # v1 Progress Tracker
 
-> **⚠️ SUPERSEDED** — This file tracks the old V1_PLAN linear steps (00-07).
-> That plan was superseded by `docs/ROADMAP-001.md` (D-020, 2026-05-06).
-> For current project status, see:
-> - **Roadmap:** `docs/ROADMAP-001.md` (Areas × Stages tracker)
-> - **Session Log:** `state/session-log.md` (what happened, when, and why)
-> - **Learnings:** `state/learnings/INDEX.md` (session learnings + recurring patterns)
+> **⚠️ SUPERSEDED — FULLY OBSOLETE (2026-05-13)**
 >
-> The content below is retained as historical reference only.
-
+> This file tracked the old V1_PLAN linear steps (00-07).
+> That approach was superseded by the ROADMAP artifact family
+> (`docs/ROADMAP-001.md` → `docs/ROADMAP-002.md` → `docs/ROADMAP-003.md`).
+>
+> **Do not read or write this file for current status.**
+> Use the canonical sources instead:
+> - **Roadmap / Status:** `docs/ROADMAP-003.md` (what we're doing, what's next)
+> - **Session Chronology:** `state/session-log.md` (what happened, when, and why)
+> - **Per-Intake Capture:** `state/capture/capture-*.md` (intake-level records)
+> - **Learnings:** `state/learnings/INDEX.md` (recurring patterns + insights)
+>
+> The table and narrative below are retained for historical reference only.
 ---
 
 ## Historical Content (from V1_PLAN era, last updated 2026-04-08)

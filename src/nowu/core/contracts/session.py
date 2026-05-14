@@ -1,20 +1,24 @@
-"""Session runtime and WAL contracts."""
+"""Session runtime and WAL contracts.
+
+See ADR-0007 for checkpoint schema details.
+"""
 
 from __future__ import annotations
 
-from typing import Protocol
+from typing import Protocol, runtime_checkable
 
-from .types import RoleName, SessionSnapshot
+from .types import RoleName, SessionCheckpoint
 
 
+@runtime_checkable
 class SessionStore(Protocol):
-    """Persistence boundary for session snapshots and event trail."""
+    """Persistence boundary for session checkpoints and event trail."""
 
-    def load(self) -> SessionSnapshot | None:
-        """Load the latest session snapshot if one exists."""
+    def load(self) -> SessionCheckpoint | None:
+        """Load the latest session checkpoint if one exists."""
 
-    def save(self, snapshot: SessionSnapshot) -> None:
-        """Persist a snapshot to durable storage."""
+    def save(self, checkpoint: SessionCheckpoint) -> None:
+        """Persist a checkpoint to durable storage."""
 
 
 class RoleOrchestrator(Protocol):

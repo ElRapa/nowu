@@ -173,7 +173,7 @@ Standard keys apply to all agents. Orchestrator-specific keys apply to these thr
 name: <agent-name>
 description: >
   <multi-line description>
-model: claude-sonnet-4-5  # or claude-haiku-4-5 for lightweight agents
+model: claude-sonnet-4-6  # or claude-haiku-4-5 for lightweight agents
 tools: [Tool1, Tool2]
 invoked_at: "<condition>"
 altitude: <STRATEGIC|PRODUCT|ARCHITECTURE|DELIVERY|EXECUTION>

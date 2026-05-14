@@ -589,4 +589,35 @@ reference implementation artifacts by filepath or filename.** Specifically:
 ### Review Trigger
 
 Never — this is a documentation hygiene constraint that follows directly from
-altitude discipline (D-013).
+altitude discipline (D-013).---
+
+## D-024 — Versioned Session Checkpoint Schema
+
+**Date**: 2026-05-12 | **Status**: ACCEPTED | **Level**: module  
+**Intake**: intake-001 (Resume Work After Context Loss) | **Use Cases**: NF-01  
+**Epistemic Grade**: HYPOTHESIS (tested via intake-001 implementation)  
+**Builds on**: D-002 (DDD), D-004 (TDD), D-017 (Hypothesis ADRs)
+
+### Context
+
+Intake-001 requires agents to read persisted session state and propose the next action (NF-01 AC-1). ADR-0007 specifies `SessionCheckpoint` with 10 fields. Current `SessionSnapshot` has 5 fields, is frozen.
+
+### Decision
+
+Implement Option C: Versioned Schema.
+
+1. New `SessionCheckpoint` dataclass in `core/contracts/types.py` with all 10 fields required
+2. Update `SessionStore` protocol: `save(checkpoint: SessionCheckpoint)`, `load() -> SessionCheckpoint | None`
+3. Migration logic in `FileSessionStore` to read old format, upgrade to new
+4. Write `state/SESSION_STATE.md` YAML projection atomically with JSON checkpoint
+
+### Consequences
+
+- **Good**: Eliminates Optional-field ambiguity, direct ADR-0007 test
+- **Bad**: Tier 3 breaking change to SessionStore API (low blast radius — flow is stub)
+
+### Effort: 7h (tight vs 8h appetite)
+
+### Review Trigger
+
+After S6-S7: verify migration complete, schema translation tested, atomicity proven.

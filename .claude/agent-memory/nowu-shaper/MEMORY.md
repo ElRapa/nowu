@@ -1,0 +1,1 @@
+- [S4 decision file gap](project_s4_decision_file_gap.md) — S4 did not produce intake-001-decision.md before S5; check for this file at S5 start before proceeding
