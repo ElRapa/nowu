@@ -18,6 +18,7 @@ below the table. Recurring patterns are high-priority candidates for workflow ch
 
 | Date | Session | Key Learnings | Types | File |
 |------|---------|---------------|-------|------|
+| 2026-05-14 | W8+W29: Epistemic enforcement + roadmap hygiene | Work grid and dep graph drift apart within one session (6 inconsistencies found); Section 7 goes stale on every completion (3rd session in a row); F3/W29 duplication hidden by different naming; `quick` agent satisfices on bulk edits (4/25 files then stops) | workflow-process, agent-behavior, domain-insight | `state/learnings/session-2026-05-14-w8-w29-epistemic-enforcement.md` |
 | 2026-05-14 | W5: 5x10 Coordinate Validation | 5x10 model was correct but not operationalized (0/22 artifacts had coordinates); Consumption-position convention established for artifact tagging; S7/S8 agent mapping in MODEL-REFERENCE is wrong (WORKFLOW.md is correct); Section 13 has coverage gaps for 3 artifact types; Git history is most reliable artifact inventory | workflow-process, agent-behavior | `state/learnings/session-2026-05-14-w5-5x10-validation.md` |
 | 2026-05-13 | W4 S2-S9: First end-to-end intake cycle | Agent specialization validated; TDD commit ordering matters; Task atomicity prevents scope creep; Appetite calibration needs evidence | workflow-process, agent-behavior, domain-insight | `state/learnings/session-2026-05-13-w4-s2-s9-execution.md` |
 | 2026-05-11 | S1 Intake Analysis — NF-01 First Cycle | S1 inline annotations replace separate validation artifacts; Contract definitions are critical S2 blockers; UC scope narrowing is intentional for W4; Hypothesis ADRs need explicit constraint-vs-test status; Appetite binding deferred but bounded to 8h | workflow-process, agent-behavior, domain-insight | `state/learnings/session-2026-05-11-s1-intake-validation.md` |
@@ -64,3 +65,11 @@ below the table. Recurring patterns are high-priority candidates for workflow ch
 **Action:** When delegating data-integrity tasks: (1) provide the exact target structure as a code-block template, (2) include explicit count-verification instructions ("output must have exactly N rows"), (3) flag edge cases in the data ("note: XP-02 is PENDING, not ACTIVE — include it anyway").
 
 *Note (2026-05-14): Confirmed again in W5 — Sisyphus-Junior agent took 2+ minutes and multiple retries to edit 15 files with complex YAML frontmatter. Providing a sample of the first 10 lines of one file would have prevented the matching struggles.*
+
+### RP-004: ROADMAP-003 Section 7 + dashboard go stale on every work item completion
+
+**Sessions:** 2026-05-14 (W8+W29 — Section 7 still pointed to W8 after completion), 2026-05-14 (W32 — dashboard blocked items stale), 2026-05-14 (K2 — Section 7 needed manual update)
+
+**Pattern:** After completing a work item, the ROADMAP Section 7 "Current Work Item" and the session-log "Status Dashboard" are not automatically updated. Every session starts by discovering stale pointers. The S9 curator checklist doesn't explicitly require these updates, so they're forgotten or deferred.
+
+**Action:** Add mandatory S9 curator steps: (1) update ROADMAP Section 7 `next_work_item` to the next READY item, (2) update session-log dashboard's "Current Work Item" and "Blocked Items" to reflect new state, (3) cascade dependent item statuses (PLANNED → READY when blocker completes).
