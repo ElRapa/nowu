@@ -1,5 +1,8 @@
 ---
 id: review-intake-001
+altitude: EXECUTION
+phase: EVALUATION
+epistemic_grade: EVIDENCE_BASED
 intake_id: intake-001
 task_ids: [task-001, task-002, task-003, task-004, task-005]
 story_id: story-v1core-001-s002

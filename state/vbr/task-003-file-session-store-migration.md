@@ -3,6 +3,9 @@ id: vbr-task-003-file-session-store-migration
 task_id: task-003-file-session-store-migration
 created: 2026-05-12
 status: READY_FOR_REVIEW
+altitude: EXECUTION
+phase: VERIFICATION
+epistemic_grade: EVIDENCE_BASED
 ---
 
 # VBR Report: task-003-file-session-store-migration

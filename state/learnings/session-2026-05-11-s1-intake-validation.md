@@ -3,6 +3,9 @@ artifact_type: SESSION_LEARNINGS
 session: "S1 Intake Analysis — NF-01 Resume Work After Context Loss (intake-001)"
 created_at: 2026-05-11
 session_type: "S1-S9"
+altitude: DELIVERY
+phase: LEARN
+epistemic_grade: INFORMED_ESTIMATE
 source_artifacts:
   - state/intake/intake-001.md (status: READY_FOR_ARCH)
   - docs/USE_CASES.md (referenced for UC alignment)

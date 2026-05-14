@@ -6,6 +6,9 @@ decision_id: D-024
 captured: 2026-05-13
 next_cycle_trigger: CONTINUE
 status: DONE
+altitude: EXECUTION
+phase: LEARN
+epistemic_grade: INFORMED_ESTIMATE
 ---
 
 # Capture Record: intake-001 — W4 First S1-S9 Cycle

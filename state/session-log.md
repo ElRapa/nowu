@@ -20,13 +20,13 @@ status: ACTIVE
 
 ## Status Dashboard
 
-> Last updated: 2026-05-10
+> Last updated: 2026-05-14
 > Source: `docs/ROADMAP-003.md` (v3)
 
 #### Current Position
-- **Stage**: v1-core — Bootstrap
-- **Current Work Item**: W4 — First S1-S9 intake (end-to-end cycle)
-- **Agent to Invoke**: pre-workflow-runner (to create intake-001) then nowu-intake (S1)
+- **Stage**: v1-core — Foundation validated
+- **Current Work Item**: W5 — Validate 5×10 coordinates on W4 artifacts (DONE)
+- **Next Work Items**: W6 (5×10 model refactor), K2 (forward/backward trace validation)
 
 #### Milestones
 | Milestone | Status | Date |
@@ -37,15 +37,15 @@ status: ACTIVE
 | W3.5: Fitness Functions | ✅ Done | 2026-05-07 |
 | W-orch: Orchestrator Layer | ✅ Done | 2026-05-09 |
 | W-log: Session Log | ✅ Done | 2026-05-10 |
-| W4: First S1-S9 Intake | ⬜ NEXT | — |
+| W4: First S1-S9 Intake | ✅ Done | 2026-05-13 |
+| W5: 5×10 Coordinate Validation | ✅ Done | 2026-05-14 |
 
 #### Blocked Items
-- W5: Validate 5×10 coordinates on W4 artifacts — BLOCKED_BY_W4
-- W6: 5×10 model refactor with full agent-grid mapping — BLOCKED_BY_W4
-- W29: NF-15 Level 0 epistemic enforcement implementation — BLOCKED_BY_W4
-- W32: Epistemic threshold calibration — BLOCKED_BY_W4
-- W27: AP domain project bootstrap (AP-01/AP-02/AP-06) — BLOCKED_BY_W4
-- W28: RE domain project bootstrap (RE-01/RE-06) — BLOCKED_BY_W4
+- W6: 5×10 model refactor with full agent-grid mapping — READY (W5 findings available)
+- W32: Epistemic threshold calibration — READY (W4+W5 complete)
+- W29: NF-15 Level 0 epistemic enforcement implementation — BLOCKED_BY_W4 (requires ADR-0010)
+- W27: AP domain project bootstrap (AP-01/AP-02/AP-06) — READY
+- W28: RE domain project bootstrap (RE-01/RE-06) — READY
 
 #### Goal Progress
 | Goal | Active UCs | Linked to Epics |
@@ -56,6 +56,66 @@ status: ACTIVE
 | goal-004: Infrastructure | 34/34 | 0/34 |
 
 ## Entries
+
+### 2026-05-14 — W5: 5×10 coordinate validation on W4 artifacts
+
+**What:** Audited all 22 W4 state artifacts against the 5×10 altitude-phase model
+(MODEL-REFERENCE.md §7 and §13). Found 0/22 artifacts had altitude/phase/epistemic_grade
+in frontmatter — universal metadata gap. Added metadata to all 22 files. Discovered 6
+model inconsistencies: 1 MEDIUM (S7/S8 agent ordering mismatch between MODEL-REFERENCE
+and WORKFLOW.md) and 5 LOW (missing Section 13 entries, position ambiguities, unrealized
+directory references). Proposed artifact_type vocabulary for K1/W20.
+
+**Artifacts touched:**
+- `state/arch/w5-5x10-validation.md` — created (W5 validation report)
+- `state/intake/intake-001.md` — altitude/phase/epistemic_grade added
+- `state/arch/intake-001-constraints.md` — altitude/phase/epistemic_grade added
+- `state/arch/intake-001-options.md` — altitude/phase/epistemic_grade added
+- `state/tasks/task-001..005.md` — altitude/phase/epistemic_grade added (5 files)
+- `state/changes/task-001..005.md` — altitude/phase/epistemic_grade added (5 files)
+- `state/vbr/task-001..005.md` — altitude/phase/epistemic_grade added (5 files)
+- `state/reviews/review-intake-001.md` — altitude/phase/epistemic_grade added
+- `state/capture/capture-intake-001.md` — altitude/phase/epistemic_grade added
+- `state/analysis/S5,S8,S9-intake-001-analysis.md` — altitude/phase/epistemic_grade added (3 files)
+- `state/learnings/session-2026-05-11,13*.md` — altitude/phase/epistemic_grade added (2 files)
+- `state/session-log.md` — updated (this file)
+
+**Decisions:** None new. Applied D-013 (5×10 model) to artifact metadata.
+
+**Next:** W6 (5×10 model refactor — fix S7/S8 mapping, add missing Section 13 entries)
+or K2 (forward/backward trace validation). Both are now unblocked.
+
+---
+
+### 2026-05-13 — W4: First S1-S9 intake DONE (intake-001, NF-01)
+
+**What:** Completed the first end-to-end S1-S9 cycle. Implemented session checkpoint
+persistence (SessionCheckpoint, FileSessionStore, pipeline integration) across core
+and flow modules. 43 tests, 98.54% coverage. D-024 approved (Versioned Schema,
+Option C). Review APPROVED with 3 non-blocking warnings (pyyaml dep, minor scope
+artifacts, ADR-0007 field divergence).
+
+**Artifacts touched:**
+- `state/intake/intake-001.md` — status: DONE
+- `state/arch/intake-001-constraints.md` — created (S2)
+- `state/arch/intake-001-options.md` — created (S3)
+- `state/tasks/task-001..005.md` — created (S5, 5 files)
+- `state/changes/task-001..005.md` — created (S6, 5 files)
+- `state/vbr/task-001..005.md` — created (S7, 5 files)
+- `state/reviews/review-intake-001.md` — created (S8, APPROVED)
+- `state/capture/capture-intake-001.md` — created (S9, DONE)
+- `docs/DECISIONS.md` — D-024 added
+- `src/nowu/core/contracts/types.py` — SessionCheckpoint dataclass
+- `src/nowu/core/contracts/session.py` — SessionStore protocol updated
+- `src/nowu/flow/session_store.py` — FileSessionStore implementation
+- `src/nowu/flow/pipeline.py` — session start integration
+- `state/learnings/session-2026-05-13-w4-s2-s9-execution.md` — captured
+
+**Decisions:** D-024 (Versioned Session Checkpoint Schema)
+
+**Next:** W5 — Validate 5×10 coordinates on W4 artifacts (now unblocked).
+
+---
 
 ### 2026-05-10 — Roadmap alignment + session log + 5×10 refactoring proposal
 

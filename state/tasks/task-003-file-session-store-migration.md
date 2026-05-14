@@ -3,6 +3,9 @@ id: task-003-file-session-store-migration
 title: "FileSessionStore: Migration and Bookmark Writer"
 created: 2026-05-12
 status: READY_FOR_IMPL
+altitude: EXECUTION
+phase: IMPLEMENTATION
+epistemic_grade: HYPOTHESIS
 decision_id: D-024
 intake_id: intake-001
 story_id: story-v1core-001-s002

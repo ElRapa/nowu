@@ -2,6 +2,9 @@
 id: 2026-05-12-task-005-test-coverage-tdd
 task_id: task-005-test-coverage-tdd
 created: 2026-05-12
+altitude: EXECUTION
+phase: IMPLEMENTATION
+epistemic_grade: EVIDENCE_BASED
 ---
 
 # Changeset: task-005-test-coverage-tdd

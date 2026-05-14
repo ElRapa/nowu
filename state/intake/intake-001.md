@@ -2,6 +2,9 @@
 artifact_type: INTAKE_BRIEF
 intake_id: intake-001
 status: DONE
+altitude: DELIVERY
+phase: IDEA
+epistemic_grade: HYPOTHESIS
 created_at: 2026-05-10
 s1_validated_at: 2026-05-11T00:00:00Z
 workflow_mode: A

@@ -3,6 +3,9 @@ id: vbr-task-002-session-store-protocol-update
 task_id: task-002-session-store-protocol-update
 created: 2026-05-12
 status: READY_FOR_REVIEW
+altitude: EXECUTION
+phase: VERIFICATION
+epistemic_grade: EVIDENCE_BASED
 ---
 
 # VBR Report: task-002-session-store-protocol-update
