@@ -24,9 +24,9 @@ status: ACTIVE
 > Source: `docs/ROADMAP-003.md` (v3)
 
 #### Current Position
-- **Stage**: v1-core — Foundation validated, nearing v1 gate
-- **Current Work Item**: K2 — Forward/backward trace validation (READY)
-- **Next Work Items**: W32 (epistemic threshold calibration), K1 (traceability metadata — ACTIVE)
+- **Stage**: v1-core — All gate criteria met, ready for v1 transition
+- **Current Work Item**: W32 — Epistemic threshold calibration (READY)
+- **Next Work Items**: K1 (traceability metadata — ACTIVE), A2 (quality gate suite), F3 (session resumption)
 
 #### Milestones
 | Milestone | Status | Date |
@@ -40,6 +40,7 @@ status: ACTIVE
 | W4: First S1-S9 Intake | ✅ Done | 2026-05-13 |
 | W5: 5×10 Coordinate Validation | ✅ Done | 2026-05-14 |
 | W6: 5×10 Model Refactor + Agent Grid | ✅ Done | 2026-05-14 |
+| K2: Forward/Backward Trace Validation | ✅ Done | 2026-05-14 |
 
 #### Blocked Items
 - W32: Epistemic threshold calibration — READY (W4+W5 complete)
@@ -56,6 +57,30 @@ status: ACTIVE
 | goal-004: Infrastructure | 34/34 | 0/34 |
 
 ## Entries
+
+### 2026-05-14 — K2: Forward/backward trace validation (v1-core→v1 gate)
+
+**What:** Executed K2 trace validation on intake-001's full artifact chain. Walked both
+forward (Goal → UC → Story → Intake → Task → Code → Test → VBR → Review → Capture) and
+backward directions. NF-01 chain is fully traceable end-to-end. Corrected subagent's FAIL
+verdict to PASS — the 4 "uncovered" UCs (NF-02, NF-09, PK-03, XP-01) are broader W4
+roadmap scope expected to be covered by subsequent intakes, not a trace failure.
+Three non-blocking observations captured for K1/W20: intake UC breadth vs execution scope
+(expected), narrative vs structured back-references (template improvement), stale task
+status fields (process gap). All v1-core→v1 gate criteria now met.
+
+**Artifacts touched:**
+- `state/tasks/task-006-k2-trace-validation.md` — created (task spec), status → DONE
+- `state/arch/k2-trace-validation.md` — created (validation report, verdict PASS)
+- `docs/ROADMAP-003.md` — K2 → ✅ DONE; gate criterion checked; critical path updated; next_work_item → W32
+- `state/session-log.md` — updated (this entry + dashboard)
+
+**Decisions:** None new. Validated existing trace chain for NF-01.
+
+**Next:** W32 (epistemic threshold calibration — highest-leverage v1 item, gates W8→W11→W16
+enforcement chain) or second S1-S9 intake for remaining NF UCs.
+
+---
 
 ### 2026-05-14 — W6: 5×10 model refactor + agent grid mapping
 

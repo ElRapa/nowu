@@ -91,7 +91,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Workflow | W17 | Multi-traversal auto-selection | v2 | W15 | XP-06 | PLANNED |
 | Workflow | W18 | 5×10 grid auto-population from history | v2 | 20+ intakes | NF-08, XP-10 | PLANNED |
 | Knowledge | K1 | Traceability metadata in all new artifacts | v1-core | none | NF-09 | ACTIVE |
-| Knowledge | K2 | Forward/backward trace validation | v1-core | W4 | NF-09, XP-08 | READY |
+| Knowledge | K2 | Forward/backward trace validation | v1-core | W4 | NF-09, XP-08 | ✅ DONE |
 | Knowledge | K3 | MemoryService integration for structured recall | v1 | core contracts baseline | NF-01, PK-03 | PLANNED |
 | Knowledge | K4 | Session state persistence via know | v1 | K3 | NF-01, NF-10, XP-01 | PLANNED |
 | Knowledge | K5 | Cross-project recall | v1.1 | K4 | XP-01, XP-03 | PLANNED |
@@ -188,7 +188,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 
 ## 4. Dependency Graph
 
-**Critical path:** **W1 ✅ → W2 ✅ → W3 ✅ → W3.5 ✅ → W4 ✅ → W5 ✅ → W6 ✅ → K2 (READY) → v1-core→v1 gate**
+**Critical path:** **W1 ✅ → W2 ✅ → W3 ✅ → W3.5 ✅ → W4 ✅ → W5 ✅ → W6 ✅ → K2 ✅ → v1-core→v1 gate (ALL CRITERIA MET)**
 
 ```yaml
 dependency_graph:
@@ -213,7 +213,7 @@ dependency_graph:
   W5: {depends_on: ["W4"], status: "✅ complete", evidence: ["state/arch/w5-5x10-validation.md", "state/learnings/session-2026-05-14-w5-5x10-validation.md"]}
   W6: {depends_on: ["W4"], status: "✅ complete", evidence: ["state/arch/w6-5x10-refactor-summary.md", "AGENTS.md (agent grid)", "docs/model/MODEL-REFERENCE.md (§7/§11/§13 fixes)"]}
   K1: {depends_on: ["W4"], status: "ACTIVE"}
-  K2: {depends_on: ["W4"], status: "READY"}
+  K2: {depends_on: ["W4"], status: "✅ complete", evidence: ["state/arch/k2-trace-validation.md"]}
   A1: {depends_on: ["W4"], status: "ACTIVE"}
   A2: {depends_on: ["W4"], status: "READY"}
   F1: {depends_on: [], status: "PLANNED"}
@@ -294,7 +294,7 @@ adr_status_snapshot:
 - [x] W1, W2, W3, W3.5 completed and artifacts exist.
 - [x] Orchestrator baseline exists (W-orch) and session chronology anchor exists (W-log).
 - [x] W4 first S1-S9 intake completed with full artifact chain from intake to capture.
-- [ ] K2 traceability validation run and documented.
+- [x] K2 traceability validation run and documented.
 
 ### v1 → v1.1
 
@@ -334,16 +334,15 @@ adr_status_snapshot:
 ## 7. Current Work Item
 
 ```yaml
-next_work_item: K2
-description: Forward/backward trace validation
-current_stage: v1-core
+next_work_item: W32
+description: Epistemic threshold calibration
+current_stage: v1-core (gate criteria met — ready for v1 transition)
 agent_to_invoke: single-step
 input_artifacts:
-  - state/intake/intake-001.md
-  - state/tasks/
-  - state/capture/capture-intake-001.md
+  - docs/model/MODEL-REFERENCE.md
+  - docs/architecture/adr/ADR-0010-epistemic-grade-assignment.md
   - state/arch/w5-5x10-validation.md
-status_hint: READY (W4+W5+W6 complete; last v1-core→v1 gate criterion)
+status_hint: READY (W4+W5 complete; highest-leverage v1 item — gates W8→W11→W16 enforcement chain)
 ```
 
 ## Appendix A: ROADMAP-002 Change Disposition
