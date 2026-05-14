@@ -100,7 +100,7 @@ Canonical mapping of all 35 agents to 5×10 altitude/phase positions. This table
 | **Orchestrator + Meta** | | | | | |
 | roadmap-creator | `.claude/agents/roadmap-creator.md` | Orchestrator milestone | STRATEGIC | IMPLEMENTATION | Frontmatter pre-set; MODEL §8 confirmed. |
 | roadmap-updater | `.claude/agents/roadmap-updater.md` | Orchestrator milestone | STRATEGIC | LEARN | Frontmatter pre-set; MODEL §8 confirmed. |
-| work-scheduler | `.claude/agents/work-scheduler.md` | Orchestrator query | STRATEGIC | EVALUATION | Meta-layer query agent; mapped for table normalization. |
+| work-scheduler | `.claude/agents/work-scheduler.md` | Orchestrator query | N/A (meta) | N/A (query) | Read-only meta-layer query agent; outside 5×10 grid per MODEL §8. |
 
 ## Import Boundary Rules (Enforced by Test)
 

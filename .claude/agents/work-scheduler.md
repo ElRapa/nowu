@@ -1,8 +1,8 @@
 ---
 name: work-scheduler
 description: >
-altitude: STRATEGIC
-phase: EVALUATION
+altitude: STRATEGIC  # §8 override: meta-layer agent, outside 5×10 grid. Frontmatter retains valid enum for tooling.
+phase: EVALUATION  # §8 override: read-only query agent, not an execution step. See AGENTS.md grid for N/A (meta) | N/A (query).
   Orchestrator meta-agent. Read-only scheduler that decides what work item
   to execute next by reading the current roadmap and system state. Outputs
   structured YAML with readiness status (READY, BLOCKED, NEEDS_VALIDATION).

@@ -129,6 +129,8 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Framework | F10 | Installable package + public docs | v2 | F7, v1.1 gate | XP-09 | PLANNED |
 | Framework | F11 | Multi-user/external project support | v2 | F10 | XP-10 | PLANNED |
 
+> **Phase-operator architecture (v1.1+ direction):** v1 and v1.1 should converge on generic phase agents parameterized by `altitude` and `artifact_type`, with P0–P4 and S1–S9 modeled as named traversals of the 5×10 grid, not separate workflows. See MODEL-REFERENCE §5 "Future: Phase Operators" and IMPLEMENTATION-GUIDE Package 2 for design intent.
+
 ## 3. UC-to-Stage Mapping
 
 | UC-ID | Title | Stage | Work Items | Theme(s) |

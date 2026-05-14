@@ -154,6 +154,12 @@ Conflating the two causes either design-free testing or untestable “evaluation
 | DELIVERY | Slice candidate | Delivery obstacle | Readiness analysis | — | Sequencing options | Intake approval | Scope/risk review | Story execution plan | AC review | Cycle retro |
 | EXECUTION | Task idea | Bug/defect | Root cause analysis | — | Technical approaches | Local design decision | Review/test eval | Code and tests | CI/runtime checks | Capture/postmortem |
 
+### Future: Phase Operators
+
+In v1‑core, S1–S9 and P0–P4 are documented as step sequences. In v1.1+, the intent is to implement each phase (IDEA, PROBLEM, ANALYSIS, OPTIONS, DECISION, EVALUATION, IMPLEMENTATION, VERIFICATION, LEARN) as a reusable **phase operator**, parameterized by `altitude` and `artifact_type`. P0–P4 and S1–S9 should then be treated as **named traversals** over the same 5×10 grid, not separate workflows. The target design is ~9 phase agents × 5 altitude skillsets, rather than 45 separate altitude×phase agents.
+
+See `docs/model/IMPLEMENTATION-GUIDE.md` Package 2 for implementation scope and `state/learnings/session-2026-05-14-w5-5x10-validation.md` for rationale.
+
 ## 6. Epistemic Grades
 
 | Grade | Evidence Required |

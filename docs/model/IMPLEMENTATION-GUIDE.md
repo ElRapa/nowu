@@ -65,6 +65,8 @@ Estimated effort:
 
 ### Package 2: Phase Agents + Skillsets
 
+**Design intent:** Phase agents are **phase‑first, altitude‑parameterized operators**. The target design is ~9 phase agents (IDEA, PROBLEM, ANALYSIS, OPTIONS, DECISION, EVALUATION, IMPLEMENTATION, VERIFICATION, LEARN) × 5 altitude skillsets, rather than 45 separate altitude×phase agents. Pre‑workflow P0–P4 and S1–S9 should eventually become thin, documented traversals using these operators. See `state/learnings/session-2026-05-14-w5-5x10-validation.md` for rationale on unifying pre‑workflow and workflow around common phases and altitude/phase metadata.
+
 Scope:
 
 - Build 10 phase-agent definitions with altitude-specific skills

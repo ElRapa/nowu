@@ -104,3 +104,7 @@ purpose: "Validate and operationalize the 5x10 altitude-phase model on real W4 a
 2. **S9 checklist update**: Add "verify altitude/phase/epistemic_grade on all produced artifacts" to nowu-curator's S9 checklist
 3. **K1/W20**: Standardize artifact_type vocabulary across all state/ artifacts using the 15-term proposal from w5-5x10-validation.md Section 7
 4. **K2**: Forward/backward trace validation — verify that every artifact's altitude/phase matches its step's MODEL-REFERENCE position
+
+## Future Direction
+
+Adopt a unified **phase‑operator model** (phase agents × altitude skillsets) and treat P0–P4 and S1–S9 as named traversals of the 5×10 grid, not separate workflows. Implementation expected in IMPLEMENTATION-GUIDE Package 2 (Phase Agents + Skillsets). See MODEL-REFERENCE §5 "Future: Phase Operators" for the conceptual anchor.
