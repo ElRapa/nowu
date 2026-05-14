@@ -1,0 +1,130 @@
+diff --git a/.claude/agents/architecture-bootstrap.md b/.claude/agents/architecture-bootstrap.md
+index 8fd8eeb..72f4026 100644
+--- a/.claude/agents/architecture-bootstrap.md
++++ b/.claude/agents/architecture-bootstrap.md
+@@ -9,6 +9,8 @@ description: >
+ model: claude-sonnet-4-6
+ tools: [Read, Write]
+ invoked_at: P3.2
++altitude: ARCHITECTURE
++phase: OPTIONS
+ ---
+ 
+ # Architecture Bootstrap Agent
+diff --git a/.claude/agents/constraint-check.md b/.claude/agents/constraint-check.md
+index 67f638b..1b8ba24 100644
+--- a/.claude/agents/constraint-check.md
++++ b/.claude/agents/constraint-check.md
+@@ -8,6 +8,8 @@ description: >
+ model: claude-haiku-4-5
+ tools: [Read, Write]
+ invoked_at: P3.1
++altitude: ARCHITECTURE
++phase: ANALYSIS
+ ---
+ 
+ # Constraint Check Agent
+diff --git a/.claude/agents/discovery-agent.md b/.claude/agents/discovery-agent.md
+index 094ee4d..8494f07 100644
+--- a/.claude/agents/discovery-agent.md
++++ b/.claude/agents/discovery-agent.md
+@@ -7,6 +7,8 @@ description: >
+ model: claude-sonnet-4-6
+ tools: [Read, Write]
+ invoked_at: P1.1
++altitude: PRODUCT
++phase: ANALYSIS
+ ---
+ 
+ # Discovery Agent
+diff --git a/.claude/agents/idea-decomposition.md b/.claude/agents/idea-decomposition.md
+index de362fa..78c66c5 100644
+--- a/.claude/agents/idea-decomposition.md
++++ b/.claude/agents/idea-decomposition.md
+@@ -8,6 +8,8 @@ description: >
+ model: claude-sonnet-4-6
+ tools: [Read, Write]
+ invoked_at: P0.D
++altitude: PRODUCT
++phase: ANALYSIS
+ ---
+ 
+ # Idea Decomposition Agent
+diff --git a/.claude/agents/perspective-interview.md b/.claude/agents/perspective-interview.md
+index e23a22b..67fe7b2 100644
+--- a/.claude/agents/perspective-interview.md
++++ b/.claude/agents/perspective-interview.md
+@@ -8,6 +8,8 @@ description: >
+ model: claude-sonnet-4-6
+ tools: [Read, Write]
+ invoked_at: P1.2
++altitude: PRODUCT
++phase: PROBLEM
+ ---
+ 
+ # Perspective Interview Agent
+diff --git a/.claude/agents/readiness-checker.md b/.claude/agents/readiness-checker.md
+index 6715acc..1be4ade 100644
+--- a/.claude/agents/readiness-checker.md
++++ b/.claude/agents/readiness-checker.md
+@@ -8,6 +8,8 @@ description: >
+ model: claude-haiku-4-5
+ tools: [Read, Write]
+ invoked_at: P4.1-P4.2
++altitude: DELIVERY
++phase: EVALUATION
+ ---
+ 
+ # Readiness Checker Agent
+diff --git a/.claude/agents/signal-capture.md b/.claude/agents/signal-capture.md
+index aaec995..009e11a 100644
+--- a/.claude/agents/signal-capture.md
++++ b/.claude/agents/signal-capture.md
+@@ -9,6 +9,8 @@ model: haiku
+ tools: [Read, Write, Bash]
+ invoked_at: P0.1
+ command: /capture
++altitude: STRATEGIC
++phase: IDEA
+ ---
+ 
+ 
+diff --git a/.claude/agents/story-mapper.md b/.claude/agents/story-mapper.md
+index fa2913b..34e5d53 100644
+--- a/.claude/agents/story-mapper.md
++++ b/.claude/agents/story-mapper.md
+@@ -8,6 +8,8 @@ description: >
+ model: claude-sonnet-4-6
+ tools: [Read, Write]
+ invoked_at: P2.1
++altitude: DELIVERY
++phase: OPTIONS
+ ---
+ 
+ # Story Mapper Agent
+diff --git a/.claude/agents/use-case-agent.md b/.claude/agents/use-case-agent.md
+index 269c0c8..258b381 100644
+--- a/.claude/agents/use-case-agent.md
++++ b/.claude/agents/use-case-agent.md
+@@ -3,6 +3,8 @@ name: use-case-agent
+ version: 2.3
+ model: claude-sonnet-4-6
+ invoked_at: P0.UC
++altitude: PRODUCT
++phase: PROBLEM
+ ---
+ 
+ # Use Case Catalog Agent (UC Manager)
+diff --git a/.claude/agents/vision-bootstrap.md b/.claude/agents/vision-bootstrap.md
+index 529ea23..1cd9294 100644
+--- a/.claude/agents/vision-bootstrap.md
++++ b/.claude/agents/vision-bootstrap.md
+@@ -3,6 +3,8 @@ name: vision-bootstrap
+ version: 2.2
+ model: claude-sonnet-4-6
+ invoked_at: P0.V
++altitude: STRATEGIC
++phase: DECISION
+ ---
+ 
+ # Vision Bootstrap Agent

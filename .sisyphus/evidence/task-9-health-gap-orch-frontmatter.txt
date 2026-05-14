@@ -1,0 +1,27 @@
+==health-vision==
+altitude: STRATEGIC
+phase: VERIFICATION
+==health-goals==
+altitude: STRATEGIC
+phase: VERIFICATION
+==health-architecture==
+altitude: ARCHITECTURE
+phase: VERIFICATION
+==health-use-cases==
+altitude: PRODUCT
+phase: VERIFICATION
+==gap-detector==
+altitude: ARCHITECTURE
+phase: IDEA
+==gap-analyst==
+==gap-writer==
+altitude: ARCHITECTURE
+phase: IMPLEMENTATION
+altitude: ARCHITECTURE
+phase: IMPLEMENTATION
+==work-scheduler==
+==qa-elicitation==
+altitude: ARCHITECTURE
+phase: ANALYSIS
+altitude: ARCHITECTURE
+phase: ANALYSIS

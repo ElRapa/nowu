@@ -1,0 +1,2 @@
+BLOCKER lines in report: 3
+Summary line: - BLOCKER: 0

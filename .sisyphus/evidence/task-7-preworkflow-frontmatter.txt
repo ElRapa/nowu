@@ -1,0 +1,30 @@
+==vision-bootstrap==
+altitude: STRATEGIC
+phase: DECISION
+==signal-capture==
+altitude: STRATEGIC
+phase: IDEA
+==idea-decomposition==
+altitude: PRODUCT
+phase: ANALYSIS
+==use-case-agent==
+altitude: PRODUCT
+phase: PROBLEM
+==discovery-agent==
+altitude: PRODUCT
+phase: ANALYSIS
+==perspective-interview==
+altitude: PRODUCT
+phase: PROBLEM
+==story-mapper==
+altitude: DELIVERY
+phase: OPTIONS
+==constraint-check==
+altitude: ARCHITECTURE
+phase: ANALYSIS
+==architecture-bootstrap==
+altitude: ARCHITECTURE
+phase: OPTIONS
+==readiness-checker==
+altitude: DELIVERY
+phase: EVALUATION

@@ -1,0 +1,3 @@
+- If parent_goal is set in the epic frontmatter: docs/goals/{parent_goal}.md — to check/update goal status
+9. Verify all produced artifacts carry correct `artifact_type`, `altitude`, and `phase` in YAML frontmatter (per MODEL-REFERENCE §13 vocabulary)
+- Frontmatter: `step: S9`, `artifact_id`, `artifact_path`, `run_date`, `agent`, `outcome`

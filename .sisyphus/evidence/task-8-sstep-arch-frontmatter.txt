@@ -1,0 +1,36 @@
+==nowu-intake==
+altitude: DELIVERY
+phase: IDEA
+==nowu-constraints==
+altitude: ARCHITECTURE
+phase: ANALYSIS
+==nowu-options==
+altitude: ARCHITECTURE
+phase: OPTIONS
+==nowu-decider==
+altitude: ARCHITECTURE
+phase: DECISION
+==nowu-shaper==
+altitude: DELIVERY
+phase: EVALUATION
+==nowu-implementer==
+altitude: EXECUTION
+phase: IMPLEMENTATION
+==nowu-reviewer==
+altitude: EXECUTION
+phase: EVALUATION
+==nowu-curator==
+altitude: EXECUTION
+phase: LEARN
+==architecture-design==
+altitude: ARCHITECTURE
+phase: OPTIONS
+==atam-lite==
+altitude: ARCHITECTURE
+phase: EVALUATION
+==hypothesis-adr-writer==
+altitude: ARCHITECTURE
+phase: DECISION
+==fitness-function-writer==
+altitude: ARCHITECTURE
+phase: VERIFICATION

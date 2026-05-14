@@ -1,0 +1,13 @@
+diff --git a/docs/model/WORKFLOW-STANDARDS.md b/docs/model/WORKFLOW-STANDARDS.md
+index ac5d99d..73e9adb 100644
+--- a/docs/model/WORKFLOW-STANDARDS.md
++++ b/docs/model/WORKFLOW-STANDARDS.md
+@@ -31,7 +31,7 @@ S1–S9 is a controlled descent through altitudes:
+ | S5 | DELIVERY | EVALUATION |
+ | S6 | EXECUTION | IMPLEMENTATION |
+ | S7 | EXECUTION | VERIFICATION |
+-| S8 | EXECUTION | VERIFICATION |
++| S8 | EXECUTION | EVALUATION |
+ | S9 | EXECUTION→ALL | LEARN |
+ 
+ ### Rule 1.2: Downward Flow (with LEARN Exception)

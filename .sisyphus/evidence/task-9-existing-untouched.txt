@@ -1,0 +1,2 @@
+roadmap-creator.md: Removed duplicate altitude/phase from embedded ROADMAP artifact template block. Agent frontmatter (lines 12-13) unchanged.
+roadmap-updater.md: Removed duplicate altitude/phase from embedded ROADMAP artifact template block. Agent frontmatter (lines 12-13) unchanged.

@@ -1,0 +1,5 @@
+| docs/vision.md | STRATEGIC | PROBLEM/DECISION |
+| state/tasks/task-NNN.md | EXECUTION | IMPLEMENTATION |
+| state/vbr/vbr-task-NNN.md | EXECUTION | VERIFICATION |
+state/tasks/task-NNN.md READY_FOR_IMPL          → EXECUTION / IMPLEMENTATION (S6-S7)
+state/vbr/vbr-task-NNN.md                       → EXECUTION / VERIFICATION (S7)

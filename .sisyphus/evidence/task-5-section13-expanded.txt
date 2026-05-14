@@ -1,0 +1,5 @@
+> **consumption-position convention**: Artifacts are tagged with the altitude and phase where they are *consumed* (read and acted upon), not necessarily where they were first authored. Example: task specs are authored during S5 (DELIVERY/EVALUATION) but consumed during S6 (EXECUTION/IMPLEMENTATION).
+| state/changes/task-NNN.md | EXECUTION | IMPLEMENTATION |
+| state/reviews/review-NNN.md | EXECUTION | EVALUATION |
+| state/learnings/*.md | (varies) | LEARN |
+state/reviews/review-task-NNN.md                → EXECUTION / EVALUATION (S8)

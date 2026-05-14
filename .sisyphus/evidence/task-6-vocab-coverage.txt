@@ -1,0 +1,6 @@
+| CAPTURE_RECORD | state/capture/ | EXECUTION→DELIVERY / LEARN | capture-task-001.md |
+| CHANGESET | state/changes/ | EXECUTION / IMPLEMENTATION | task-001.md |
+| CONSTRAINTS_SHEET | state/arch/ | ARCHITECTURE / ANALYSIS | 001-constraint-check.md |
+| INTAKE_BRIEF | state/intake/ | DELIVERY / DECISION→IMPLEMENTATION | intake-001.md |
+| REVIEW_REPORT | state/reviews/ | EXECUTION / EVALUATION | review-001.md |
+| VBR_REPORT | state/vbr/ | EXECUTION / VERIFICATION | vbr-task-001.md |

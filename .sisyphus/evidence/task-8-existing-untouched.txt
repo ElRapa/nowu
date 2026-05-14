@@ -1,0 +1,2 @@
+synthesis-agent.md: Removed duplicate altitude/phase from embedded artifact template block (lines 127-137 area). Agent frontmatter (lines 13-14) unchanged.
+architecture-vision-agent.md: Removed duplicate altitude/phase from embedded artifact template block. Agent frontmatter (lines 13-14) unchanged.

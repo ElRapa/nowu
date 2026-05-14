@@ -1,0 +1,3 @@
+| S7 | VBR | EXECUTION | VERIFICATION | Reviews implementation quality |
+| S8 | nowu-reviewer | EXECUTION | EVALUATION | Final validation before commit |
+es upward |

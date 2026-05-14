@@ -1,0 +1,7 @@
+Section 11 lists agents, their altitudes, phases, and C4 scope. Relevant rows:
+- Implementer (S6-S7): EXECUTION | IMPLEMENTATION + VERIFICATION
+- Reviewer (S8): EXECUTION | EVALUATION
+
+Correct mapping:
+- S7 → VBR | EXECUTION | VERIFICATION
+- S8 → nowu-reviewer | EXECUTION | EVALUATION

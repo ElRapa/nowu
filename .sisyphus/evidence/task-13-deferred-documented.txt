@@ -1,0 +1,5 @@
+=== K1/W20 references ===
+51:- **Artifact backfill (K1/W20)**: Existing artifacts in state/ and docs/ do NOT yet carry the canonical artifact_type values from §13.1. W6 formalizes the vocabulary only; K1 will apply it retroactively.
+52:- **Template updates**: templates/ directory was not modified. Artifact output templates in agent files do not yet use the new consumption-position convention. Deferred to K1/W20.
+53:- **scripts/verify-artifact.py**: Enforcement script changes require tests; deferred to W20.
+61:- §13.1 vocabulary is ready for K1/W20 to apply to existing artifacts

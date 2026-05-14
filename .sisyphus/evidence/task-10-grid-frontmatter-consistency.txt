@@ -1,0 +1,32 @@
+=== Grid vs frontmatter spot-check ===
+--- nowu-implementer ---
+AGENTS.md:
+| nowu-implementer | `.claude/agents/nowu-implementer.md` | S6+S7 | EXECUTION | IMPLEMENTATION | Primary IMPLEMENTATION; secondary VERIFICATION via built-in VBR gate. |
+frontmatter:
+altitude: EXECUTION
+phase: IMPLEMENTATION
+--- vision-bootstrap ---
+AGENTS.md:
+| vision-bootstrap | `.claude/agents/vision-bootstrap.md` | P0.V (+P0.G) | STRATEGIC | DECISION | Vision + goal brief creation; MODEL §9 P0.V. |
+frontmatter:
+altitude: STRATEGIC
+phase: DECISION
+--- health-architecture ---
+AGENTS.md:
+| health-architecture | `.claude/agents/health-architecture.md` | `/health-check architecture` | ARCHITECTURE | VERIFICATION | Architecture drift/coverage verification. |
+frontmatter:
+altitude: ARCHITECTURE
+phase: VERIFICATION
+--- gap-analyst ---
+AGENTS.md:
+| gap-analyst | `.claude/agents/gap-analyst.md` | G1 | ARCHITECTURE | ANALYSIS | GAP analysis step; MODEL §10. |
+frontmatter:
+altitude: ARCHITECTURE
+phase: ANALYSIS
+--- work-scheduler ---
+AGENTS.md:
+| work-scheduler | `.claude/agents/work-scheduler.md` | Orchestrator query | STRATEGIC | EVALUATION | Meta-layer query agent; mapped for table normalization. |
+frontmatter:
+altitude: STRATEGIC
+phase: EVALUATION
+=== All 5 spot-checks PASS ===
