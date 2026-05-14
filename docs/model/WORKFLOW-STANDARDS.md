@@ -31,7 +31,7 @@ S1–S9 is a controlled descent through altitudes:
 | S5 | DELIVERY | EVALUATION |
 | S6 | EXECUTION | IMPLEMENTATION |
 | S7 | EXECUTION | VERIFICATION |
-| S8 | EXECUTION | VERIFICATION |
+| S8 | EXECUTION | EVALUATION |
 | S9 | EXECUTION→ALL | LEARN |
 
 ### Rule 1.2: Downward Flow (with LEARN Exception)

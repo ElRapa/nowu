@@ -190,8 +190,8 @@ Conflating the two causes either design-free testing or untestable “evaluation
 | S4 | nowu-decider | ARCHITECTURE | DECISION | Selects architectural path + rationale |
 | S5 | nowu-shaper | DELIVERY | EVALUATION | Defines scope, appetite, acceptance criteria |
 | S6 | nowu-implementer | EXECUTION | IMPLEMENTATION | Writes code/config/tests |
-| S7 | nowu-reviewer | EXECUTION | VERIFICATION | Reviews implementation quality |
-| S8 | VBR | EXECUTION | VERIFICATION | Final validation before commit |
+| S7 | VBR | EXECUTION | VERIFICATION | Automated build, type-check, and test gate |
+| S8 | nowu-reviewer | EXECUTION | EVALUATION | Fresh-context verification + validation review |
 | S9 | nowu-curator | EXECUTION→ALL | LEARN | Abstracts lessons, promotes upward |
 
 **S1–S9 is a zigzag across altitudes, not a flat EXECUTION loop.** It starts at DELIVERY, rises to ARCHITECTURE for S2-S4, drops to DELIVERY for S5, drops again to EXECUTION for S6-S8, and the curator zooms back up for S9.
@@ -310,8 +310,9 @@ Any time: "what's next?"        → 🔵 work-scheduler  → console output
 | Options designer (S3) | ARCHITECTURE | OPTIONS | C4 L2 |
 | Decision maker (S4) | ARCHITECTURE | DECISION | C4 L2 |
 | Task shaper (S5) | DELIVERY | EVALUATION | C4 L3 |
-| Implementer (S6-S7) | EXECUTION | IMPLEMENTATION + VERIFICATION | C4 L4 |
-| Reviewer (S8) | EXECUTION | EVALUATION | C4 L3-4 |
+| nowu-implementer (S6) | EXECUTION | IMPLEMENTATION | C4 L4 |
+| VBR (S7) | EXECUTION | VERIFICATION | C4 L4 |
+| nowu-reviewer (S8) | EXECUTION | EVALUATION | C4 L3-4 |
 | Curator (S9) | EXECUTION→STRATEGIC | LEARN | C4 L1-2 |
 | **Orchestrator Meta-Agents** | | | |
 | Roadmap creator | STRATEGIC | IMPLEMENTATION | above-C4 |
