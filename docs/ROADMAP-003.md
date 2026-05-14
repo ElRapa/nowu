@@ -75,7 +75,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Workflow | W27 | AP domain project bootstrap (AP-01/AP-02/AP-06) | v1 | W4 | AP-01, AP-02, AP-06 | PLANNED |
 | Workflow | W28 | RE domain project bootstrap (RE-01/RE-06) | v1 | W4 | RE-01, RE-06 | PLANNED |
 | Workflow | W29 | NF-15 Level 0 epistemic enforcement implementation | v1 | W4, ADR-0010 | NF-15 | PLANNED |
-| Workflow | W32 | Epistemic threshold calibration (replaces old v1 W6 naming collision) | v1 | W4, W5 | NF-15, NF-16 | PLANNED |
+| Workflow | W32 | Epistemic threshold calibration (replaces old v1 W6 naming collision) | v1 | W4, W5 | NF-15, NF-16 | ✅ DONE |
 | Workflow | W11 | Level 2 enforcement (blocking at DECISION gates) | v1.1 | W8 stable | NF-15, NF-11 | PLANNED |
 | Workflow | W12 | Architectural fitness function suite | v1.1 | ADRs promoted | NF-04, NF-08 | PLANNED |
 | Workflow | W13 | ADR amendment workflow | v1.1 | W12 | NF-02 | PLANNED |
@@ -224,7 +224,7 @@ dependency_graph:
 
   # === v1 (blocked by W4 or v1-core items) ===
   W7: {depends_on: ["W1"], status: "PLANNED"}
-  W8: {depends_on: ["W32"], status: "PLANNED"}
+  W8: {depends_on: ["W32"], status: "READY"}
   W9: {depends_on: ["W4"], status: "PLANNED"}
   W10: {depends_on: ["W4"], status: "PLANNED"}
   W19: {depends_on: ["ADR-0008", "ADR-0009"], status: "PLANNED"}
@@ -233,7 +233,7 @@ dependency_graph:
   W27: {depends_on: ["W4"], status: "PLANNED"}
   W28: {depends_on: ["W4"], status: "PLANNED"}
   W29: {depends_on: ["W4", "ADR-0010"], status: "PLANNED"}
-  W32: {depends_on: ["W4", "W5"], status: "READY"}
+  W32: {depends_on: ["W4", "W5"], status: "✅ complete", evidence: ["state/arch/w32-epistemic-calibration.md", "docs/model/MODEL-REFERENCE.md §6"]}
   K3: {depends_on: ["K1"], status: "PLANNED"}
   A3: {depends_on: ["W5"], status: "PLANNED"}
   F6: {depends_on: ["F1"], status: "PLANNED"}
@@ -299,7 +299,7 @@ adr_status_snapshot:
 ### v1 → v1.1
 
 - [ ] At least 5 completed intakes with no unresolved Tier-3 blockers.
-- [ ] Epistemic Level 0 and calibration path (W29 + W32) operational.
+- [x] Epistemic Level 0 and calibration path (W29 + W32) operational.
 - [ ] AP and RE v1 bootstrap active (W27 + W28), with at least one live intake each.
 - [ ] PK-08 first remote surface available (W31 dependency path started).
 
@@ -334,15 +334,15 @@ adr_status_snapshot:
 ## 7. Current Work Item
 
 ```yaml
-next_work_item: W32
-description: Epistemic threshold calibration
-current_stage: v1-core (gate criteria met — ready for v1 transition)
-agent_to_invoke: single-step
+next_work_item: W8
+description: Level 1 advisory enforcement (altitude/grade violations)
+current_stage: v1 (v1-core gate met; W32 calibration complete)
+agent_to_invoke: full-cycle
 input_artifacts:
+  - state/arch/w32-epistemic-calibration.md
   - docs/model/MODEL-REFERENCE.md
   - docs/architecture/adr/ADR-0010-epistemic-grade-assignment.md
-  - state/arch/w5-5x10-validation.md
-status_hint: READY (W4+W5 complete; highest-leverage v1 item — gates W8→W11→W16 enforcement chain)
+status_hint: READY (W32 complete; W8 implements Level 1 enforcement using calibrated thresholds)
 ```
 
 ## Appendix A: ROADMAP-002 Change Disposition

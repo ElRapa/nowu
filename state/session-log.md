@@ -24,9 +24,9 @@ status: ACTIVE
 > Source: `docs/ROADMAP-003.md` (v3)
 
 #### Current Position
-- **Stage**: v1-core — All gate criteria met, ready for v1 transition
-- **Current Work Item**: W32 — Epistemic threshold calibration (READY)
-- **Next Work Items**: K1 (traceability metadata — ACTIVE), A2 (quality gate suite), F3 (session resumption)
+- **Stage**: v1 — All v1-core gate criteria met; now executing v1 work items
+- **Current Work Item**: W8 — Level 1 advisory enforcement (READY)
+- **Next Work Items**: K1 (traceability metadata — ACTIVE), A2 (quality gate suite), W29 (NF-15 Level 0)
 
 #### Milestones
 | Milestone | Status | Date |
@@ -41,9 +41,10 @@ status: ACTIVE
 | W5: 5×10 Coordinate Validation | ✅ Done | 2026-05-14 |
 | W6: 5×10 Model Refactor + Agent Grid | ✅ Done | 2026-05-14 |
 | K2: Forward/Backward Trace Validation | ✅ Done | 2026-05-14 |
+| W32: Epistemic Threshold Calibration | ✅ Done | 2026-05-14 |
 
 #### Blocked Items
-- W32: Epistemic threshold calibration — READY (W4+W5 complete)
+- W8: Level 1 advisory enforcement — READY (W32 calibration complete)
 - W29: NF-15 Level 0 epistemic enforcement implementation — READY (W4 complete, ADR-0010 available)
 - W27: AP domain project bootstrap (AP-01/AP-02/AP-06) — READY
 - W28: RE domain project bootstrap (RE-01/RE-06) — READY
@@ -57,6 +58,30 @@ status: ACTIVE
 | goal-004: Infrastructure | 34/34 | 0/34 |
 
 ## Entries
+
+### 2026-05-14 — W32: Epistemic threshold calibration
+
+**What:** Calibrated epistemic grade thresholds by comparing ADR-0010's theoretical
+defaults against W4's actual artifact grades. Found 3 deviations: task specs graded
+HYPOTHESIS (should be INFORMED_ESTIMATE post-human-approval — process gap in S5),
+review report graded EVIDENCE_BASED (higher than default — justified by VBR evidence),
+capture graded INFORMED_ESTIMATE (should inherit review grade — curator gap). Produced
+canonical per-artifact-type threshold table for W8 Level 1 advisory enforcement.
+Added §6 "Per-Artifact-Type Thresholds" subsection to MODEL-REFERENCE.
+
+**Artifacts touched:**
+- `state/tasks/task-007-w32-epistemic-calibration.md` — created (task spec), status → DONE
+- `state/arch/w32-epistemic-calibration.md` — created (calibration report with W8 input)
+- `docs/model/MODEL-REFERENCE.md` — §6 extended with per-artifact-type thresholds
+- `docs/ROADMAP-003.md` — W32 → ✅ DONE; W8 → READY; next_work_item → W8
+- `state/session-log.md` — updated (this entry + dashboard)
+
+**Decisions:** None new. Refined ADR-0010 defaults with empirical W4 evidence.
+
+**Next:** W8 (Level 1 advisory enforcement — now READY with W32 thresholds) or
+W29 (NF-15 Level 0 enforcement implementation).
+
+---
 
 ### 2026-05-14 — K2: Forward/backward trace validation (v1-core→v1 gate)
 

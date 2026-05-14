@@ -186,6 +186,44 @@ See `docs/model/IMPLEMENTATION-GUIDE.md` Package 2 for implementation scope and 
 - **Level 2 (v1.0):** Block if below minimum.
 - **Level 3 (v1.1+):** Block at decision gates if below aspirational.
 
+### Per-Artifact-Type Thresholds (W32 Calibration)
+
+> **Source:** `state/arch/w32-epistemic-calibration.md`. Calibrated against W4 (intake-001)
+> actual grades. Recalibrate after 5+ intakes per D-015.
+
+The altitude thresholds above are the coarse floor. These artifact-type thresholds
+provide the fine-grained overlay that W8 Level 1 enforcement uses.
+
+#### S1-S9 Workflow Artifacts
+
+| artifact_type | Step | Minimum (Level 1) | Aspirational (Level 2+) | Notes |
+|---|---|---|---|---|
+| INTAKE_BRIEF | S1 | HYPOTHESIS | HYPOTHESIS | Unvalidated problem statement |
+| CONSTRAINTS_SHEET | S2 | HYPOTHESIS | HYPOTHESIS | Analysis without verification |
+| OPTIONS_SHEET | S3 | HYPOTHESIS | HYPOTHESIS | Generated alternatives, unselected |
+| DECISION_RECORD | S4 | INFORMED_ESTIMATE | INFORMED_ESTIMATE | Human-approved choice |
+| TASK_SPEC | S5 | HYPOTHESIS | INFORMED_ESTIMATE | HYPOTHESIS pre-approval; IE after human gate |
+| CHANGESET | S6 | EVIDENCE_BASED | EVIDENCE_BASED | Implementation with passing tests |
+| VBR_REPORT | S7 | EVIDENCE_BASED | EVIDENCE_BASED | Automated quality suite verification |
+| REVIEW_REPORT | S8 | INFORMED_ESTIMATE | EVIDENCE_BASED | Lightweight=IE; full review with VBR=EB |
+| CAPTURE_RECORD | S9 | ≥ review grade | ≥ review grade | Inherits; never below review grade |
+
+#### Architecture & Knowledge Artifacts
+
+| artifact_type | Step | Minimum (Level 1) | Aspirational (Level 2+) | Notes |
+|---|---|---|---|---|
+| ADR (hypothesis) | W3 | HYPOTHESIS | HYPOTHESIS | Promotes via D-017 (2 intakes → IE; 5 → EB) |
+| SYNTHESIS | W1 | HYPOTHESIS | INFORMED_ESTIMATE | Cross-cutting analysis |
+| VALIDATION_REPORT | K/W | EVIDENCE_BASED | EVIDENCE_BASED | Evidence-driven validation |
+| ROADMAP | orch | INFORMED_ESTIMATE | INFORMED_ESTIMATE | Human-approved strategic planning |
+| GOAL | P0 | INFORMED_ESTIMATE | INFORMED_ESTIMATE | Human-authored strategic intent |
+
+#### Propagation Rules
+
+- Derived artifacts inherit the **minimum** input grade (uncertainty compounds).
+- Capture grade must equal or exceed review grade (S9 adds no judgment).
+- Grade promotion requires explicit evidence — no silent upgrades.
+
 ## 7. S1–S9 Pipeline Mapping (The Zigzag)
 
 | Step | Agent | Altitude | Phase | What Happens |
