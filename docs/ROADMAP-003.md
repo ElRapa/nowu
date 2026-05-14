@@ -116,7 +116,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Agents | A9 | Agent optimization from historical traces | v2 | A8 | XP-06, XP-10 | PLANNED |
 | Framework | F1 | Contracts baseline | v1-core | none | NF-03 | ✅ DONE |
 | Framework | F2 | Import boundary enforcement tests | v1-core | none | NF-02 | ✅ DONE |
-| Framework | F3 | Level 0 artifact verification script | v1-core | none | NF-09, NF-15 | PLANNED |
+| Framework | F3 | Level 0 artifact verification script | v1-core | none | NF-09, NF-15 | ✅ DONE (via W29) |
 | Framework | F4 | Session runtime + WAL | v1 | K3 | NF-01, NF-10 | PLANNED |
 | Framework | F5 | Role sequencer runtime | v1 | F4 | NF-04, NF-05 | PLANNED |
 | Framework | F6 | Bridge CLI + approval routing | v1 | F5 | NF-05, PK-08 | PLANNED |
@@ -216,11 +216,11 @@ dependency_graph:
   K2: {depends_on: ["W4"], status: "✅ complete", evidence: ["state/arch/k2-trace-validation.md"]}
   A1: {depends_on: ["W4"], status: "ACTIVE"}
   A2: {depends_on: ["W4"], status: "READY"}
-  F1: {depends_on: [], status: "PLANNED"}
-  F2: {depends_on: ["W4"], status: "READY"}
-  F3: {depends_on: ["F1"], status: "PLANNED"}
+  F1: {depends_on: [], status: "✅ complete", evidence: ["src/nowu/core/contracts/"]}
+  F2: {depends_on: [], status: "✅ complete", evidence: ["tests/architecture/test_import_boundaries.py"]}
+  F3: {depends_on: ["F1"], status: "✅ complete (subsumed by W29)", evidence: ["tests/architecture/test_epistemic_enforcement.py"]}
   F4: {depends_on: ["K3"], status: "PLANNED"}
-  F5: {depends_on: ["F1"], status: "PLANNED"}
+  F5: {depends_on: ["F4"], status: "PLANNED"}
 
   # === v1 (blocked by W4 or v1-core items) ===
   W7: {depends_on: ["W1"], status: "PLANNED"}
@@ -236,8 +236,8 @@ dependency_graph:
   W32: {depends_on: ["W4", "W5"], status: "✅ complete", evidence: ["state/arch/w32-epistemic-calibration.md", "docs/model/MODEL-REFERENCE.md §6"]}
   K3: {depends_on: ["K1"], status: "PLANNED"}
   A3: {depends_on: ["W5"], status: "PLANNED"}
-  F6: {depends_on: ["F1"], status: "PLANNED"}
-  F7: {depends_on: ["F1", "W4"], status: "PLANNED"}
+  F6: {depends_on: ["F5"], status: "PLANNED"}
+  F7: {depends_on: ["F6"], status: "PLANNED"}
   F8: {depends_on: ["K3"], status: "PLANNED"}
 
   # === v1.1 (blocked by v1 prereqs) ===
@@ -334,15 +334,16 @@ adr_status_snapshot:
 ## 7. Current Work Item
 
 ```yaml
-next_work_item: W8
-description: Level 1 advisory enforcement (altitude/grade violations)
-current_stage: v1 (v1-core gate met; W32 calibration complete)
+next_work_item: W27
+description: AP domain project bootstrap (AP-01/AP-02/AP-06)
+current_stage: v1 (v1-core gate met; epistemic enforcement chain W29+W32+W8 complete)
 agent_to_invoke: full-cycle
 input_artifacts:
-  - state/arch/w32-epistemic-calibration.md
-  - docs/model/MODEL-REFERENCE.md
-  - docs/architecture/adr/ADR-0010-epistemic-grade-assignment.md
-status_hint: READY (W32 complete; W8 implements Level 1 enforcement using calibrated thresholds)
+  - docs/USE_CASES.md (AP-01, AP-02, AP-06 use cases)
+  - docs/architecture/adr/ADR-0008-knowledge-atom-model.md
+  - docs/architecture/adr/ADR-0009-orchestration-protocol.md
+  - state/intake/intake-001.md (reference: first S1-S9 cycle pattern)
+status_hint: READY (W4 complete; first domain bootstrap — validates T5 domain agnosticism thesis)
 ```
 
 ## Appendix A: ROADMAP-002 Change Disposition
