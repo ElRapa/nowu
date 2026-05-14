@@ -2,6 +2,8 @@
 name: architecture-design
 version: 3.0
 model: claude-sonnet-4-6
+altitude: ARCHITECTURE
+phase: OPTIONS
 invoked_at: P3.3
 ---
 

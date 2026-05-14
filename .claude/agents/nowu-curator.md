@@ -4,6 +4,8 @@ description: >
   S9 -- Curator. Updates decisions, roadmap, session log, and knowledge after a Review
   shows APPROVED. Writes the Capture Record and composes the commit message.
   Sets next_cycle_trigger to guide the next cycle. Never touches source code.
+altitude: EXECUTION
+phase: LEARN
 tools: Read, Write, Grep, Glob
 model: claude-haiku-4-5
 memory: project

@@ -9,6 +9,8 @@ description: >
 model: claude-sonnet-4-6
 tools: [Read, Write]
 invoked_at: P3.2
+altitude: ARCHITECTURE
+phase: OPTIONS
 ---
 
 # Architecture Bootstrap Agent

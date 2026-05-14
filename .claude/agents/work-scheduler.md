@@ -1,6 +1,8 @@
 ---
 name: work-scheduler
 description: >
+altitude: STRATEGIC
+phase: EVALUATION
   Orchestrator meta-agent. Read-only scheduler that decides what work item
   to execute next by reading the current roadmap and system state. Outputs
   structured YAML with readiness status (READY, BLOCKED, NEEDS_VALIDATION).

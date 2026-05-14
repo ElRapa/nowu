@@ -5,6 +5,8 @@ description: >
   Validates docs/vision.md for freshness, completeness, and alignment with current
   active work. Read-only. Writes state/health/vision-YYYY-MM-DD.md.
   Triggered by: /health-check vision
+altitude: STRATEGIC
+phase: VERIFICATION
 model: claude-haiku-4-5
 tools: [Read, Write]
 command: /health-check vision

@@ -8,6 +8,8 @@ description: >
 model: claude-haiku-4-5
 tools: [Read, Write]
 invoked_at: P3.1
+altitude: ARCHITECTURE
+phase: ANALYSIS
 ---
 
 # Constraint Check Agent

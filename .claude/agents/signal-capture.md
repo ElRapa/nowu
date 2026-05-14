@@ -9,6 +9,8 @@ model: haiku
 tools: [Read, Write, Bash]
 invoked_at: P0.1
 command: /capture
+altitude: STRATEGIC
+phase: IDEA
 ---
 
 

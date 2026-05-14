@@ -3,6 +3,8 @@ name: vision-bootstrap
 version: 2.2
 model: claude-sonnet-4-6
 invoked_at: P0.V
+altitude: STRATEGIC
+phase: DECISION
 ---
 
 # Vision Bootstrap Agent

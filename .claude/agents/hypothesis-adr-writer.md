@@ -7,6 +7,8 @@ description: >
   for agents to follow, shallow enough to be wrong."
 tools: Read, Grep, Glob, Bash
 model: claude-sonnet-4-6
+altitude: ARCHITECTURE
+phase: DECISION
 memory: project
 ---
 

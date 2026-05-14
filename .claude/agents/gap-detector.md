@@ -5,6 +5,8 @@ description: >
   Passive sentinel. Reads health reports, V1_PLAN, and the architecture
   index to detect whether a Global Architecture Pass (GAP) is warranted.
   Produces a gap-trigger.md recommendation. Does NOT run the GAP itself.
+altitude: ARCHITECTURE
+phase: IDEA
 model: claude-haiku-4-5
 tools: [Read, Write]
 invoked_at: "G0 — automatically by health-sweep, or manually via /gap-check"

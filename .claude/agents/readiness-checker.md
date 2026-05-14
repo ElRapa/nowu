@@ -8,6 +8,8 @@ description: >
 model: claude-haiku-4-5
 tools: [Read, Write]
 invoked_at: P4.1-P4.2
+altitude: DELIVERY
+phase: EVALUATION
 ---
 
 # Readiness Checker Agent

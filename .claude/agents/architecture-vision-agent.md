@@ -144,8 +144,6 @@ Write exactly one file: `docs/architecture/ARCHITECTURE-VISION.md`
 ```markdown
 ---
 artifact_type: ARCHITECTURE_VISION
-altitude: ARCHITECTURE
-phase: ANALYSIS
 grade: HYPOTHESIS
 created_at: YYYY-MM-DD
 source_themes: [T1, T2, ...]

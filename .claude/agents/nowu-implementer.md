@@ -4,6 +4,8 @@ description: >
   S6+S7 -- Implementer + VBR. Implements one task at a time using strict TDD,
   then runs VBR (pytest + mypy + ruff + scope check). Produces a Change Set
   and VBR Report. Narrowest context window of any agent -- only in_scope_files.
+altitude: EXECUTION
+phase: IMPLEMENTATION
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: claude-sonnet-4-6
 memory: project

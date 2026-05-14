@@ -127,8 +127,6 @@ Use the highest existing NNN + 1. If no prior exists, use 001.
 ---
 artifact_type: SYNTHESIS
 artifact_id: SYNTHESIS-NNN
-altitude: ARCHITECTURE
-phase: SYNTHESIS
 grade: HYPOTHESIS
 created_at: YYYY-MM-DD
 source_goals: [goal-NNN, ...]

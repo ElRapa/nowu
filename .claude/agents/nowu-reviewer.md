@@ -4,6 +4,8 @@ description: >
   S8 -- Reviewer. Runs two independent checklists: Verification (built it right)
   and Validation (built the right thing). Has a FRESH context window -- no
   accumulated bias. Produces a Review Report with approve/reject verdict.
+altitude: EXECUTION
+phase: EVALUATION
 tools: Read, Grep, Glob, Bash
 model: claude-sonnet-4-6
 memory: project

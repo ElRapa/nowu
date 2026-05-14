@@ -6,6 +6,8 @@ description: >
   canonical architecture docs (context.md, containers.md) and drafting
   ADR stubs for each flagged decision. Runs only after human approves the
   global-pass proposal. Produces deltas, not full rewrites, unless FULL_RESET.
+altitude: ARCHITECTURE
+phase: IMPLEMENTATION
 model: claude-sonnet-4-6
 tools: [Read, Write]
 invoked_at: "G2 — after human marks global-pass-YYYY-MM-DD.md as APPROVED"

@@ -90,8 +90,6 @@ The new roadmap MUST:
 ---
 artifact_type: ROADMAP
 version: [N+1]
-altitude: STRATEGIC
-phase: IMPLEMENTATION
 epistemic_grade: [HYPOTHESIS or INFORMED_ESTIMATE or EVIDENCE_BASED]
 created_at: [timestamp]
 source_synthesis: [if applicable]

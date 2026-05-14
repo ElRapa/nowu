@@ -5,6 +5,8 @@ description: >
   module-interaction level. Each option gets a C4 L2 sketch, pros/cons, effort
   estimate, and migration path. If a pre-workflow arch-pass exists, evaluates
   it as a candidate option rather than ignoring it.
+altitude: ARCHITECTURE
+phase: OPTIONS
 tools: Read, Grep, Glob
 model: claude-sonnet-4-6
 memory: project

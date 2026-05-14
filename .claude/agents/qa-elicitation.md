@@ -3,6 +3,8 @@ name: qa-elicitation
 version: 1.0
 model: claude-sonnet-4-6
 invoked_at: P3.2
+altitude: ARCHITECTURE
+phase: ANALYSIS
 ---
 
 # QA Elicitation Agent

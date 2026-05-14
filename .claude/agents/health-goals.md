@@ -6,6 +6,8 @@ description: >
   and use cases. Checks for stale items and broken traceability. Read-only.
   Writes state/health/health-goals-YYYY-MM-DD.md.
   Triggered by: /health-check goals
+altitude: STRATEGIC
+phase: VERIFICATION
 model: claude-haiku-4-5
 tools: [Read, Write]
 command: /health-check goals

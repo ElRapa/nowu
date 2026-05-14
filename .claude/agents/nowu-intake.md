@@ -5,6 +5,8 @@ description: >
   structured Intake Brief with use-case mapping, appetite estimate, and
   affected-module first-guess. When a pre-workflow intake-NNN already exists,
   validates and annotates it rather than creating from scratch.
+altitude: DELIVERY
+phase: IDEA
 tools: Read, Grep, Glob
 model: claude-haiku-4-5
 memory: project

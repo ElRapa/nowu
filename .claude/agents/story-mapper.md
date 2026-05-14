@@ -8,6 +8,8 @@ description: >
 model: claude-sonnet-4-6
 tools: [Read, Write]
 invoked_at: P2.1
+altitude: DELIVERY
+phase: OPTIONS
 ---
 
 # Story Mapper Agent

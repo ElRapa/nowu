@@ -117,8 +117,6 @@ Write exactly one file: `docs/ROADMAP-001.md`
 ---
 artifact_type: ROADMAP
 version: 1
-altitude: STRATEGIC
-phase: IMPLEMENTATION
 epistemic_grade: HYPOTHESIS
 created_at: [timestamp]
 source_vision: vision.md

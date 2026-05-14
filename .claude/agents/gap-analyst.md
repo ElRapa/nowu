@@ -2,6 +2,8 @@
 name: gap-analyst
 version: 1.0
 description: >
+altitude: ARCHITECTURE
+phase: ANALYSIS
   Strategic architecture analyst. Reads the full product context (vision,
   plan, use cases, existing architecture, ADRs) and produces a structured
   GAP proposal: what the global L1/L2 architecture should look like, what

@@ -5,6 +5,8 @@ description: >
   to identify what is fixed, what is flexible, and what the real risks are.
   When a pre-workflow arch-pass exists, refines it rather than starting cold.
   Produces a Constraints Sheet.
+altitude: ARCHITECTURE
+phase: ANALYSIS
 tools: Read, Grep, Glob, Bash
 model: claude-sonnet-4-6
 memory: project

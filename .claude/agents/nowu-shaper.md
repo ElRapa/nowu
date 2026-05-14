@@ -5,6 +5,8 @@ description: >
   (4h each max) with explicit file scope, TDD-first acceptance criteria, and a
   validation_trace linking every criterion back to a use case and story AC.
   STOPS for human approval.
+altitude: DELIVERY
+phase: EVALUATION
 tools: Read, Write, Grep, Glob, Bash
 model: claude-sonnet-4-6
 memory: project

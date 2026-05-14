@@ -2,6 +2,8 @@
 name: atam-lite
 version: 1.0
 model: claude-sonnet-4-6
+altitude: ARCHITECTURE
+phase: EVALUATION
 invoked_at: P3.4
 ---
 

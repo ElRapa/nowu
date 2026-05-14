@@ -4,6 +4,8 @@ description: >
   S4 -- Decision Maker. Applies structured evaluation (weighted scoring + ATAM-style
   tradeoff analysis) to the options, records the chosen decision as D-NNN, and
   produces the handoff artifact for shaping. STOPS for human approval before writing.
+altitude: ARCHITECTURE
+phase: DECISION
 tools: Read, Write, Grep
 model: claude-sonnet-4-6
 memory: project

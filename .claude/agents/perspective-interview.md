@@ -8,6 +8,8 @@ description: >
 model: claude-sonnet-4-6
 tools: [Read, Write]
 invoked_at: P1.2
+altitude: PRODUCT
+phase: PROBLEM
 ---
 
 # Perspective Interview Agent

@@ -3,6 +3,8 @@ name: use-case-agent
 version: 2.3
 model: claude-sonnet-4-6
 invoked_at: P0.UC
+altitude: PRODUCT
+phase: PROBLEM
 ---
 
 # Use Case Catalog Agent (UC Manager)

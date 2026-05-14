@@ -5,6 +5,8 @@ description: >
   Validates architecture documentation for accuracy, coverage, and drift against
   actual codebase directory structure. Read-only. Writes health-arch-YYYY-MM-DD.md.
   Triggered by: /health-check architecture
+altitude: ARCHITECTURE
+phase: VERIFICATION
 model: claude-haiku-4-5
 tools: [Read, Write, Bash]
 command: /health-check architecture

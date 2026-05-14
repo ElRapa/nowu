@@ -8,6 +8,8 @@ description: >
   respected, contracts defined). Does NOT test behavior — only structure.
 tools: Read, Grep, Glob, Bash, Write, Edit
 model: claude-sonnet-4-6
+altitude: ARCHITECTURE
+phase: VERIFICATION
 memory: project
 ---
 

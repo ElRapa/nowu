@@ -3,6 +3,8 @@ name: health-use-cases
 version: 2.2
 model: claude-haiku-4-5
 invoked_at: health.UC
+altitude: PRODUCT
+phase: VERIFICATION
 ---
 
 # Use Case Health Check Agent
