@@ -59,9 +59,9 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Workflow | W2 | Architecture Vision from SYNTHESIS themes | v1-core | W1 | NF-02, NF-03 | ✅ DONE |
 | Workflow | W3 | Hypothesis ADR pack (ADR-0007..0010) | v1-core | W1, W2 | NF-01, NF-15 | ✅ DONE |
 | Workflow | W3.5 | Minimal fitness checks for hypothesis ADRs | v1-core | W3 | NF-04, NF-09 | ✅ DONE |
-| Workflow | W4 | First S1-S9 intake (end-to-end cycle) | v1-core | W3.5 | NF-01..NF-13, PK-01, PK-03, XP-01 | NEXT |
-| Workflow | W5 | Validate 5×10 coordinates on W4 artifacts | v1-core | W4 | NF-03, NF-09 | BLOCKED |
-| Workflow | W6 | 5×10 model refactor with full agent-grid mapping | v1-core | W4 | NF-02, NF-03 | BLOCKED |
+| Workflow | W4 | First S1-S9 intake (end-to-end cycle) | v1-core | W3.5 | NF-01..NF-13, PK-01, PK-03, XP-01 | ✅ DONE |
+| Workflow | W5 | Validate 5×10 coordinates on W4 artifacts | v1-core | W4 | NF-03, NF-09 | READY |
+| Workflow | W6 | 5×10 model refactor with full agent-grid mapping | v1-core | W4 | NF-02, NF-03 | READY |
 | Workflow | W-orch | Orchestrator layer formalized (roadmap-creator/updater/scheduler) | v1-core | W3 | NF-05, NF-10 | ✅ DONE |
 | Workflow | W-log | Session-log + roadmap alignment | v1-core | none | NF-10, NF-06 | ✅ DONE |
 | Workflow | W-UCGOAL | Backfill UC↔goal mappings in goal files | v1-core | none | NF-09, NF-11, NF-16 | READY |
@@ -91,7 +91,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Workflow | W17 | Multi-traversal auto-selection | v2 | W15 | XP-06 | PLANNED |
 | Workflow | W18 | 5×10 grid auto-population from history | v2 | 20+ intakes | NF-08, XP-10 | PLANNED |
 | Knowledge | K1 | Traceability metadata in all new artifacts | v1-core | none | NF-09 | ACTIVE |
-| Knowledge | K2 | Forward/backward trace validation | v1-core | W4 | NF-09, XP-08 | PLANNED |
+| Knowledge | K2 | Forward/backward trace validation | v1-core | W4 | NF-09, XP-08 | READY |
 | Knowledge | K3 | MemoryService integration for structured recall | v1 | core contracts baseline | NF-01, PK-03 | PLANNED |
 | Knowledge | K4 | Session state persistence via know | v1 | K3 | NF-01, NF-10, XP-01 | PLANNED |
 | Knowledge | K5 | Cross-project recall | v1.1 | K4 | XP-01, XP-03 | PLANNED |
@@ -104,7 +104,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Knowledge | K7 | Graph-scale knowledge backend (thresholded) | v2 | K6 | XP-05 | PLANNED |
 | Knowledge | K8 | Automated knowledge curation at scale | v2 | F8 | XP-05, XP-04 | PLANNED |
 | Agents | A1 | Existing 19 execution agents operate as-is | v1-core | none | NF-04, NF-05 | ACTIVE |
-| Agents | A2 | Router adds altitude metadata on intake routing | v1-core | W4 | NF-03 | PLANNED |
+| Agents | A2 | Router adds altitude metadata on intake routing | v1-core | W4 | NF-03 | READY |
 | Agents | A3 | Orchestrator with altitude routing logic | v1 | W5 | NF-05, NF-09 | PLANNED |
 | Agents | A4 | Skill files encode altitude behavior | v1 | A3 | NF-03, NF-12 | PLANNED |
 | Agents | A5 | SYNTHESIS agent productionization | v1 | W7 | NF-06, NF-11 | PLANNED |
@@ -186,7 +186,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 
 ## 4. Dependency Graph
 
-**Critical path:** **W1 ✅ → W2 ✅ → W3 ✅ → W3.5 ✅ → W4 (NEXT) → W5 (BLOCKED) → v1-core→v1 gate**
+**Critical path:** **W1 ✅ → W2 ✅ → W3 ✅ → W3.5 ✅ → W4 ✅ → W5 (READY) → v1-core→v1 gate**
 
 ```yaml
 dependency_graph:
@@ -205,16 +205,17 @@ dependency_graph:
       - "ADR-0008 (PROPOSED) → docs/architecture/adr/ADR-0008-knowledge-atom-model.md"
       - "ADR-0009 (PROPOSED) → docs/architecture/adr/ADR-0009-orchestration-protocol.md"
       - "ADR-0010 (PROPOSED) → docs/architecture/adr/ADR-0010-epistemic-grade-assignment.md"
-    status: "NEXT"
+    status: "✅ complete"
+    evidence: ["state/intake/intake-001.md", "state/tasks/", "Branch: w4-first-intake"]
 
-  W5: {depends_on: ["W4"], status: "BLOCKED_BY_W4"}
-  W6: {depends_on: ["W4"], status: "BLOCKED_BY_W4"}
-  K1: {depends_on: ["W4"], status: "BLOCKED_BY_W4"}
-  K2: {depends_on: ["W4"], status: "BLOCKED_BY_W4"}
-  A1: {depends_on: ["W4"], status: "BLOCKED_BY_W4"}
-  A2: {depends_on: ["W4"], status: "BLOCKED_BY_W4"}
+  W5: {depends_on: ["W4"], status: "READY"}
+  W6: {depends_on: ["W4"], status: "READY"}
+  K1: {depends_on: ["W4"], status: "ACTIVE"}
+  K2: {depends_on: ["W4"], status: "READY"}
+  A1: {depends_on: ["W4"], status: "ACTIVE"}
+  A2: {depends_on: ["W4"], status: "READY"}
   F1: {depends_on: [], status: "PLANNED"}
-  F2: {depends_on: ["W4"], status: "BLOCKED_BY_W4"}
+  F2: {depends_on: ["W4"], status: "READY"}
   F3: {depends_on: ["F1"], status: "PLANNED"}
   F4: {depends_on: ["K3"], status: "PLANNED"}
   F5: {depends_on: ["F1"], status: "PLANNED"}
@@ -227,10 +228,10 @@ dependency_graph:
   W19: {depends_on: ["ADR-0008", "ADR-0009"], status: "PLANNED"}
   W20: {depends_on: ["ADR-0009", "K1"], status: "PLANNED"}
   W21: {depends_on: ["ADR-0008", "ADR-0010"], status: "PLANNED"}
-  W27: {depends_on: ["W4"], status: "BLOCKED_BY_W4"}
-  W28: {depends_on: ["W4"], status: "BLOCKED_BY_W4"}
-  W29: {depends_on: ["W4", "ADR-0010"], status: "BLOCKED_BY_W4"}
-  W32: {depends_on: ["W4", "W5"], status: "BLOCKED_BY_W4"}
+  W27: {depends_on: ["W4"], status: "PLANNED"}
+  W28: {depends_on: ["W4"], status: "PLANNED"}
+  W29: {depends_on: ["W4", "ADR-0010"], status: "PLANNED"}
+  W32: {depends_on: ["W4", "W5"], status: "BLOCKED_BY_W5"}
   K3: {depends_on: ["K1"], status: "PLANNED"}
   A3: {depends_on: ["W5"], status: "PLANNED"}
   F6: {depends_on: ["F1"], status: "PLANNED"}
@@ -290,7 +291,7 @@ adr_status_snapshot:
 
 - [x] W1, W2, W3, W3.5 completed and artifacts exist.
 - [x] Orchestrator baseline exists (W-orch) and session chronology anchor exists (W-log).
-- [ ] W4 first S1-S9 intake completed with full artifact chain from intake to capture.
+- [x] W4 first S1-S9 intake completed with full artifact chain from intake to capture.
 - [ ] K2 traceability validation run and documented.
 
 ### v1 → v1.1
@@ -331,15 +332,15 @@ adr_status_snapshot:
 ## 7. Current Work Item
 
 ```yaml
-next_work_item: W4
-description: First S1-S9 intake (end-to-end cycle)
+next_work_item: W5
+description: Validate 5×10 coordinates on W4 artifacts
 current_stage: v1-core
-agent_to_invoke: pre-workflow-runner (to create intake-001) then nowu-intake (S1)
+agent_to_invoke: single-step
 input_artifacts:
-  - docs/USE_CASES.md
-  - state/arch/SYNTHESIS-001.md
-  - docs/architecture/ARCHITECTURE-VISION.md
-status_hint: READY (prerequisites W1-W3.5 all ✅)
+  - state/intake/intake-001.md
+  - state/tasks/
+  - state/capture/capture-intake-001.md
+status_hint: READY (W4 complete; validate the first intake artifact chain)
 ```
 
 ## Appendix A: ROADMAP-002 Change Disposition
