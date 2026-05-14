@@ -1,4 +1,5 @@
 ---
+artifact_type: SESSION_ANALYSIS
 step: S8
 artifact_id: review-intake-001
 artifact_path: state/reviews/review-intake-001.md

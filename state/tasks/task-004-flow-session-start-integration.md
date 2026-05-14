@@ -1,4 +1,5 @@
 ---
+artifact_type: TASK_SPEC
 id: task-004-flow-session-start-integration
 title: "Integration: Flow Session Start"
 created: 2026-05-12

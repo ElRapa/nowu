@@ -25,8 +25,8 @@ status: ACTIVE
 
 #### Current Position
 - **Stage**: v1 — All v1-core gate criteria met; now executing v1 work items
-- **Current Work Item**: W8 — Level 1 advisory enforcement (READY)
-- **Next Work Items**: K1 (traceability metadata — ACTIVE), A2 (quality gate suite), W29 (NF-15 Level 0)
+- **Current Work Item**: W27 — AP domain project bootstrap (READY)
+- **Next Work Items**: K1 (traceability metadata — ACTIVE), A2 (quality gate suite), W28 (RE domain bootstrap)
 
 #### Milestones
 | Milestone | Status | Date |
@@ -42,10 +42,11 @@ status: ACTIVE
 | W6: 5×10 Model Refactor + Agent Grid | ✅ Done | 2026-05-14 |
 | K2: Forward/Backward Trace Validation | ✅ Done | 2026-05-14 |
 | W32: Epistemic Threshold Calibration | ✅ Done | 2026-05-14 |
+| W29: NF-15 Level 0 Epistemic Enforcement | ✅ Done | 2026-05-14 |
+| W8: Level 1 Advisory Enforcement | ✅ Done | 2026-05-14 |
 
 #### Blocked Items
-- W8: Level 1 advisory enforcement — READY (W32 calibration complete)
-- W29: NF-15 Level 0 epistemic enforcement implementation — READY (W4 complete, ADR-0010 available)
+- W11: Level 2 blocking enforcement — READY (W8 complete)
 - W27: AP domain project bootstrap (AP-01/AP-02/AP-06) — READY
 - W28: RE domain project bootstrap (RE-01/RE-06) — READY
 
@@ -58,6 +59,32 @@ status: ACTIVE
 | goal-004: Infrastructure | 34/34 | 0/34 |
 
 ## Entries
+
+### 2026-05-14 — W8+W29: Epistemic enforcement tests (Level 0 + Level 1)
+
+**What:** Implemented epistemic grade enforcement as architecture fitness tests. Level 0
+(D-015 §2): every state/ artifact with altitude/phase frontmatter must have `epistemic_grade`
+and `artifact_type`. Level 1 (W32 §5 advisory rules): grade must meet per-artifact-type
+minimum thresholds from MODEL-REFERENCE §6; capture records must inherit review grade.
+Also backfilled `artifact_type` on 25+ state/ files that had altitude/phase but were missing
+artifact_type (created during W4/W5 before §13.1 vocabulary was formalized in W6), and
+fixed capture-intake-001 grade inheritance (INFORMED_ESTIMATE → EVIDENCE_BASED per W32 §3.3).
+
+**Artifacts touched:**
+- `tests/architecture/test_epistemic_enforcement.py` — created (4 tests: 2 Level 0 + 2 Level 1)
+- `state/tasks/task-008-w29-level0-enforcement.md` — created, status → DONE
+- `state/tasks/task-009-w8-level1-enforcement.md` — created, status → DONE
+- `state/capture/capture-intake-001.md` — grade fixed INFORMED_ESTIMATE → EVIDENCE_BASED
+- 25+ state/ files — `artifact_type` field added to frontmatter
+- `docs/ROADMAP-003.md` — W8 → ✅ DONE, W29 → ✅ DONE, W11 → READY
+- `state/session-log.md` — updated (this entry + dashboard)
+
+**Decisions:** None new. Implemented D-015 enforcement levels using W32 calibrated thresholds.
+
+**Next:** W27 (AP domain project bootstrap — READY) or W11 (Level 2 blocking enforcement —
+READY, but v1.1 scope per D-015). K1 traceability metadata remains ACTIVE.
+
+---
 
 ### 2026-05-14 — W32: Epistemic threshold calibration
 

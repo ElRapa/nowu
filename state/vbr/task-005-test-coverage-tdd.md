@@ -1,4 +1,5 @@
 ---
+artifact_type: VBR_REPORT
 id: vbr-task-005-test-coverage-tdd
 task_id: task-005-test-coverage-tdd
 created: 2026-05-12

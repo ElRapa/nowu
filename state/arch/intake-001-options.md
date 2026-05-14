@@ -1,4 +1,5 @@
 ---
+artifact_type: OPTIONS_SHEET
 id: intake-001-options
 altitude: ARCHITECTURE
 phase: OPTIONS

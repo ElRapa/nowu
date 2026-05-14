@@ -1,4 +1,5 @@
 ---
+artifact_type: TASK_SPEC
 id: task-006
 title: K2 Forward/backward trace validation on intake-001
 created: 2026-05-14

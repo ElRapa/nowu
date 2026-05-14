@@ -1,4 +1,5 @@
 ---
+artifact_type: TASK_SPEC
 id: task-001-session-checkpoint-type
 title: "Core Contracts: SessionCheckpoint Type"
 created: 2026-05-12

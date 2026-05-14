@@ -1,4 +1,5 @@
 ---
+artifact_type: TASK_SPEC
 id: task-003-file-session-store-migration
 title: "FileSessionStore: Migration and Bookmark Writer"
 created: 2026-05-12

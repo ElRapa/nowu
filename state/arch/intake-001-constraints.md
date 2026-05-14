@@ -1,4 +1,5 @@
 ---
+artifact_type: CONSTRAINTS_SHEET
 id: intake-001-constraints
 altitude: ARCHITECTURE
 phase: ANALYSIS

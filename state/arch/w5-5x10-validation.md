@@ -1,4 +1,5 @@
 ---
+artifact_type: VALIDATION_REPORT
 id: w5-5x10-validation
 work_item: W5
 altitude: ARCHITECTURE

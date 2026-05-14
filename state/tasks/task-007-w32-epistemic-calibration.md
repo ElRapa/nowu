@@ -1,4 +1,5 @@
 ---
+artifact_type: TASK_SPEC
 id: task-007
 title: W32 Epistemic threshold calibration
 created: 2026-05-14

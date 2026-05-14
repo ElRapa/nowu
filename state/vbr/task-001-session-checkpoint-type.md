@@ -1,4 +1,5 @@
 ---
+artifact_type: VBR_REPORT
 id: vbr-task-001-session-checkpoint-type
 task_id: task-001-session-checkpoint-type
 created: 2026-05-12

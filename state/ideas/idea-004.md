@@ -1,4 +1,5 @@
 ---
+artifact_type: IDEA
 id: idea-004
 created: 2026-04-07
 status: DRAFT

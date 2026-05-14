@@ -1,4 +1,5 @@
 ---
+artifact_type: TASK_SPEC
 id: task-005-test-coverage-tdd
 title: "Test Coverage: Migration, Schema Translation, Atomicity"
 created: 2026-05-12

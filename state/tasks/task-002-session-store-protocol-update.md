@@ -1,4 +1,5 @@
 ---
+artifact_type: TASK_SPEC
 id: task-002-session-store-protocol-update
 title: "SessionStore Protocol Update"
 created: 2026-05-12

@@ -1,4 +1,5 @@
 ---
+artifact_type: VBR_REPORT
 id: vbr-task-003-file-session-store-migration
 task_id: task-003-file-session-store-migration
 created: 2026-05-12

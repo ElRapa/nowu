@@ -1,4 +1,5 @@
 ---
+artifact_type: CHANGESET
 id: 2026-05-12-task-003-file-session-store-migration
 task_id: task-003-file-session-store-migration
 created: 2026-05-12

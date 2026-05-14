@@ -66,7 +66,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Workflow | W-log | Session-log + roadmap alignment | v1-core | none | NF-10, NF-06 | ✅ DONE |
 | Workflow | W-UCGOAL | Backfill UC↔goal mappings in goal files | v1-core | none | NF-09, NF-11, NF-16 | ✅ DONE |
 | Workflow | W7 | SYNTHESIS trigger automation | v1 | W1 validated | NF-06, NF-11 | PLANNED |
-| Workflow | W8 | Level 1 advisory enforcement (altitude/grade violations) | v1 | W32 | NF-15, NF-02 | PLANNED |
+| Workflow | W8 | Level 1 advisory enforcement (altitude/grade violations) | v1 | W32 | NF-15, NF-02 | ✅ DONE |
 | Workflow | W9 | Promote hypothesis ADRs via intake evidence | v1 | 2+ intakes | NF-02, NF-15, AP-06 | PLANNED |
 | Workflow | W10 | Triage primitive for path selection | v1 | W4 | NF-03, NF-13 | PLANNED |
 | Workflow | W19 | ADR-0011 domain extension model | v1 | ADR-0008, ADR-0009 | XP-07, AP-01, RE-01 | PLANNED |
@@ -74,7 +74,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Workflow | W21 | ADR-0014 progressive enrichment model | v1 | ADR-0008, ADR-0010 | NF-12, PK-01, PK-05 | PLANNED |
 | Workflow | W27 | AP domain project bootstrap (AP-01/AP-02/AP-06) | v1 | W4 | AP-01, AP-02, AP-06 | PLANNED |
 | Workflow | W28 | RE domain project bootstrap (RE-01/RE-06) | v1 | W4 | RE-01, RE-06 | PLANNED |
-| Workflow | W29 | NF-15 Level 0 epistemic enforcement implementation | v1 | W4, ADR-0010 | NF-15 | PLANNED |
+| Workflow | W29 | NF-15 Level 0 epistemic enforcement implementation | v1 | W4, ADR-0010 | NF-15 | ✅ DONE |
 | Workflow | W32 | Epistemic threshold calibration (replaces old v1 W6 naming collision) | v1 | W4, W5 | NF-15, NF-16 | ✅ DONE |
 | Workflow | W11 | Level 2 enforcement (blocking at DECISION gates) | v1.1 | W8 stable | NF-15, NF-11 | PLANNED |
 | Workflow | W12 | Architectural fitness function suite | v1.1 | ADRs promoted | NF-04, NF-08 | PLANNED |
@@ -224,7 +224,7 @@ dependency_graph:
 
   # === v1 (blocked by W4 or v1-core items) ===
   W7: {depends_on: ["W1"], status: "PLANNED"}
-  W8: {depends_on: ["W32"], status: "READY"}
+  W8: {depends_on: ["W32"], status: "✅ complete", evidence: ["tests/architecture/test_epistemic_enforcement.py"]}
   W9: {depends_on: ["W4"], status: "PLANNED"}
   W10: {depends_on: ["W4"], status: "PLANNED"}
   W19: {depends_on: ["ADR-0008", "ADR-0009"], status: "PLANNED"}
@@ -232,7 +232,7 @@ dependency_graph:
   W21: {depends_on: ["ADR-0008", "ADR-0010"], status: "PLANNED"}
   W27: {depends_on: ["W4"], status: "PLANNED"}
   W28: {depends_on: ["W4"], status: "PLANNED"}
-  W29: {depends_on: ["W4", "ADR-0010"], status: "PLANNED"}
+  W29: {depends_on: ["W4", "ADR-0010"], status: "✅ complete", evidence: ["tests/architecture/test_epistemic_enforcement.py"]}
   W32: {depends_on: ["W4", "W5"], status: "✅ complete", evidence: ["state/arch/w32-epistemic-calibration.md", "docs/model/MODEL-REFERENCE.md §6"]}
   K3: {depends_on: ["K1"], status: "PLANNED"}
   A3: {depends_on: ["W5"], status: "PLANNED"}
@@ -241,7 +241,7 @@ dependency_graph:
   F8: {depends_on: ["K3"], status: "PLANNED"}
 
   # === v1.1 (blocked by v1 prereqs) ===
-  W11: {depends_on: ["W8"], status: "PLANNED"}
+  W11: {depends_on: ["W8"], status: "READY"}
   W12: {depends_on: ["ADRs promoted"], status: "PLANNED"}
   W13: {depends_on: ["W12"], status: "PLANNED"}
   W14: {depends_on: ["W9"], status: "PLANNED"}

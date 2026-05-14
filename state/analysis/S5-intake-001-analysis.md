@@ -1,4 +1,5 @@
 ---
+artifact_type: SESSION_ANALYSIS
 step: S5
 altitude: DELIVERY
 phase: EVALUATION

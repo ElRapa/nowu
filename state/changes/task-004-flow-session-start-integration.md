@@ -1,4 +1,5 @@
 ---
+artifact_type: CHANGESET
 id: 2026-05-12-task-004-flow-session-start-integration
 task_id: task-004-flow-session-start-integration
 created: 2026-05-12

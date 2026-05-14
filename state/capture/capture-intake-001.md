@@ -1,4 +1,5 @@
 ---
+artifact_type: CAPTURE_RECORD
 id: capture-intake-001
 task_ids: [task-001, task-002, task-003, task-004, task-005]
 intake_id: intake-001
@@ -8,7 +9,7 @@ next_cycle_trigger: CONTINUE
 status: DONE
 altitude: EXECUTION
 phase: LEARN
-epistemic_grade: INFORMED_ESTIMATE
+epistemic_grade: EVIDENCE_BASED
 ---
 
 # Capture Record: intake-001 — W4 First S1-S9 Cycle

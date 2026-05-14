@@ -1,4 +1,5 @@
 ---
+artifact_type: VBR_REPORT
 id: vbr-task-002-session-store-protocol-update
 task_id: task-002-session-store-protocol-update
 created: 2026-05-12

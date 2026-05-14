@@ -1,4 +1,5 @@
 ---
+artifact_type: REVIEW_REPORT
 id: review-intake-001
 altitude: EXECUTION
 phase: EVALUATION

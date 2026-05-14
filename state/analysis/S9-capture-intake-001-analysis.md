@@ -1,4 +1,5 @@
 ---
+artifact_type: SESSION_ANALYSIS
 step: S9
 artifact_id: capture-intake-001
 artifact_path: state/capture/capture-intake-001.md
