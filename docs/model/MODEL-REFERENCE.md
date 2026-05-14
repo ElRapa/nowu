@@ -354,6 +354,8 @@ Always valid within altitude and expected to follow loop order. Not every phase 
 
 ## 13. Artifact→Position Mapping
 
+> **consumption-position convention**: Artifacts are tagged with the altitude and phase where they are *consumed* (read and acted upon), not necessarily where they were first authored. Example: task specs are authored during S5 (DELIVERY/EVALUATION) but consumed during S6 (EXECUTION/IMPLEMENTATION).
+
 | Artifact | Altitude | Phase |
 |---|---|---|
 | docs/vision.md | STRATEGIC | PROBLEM/DECISION |
@@ -375,7 +377,51 @@ Always valid within altitude and expected to follow loop order. Not every phase 
 | state/capture/capture-task-NNN.md | EXECUTION→DELIVERY | LEARN |
 | state/health/arch-*.md | ARCHITECTURE | VERIFICATION |
 | state/analysis/session-review-*.md | DELIVERY | LEARN |
-| docs/ROADMAP-001.md | STRATEGIC | IMPLEMENTATION |
+| docs/ROADMAP-NNN.md | STRATEGIC | IMPLEMENTATION |
+| state/changes/task-NNN.md | EXECUTION | IMPLEMENTATION |
+| state/reviews/review-NNN.md | EXECUTION | EVALUATION |
+| state/learnings/*.md | (varies) | LEARN |
+| state/arch/*-options.md | ARCHITECTURE | OPTIONS |
+| state/arch/*-decision.md | ARCHITECTURE | DECISION |
+| state/session-log.md | STRATEGIC | LEARN |
+
+### 13.1 Canonical artifact_type Vocabulary
+
+Every artifact in this model MUST declare an `artifact_type` YAML frontmatter field drawn from this vocabulary. The value identifies the artifact's role in the pipeline and determines where it is consumed.
+
+| artifact_type | Used By (directory pattern) | Section 13 Position | Example |
+|---|---|---|---|
+| ADR | docs/architecture/adr/ | ARCHITECTURE / DECISION | ADR-0001-module-boundaries.md |
+| ARCHITECTURE_VISION | docs/architecture/ | ARCHITECTURE / DECISION | ARCHITECTURE-VISION.md |
+| AUDIT_REPORT | state/health/ | ARCHITECTURE / VERIFICATION | arch-health-001.md |
+| CAPTURE_RECORD | state/capture/ | EXECUTION→DELIVERY / LEARN | capture-task-001.md |
+| CHANGESET | state/changes/ | EXECUTION / IMPLEMENTATION | task-001.md |
+| CONSTRAINTS_SHEET | state/arch/ | ARCHITECTURE / ANALYSIS | 001-constraint-check.md |
+| DECISION_RECORD | state/arch/ | ARCHITECTURE / DECISION | 001-decision.md |
+| EPIC | state/epics/ | DELIVERY / OPTIONS | epic-001.md |
+| GOAL | docs/goals/ | STRATEGIC / DECISION | goal-001.md |
+| HANDOFF | state/ | EXECUTION→DELIVERY / LEARN | handoff-001.md |
+| IDEA | state/ideas/ | STRATEGIC or PRODUCT / IDEA | idea-001.md |
+| INTAKE_BRIEF | state/intake/ | DELIVERY / DECISION→IMPLEMENTATION | intake-001.md |
+| LEARNINGS | state/learnings/ | (varies) / LEARN | learnings-001.md |
+| LEARNINGS_INDEX | state/learnings/ | (varies) / LEARN | INDEX.md |
+| LESSON | state/learnings/ | EXECUTION→DELIVERY / LEARN | lesson-001.md |
+| OPTIONS_SHEET | state/arch/ | ARCHITECTURE / OPTIONS | arch-pass-001.md |
+| PROBLEM | state/problems/ | PRODUCT / PROBLEM | problem-001.md |
+| PROGRESS_LOG | state/ | EXECUTION / IMPLEMENTATION | progress-001.md |
+| RESEARCH_INDEX | docs/research/ | PRODUCT / ANALYSIS | research-index.md |
+| REVIEW_REPORT | state/reviews/ | EXECUTION / EVALUATION | review-001.md |
+| ROADMAP | docs/ | STRATEGIC / IMPLEMENTATION | ROADMAP-001.md |
+| SESSION_ANALYSIS | state/analysis/ | DELIVERY / LEARN | session-review-001.md |
+| SESSION_LEARNINGS | state/learnings/ | (varies) / LEARN | session-learnings-001.md |
+| SESSION_LOG | state/ | STRATEGIC / LEARN | session-log.md |
+| SYNTHESIS | state/arch/ | ARCHITECTURE / ANALYSIS | SYNTHESIS-001.md |
+| TASK_SPEC | state/tasks/ | EXECUTION / IMPLEMENTATION | task-001.md |
+| TRIAGE | state/ | PRODUCT / PROBLEM | triage-001.md |
+| USE_CASE | docs/ | PRODUCT / PROBLEM | USE_CASES.md |
+| VBR_REPORT | state/vbr/ | EXECUTION / VERIFICATION | vbr-task-001.md |
+
+> **Enforcement:** K1/W20 will apply these types to existing artifacts. W6 formalizes the vocabulary only.
 
 ## 14. SYNTHESIS Phase Details
 
