@@ -3,6 +3,9 @@ id: vbr-task-004-flow-session-start-integration
 task_id: task-004-flow-session-start-integration
 created: 2026-05-12
 status: READY_FOR_REVIEW
+altitude: EXECUTION
+phase: VERIFICATION
+epistemic_grade: EVIDENCE_BASED
 ---
 
 # VBR Report: task-004-flow-session-start-integration

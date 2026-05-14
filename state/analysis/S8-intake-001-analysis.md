@@ -5,6 +5,9 @@ artifact_path: state/reviews/review-intake-001.md
 run_date: 2026-05-13
 agent: nowu-reviewer (bedrock/eu.anthropic.claude-sonnet-4-6)
 outcome: APPROVED
+altitude: EXECUTION
+phase: EVALUATION
+epistemic_grade: INFORMED_ESTIMATE
 ---
 
 # S8 Analysis: review-intake-001

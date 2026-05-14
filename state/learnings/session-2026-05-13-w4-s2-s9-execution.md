@@ -3,6 +3,9 @@ artifact_type: SESSION_LEARNINGS
 session: "W4 S2-S9: First end-to-end intake cycle (SessionCheckpoint implementation)"
 created_at: 2026-05-13
 session_type: "S1-S9"
+altitude: ARCHITECTURE
+phase: LEARN
+epistemic_grade: INFORMED_ESTIMATE
 source_artifacts:
   - state/arch/intake-001-constraints.md
   - state/arch/intake-001-options.md

@@ -1,5 +1,8 @@
 ---
 step: S5
+altitude: DELIVERY
+phase: EVALUATION
+epistemic_grade: INFORMED_ESTIMATE
 artifact_id: intake-001-tasks
 artifact_path: state/tasks/
 run_date: 2026-05-12

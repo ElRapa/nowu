@@ -5,6 +5,9 @@ artifact_path: state/capture/capture-intake-001.md
 run_date: 2026-05-13
 agent: nowu-curator (bedrock/eu.anthropic.claude-sonnet-4-6)
 outcome: COMPLETE
+altitude: EXECUTION
+phase: LEARN
+epistemic_grade: INFORMED_ESTIMATE
 ---
 
 **Note (2026-05-13): PROGRESS.md is now fully obsolete.**

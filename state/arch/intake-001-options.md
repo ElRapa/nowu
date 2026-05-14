@@ -1,5 +1,8 @@
 ---
 id: intake-001-options
+altitude: ARCHITECTURE
+phase: OPTIONS
+epistemic_grade: HYPOTHESIS
 intake_id: intake-001
 created: 2026-05-12
 status: READY_FOR_DECISION

@@ -2,6 +2,9 @@
 id: 2026-05-12-task-001-session-checkpoint-type
 task_id: task-001-session-checkpoint-type
 created: 2026-05-12
+altitude: EXECUTION
+phase: IMPLEMENTATION
+epistemic_grade: EVIDENCE_BASED
 ---
 
 # Changeset: task-001-session-checkpoint-type
