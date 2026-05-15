@@ -1,0 +1,7 @@
+Files created:
+- state/learnings/session-2026-05-15-k3-dual-agent.md
+
+Verification snippet:
+$ grep -i "k3\|memory" state/learnings/INDEX.md
+2026-05-15 | K3 workflow — MemoryService expansion + KnowAdapter | Keep core contract generic while adapter performs know enum/dataclass conversions; bridge layer must be exempt from global no-know-import checks; mypy strict at external boundaries needs explicit casts/import-ignore strategy | workflow-process, domain-insight, tooling | `state/learnings/session-2026-05-15-k3-workflow.md`
+2026-05-15 | K3 dual-agent comparison (T7 vs T8) | Comparison of workflow (T7) and freeform (T8) outputs for K3. Recommends adopting T8 parsing helpers, retaining workflow discipline, and removing broad mypy disables before porting. | agent-behavior, workflow-process, tooling | `state/learnings/session-2026-05-15-k3-dual-agent.md`
