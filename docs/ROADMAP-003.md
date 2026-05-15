@@ -11,7 +11,9 @@ source_usecases: docs/USE_CASES.md
 source_synthesis: state/arch/SYNTHESIS-001.md
 source_architecture_vision: docs/architecture/ARCHITECTURE-VISION.md
 supersedes: [docs/ROADMAP-001.md, docs/ROADMAP-002.md]
-status: ACTIVE
+status: SUPERSEDED
+superseded_by: docs/ROADMAP-004.md
+superseded_at: 2026-05-15
 ---
 
 # nowu Canonical Roadmap — ROADMAP-003
