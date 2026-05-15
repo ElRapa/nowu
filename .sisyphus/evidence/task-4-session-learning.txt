@@ -1,0 +1,17 @@
+W19 session-learning verification evidence
+Date: 2026-05-15
+Branch: feat/W19
+
+Session learning file created:
+- state/learnings/session-2026-05-15-w19-domain-extension.md
+
+Format checks:
+- YAML frontmatter includes artifact_type, session, created_at, session_type, source_artifacts, purpose.
+- Required sections present: What Was Done, Decisions Made, Process Insights, Anti-Patterns Observed,
+  What This Session Produced, What Should Happen Next.
+
+Index update:
+- state/learnings/INDEX.md updated with newest-first entry for W19 ADR-0011 domain extension model.
+
+Scope check:
+- Session-learning work modified documentation/state artifacts only (no `src/` or `tests/` edits).
