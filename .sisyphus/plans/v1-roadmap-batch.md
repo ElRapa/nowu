@@ -217,7 +217,7 @@ Per D-025 (branch strategy):
 
 ## TODOs
 
-- [ ] 1. W28-workflow — RE Domain Bootstrap via S1-S9 Workflow Agents
+- [x] 1. W28-workflow — RE Domain Bootstrap via S1-S9 Workflow Agents
 
   **What to do**:
   - Follow `.claude/skills/full-cycle/SKILL.md` orchestration steps with the overrides listed below
@@ -334,7 +334,7 @@ Per D-025 (branch strategy):
   - Files: `state/intake/intake-008.md`, `state/arch/intake-008-*.md`, `state/tasks/task-014+.md`, `state/reviews/`, `state/capture/capture-intake-008.md`
   - Pre-commit: `uv run pytest --tb=short -q`
 
-- [ ] 2. W28-freeform — RE Domain Bootstrap via Freeform Approach
+- [x] 2. W28-freeform — RE Domain Bootstrap via Freeform Approach
 
   **What to do**:
   - Achieve the IDENTICAL goal as Task 1 but WITHOUT following S1-S9 workflow structure
@@ -382,7 +382,7 @@ Per D-025 (branch strategy):
 
   **Commit**: NO (outputs saved to .sisyphus/evidence/ only — workflow version is the committed output)
 
-- [ ] 3. W28-compare — Double-Agent Comparison & Session-Learning
+- [x] 3. W28-compare — Double-Agent Comparison & Session-Learning
 
   **What to do**:
   - Compare T1 (workflow) and T2 (freeform) outputs along 5 dimensions:
@@ -442,7 +442,7 @@ Per D-025 (branch strategy):
   - Message: `docs(learnings): W28 dual-agent comparison + session-learning`
   - Files: `state/learnings/session-*-w28*.md`, `state/learnings/INDEX.md`
 
-- [ ] 4. W19 — ADR-0011 Domain Extension Model
+- [x] 4. W19 — ADR-0011 Domain Extension Model
 
   **What to do**:
   - Use S2-S4 workflow pattern (constraints → options → decision) to produce ADR-0011
@@ -518,7 +518,7 @@ Per D-025 (branch strategy):
   - Files: `docs/architecture/adr/ADR-0011-domain-extension-model.md`, `state/learnings/session-*-w19*.md`
   - Pre-commit: `uv run pytest --tb=short -q`
 
-- [ ] 5. W20 — ADR-0012 Traceability Metadata Standard
+- [x] 5. W20 — ADR-0012 Traceability Metadata Standard
 
   **What to do**:
   - Use S2-S4 workflow pattern to produce ADR-0012
@@ -590,7 +590,7 @@ Per D-025 (branch strategy):
   - Files: `docs/architecture/adr/ADR-0012-traceability-metadata-standard.md`, `state/learnings/session-*-w20*.md`
   - Pre-commit: `uv run pytest --tb=short -q`
 
-- [ ] 6. W9 — Promote Hypothesis ADRs via Intake Evidence
+- [x] 6. W9 — Promote Hypothesis ADRs via Intake Evidence
 
   **What to do**:
   - Evaluate each hypothesis ADR (0007-0010) against cumulative intake evidence (001, 007, 008)
@@ -672,7 +672,7 @@ Per D-025 (branch strategy):
   - Files: `docs/architecture/adr/ADR-0007*.md`, `ADR-0008*.md`, `ADR-0009*.md`, `ADR-0010*.md`, `state/learnings/session-*-w9*.md`
   - Pre-commit: `uv run pytest --tb=short -q`
 
-- [ ] 7. K3-workflow — MemoryService Integration via Workflow Agents
+- [x] 7. K3-workflow — MemoryService Integration via Workflow Agents
 
   **What to do**:
   - Follow repo workflow for implementation: use S1-S5 to create intake + shape tasks, then S6-S7 for TDD implementation
@@ -817,7 +817,7 @@ Per D-025 (branch strategy):
   - Files: `src/nowu/core/contracts/memory.py`, `src/nowu/bridge/know_adapter.py`, `src/nowu/bridge/__init__.py`, `tests/bridge/test_know_adapter.py`
   - Pre-commit: `uv run pytest --tb=short -q && uv run mypy src/ --strict && uv run ruff check .`
 
-- [ ] 8. K3-freeform — MemoryService Integration via Freeform Approach
+- [x] 8. K3-freeform — MemoryService Integration via Freeform Approach
 
   **What to do**:
   - Achieve the IDENTICAL goal as Task 7 but WITHOUT following S1-S9 workflow
@@ -863,7 +863,7 @@ Per D-025 (branch strategy):
 
   **Commit**: NO (freeform outputs in .sisyphus/evidence/ only)
 
-- [ ] 9. K3-compare — Double-Agent Comparison & Session-Learning
+- [x] 9. K3-compare — Double-Agent Comparison & Session-Learning
 
   **What to do**:
   - Compare T7 (workflow) and T8 (freeform) outputs along same 5 dimensions as T3
@@ -929,19 +929,19 @@ Per D-025 (branch strategy):
 >
 > **Do NOT auto-proceed after verification. Wait for user's explicit approval before marking work complete.**
 
-- [ ] F1. **Plan Compliance Audit** — `oracle`
+- [x] F1. **Plan Compliance Audit** — `oracle`
   Read the plan end-to-end. For each "Must Have": verify implementation exists. For each "Must NOT Have": search codebase for forbidden patterns — reject with file:line if found. Check evidence files exist. Compare deliverables against plan.
   Output: `Must Have [N/N] | Must NOT Have [N/N] | Tasks [N/N] | VERDICT: APPROVE/REJECT`
 
-- [ ] F2. **Code Quality Review** — `unspecified-high`
+- [x] F2. **Code Quality Review** — `unspecified-high`
   Run `uv run pytest && uv run mypy src/ --strict && uv run ruff check .`. Review all changed files for: `as any`/`@ts-ignore` equivalents, empty catches, debug prints in prod, commented-out code, unused imports. Check AI slop: excessive comments, over-abstraction, generic names.
   Output: `Build [PASS/FAIL] | Lint [PASS/FAIL] | Tests [N pass/N fail] | Files [N clean/N issues] | VERDICT`
 
-- [ ] F3. **Real Manual QA** — `unspecified-high`
+- [x] F3. **Real Manual QA** — `unspecified-high`
   Start from clean state. Execute EVERY QA scenario from EVERY task. Test cross-task integration (W19 referenced by K3, W28 evidence feeds W9). Save to `.sisyphus/evidence/final-qa/`.
   Output: `Scenarios [N/N pass] | Integration [N/N] | Edge Cases [N tested] | VERDICT`
 
-- [ ] F4. **Scope Fidelity Check** — `deep`
+- [x] F4. **Scope Fidelity Check** — `deep`
   For each task: read "What to do", read actual diff. Verify 1:1 — everything in spec was built, nothing beyond spec was built. Check "Must NOT do" compliance. Detect cross-task contamination.
   Output: `Tasks [N/N compliant] | Contamination [CLEAN/N issues] | Unaccounted [CLEAN/N files] | VERDICT`
 
