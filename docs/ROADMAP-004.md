@@ -112,13 +112,13 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Workflow | W-UCGOAL | Backfill UC↔goal mappings in goal files | v1-core | none | NF-09, NF-11, NF-16 | ✅ DONE |
 | Workflow | W7 | SYNTHESIS trigger automation | v1 | W1 validated | NF-06, NF-11 | PLANNED |
 | Workflow | W8 | Level 1 advisory enforcement (altitude/grade violations) | v1 | W32 | NF-15, NF-02 | ✅ DONE |
-| Workflow | W9 | Promote hypothesis ADRs via intake evidence | v1 | 2+ intakes | NF-02, NF-15, AP-06 | PLANNED |
+| Workflow | W9 | Promote hypothesis ADRs via intake evidence | v1 | 2+ intakes | NF-02, NF-15, AP-06 | ✅ DONE |
 | Workflow | W10 | Triage primitive for path selection | v1 | W4 | NF-03, NF-13 | PLANNED |
-| Workflow | W19 | ADR-0011 domain extension model (gap-backed: GAP-003, GAP-005) | v1 | ADR-0008, ADR-0009 | XP-07, AP-01, RE-01 | PLANNED |
-| Workflow | W20 | ADR-0012 traceability metadata standard (gap-backed: GAP-003; includes ADR-0010 decay-semantics maintenance linkage for GAP-007) | v1 | ADR-0009, K1 | NF-09 | PLANNED |
+| Workflow | W19 | ADR-0011 domain extension model (gap-backed: GAP-003, GAP-005) | v1 | ADR-0008, ADR-0009 | XP-07, AP-01, RE-01 | ✅ DONE |
+| Workflow | W20 | ADR-0012 traceability metadata standard (gap-backed: GAP-003; includes ADR-0010 decay-semantics maintenance linkage for GAP-007) | v1 | ADR-0009, K1 | NF-09 | ✅ DONE |
 | Workflow | W21 | ADR-0014 progressive enrichment model | v1 | ADR-0008, ADR-0010 | NF-12, PK-01, PK-05 | PLANNED |
 | Workflow | W27 | AP domain project bootstrap (AP-01/AP-02/AP-06) | v1 | W4 | AP-01, AP-02, AP-06 | ✅ DONE |
-| Workflow | W28 | RE domain project bootstrap (RE-01/RE-06) | v1 | W4 | RE-01, RE-06 | READY |
+| Workflow | W28 | RE domain project bootstrap (RE-01/RE-06) | v1 | W4 | RE-01, RE-06 | ✅ DONE |
 | Workflow | W29 | NF-15 Level 0 epistemic enforcement implementation | v1 | W4, ADR-0010 | NF-15 | ✅ DONE |
 | Workflow | W32 | Epistemic threshold calibration (replaces old v1 W6 naming collision) | v1 | W4, W5 | NF-15, NF-16 | ✅ DONE |
 | Workflow | W11 | Level 2 enforcement (blocking at DECISION gates) | v1.1 | W8 stable | NF-15, NF-11 | PLANNED |
@@ -137,7 +137,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Workflow | W18 | 5×10 grid auto-population from history | v2 | 20+ intakes | NF-08, XP-10 | PLANNED |
 | Knowledge | K1 | Traceability metadata in all new artifacts | v1-core | none | NF-09 | ACTIVE |
 | Knowledge | K2 | Forward/backward trace validation | v1-core | W4 | NF-09, XP-08 | ✅ DONE |
-| Knowledge | K3 | MemoryService integration for structured recall (gap-backed: GAP-001, GAP-002) | v1 | core contracts baseline | NF-01, PK-03 | PLANNED |
+| Knowledge | K3 | MemoryService integration for structured recall (gap-backed: GAP-001, GAP-002) | v1 | core contracts baseline | NF-01, PK-03 | ✅ DONE |
 | Knowledge | K4 | Session state persistence via know | v1 | K3 | NF-01, NF-10, XP-01 | PLANNED |
 | Knowledge | K5 | Cross-project recall | v1.1 | K4 | XP-01, XP-03 | PLANNED |
 | Knowledge | K6 | Semantic queries over artifact corpus | v1.1 | K5 | PK-02, PK-09, XP-04 | PLANNED |
