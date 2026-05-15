@@ -26,7 +26,7 @@ status: ACTIVE
 #### Current Position
 - **Stage**: v1 — v1-core gate PASSED; now executing v1 work items
 - **Current Work Item**: W28 — RE domain project bootstrap (READY)
-- **Next Work Items**: K3 (MemoryService integration), W19 (domain extension model), K9a (minimal version-lineage)
+- **Next Work Items**: W28 (RE domain bootstrap), K3 (MemoryService integration), KI-1/KI-2 (know test/license fixes)
 
 #### Milestones
 | Milestone | Status | Date |
@@ -47,6 +47,7 @@ status: ACTIVE
 | W27: AP Domain Project Bootstrap | ✅ Done | 2026-05-15 |
 | v1-core → v1 Gate | ✅ Passed | 2026-05-15 |
 | ROADMAP-004 | ✅ Done | 2026-05-15 |
+| Know assessment + KI items | ✅ Done | 2026-05-15 |
 
 #### Blocked Items
 - W11: Level 2 blocking enforcement — READY (W8 complete, v1.1 scope)
@@ -61,6 +62,27 @@ status: ACTIVE
 | goal-004: Infrastructure | 34/34 | 0/34 |
 
 ## Entries
+
+### 2026-05-15 — Know module assessment + KI work items added to ROADMAP
+
+**What:** Assessed know sibling module (v0.4.0, alpha) for maturity, alignment with
+USE_CASES.md/vision.md, and integration strategy. Found know is more capable than nowu
+currently consumes — JSON atom files, SQLite FTS5 index, embeddings, 3-layer search,
+PageRank importance, curator, CLI, MCP server, and comprehensive tests. Architecture
+decision: keep separate (Option C — coordinated roadmap, per D-006/ADR-0001). Added 5
+"Know Internal" (KI-1..KI-5) work items to ROADMAP-004 for know-side changes. Updated
+FILE-STRUCTURE.md with know sibling reference.
+
+**Artifacts touched:**
+- `docs/ROADMAP-004.md` — v4→v5: KI-1..KI-5 added (Section 2, 4, Theme matrix, changelog)
+- `FILE-STRUCTURE.md` — v2.3→v2.4: know sibling repo structure added
+- `state/session-log.md` — updated (this entry + dashboard)
+
+**Decisions:** None new. Confirmed Option C (keep separate + coordinated roadmap) per D-006.
+
+**Next:** W28 (RE domain bootstrap) or KI-1/KI-2 (know acceptance tests + license fix).
+
+---
 
 ### 2026-05-15 — W27 complete + v1-core gate passed + ROADMAP-004
 

@@ -1,6 +1,6 @@
 ---
 artifact_type: ROADMAP
-version: 4
+version: 5
 altitude: STRATEGIC
 phase: IMPLEMENTATION
 epistemic_grade: INFORMED_ESTIMATE
@@ -16,6 +16,17 @@ status: ACTIVE
 ---
 
 # nowu Canonical Roadmap — ROADMAP-004
+
+## Changelog (v4 → v5)
+
+1. **Know Internal area added (KI-1..KI-5):** New "Know Internal" work item area for changes executed in the `../know` sibling repo, tracked here for coordination. Based on know v0.4.0 assessment (2026-05-15) which found know is a working alpha with capabilities exceeding what nowu currently consumes.
+2. **KI-1/KI-2 (v1, no deps):** Acceptance test gap triage and license/packaging reconciliation — prerequisites for any production-quality know consumption.
+3. **KI-3 (v1, depends K3):** KnowAdapter expansion to map the expanded MemoryService v2 Protocol (from K3) to know's full KnowledgeBase API (atom CRUD, graph traversal, version queries).
+4. **KI-4 (v1, depends W19):** Domain atom type registry enabling AP/RE custom atom types without modifying know core — coordinated with ADR-0011 domain extension model.
+5. **KI-5 (v1.1, depends KI-3):** Optional JSON→MD atom storage migration evaluation for inspectability alignment with nowu's all-Markdown artifact philosophy.
+6. **Theme × Stage Matrix updated:** KI-1..KI-4 added to T2 v1 column; KI-5 added to T2 v1.1; KI-4 added to T5 v1.
+7. **Dependency graph updated:** KI items added under new "Know Internal (sibling repo ../know)" section between v1.2 and v2.
+8. **Architecture decision: keep know separate.** Know stays as sibling repo consumed via Protocol boundary (per D-006, ADR-0001). Roadmap integration (Option C) chosen over monorepo merge — clean boundaries + coordinated planning.
 
 ## Changelog (v3 → v4)
 
@@ -51,10 +62,10 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Theme | v1-core | v1 | v1.1 | v1.2 | v2 |
 |---|---|---|---|---|---|
 | T1 Continuity | W4, W5, K1 | W28, F4 | W14 | W25 | W18 |
-| T2 Knowledge Persistence & Lifecycle | K1, K2, W3/ADR-0008 | K3, K4, K9a, W29 | K11, K12, K13, K5, K6 | K9, K10 | K7, K8 |
+| T2 Knowledge Persistence & Lifecycle | K1, K2, W3/ADR-0008 | K3, K4, K9a, W29, KI-1, KI-2, KI-3, KI-4 | K11, K12, K13, K5, K6, KI-5 | K9, K10 | K7, K8 |
 | T3 Workflow Orchestration | W1, W2, W3, W4 | W7, W8, W10, W32 | W11, W12, W15 | W24, W26 | W16, W17 |
 | T4 Epistemic Awareness | W29, W3/ADR-0010 | W32, W9 | W14, W30 | W26 | W16 |
-| T5 Domain Agnosticism | W4 baseline validation | W27, W28, W19 | W22 | W24, W25 | W18, F10, F11 |
+| T5 Domain Agnosticism | W4 baseline validation | W27, W28, W19, KI-4 | W22 | W24, W25 | W18, F10, F11 |
 | T6 Observability & Traceability | K1, W-UCGOAL, W20 | W9 | W12, A7, F9 | W26 | W16 |
 | T7 Multi-Surface Access |  | W31, F6 | W22 | F12 | F11 |
 | T8 Progressive Disclosure | W4, W21 | W10 | W14, W15 | W25 | W17 |
@@ -163,6 +174,13 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Framework | F13 | Operational report export presets | v1.2 | W26, W23 | RE-07, XP-08, XP-11 | PLANNED |
 | Framework | F10 | Installable package + public docs | v2 | F7, v1.1 gate | XP-09 | PLANNED |
 | Framework | F11 | Multi-user/external project support | v2 | F10 | XP-10 | PLANNED |
+| Know Internal | KI-1 | Acceptance test gap triage + fixes (documented behavioral discrepancies in test_acceptance.py) | v1 | none | foundation for K3+ | PLANNED |
+| Know Internal | KI-2 | License + packaging reconciliation (README says MIT, pyproject says Proprietary) | v1 | none | XP-08 | PLANNED |
+| Know Internal | KI-3 | KnowAdapter expansion for MemoryService v2 (atom CRUD, graph traversal, version queries) | v1 | K3 | NF-01, PK-03 | PLANNED |
+| Know Internal | KI-4 | Domain atom type registry (custom types for AP/RE without know core changes) | v1 | W19 | AP-01, RE-01, XP-07 | PLANNED |
+| Know Internal | KI-5 | Atom storage format evaluation — JSON→MD migration path (optional, for inspectability) | v1.1 | KI-3 | quality attribute #3 (inspectability) | PLANNED |
+
+> **Know Internal items (KI-prefix):** These are work items executed in the `../know` sibling repo, tracked here for coordination. Know v0.4.0 is a working alpha with JSON atom files, SQLite FTS5 index, embeddings, 3-layer search, PageRank importance, curator, CLI, and MCP server. The existing capability exceeds what nowu currently consumes via the 4-method MemoryService Protocol. KI items close the gaps identified during know assessment (2026-05-15) and prepare know for the expanded contract surface that K3/K9a/W19 require on the nowu side.
 
 > **Phase-operator architecture (v1.1+ direction):** v1 and v1.1 should converge on generic phase agents parameterized by `altitude` and `artifact_type`, with P0–P4 and S1–S9 modeled as named traversals of the 5×10 grid, not separate workflows. See MODEL-REFERENCE §5 "Future: Phase Operators" and IMPLEMENTATION-GUIDE Package 2 for design intent.
 
@@ -373,6 +391,13 @@ dependency_graph:
   A10: {depends_on: ["W26"], status: "PLANNED"}
   A11: {depends_on: ["W25", "K10"], status: "PLANNED"}
   F12: {depends_on: ["W24", "W26"], status: "PLANNED"}
+
+  # === Know Internal (sibling repo ../know) ===
+  KI-1: {depends_on: [], status: "PLANNED", note: "Acceptance test triage in know — behavioral gaps documented in test_acceptance.py ACTUAL: comments"}
+  KI-2: {depends_on: [], status: "PLANNED", note: "License reconciliation — README says MIT, pyproject says Proprietary"}
+  KI-3: {depends_on: ["K3"], status: "PLANNED", note: "KnowAdapter expansion — maps expanded MemoryService v2 to KnowledgeBase API"}
+  KI-4: {depends_on: ["W19"], status: "PLANNED", note: "Domain atom type registry in know — must support AP/RE custom types"}
+  KI-5: {depends_on: ["KI-3"], status: "PLANNED", note: "JSON→MD atom storage migration evaluation — optional inspectability improvement"}
 
   # === v2 (blocked by v1.2 prereqs) ===
   W16: {depends_on: ["W11"], status: "PLANNED"}

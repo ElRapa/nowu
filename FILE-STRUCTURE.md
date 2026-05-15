@@ -1,6 +1,6 @@
 # nowu — Canonical File Structure
 
-> Version: 2.3 | Updated: 2026-04-30
+> Version: 2.4 | Updated: 2026-05-15
 
 ---
 
@@ -150,6 +150,26 @@ project-root/
 │       └── testing.md
 │
 └── src/                                   ← Source code (agents NEVER load this in pre-workflow or arch phases)
+
+../know/                                    ← Sibling repo: knowledge layer (v0.4.0, alpha)
+├── src/know/
+│   ├── api.py                             ← KnowledgeBase class — atom CRUD, search, subgraph
+│   ├── schema.py                          ← KnowledgeAtom, enums (KnowledgeType, EpistemicGrade)
+│   ├── database.py                        ← SQLite FTS5 index, migrations (schema v4)
+│   ├── search.py                          ← 3-layer search (exact → FTS5 → semantic)
+│   ├── embeddings.py                      ← sentence-transformers + deterministic fallback
+│   ├── importance.py                      ← PageRank-based importance scoring
+│   ├── curator.py                         ← Weekly review, decay detection
+│   ├── adapter.py                         ← KnowAdapter for nowu integration (thin wrapper)
+│   ├── ontology.json                      ← Canonical: knowledge_types, epistemic_grades, decay_rates
+│   ├── cli/                               ← Click CLI (create, search, review, versions)
+│   └── mcp/server.py                      ← MCP server bindings
+├── tests/                                 ← Unit + acceptance tests
+└── .know/                                 ← Example on-disk store (atoms/*.json, index.db, embeddings/*.npy)
+
+> **Integration:** nowu consumes know via `MemoryService` Protocol in `core/contracts/memory.py`.
+> Know is declared as editable dependency in `pyproject.toml` → `[tool.uv.sources]`.
+> Know internal work items (KI-1..KI-5) are tracked in `docs/ROADMAP-004.md`.
 ```
 
 ---
