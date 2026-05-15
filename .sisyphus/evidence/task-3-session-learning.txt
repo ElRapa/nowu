@@ -1,0 +1,8 @@
+Session-learning evidence: session learnings file created and INDEX.md updated.
+
+Files created/updated:
+- state/learnings/session-2026-05-15-w28-dual-agent.md
+- state/learnings/INDEX.md (appended entry)
+- .sisyphus/notepads/v1-roadmap-batch/learnings.md (already contains W28-workflow note; no overwrite performed)
+
+This file exists to confirm session-learning artifact presence and index update.
