@@ -1,6 +1,6 @@
 ---
 artifact_type: ROADMAP
-version: 5
+version: 6
 altitude: STRATEGIC
 phase: IMPLEMENTATION
 epistemic_grade: INFORMED_ESTIMATE
@@ -16,6 +16,16 @@ status: ACTIVE
 ---
 
 # nowu Canonical Roadmap — ROADMAP-004
+
+## Changelog (v5 → v6)
+
+1. **W28 completed:** RE domain bootstrap moved from READY to ✅ DONE with full S1-S9 artifact chain (`intake-008`, constraints/options/decision, task-014/015, review, capture).
+2. **Cross-domain gap classification added:** `state/arch/w28-gap-comparison.md` classifies GAP-001..007 using AP-vs-RE evidence (systemic: 001/002/003/004/005/007, domain-specific: 006).
+3. **D-028 integrated:** Decision log updated for W28 comparative bootstrap and binding classification rule.
+4. **Dependency evidence updated:** W28 node now includes intake/review/capture/comparison evidence references.
+5. **Stage-gate progress updated:** AP+RE v1 bootstrap criterion now satisfied (W27 + W28 complete).
+6. **Risk R3 updated:** Domain abstraction risk moved from AP-only partial validation to AP+RE evidence-backed partial validation.
+7. **Section 7 advanced:** Next work item shifted to W9 (promote hypothesis ADRs) now that 2+ intake evidence runs exist.
 
 ## Changelog (v4 → v5)
 
@@ -112,13 +122,13 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Workflow | W-UCGOAL | Backfill UC↔goal mappings in goal files | v1-core | none | NF-09, NF-11, NF-16 | ✅ DONE |
 | Workflow | W7 | SYNTHESIS trigger automation | v1 | W1 validated | NF-06, NF-11 | PLANNED |
 | Workflow | W8 | Level 1 advisory enforcement (altitude/grade violations) | v1 | W32 | NF-15, NF-02 | ✅ DONE |
-| Workflow | W9 | Promote hypothesis ADRs via intake evidence | v1 | 2+ intakes | NF-02, NF-15, AP-06 | PLANNED |
+| Workflow | W9 | Promote hypothesis ADRs via intake evidence | v1 | 2+ intakes | NF-02, NF-15, AP-06 | READY |
 | Workflow | W10 | Triage primitive for path selection | v1 | W4 | NF-03, NF-13 | PLANNED |
 | Workflow | W19 | ADR-0011 domain extension model (gap-backed: GAP-003, GAP-005) | v1 | ADR-0008, ADR-0009 | XP-07, AP-01, RE-01 | PLANNED |
 | Workflow | W20 | ADR-0012 traceability metadata standard (gap-backed: GAP-003; includes ADR-0010 decay-semantics maintenance linkage for GAP-007) | v1 | ADR-0009, K1 | NF-09 | PLANNED |
 | Workflow | W21 | ADR-0014 progressive enrichment model | v1 | ADR-0008, ADR-0010 | NF-12, PK-01, PK-05 | PLANNED |
 | Workflow | W27 | AP domain project bootstrap (AP-01/AP-02/AP-06) | v1 | W4 | AP-01, AP-02, AP-06 | ✅ DONE |
-| Workflow | W28 | RE domain project bootstrap (RE-01/RE-06) | v1 | W4 | RE-01, RE-06 | READY |
+| Workflow | W28 | RE domain project bootstrap (RE-01/RE-06) | v1 | W4 | RE-01, RE-06 | ✅ DONE |
 | Workflow | W29 | NF-15 Level 0 epistemic enforcement implementation | v1 | W4, ADR-0010 | NF-15 | ✅ DONE |
 | Workflow | W32 | Epistemic threshold calibration (replaces old v1 W6 naming collision) | v1 | W4, W5 | NF-15, NF-16 | ✅ DONE |
 | Workflow | W11 | Level 2 enforcement (blocking at DECISION gates) | v1.1 | W8 stable | NF-15, NF-11 | PLANNED |
@@ -296,7 +306,7 @@ dependency_graph:
   # === v1 (in progress) ===
   W7: {depends_on: ["W1"], status: "PLANNED"}
   W8: {depends_on: ["W32"], status: "✅ complete", evidence: ["tests/architecture/test_epistemic_enforcement.py"]}
-  W9: {depends_on: ["W4"], status: "PLANNED"}
+  W9: {depends_on: ["W4"], status: "READY", evidence: ["state/intake/intake-001.md", "state/intake/intake-007.md", "state/intake/intake-008.md"]}
   W10: {depends_on: ["W4"], status: "PLANNED"}
 
   W19:
@@ -327,7 +337,18 @@ dependency_graph:
       - "state/reviews/intake-007-review.md"
       - "state/capture/capture-intake-007.md"
 
-  W28: {depends_on: ["W4"], status: "READY", evidence: ["state/capture/capture-intake-007.md (next: W28)"]}
+  W28:
+    depends_on: ["W4"]
+    status: "✅ complete"
+    evidence:
+      - "state/intake/intake-008.md"
+      - "state/arch/intake-008-decision.md"
+      - "state/arch/intake-008-fit-assessment.md"
+      - "state/arch/intake-008-re01-process-inventory.md"
+      - "state/arch/intake-008-re06-decision-proof.md"
+      - "state/arch/w28-gap-comparison.md"
+      - "state/reviews/intake-008-review.md"
+      - "state/capture/capture-intake-008.md"
   W29: {depends_on: ["W4", "ADR-0010"], status: "✅ complete", evidence: ["tests/architecture/test_epistemic_enforcement.py"]}
   W32: {depends_on: ["W4", "W5"], status: "✅ complete", evidence: ["state/arch/w32-epistemic-calibration.md", "docs/model/MODEL-REFERENCE.md §6"]}
 
@@ -429,7 +450,7 @@ adr_status_snapshot:
 
 - [ ] At least 5 completed intakes with no unresolved Tier-3 blockers.
 - [x] Epistemic Level 0 and calibration path (W29 + W32) operational.
-- [ ] AP and RE v1 bootstrap active with at least one live intake each (**W27 complete; W28 next/ready**).
+- [x] AP and RE v1 bootstrap active with at least one live intake each (**W27 complete; W28 complete**).
 - [ ] PK-08 first remote surface available (W31 dependency path started).
 
 ### v1.1 → v1.2
@@ -452,7 +473,7 @@ adr_status_snapshot:
 |---|---|---|---|---|---|
 | R1 | Knowledge model over-engineering stalls implementation velocity | T2 | HIGH | Keep ADR-0008 minimal, validate via W4/W9 before broad expansion | OPEN |
 | R2 | Epistemic grading turns into bureaucracy overhead | T4 | HIGH | Implement Level 0 via W29 + calibrate with W32; restrict human-required grading to higher levels | OPEN |
-| R3 | Domain abstraction fails AP/RE real workflows | T5 | HIGH | Validate with W27/W28 and v1.2 execution (W24+) before claiming generality | PARTIALLY_VALIDATED (W27 evidence complete; RE still pending W28) |
+| R3 | Domain abstraction fails AP/RE real workflows | T5 | HIGH | Validate with W27/W28 and v1.2 execution (W24+) before claiming generality | PARTIALLY_VALIDATED (W27+W28 evidence complete; runtime depth still pending W24+) |
 | R4 | Multi-surface effort fragments delivery | T7 | MEDIUM | Sequence CLI-first then single remote adapter (W31) | OPEN |
 | R5 | Orchestration rigidity suppresses exploration | T3/T8 | MEDIUM | Preserve pre-workflow flexibility, keep S1-S9 for committed work | OPEN |
 | R6 | Continuity checkpoint overhead reduces usability | T1 | MEDIUM | Checkpoint at step boundaries, not every operation | OPEN |
@@ -475,18 +496,18 @@ adr_status_snapshot:
 ## 7. Current Work Item
 
 ```yaml
-next_work_item: W28
-description: "RE domain project bootstrap (RE-01/RE-06) — comparative second-domain validation against W27 gap pattern"
-current_stage: v1 (v1-core complete; W27 complete; validate whether W27 gaps are AP-specific or cross-domain systemic)
+next_work_item: W9
+description: "Promote hypothesis ADRs using intake evidence from intake-001, intake-007, and intake-008"
+current_stage: v1 (v1-core complete; W27 and W28 complete; cross-domain gap signal now available)
 agent_to_invoke: full-cycle
 input_artifacts:
-  - docs/USE_CASES.md (RE-01, RE-06 use cases)
-  - docs/architecture/adr/ADR-0008-knowledge-atom-model.md
-  - docs/architecture/adr/ADR-0009-orchestration-protocol.md
-  - state/capture/capture-intake-007.md (next-cycle trigger confirms W28)
-  - state/arch/intake-007-gap-register.md (compare: do RE gaps match AP gaps?)
-validation_goal: "Determine if GAP-001..007 are domain-specific (AP) or systemic (cross-domain). If systemic, K3/W19/W20 priority rises."
-status_hint: READY (W4 + v1-core gate passed + W27 complete)
+  - docs/DECISIONS.md (D-024, D-027, D-028)
+  - state/intake/intake-001.md
+  - state/intake/intake-007.md
+  - state/intake/intake-008.md
+  - state/arch/w28-gap-comparison.md
+validation_goal: "Promote or refine hypothesis ADR claims using three completed intake evidence runs and cross-domain gap classification outcomes."
+status_hint: READY (2+ intakes complete; comparative AP+RE evidence available)
 ```
 
 ## Appendix A: ROADMAP-002 Change Disposition

@@ -21,12 +21,12 @@ status: ACTIVE
 ## Status Dashboard
 
 > Last updated: 2026-05-15
-> Source: `docs/ROADMAP-004.md` (v4)
+> Source: `docs/ROADMAP-004.md` (v6)
 
 #### Current Position
 - **Stage**: v1 — v1-core gate PASSED; now executing v1 work items
-- **Current Work Item**: W28 — RE domain project bootstrap (READY)
-- **Next Work Items**: W28 (RE domain bootstrap), K3 (MemoryService integration), KI-1/KI-2 (know test/license fixes)
+- **Current Work Item**: W9 — Promote hypothesis ADRs via intake evidence (READY)
+- **Next Work Items**: W9 (ADR promotion), W19 (domain extension model), K3 (MemoryService integration)
 
 #### Milestones
 | Milestone | Status | Date |
@@ -45,13 +45,13 @@ status: ACTIVE
 | W29: NF-15 Level 0 Epistemic Enforcement | ✅ Done | 2026-05-14 |
 | W8: Level 1 Advisory Enforcement | ✅ Done | 2026-05-14 |
 | W27: AP Domain Project Bootstrap | ✅ Done | 2026-05-15 |
+| W28: RE Domain Project Bootstrap | ✅ Done | 2026-05-15 |
 | v1-core → v1 Gate | ✅ Passed | 2026-05-15 |
 | ROADMAP-004 | ✅ Done | 2026-05-15 |
 | Know assessment + KI items | ✅ Done | 2026-05-15 |
 
 #### Blocked Items
 - W11: Level 2 blocking enforcement — READY (W8 complete, v1.1 scope)
-- W28: RE domain project bootstrap (RE-01/RE-06) — READY (comparative validation vs W27)
 
 #### Goal Progress
 | Goal | Active UCs | Linked to Epics |
@@ -62,6 +62,34 @@ status: ACTIVE
 | goal-004: Infrastructure | 34/34 | 0/34 |
 
 ## Entries
+
+### 2026-05-15 — W28 complete: RE bootstrap + cross-domain GAP classification
+
+**What:** Executed full W28 S1-S9 workflow for RE domain (intake-008) anchored on RE-01 and
+RE-06. Produced intake/constraints/options/decision/task artifacts, RE evidence set, and
+`state/arch/w28-gap-comparison.md` classifying GAP-001..007 using AP-vs-RE evidence. Review
+approved; capture completed. ROADMAP-004 advanced to v6 with W28 DONE and next work shifted to W9.
+
+**Artifacts touched:**
+- `state/intake/intake-008.md` — created (S1 intake)
+- `state/arch/intake-008-constraints.md` — created (S2)
+- `state/arch/intake-008-options.md` — created (S3)
+- `state/arch/intake-008-decision.md` — created (S4, D-028 handoff)
+- `state/tasks/task-014.md`, `state/tasks/task-015.md` — created (S5), status → DONE
+- `state/arch/intake-008-fit-assessment.md` — created (S6/S7 evidence)
+- `state/arch/intake-008-re01-process-inventory.md` — created (S6/S7 evidence)
+- `state/arch/intake-008-re06-decision-proof.md` — created (S6/S7 evidence)
+- `state/arch/w28-gap-comparison.md` — created (core W28 deliverable)
+- `state/reviews/intake-008-review.md` — created (S8, APPROVED)
+- `state/capture/capture-intake-008.md` — created (S9)
+- `docs/DECISIONS.md` — D-028 added
+- `docs/ROADMAP-004.md` — updated to v6 (W28 DONE; Section 7 → W9)
+
+**Decisions:** D-028 (RE Domain Comparative Bootstrap and Gap Classification)
+
+**Next:** W9 (promote hypothesis ADRs using intake-001/007/008 evidence + W28 gap comparison).
+
+---
 
 ### 2026-05-15 — Know module assessment + KI work items added to ROADMAP
 
