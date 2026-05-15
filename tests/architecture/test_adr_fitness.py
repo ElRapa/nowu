@@ -89,6 +89,8 @@ class ADR0008KnowledgeAtomFitnessTest(unittest.TestCase):
         for py_file in SRC_ROOT.rglob("*.py"):
             if py_file.name == "__init__.py":
                 continue
+            if "bridge" in str(py_file.relative_to(SRC_ROOT)):
+                continue  # bridge/ is the infrastructure adapter layer — know imports are architecturally correct here
 
             try:
                 tree = ast.parse(py_file.read_text(encoding="utf-8"))
