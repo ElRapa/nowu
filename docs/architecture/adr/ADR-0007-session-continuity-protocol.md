@@ -3,7 +3,10 @@ id: ADR-0007
 title: Session Continuity Protocol
 date: 2026-05-07
 status: PROPOSED
-epistemic_grade: HYPOTHESIS
+epistemic_grade: INFORMED_ESTIMATE
+epistemic_grade_previous: HYPOTHESIS
+epistemic_grade_promoted_at: 2026-05-15
+epistemic_grade_promoted_by: W9 ADR promotion pass
 superseded_by: ~
 source_synthesis: SYNTHESIS-001
 source_themes: [T1, T2, T4]
@@ -15,10 +18,11 @@ depends_on: [ADR-0008]
 
 ## Status
 
-PROPOSED (HYPOTHESIS grade) — Derived from SYNTHESIS-001 Theme T1 (Continuity). Depends
-on ADR-0008 (session state uses knowledge atoms). Will be validated through first S1-S9
-intake (W4). The existing `state/SESSION_STATE.md` bookmark and `SessionSnapshot` contract
-provide the starting point.
+PROPOSED (INFORMED_ESTIMATE grade, promoted 2026-05-15) — Derived from SYNTHESIS-001 Theme
+T1 (Continuity). Depends on ADR-0008 (session state uses knowledge atoms). Promoted from
+HYPOTHESIS after intake-001 (W4) directly validated the two-layer checkpoint architecture
+and intake-007 + intake-008 confirmed protocol stability across AP and RE domain sessions.
+See "## Supporting Evidence" section.
 
 ## Context
 
@@ -265,3 +269,66 @@ and creating atoms. The checkpoint is discarded (archived) after capture.
 - depends_on: ADR-0008 (session decisions promoted to atoms at S9)
 - depended_on_by: ADR-0009 (orchestration needs checkpoint for handoff state)
 - supersedes: docs/archive/adr/ADR-002-wal-and-session-summary-atom-strategy.md (design notes)
+
+## Supporting Evidence
+
+Grade promoted from HYPOTHESIS to INFORMED_ESTIMATE on 2026-05-15 (W9 ADR promotion pass).
+Promotion rule: D-017 requires ≥2 S1-S9 intakes confirming the hypothesis. Three intakes
+now confirm ADR-0007's core decisions.
+
+### Evidence from intake-001 (W4 — NF-01 Resume Work After Context Loss)
+
+**File:** `state/intake/intake-001.md`, `state/capture/capture-intake-001.md`
+
+- The entire W4 intake directly implemented ADR-0007's two-layer checkpoint architecture.
+  `capture-intake-001.md` (EVIDENCE_BASED grade) confirms: "FileSessionStore now writes
+  an atomic JSON checkpoint alongside a human-readable YAML bookmark (`state/SESSION_STATE.md`),
+  with migration logic for the old format."
+- The machine checkpoint (JSON) and human bookmark (YAML) separation — the core ADR-0007
+  decision — was implemented exactly as specified and passed S8 review.
+- `intake-001.md` line 155 (Story Boundaries, DEFERRED): "Promote ADR-0007 from PROPOSED
+  to ACCEPTED (W9, v1 — requires this intake as evidence)." This confirms intake-001 was
+  the intended evidence run for this ADR.
+- Known limitation: `capture-intake-001.md` Lesson 4 notes that the `SessionCheckpoint`
+  implementation omits `checkpoint_id`, `timestamp`, and `blockers` from ADR-0007's full
+  spec, adding `schema_version` instead. D-024 authorizes this as a v1-core simplification.
+  This is a scope reduction, not a contradiction of the protocol.
+
+**Confirmation:** ADR-0007 decision confirmed. Residual risk: v1-core field simplification
+(authorized by D-024) means the full schema has not been validated end-to-end.
+
+### Evidence from intake-007 (W27 — AP Domain Bootstrap)
+
+**File:** `state/intake/intake-007.md`, `state/capture/capture-intake-007.md`
+
+- W27 ran a complete S1-S9 session using the session continuity protocol without surfacing
+  protocol failures or ADR-0007 design contradictions.
+- `capture-intake-007.md`: "W27 is the first v1 work item to be executed" following
+  v1-core completion, confirming the protocol remained stable across the domain boundary.
+
+**Confirmation:** No contradictions to ADR-0007. Corroborating evidence for protocol
+stability beyond the NF domain.
+
+### Evidence from intake-008 (W28 — RE Domain Bootstrap)
+
+**File:** `state/intake/intake-008.md`, `state/capture/capture-intake-008.md`
+
+- W28 ran a second cross-domain S1-S9 session (RE domain) using the session continuity
+  protocol. No ADR-0007 issues surfaced.
+- `capture-intake-008.md`: "W28 completed with APPROVED review and no architecture pivot",
+  confirming the protocol is stable across three distinct domain sessions.
+
+**Confirmation:** No contradictions. Third session confirms protocol stability.
+
+### Promotion Justification
+
+D-017 threshold: HYPOTHESIS → INFORMED_ESTIMATE after ≥2 S1-S9 intakes confirming the
+hypothesis. We have 3 intakes:
+- intake-001: Direct implementation evidence (strongest — the intake was purpose-built to
+  validate this ADR).
+- intake-007 + intake-008: Corroborating stability evidence from AP and RE domain sessions.
+
+The core ADR-0007 decisions — two-layer checkpoint architecture, step-boundary checkpointing
+frequency, recovery protocol — are all confirmed by the intake-001 implementation. The
+INFORMED_ESTIMATE grade reflects this while acknowledging that the v1-core field simplification
+(D-024) means the full schema spec is partially deferred.

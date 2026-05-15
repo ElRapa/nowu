@@ -1,0 +1,58 @@
+EVIDENCE: Task 6 — ADR Promotion (W9)
+Generated: 2026-05-15
+
+All four ADRs (0007, 0008, 0009, 0010) promoted from HYPOTHESIS to INFORMED_ESTIMATE.
+
+## Promotion Summary
+
+| ADR | File | Previous Grade | New Grade | Primary Evidence |
+|-----|------|----------------|-----------|-----------------|
+| ADR-0007 | docs/architecture/adr/ADR-0007-session-continuity-protocol.md | HYPOTHESIS | INFORMED_ESTIMATE | intake-001 directly implemented two-layer checkpoint |
+| ADR-0008 | docs/architecture/adr/ADR-0008-knowledge-atom-model.md | HYPOTHESIS | INFORMED_ESTIMATE | intake-007 + intake-008 (AP+RE domain): atom model design confirmed by GAP analysis |
+| ADR-0009 | docs/architecture/adr/ADR-0009-orchestration-protocol.md | HYPOTHESIS | INFORMED_ESTIMATE | intake-001 + intake-007 + intake-008: 3 complete S1-S9 cycles, T5 validated |
+| ADR-0010 | docs/architecture/adr/ADR-0010-epistemic-grade-assignment.md | HYPOTHESIS | INFORMED_ESTIMATE | W32 calibration + 3 intakes applied grades consistently; GAP-007 is maintenance-only |
+
+## Evidence Linkage Per ADR
+
+### ADR-0007 (Session Continuity Protocol)
+- intake-001 (state/intake/intake-001.md): Entire intake was purpose-built to validate
+  the two-layer checkpoint protocol (NF-01). Story Boundaries section explicitly deferred
+  "Promote ADR-0007" to W9 pending this intake as evidence.
+- capture-intake-001 (state/capture/capture-intake-001.md): EVIDENCE_BASED grade.
+  "FileSessionStore now writes an atomic JSON checkpoint alongside a human-readable YAML
+  bookmark (state/SESSION_STATE.md), with migration logic for the old format."
+  This directly confirms the ADR's two-layer checkpoint decision.
+- intake-007 + intake-008: Additional sessions ran without ADR-0007 protocol issues.
+- D-017 threshold met: 3 intakes ≥ 2 required for INFORMED_ESTIMATE.
+
+### ADR-0008 (Knowledge Atom Model & Lifecycle)
+- intake-007 (state/intake/intake-007.md, state/arch/intake-007-gap-register.md):
+  GAP-001..005 all confirm the atom model's required capability set. Gaps are
+  implementation-missing, not design contradictions.
+  "Flow can process AP-domain intake artifacts without AP-specific workflow logic changes
+  (T5 validated at workflow level)" — domain agnosticism of atom model confirmed.
+- intake-008 (state/intake/intake-008.md, state/capture/capture-intake-008.md):
+  6/7 gaps recur cross-domain with equivalent structural impact → systemic confirmation
+  of atom model as the right abstraction.
+- D-017 threshold met: 2 domain intakes confirming atom model design.
+
+### ADR-0009 (Orchestration Protocol & Agent Handoff Contract)
+- intake-001: "This cycle also validates the S1-S9 workflow end-to-end for the first time."
+  All S1-S9 transitions confirmed; VBR loop exercised; approval gates functioned.
+- intake-007: T5 validated — flow processes AP domain without domain-specific branching.
+  "S8 verdict is APPROVED" — approval gate confirmed for AP domain.
+- intake-008: "W28 completed with APPROVED review and no architecture pivot."
+  Three distinct domains (NF, AP, RE) all confirm orchestration protocol stability.
+- D-017 threshold met: 3 intakes ≥ 2 required.
+
+### ADR-0010 (Epistemic Grade Assignment & Propagation)
+- W32 calibration (state/arch/w32-epistemic-calibration.md): Per-artifact-type thresholds
+  calibrated against intake-001 actual grades, now canonical in MODEL-REFERENCE §6.
+- intake-001: All artifacts carried correct grades per ADR-0010 default table.
+  capture-intake-001 epistemic_grade: EVIDENCE_BASED — matches S9 inheritance rule.
+- intake-007 + intake-008: Grade assignment consistent across AP and RE domain sessions.
+  Both captures carry EVIDENCE_BASED grade correctly.
+- GAP-007 (state/arch/intake-007-gap-register.md): Decay semantics mismatch
+  (MEDIUM=90d vs know baseline=180d) — MEDIUM severity, maintenance item only.
+  Does NOT contradict grade assignment rules.
+- D-017 threshold met: calibration data + 3 intakes.

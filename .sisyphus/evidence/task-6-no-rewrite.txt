@@ -1,0 +1,56 @@
+EVIDENCE: Task 6 — No Content Rewriting (W9)
+Generated: 2026-05-15
+
+Verification that ADR promotion changes are limited to:
+1. YAML frontmatter metadata updates (epistemic_grade field + provenance fields)
+2. Status section text update (reflects new grade and promotion event)
+3. New "## Supporting Evidence" section appended at END of each ADR
+
+## Changes Per File
+
+### ADR-0007-session-continuity-protocol.md
+- YAML frontmatter: `epistemic_grade` changed HYPOTHESIS → INFORMED_ESTIMATE
+- YAML frontmatter: Added `epistemic_grade_previous`, `epistemic_grade_promoted_at`,
+  `epistemic_grade_promoted_by` (new fields, no overwrites)
+- Status section: Text updated to reflect promotion (first paragraph only, no decision text)
+- NEW section added: "## Supporting Evidence" (after "## Related" section at EOF)
+- UNCHANGED: Context, Decision, Rationale, Consequences, Known Limitations,
+  Alternatives Considered, Related sections — all preserved verbatim
+
+### ADR-0008-knowledge-atom-model.md
+- YAML frontmatter: `epistemic_grade` changed HYPOTHESIS → INFORMED_ESTIMATE
+- YAML frontmatter: Added provenance fields (3 new fields)
+- Status section: First paragraph updated to reflect promotion
+- NEW section added: "## Supporting Evidence" at EOF
+- UNCHANGED: Context, Decision, Rationale, Consequences, Artifact-to-Atom Extraction,
+  Alternatives Considered, Related — all preserved verbatim
+
+### ADR-0009-orchestration-protocol.md
+- YAML frontmatter: `epistemic_grade` changed HYPOTHESIS → INFORMED_ESTIMATE
+- YAML frontmatter: Added provenance fields (3 new fields)
+- Status section: First paragraph updated to reflect promotion
+- NEW section added: "## Supporting Evidence" at EOF
+- UNCHANGED: Context, Decision, Handoff Contract, Step-Specific Handoff Payloads,
+  Orchestrator State Machine, Approval Tier Integration, Failure Recovery Protocol,
+  Context Scoping Enforcement, Traceability, Rationale, Consequences,
+  Alternatives Considered, Related — all preserved verbatim
+
+### ADR-0010-epistemic-grade-assignment.md
+- YAML frontmatter: `epistemic_grade` changed HYPOTHESIS → INFORMED_ESTIMATE
+- YAML frontmatter: Added provenance fields (3 new fields)
+- Status section: First paragraph updated to reflect promotion + note residual GAP-007 risk
+- NEW section added: "## Supporting Evidence" at EOF
+- UNCHANGED: Context, Decision (Grade Vocabulary, Assignment Rules, Propagation Rules,
+  Decay Rules, Behavioral Impact, Enforcement Levels), Rationale, Consequences,
+  Alternatives Considered, Related — all preserved verbatim
+
+## Verification Method
+
+The diff between pre-promotion and post-promotion for each ADR file is limited to:
+- Frontmatter block (lines 1-12 approximately): grade field + 3 new provenance fields
+- Status section (1 paragraph): grade text updated, intent preserved
+- EOF: "## Supporting Evidence" section appended (new content, no deletion)
+
+No paragraph in the Decision, Rationale, Consequences, Context, or Alternatives sections
+was modified, deleted, or reordered. The epistemic content of each ADR is identical to
+its pre-promotion state.

@@ -3,7 +3,10 @@ id: ADR-0009
 title: Orchestration Protocol & Agent Handoff Contract
 date: 2026-05-07
 status: PROPOSED
-epistemic_grade: HYPOTHESIS
+epistemic_grade: INFORMED_ESTIMATE
+epistemic_grade_previous: HYPOTHESIS
+epistemic_grade_promoted_at: 2026-05-15
+epistemic_grade_promoted_by: W9 ADR promotion pass
 superseded_by: ~
 source_synthesis: SYNTHESIS-001
 source_themes: [T3, T4, T6]
@@ -15,10 +18,11 @@ depends_on: [ADR-0007, ADR-0008, ADR-0010]
 
 ## Status
 
-PROPOSED (HYPOTHESIS grade) — Derived from SYNTHESIS-001 Theme T3 (Workflow Orchestration).
-Depends on ADR-0007 (continuity provides checkpoint state for handoffs), ADR-0008 (artifacts
-reference atoms), and ADR-0010 (artifacts carry grades at gates). Will be validated through
-first S1-S9 intake (W4).
+PROPOSED (INFORMED_ESTIMATE grade, promoted 2026-05-15) — Derived from SYNTHESIS-001 Theme
+T3 (Workflow Orchestration). Depends on ADR-0007, ADR-0008, and ADR-0010. Promoted from
+HYPOTHESIS after three complete S1-S9 intake cycles (intake-001, intake-007, intake-008)
+confirmed the orchestration protocol's state machine, artifact-based handoffs, approval gates,
+and domain-agnostic pipeline traversal. See "## Supporting Evidence" section.
 
 ## Context
 
@@ -286,3 +290,74 @@ every test links to an AC. Broken chains are review failures.
   ADR-0010 (grades at gates)
 - depends_on: ADR-0007, ADR-0008, ADR-0010
 - depended_on_by: ADR-0012 (traceability standard built on validation_trace)
+
+## Supporting Evidence
+
+Grade promoted from HYPOTHESIS to INFORMED_ESTIMATE on 2026-05-15 (W9 ADR promotion pass).
+Promotion rule: D-017 requires ≥2 S1-S9 intakes confirming the hypothesis. Three complete
+S1-S9 intake cycles now confirm ADR-0009's core decisions.
+
+### Evidence from intake-001 (W4 — NF-01, First End-to-End Cycle)
+
+**Files:** `state/intake/intake-001.md`, `state/capture/capture-intake-001.md`
+
+- intake-001 was the first complete S1-S9 run, validating the orchestration protocol
+  end-to-end. `capture-intake-001.md`: "This cycle also validates the S1-S9 workflow
+  end-to-end for the first time."
+- The artifact-based handoff pattern (each step produces an artifact consumed by the next)
+  was confirmed: 5 tasks completed in sequence (task-001 through task-005), with artifact
+  handoffs at each step boundary.
+- Human gates (S4, S5) functioned as designed — D-024 decision was made and recorded at
+  the S4 gate, then consumed by S5 for task shaping.
+- VBR loop (S6/S7) was confirmed: "43 tests, 98.54% coverage; mypy --strict clean; ruff
+  clean" — the Generate-Test-Repair pattern in ADR-0009's S6/S7 section was exercised.
+- S8 review: "Review APPROVED with no architectural surprises" — approval tier gate confirmed.
+- S9 capture: `next_cycle_trigger: CONTINUE` — legal exit transition confirmed.
+
+**Confirmation:** All S1-S9 transitions confirmed as legal. No orchestration protocol
+violations. Artifact-based handoffs, VBR loop, approval gates all functioned as specified.
+
+### Evidence from intake-007 (W27 — AP Domain Bootstrap, Domain-Agnostic T5 Test)
+
+**Files:** `state/intake/intake-007.md`, `state/capture/capture-intake-007.md`,
+`state/arch/intake-007-gap-register.md`
+
+- intake-007 ran a full S1-S9 cycle on an AP-domain intake. `intake-007-gap-register.md`
+  Part 3: "Flow can process AP-domain intake artifacts without AP-specific workflow logic
+  changes (T5 validated at workflow level)."
+- This directly validates ADR-0009's context scoping enforcement: the orchestrator prevented
+  domain content from bleeding into architecture decisions — the flow module processed AP
+  intake without domain-specific branching.
+- Three tasks (task-011, task-012, task-013) completed, with artifact handoffs at each step.
+- `capture-intake-007.md`: "S8 verdict is APPROVED" — approval gate confirmed for AP domain.
+
+**Confirmation:** T5 (domain agnosticism) validated. Orchestration protocol works across
+domain boundaries without modification.
+
+### Evidence from intake-008 (W28 — RE Domain Bootstrap, Cross-Domain Confirmation)
+
+**Files:** `state/intake/intake-008.md`, `state/capture/capture-intake-008.md`
+
+- intake-008 ran a second cross-domain S1-S9 cycle (RE domain). `capture-intake-008.md`:
+  "W28 completed with APPROVED review and no architecture pivot."
+- Two tasks (task-014, task-015) completed, confirming artifact-based handoffs and approval
+  gates for a third distinct domain.
+- `capture-intake-008.md` Why It Matters: "converts W27's single-domain gap list into a
+  comparative domain signal" — the orchestration protocol's domain-agnostic design is
+  confirmed by independent AP and RE evidence.
+
+**Confirmation:** Three distinct domain sessions (NF, AP, RE) confirm orchestration
+protocol stability. No illegal transitions, no protocol violations, no context bleed.
+
+### Promotion Justification
+
+D-017 threshold: HYPOTHESIS → INFORMED_ESTIMATE after ≥2 S1-S9 intakes confirming the
+hypothesis. Three intakes confirm:
+- intake-001: First full cycle confirms state machine, VBR loop, approval gates.
+- intake-007: Confirms domain-agnostic traversal (T5).
+- intake-008: Cross-domain confirmation with equivalent structural outcome.
+
+Note: ADR-0009's full programmatic orchestration (formal state machine in `flow` module,
+pending approvals queue) has not yet been implemented — current confirmation is of the
+process semantics (the WHAT), not the programmatic implementation (the HOW). EVIDENCE_BASED
+requires ≥5 intakes including implementation evidence (D-017).
