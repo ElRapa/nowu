@@ -20,13 +20,13 @@ status: ACTIVE
 
 ## Status Dashboard
 
-> Last updated: 2026-05-14
-> Source: `docs/ROADMAP-003.md` (v3)
+> Last updated: 2026-05-15
+> Source: `docs/ROADMAP-004.md` (v4)
 
 #### Current Position
-- **Stage**: v1 — All v1-core gate criteria met; now executing v1 work items
-- **Current Work Item**: W27 — AP domain project bootstrap (READY)
-- **Next Work Items**: K1 (traceability metadata — ACTIVE), A2 (quality gate suite), W28 (RE domain bootstrap)
+- **Stage**: v1 — v1-core gate PASSED; now executing v1 work items
+- **Current Work Item**: W28 — RE domain project bootstrap (READY)
+- **Next Work Items**: K3 (MemoryService integration), W19 (domain extension model), K9a (minimal version-lineage)
 
 #### Milestones
 | Milestone | Status | Date |
@@ -44,11 +44,13 @@ status: ACTIVE
 | W32: Epistemic Threshold Calibration | ✅ Done | 2026-05-14 |
 | W29: NF-15 Level 0 Epistemic Enforcement | ✅ Done | 2026-05-14 |
 | W8: Level 1 Advisory Enforcement | ✅ Done | 2026-05-14 |
+| W27: AP Domain Project Bootstrap | ✅ Done | 2026-05-15 |
+| v1-core → v1 Gate | ✅ Passed | 2026-05-15 |
+| ROADMAP-004 | ✅ Done | 2026-05-15 |
 
 #### Blocked Items
-- W11: Level 2 blocking enforcement — READY (W8 complete)
-- W27: AP domain project bootstrap (AP-01/AP-02/AP-06) — READY
-- W28: RE domain project bootstrap (RE-01/RE-06) — READY
+- W11: Level 2 blocking enforcement — READY (W8 complete, v1.1 scope)
+- W28: RE domain project bootstrap (RE-01/RE-06) — READY (comparative validation vs W27)
 
 #### Goal Progress
 | Goal | Active UCs | Linked to Epics |
@@ -59,6 +61,42 @@ status: ACTIVE
 | goal-004: Infrastructure | 34/34 | 0/34 |
 
 ## Entries
+
+### 2026-05-15 — W27 complete + v1-core gate passed + ROADMAP-004
+
+**What:** Full S1-S9 cycle for W27 (AP domain project bootstrap, intake-007) using dual-agent
+evaluation pattern (nowu agents vs Oracle at each step). Produced 5 evidence artifacts + gap
+register (7 gaps). D-027 recorded (artifact-only AP evidence run). S8 review APPROVED after
+3 issue fixes. S9 capture with session learnings. Then ran roadmap-updater (also dual-agent):
+produced ROADMAP-004 with v1-core gate passage, Oracle corrections applied (grade stays
+INFORMED_ESTIMATE, K9 split, 3 new risks, K13 mismatch flagged).
+
+**Artifacts touched:**
+- `state/intake/intake-007.md` — created (S1), revised from Oracle S1 review, status → DONE
+- `state/arch/intake-007-constraints.md` — created (S2), revised from Oracle S2 review
+- `state/arch/intake-007-options.md` — created (S3, dual-agent)
+- `state/arch/intake-007-decision.md` — created (S4, D-027 handoff)
+- `state/tasks/task-011..013.md` — created (S5), status → DONE
+- `state/arch/intake-007-fit-assessment.md` — created (S6), Oracle fixes applied, ACCEPTED
+- `state/arch/intake-007-ap06-proof.md` — created (S6), Oracle fixes applied, ACCEPTED
+- `state/arch/intake-007-ap01-mini-graph.md` — created (S6), ACCEPTED
+- `state/arch/intake-007-ap02-mini-version-chain.md` — created (S6), ACCEPTED
+- `state/arch/intake-007-gap-register.md` — created (S6), ACCEPTED
+- `state/reviews/intake-007-review.md` — created (S8), APPROVED
+- `state/capture/capture-intake-007.md` — created (S9)
+- `state/learnings/session-2026-05-15-dual-agent-evaluation.md` — created
+- `state/learnings/INDEX.md` — updated
+- `docs/DECISIONS.md` — D-027 added
+- `docs/ROADMAP-003.md` — W27 → DONE, Section 7 → W28
+- `docs/ROADMAP-004.md` — created (v1-core COMPLETE, v1 IN_PROGRESS, K9 split, 3 new risks)
+- `state/session-log.md` — updated (this entry + dashboard)
+
+**Decisions:** D-027 (AP Domain Bootstrap as Artifact-Only Evidence Run)
+
+**Next:** W28 — RE domain project bootstrap (RE-01/RE-06). Positioned as comparative
+second-domain validation against W27's gap pattern (are gaps AP-specific or systemic?).
+
+---
 
 ### 2026-05-14 — W8+W29: Epistemic enforcement tests (Level 0 + Level 1)
 
