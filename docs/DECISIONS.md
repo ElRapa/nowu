@@ -677,3 +677,44 @@ Skip if the session was Mode C with ≤4 files changed and no new decisions.
 
 - **Good**: Process insights captured consistently; recurring patterns detected earlier
 - **Bad**: Adds ~2 minutes to S9 for qualifying sessions; learnings files accumulate
+
+---
+
+## D-027 — AP Domain Bootstrap as Artifact-Only Evidence Run
+
+**Date**: 2026-05-15 | **Status**: ACCEPTED | **Level**: system
+**Intake**: intake-007 (W27) | **Use Cases**: AP-01, AP-02, AP-06
+**Epistemic Grade**: HYPOTHESIS
+**Builds on**: D-006 (know as external memory), D-017 (Hypothesis ADRs), D-020 (Staged Plan)
+
+### Context
+
+W27 is the first domain-specific intake — validating that nowu can manage non-software
+domain knowledge (aperitif business). Three options were evaluated: (A) artifact-only
+validation, (B) artifact + thin schema proposal, (C) artifact + minimal contract extension.
+The current MemoryService Protocol exposes only 4 task/decision-skewed methods; `know`
+supports generic atom CRUD but nowu's contracts don't expose it. Full integration requires
+K3/W19 work not budgeted in this 8h intake.
+
+### Decision
+
+Use Option A: Artifact-Only Validation (Pre-Integration Proof). Represent AP knowledge
+using existing workflow artifact structures. Document gaps with traceability to follow-on
+work items (K3, K9, K13, W19, W20). No protocol changes, no source code changes.
+
+### Consequences
+
+- **Good**: Strongest T5 evidence — proves flow is domain-agnostic at artifact level
+- **Good**: Lowest scope risk; 6h effort within 8h appetite
+- **Good**: Gap register provides honest roadmap input for K3/W19/K9
+- **Bad**: AP-01 dependency traversal and AP-02 version comparisons remain conceptual
+- **Bad**: No executable integration proof against know atom APIs in this cycle
+
+### Tradeoff Accepted
+
+Simplicity and migration safety over near-term query/performance realism. AP knowledge
+representability is proven; executable integration deferred to K3/W19.
+
+### Review Trigger
+
+After K3 implementation — verify that gap register items are addressed.

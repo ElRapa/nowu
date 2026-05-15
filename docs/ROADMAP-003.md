@@ -72,7 +72,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Workflow | W19 | ADR-0011 domain extension model | v1 | ADR-0008, ADR-0009 | XP-07, AP-01, RE-01 | PLANNED |
 | Workflow | W20 | ADR-0012 traceability metadata standard | v1 | ADR-0009, K1 | NF-09 | PLANNED |
 | Workflow | W21 | ADR-0014 progressive enrichment model | v1 | ADR-0008, ADR-0010 | NF-12, PK-01, PK-05 | PLANNED |
-| Workflow | W27 | AP domain project bootstrap (AP-01/AP-02/AP-06) | v1 | W4 | AP-01, AP-02, AP-06 | PLANNED |
+| Workflow | W27 | AP domain project bootstrap (AP-01/AP-02/AP-06) | v1 | W4 | AP-01, AP-02, AP-06 | ✅ DONE |
 | Workflow | W28 | RE domain project bootstrap (RE-01/RE-06) | v1 | W4 | RE-01, RE-06 | PLANNED |
 | Workflow | W29 | NF-15 Level 0 epistemic enforcement implementation | v1 | W4, ADR-0010 | NF-15 | ✅ DONE |
 | Workflow | W32 | Epistemic threshold calibration (replaces old v1 W6 naming collision) | v1 | W4, W5 | NF-15, NF-16 | ✅ DONE |
@@ -230,7 +230,7 @@ dependency_graph:
   W19: {depends_on: ["ADR-0008", "ADR-0009"], status: "PLANNED"}
   W20: {depends_on: ["ADR-0009", "K1"], status: "PLANNED"}
   W21: {depends_on: ["ADR-0008", "ADR-0010"], status: "PLANNED"}
-  W27: {depends_on: ["W4"], status: "PLANNED"}
+  W27: {depends_on: ["W4"], status: "✅ complete", evidence: ["state/intake/intake-007.md", "state/arch/intake-007-decision.md", "state/arch/intake-007-fit-assessment.md", "state/arch/intake-007-ap06-proof.md", "state/arch/intake-007-ap01-mini-graph.md", "state/arch/intake-007-ap02-mini-version-chain.md", "state/arch/intake-007-gap-register.md", "state/reviews/intake-007-review.md", "state/capture/capture-intake-007.md"]}
   W28: {depends_on: ["W4"], status: "PLANNED"}
   W29: {depends_on: ["W4", "ADR-0010"], status: "✅ complete", evidence: ["tests/architecture/test_epistemic_enforcement.py"]}
   W32: {depends_on: ["W4", "W5"], status: "✅ complete", evidence: ["state/arch/w32-epistemic-calibration.md", "docs/model/MODEL-REFERENCE.md §6"]}
@@ -334,16 +334,16 @@ adr_status_snapshot:
 ## 7. Current Work Item
 
 ```yaml
-next_work_item: W27
-description: AP domain project bootstrap (AP-01/AP-02/AP-06)
-current_stage: v1 (v1-core gate met; epistemic enforcement chain W29+W32+W8 complete)
+next_work_item: W28
+description: RE domain project bootstrap (RE-01/RE-06)
+current_stage: v1 (W27 complete; continue domain-agnostic bootstrap validation)
 agent_to_invoke: full-cycle
 input_artifacts:
-  - docs/USE_CASES.md (AP-01, AP-02, AP-06 use cases)
+  - docs/USE_CASES.md (RE-01, RE-06 use cases)
   - docs/architecture/adr/ADR-0008-knowledge-atom-model.md
   - docs/architecture/adr/ADR-0009-orchestration-protocol.md
-  - state/intake/intake-001.md (reference: first S1-S9 cycle pattern)
-status_hint: READY (W4 complete; first domain bootstrap — validates T5 domain agnosticism thesis)
+  - state/intake/intake-007.md (reference: AP domain bootstrap completion pattern)
+status_hint: READY (W4+W27 complete; next domain bootstrap to extend T5 evidence)
 ```
 
 ## Appendix A: ROADMAP-002 Change Disposition
