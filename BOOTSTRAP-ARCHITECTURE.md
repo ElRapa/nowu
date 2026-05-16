@@ -19,10 +19,10 @@
 6. `docs/architecture/context.md`          — system context (C4 L1)
 7. `docs/architecture/adr/` — run `ls`     — list all ADRs
 8. Read all ADRs with status ACCEPTED (ADR-0001 through ADR-0006)
-9. Skim PROPOSED/HYPOTHESIS ADRs (ADR-0007 through ADR-0010) for awareness
+9. Skim all post-ADR-0006 records (ADR-0007 onward) for awareness — check current grade in frontmatter
 
 ### Strategic Context (for alignment)
-10. `docs/ROADMAP-001.md`                  — current implementation roadmap
+10. `docs/ROADMAP.md`                  — current implementation roadmap
 11. `state/arch/SYNTHESIS-001.md` (if exists) — architectural themes
 12. `docs/architecture/ARCHITECTURE-VISION.md` (if exists) — architectural principles, risks
 
@@ -36,7 +36,7 @@
 ## What You NEVER Load at This Altitude
 - `src/` or `tests/` — no code during pure architecture work (prevents anchoring bias). Exception: when implementing architectural contracts/types, load only `src/nowu/core/contracts/`.
 - `state/tasks/` — no implementation tasks (architecture precedes shaping)
-- `state/SESSION_STATE.md` — session bookmark, not relevant to architecture
+- `state/SESSION_STATE.md` — TEMPLATE ONLY, not an operational file
 
 ## Before Proceeding
 Verify: ☐ I know the 5 modules and their import rules ☐ I loaded all ACCEPTED ADRs ☐ I know which roadmap stage is active. If any unclear, re-read the relevant file above.

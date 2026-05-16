@@ -6,6 +6,7 @@ src/nowu.egg-info/dependency_links.txt
 src/nowu.egg-info/requires.txt
 src/nowu.egg-info/top_level.txt
 src/nowu/bridge/__init__.py
+src/nowu/bridge/know_adapter.py
 src/nowu/core/__init__.py
 src/nowu/core/boundaries.py
 src/nowu/core/contracts/__init__.py
@@ -14,5 +15,6 @@ src/nowu/core/contracts/memory.py
 src/nowu/core/contracts/session.py
 src/nowu/core/contracts/types.py
 src/nowu/flow/__init__.py
+src/nowu/flow/pipeline.py
 src/nowu/flow/session_store.py
 src/nowu/soul/__init__.py

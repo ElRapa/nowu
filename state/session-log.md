@@ -21,12 +21,12 @@ status: ACTIVE
 ## Status Dashboard
 
 > Last updated: 2026-05-15
-> Source: `docs/ROADMAP-004.md` (v4)
+> Source: `docs/ROADMAP-004.md` (v5)
 
 #### Current Position
-- **Stage**: v1 — v1-core gate PASSED; now executing v1 work items
-- **Current Work Item**: W28 — RE domain project bootstrap (READY)
-- **Next Work Items**: W28 (RE domain bootstrap), K3 (MemoryService integration), KI-1/KI-2 (know test/license fixes)
+- **Stage**: v1 — executing v1 work items; W28/W19/W20/K3/W9 complete on feature branches (pending human merge)
+- **Current Work Item**: Human-gated merges for feat/W28, feat/W19, feat/W20, feat/W9, feat/K3
+- **Next Work Items**: KI-1/KI-2 (know test/license fixes), K4 (session state persistence), W14 (grade promotion workflows)
 
 #### Milestones
 | Milestone | Status | Date |
@@ -48,10 +48,15 @@ status: ACTIVE
 | v1-core → v1 Gate | ✅ Passed | 2026-05-15 |
 | ROADMAP-004 | ✅ Done | 2026-05-15 |
 | Know assessment + KI items | ✅ Done | 2026-05-15 |
+| W28: RE Domain Bootstrap | ✅ Done | 2026-05-15 |
+| W19: ADR-0011 Domain Extension Model | ✅ Done | 2026-05-15 |
+| W20: ADR-0012 Traceability Metadata Standard | ✅ Done | 2026-05-15 |
+| K3: MemoryService Integration (KnowAdapter) | ✅ Done | 2026-05-15 |
+| W9: Hypothesis ADR Promotion (0007-0010) | ✅ Done | 2026-05-15 |
 
 #### Blocked Items
 - W11: Level 2 blocking enforcement — READY (W8 complete, v1.1 scope)
-- W28: RE domain project bootstrap (RE-01/RE-06) — READY (comparative validation vs W27)
+- feat/W28, feat/W19, feat/W20, feat/W9, feat/K3 — awaiting human-gated merge to main
 
 #### Goal Progress
 | Goal | Active UCs | Linked to Epics |
@@ -62,6 +67,47 @@ status: ACTIVE
 | goal-004: Infrastructure | 34/34 | 0/34 |
 
 ## Entries
+
+### 2026-05-15 — v1 roadmap batch: W28 + W19 + W20 + K3 + W9 + double-agent experiments
+
+**What:** Executed 5 v1 roadmap items in 3 parallel waves using the full-cycle workflow.
+W28 completed a second-domain (RE) S1-S9 bootstrap producing `intake-008` and a gap
+comparison classifying 6/7 gaps as systemic (GAP-006 RE-specific). W19/W20 produced
+hypothesis ADRs for domain extension (ADR-0011) and traceability metadata standard
+(ADR-0012). K3 expanded MemoryService from 4→11 methods and implemented `KnowAdapter`
+in `bridge/` delegating to `know.api` — 15 new TDD tests, all passing. W9 promoted
+ADR-0007..0010 from HYPOTHESIS → INFORMED_ESTIMATE with intake evidence linkage.
+Double-agent experiments (workflow vs freeform) ran on W28 and K3; workflow agent
+preferred for K3 structural rigor; comparison learnings recorded. All 4 final gates
+(F1–F4) returned APPROVE. 62/62 tests pass, mypy --strict clean, ruff clean.
+
+**Artifacts touched:**
+- `state/intake/intake-008.md` — created (W28 S1, RE domain)
+- `state/arch/w28-gap-comparison.md` — created (6/7 gaps systemic, GAP-006 RE-specific)
+- `state/arch/intake-008-*.md` — constraints, options, decision (W28 S2-S4)
+- `docs/architecture/adr/ADR-0011-domain-extension-model.md` — created (W19, HYPOTHESIS)
+- `docs/architecture/adr/ADR-0012-traceability-metadata-standard.md` — created (W20, HYPOTHESIS)
+- `docs/architecture/adr/ADR-0007..0010.md` — promoted to INFORMED_ESTIMATE + evidence sections (W9)
+- `src/nowu/core/contracts/memory.py` — expanded 4→11 methods (K3)
+- `src/nowu/bridge/know_adapter.py` — created (K3, KnowAdapter implementing MemoryService)
+- `tests/bridge/test_know_adapter.py` — created (K3, 15 TDD tests)
+- `tests/architecture/test_adr_fitness.py` — bridge/ exemption added (K3)
+- `state/learnings/session-2026-05-15-w28-dual-agent.md` — W28 comparison learning
+- `state/learnings/session-2026-05-15-k3-dual-agent.md` — K3 comparison learning
+- `state/learnings/session-2026-05-15-k3-workflow.md` — K3 workflow session-learning
+- `state/learnings/INDEX.md` — updated
+- `.sisyphus/evidence/k3-freeform/` — K3 freeform outputs (committed, not deployed)
+- `.sisyphus/plans/v1-roadmap-batch.md` — all checkboxes reconciled
+- `docs/ROADMAP-004.md` — W28/W19/W20/K3/W9 → ✅ DONE
+- `state/session-log.md` — updated (this entry + dashboard)
+
+**Decisions:** None new. Confirmed bridge/ as correct adapter boundary (K3, per ADR-0001/ADR-0002).
+D-SESS-04 recommended (per-gap evidence rows in future gap comparisons — not yet recorded).
+
+**Next:** Human-gated merges for feat/W28 → feat/W19/W20/W9 → feat/K3 (dependency order).
+Then: KI-1/KI-2 (know acceptance tests + license fix) or K4 (session state persistence via know).
+
+---
 
 ### 2026-05-15 — Know module assessment + KI work items added to ROADMAP
 

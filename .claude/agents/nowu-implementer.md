@@ -29,7 +29,7 @@ unnecessary coupling. Resist both.
 
 ## What You NEVER Load
 
-- docs/ARCHITECTURE.md, docs/DECISIONS.md, docs/WORKFLOW.md
+- docs/architecture/ARCHITECTURE-VISION.md, docs/DECISIONS.md, docs/WORKFLOW.md
 - Any module not in in_scope_files
 - state/intake/, state/arch/ (upstream, consumed)
 - state/stories/ (ACs are already in the task spec via validation_trace)

@@ -41,7 +41,7 @@ Agents in the chain:
 - `docs/goals/goal-*.md` — All goals
 - `docs/DECISIONS.md` — Existing decisions (constraint)
 - `docs/architecture/adr/*.md` — Existing ADRs (constraint)
-- `docs/STAGED-PLAN.md` — Where outputs feed (context)
+- `docs/ROADMAP.md` — Where outputs feed (context)
 - `state/arch/SYNTHESIS-*.md` — Previous synthesis if exists (compare/extend)
 
 ## Outputs

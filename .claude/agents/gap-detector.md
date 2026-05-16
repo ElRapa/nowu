@@ -34,7 +34,7 @@ You write one output file and stop.
 ## Inputs (read ONLY these files)
 
 Required:
-- `docs/STAGED-PLAN.md`                        # current stage, exit criteria
+- `docs/ROADMAP.md`                        # current stage, exit criteria
 - `docs/vision.md`                         # product scope boundary
 
 Optional (load if they exist):
@@ -62,7 +62,7 @@ Evaluate each trigger condition. A condition is TRIGGERED or CLEAR.
 - Rationale: every product needs at least one GAP before v1 ships.
 
 ### Trigger 2: Stage advancement since last GAP
-- Read `docs/STAGED-PLAN.md` for current stage (0-5).
+- Read `docs/ROADMAP.md` for current stage (0-5).
 - Read `state/arch/global-pass-*.md` for the stage recorded at last GAP.
 - If current stage > stage at last GAP: TRIGGERED.
 

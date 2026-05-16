@@ -1,0 +1,7 @@
+Quality gates output
+Command: uv run pytest --tb=short -q; uv run mypy src/ --strict; uv run ruff check .
+
+Output:
+..............................................................           [100%]
+Success: no issues found in 14 source files
+All checks passed!

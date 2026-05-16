@@ -1,0 +1,5 @@
+Architecture tests output
+Command: uv run pytest tests/architecture/test_adr_fitness.py tests/architecture/test_import_boundaries.py -q
+
+Output:
+...........                                                              [100%]

@@ -17,4 +17,4 @@ Three recurring friction points in S9 capture that require judgment calls each t
 
 **How to apply:** In every future S9 run, do not pause or flag these as uncertainties — apply the judgment calls above silently and note them in the S9 analysis file under Friction Points.
 
-> *Note (2026-05-13): PROGRESS.md is now fully obsolete. The template gap described below is resolved — S9 no longer writes to PROGRESS.md. It updates `docs/ROADMAP-003.md` status fields and adds a `state/session-log.md` entry instead.*
+> *Note (2026-05-13): PROGRESS.md is now fully obsolete. The template gap described below is resolved — S9 no longer writes to PROGRESS.md. It updates `docs/ROADMAP.md` status fields and adds a `state/session-log.md` entry instead.*

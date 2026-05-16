@@ -1,0 +1,6 @@
+Files created:
+- state/learnings/session-2026-05-15-k3-dual-agent.md
+
+Verification commands:
+$ ls state/learnings/session-*-k3-dual-agent.md
+state/learnings/session-2026-05-15-k3-dual-agent.md
