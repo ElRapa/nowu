@@ -26,7 +26,7 @@ Always:
 - File tree of affected modules: find src/nowu/<module> -name "*.py" | head -50
 - src/nowu/core/contracts/*.py -- interfaces to implement or call
 - Test directory structure: find tests -name "*.py" | head -30
-- docs/ROADMAP-004.md -- task numbering, dependencies, current work items
+- docs/ROADMAP.md -- task numbering, dependencies, current work items
 - state/session-log.md -- recent session chronology
 
 If it exists (pre-workflow artifact):

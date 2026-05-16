@@ -14,10 +14,10 @@ project-root/
 │
 ├── docs/
 │   ├── vision.md                          ← [LANDMARK] Product vision (APPROVED before any work)
-│   ├── ROADMAP-001.md                     ← Implementation roadmap (areas × stages, supersedes V1_PLAN)
+│   ├── ROADMAP.md                         ← [LANDMARK] Implementation roadmap — stable name, always current (archive/ holds previous versions)
 │   ├── USE_CASES.md                       ← UC-NNN catalogue (source of truth for validation traces)
 │   ├── DECISIONS.md                       ← D-NNN catalogue (binding implementation decisions)
-│   ├── PROGRESS.md                        ← SUPERSEDED — see ROADMAP-004.md and session-log.md
+│   ├── PROGRESS.md                        ← SUPERSEDED — see ROADMAP.md and session-log.md
 │   ├── WORKFLOW.md                        ← S1–S9 reference table
 │   ├── WORKFLOW-DETAILED.md               ← Full S1–S9 narrative spec
 │   ├── PRE-WORKFLOW.md                    ← P0–P4 full specification
@@ -34,6 +34,7 @@ project-root/
 │   │   ├── IMPLEMENTATION-GUIDE.md        ← Implementation sequencing guide
 │   │   └── examples/                      ← Worked examples (SYNTHESIS, OPTIONS, GOAL)
 │   ├── research/                          ← External research, evaluations, session insights
+│   ├── archive/                           ← Superseded doc versions (ROADMAP-NNN.md, old workflows, etc.)
 │   └── architecture/                      ← Canonical C4 architecture docs (containers.md, context.md, adr/)
 │       ├── context.md                     ← [LANDMARK] C4 L1 — system context diagram
 │       ├── containers.md                  ← [LANDMARK] C4 L2 — container diagram (binding)
@@ -169,7 +170,7 @@ project-root/
 
 > **Integration:** nowu consumes know via `MemoryService` Protocol in `core/contracts/memory.py`.
 > Know is declared as editable dependency in `pyproject.toml` → `[tool.uv.sources]`.
-> Know internal work items (KI-1..KI-5) are tracked in `docs/ROADMAP-004.md`.
+> Know internal work items (KI-1..KI-5) are tracked in `docs/ROADMAP.md`.
 ```
 
 ---
@@ -210,7 +211,7 @@ state/intake/intake-NNN (READY_FOR_S1)
   → S7: nowu-implementer (VBR) → state/vbr/vbr-task-NNN.md
   → S8: nowu-reviewer → state/reviews/review-task-NNN.md
   → S9: nowu-curator → state/capture/capture-task-NNN.md
-                          → updates docs/DECISIONS.md, docs/ROADMAP-004.md
+                          → updates docs/DECISIONS.md, docs/ROADMAP.md
                           → sets next_cycle_trigger
 ```
 

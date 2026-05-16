@@ -23,7 +23,7 @@ proposing solutions, implementations, or architecture.
 
 - state/ideas/idea-NNN.md (primary input, required)
 - docs/vision.md (product vision and persona definitions, required)
-- docs/ROADMAP-004.md (current product stage, optional -- load only if it exists)
+- docs/ROADMAP.md (current product stage, optional -- load only if it exists)
 
 ## What You NEVER Load
 

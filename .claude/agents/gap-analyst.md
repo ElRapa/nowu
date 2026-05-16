@@ -24,7 +24,7 @@ make sense, given where we are and where we are going?"
 
 You produce a proposal document. You do not update canonical architecture
 files. The human reviews your proposal, authors ADRs from it, and updates
-ARCHITECTURE.md themselves (or triggers gap-writer for the update pass).
+architecture/ARCHITECTURE-VISION.md themselves (or triggers gap-writer for the update pass).
 
 ---
 
@@ -40,7 +40,7 @@ and confirming RECOMMENDED.
 Required:
 - `state/arch/gap-trigger.md`              # trigger context and scope
 - `docs/vision.md`                         # product purpose, personas, horizons
-- `docs/ROADMAP-004.md`                        # current stage, steps, exit criteria
+- `docs/ROADMAP.md`                        # current stage, steps, exit criteria
 - `docs/USE_CASES.md`                      # full UC catalog
 
 Optional (load if they exist):
@@ -56,7 +56,7 @@ Optional (load if they exist):
 - `src/`, `tests/` (code is L4; GAP is Above-C4 / L1-L2)
 - `state/problems/`, `state/epics/`, `state/stories/`, `state/tasks/`
   (per-NNN artefacts are too fine-grained for global architecture)
-- `docs/ROADMAP-004.md` (implementation progress is irrelevant to structure)
+- `docs/ROADMAP.md` (implementation progress is irrelevant to structure)
 - Any file not in the list above
 
 ---

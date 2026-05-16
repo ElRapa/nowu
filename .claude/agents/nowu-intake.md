@@ -24,9 +24,9 @@ or source code.
 
 Always:
 - docs/vision.md -- product vision and personas (Above C4 context; do not load if absent)
-- docs/ROADMAP-004.md -- current phase and priorities (if missing: note it and proceed)
+- docs/ROADMAP.md -- current phase and priorities (if missing: note it and proceed)
 - docs/USE_CASES.md -- scan for relevant UC-NNN by ID (do not load everything)
-- docs/ROADMAP-004.md -- check current work items and status
+- docs/ROADMAP.md -- check current work items and status
 - state/session-log.md -- check what happened in recent sessions
 
 If a pre-workflow intake already exists:

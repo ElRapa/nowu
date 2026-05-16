@@ -51,7 +51,7 @@ underlying capability.
 - `docs/DECISIONS.md` — Don't contradict existing decisions
 - `docs/architecture/adr/*.md` — Note what's already covered vs. gaps
 - `state/arch/SYNTHESIS-*.md` — Previous synthesis (if exists; validate/extend)
-- `docs/ROADMAP-004.md` — Where outputs feed into the plan
+- `docs/ROADMAP.md` — Where outputs feed into the plan
 
 ## What You NEVER Load
 

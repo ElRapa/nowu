@@ -25,7 +25,7 @@ traceability chains. Read-only -- you do not modify any existing file.
 
 - docs/vision.md (vision personas and success horizons, required)
 - docs/USE_CASES.md (use case registry for traceability checks, required)
-- docs/ROADMAP-004.md (current stage and active phase, required)
+- docs/ROADMAP.md (current stage and active phase, required)
 - state/problems/ (all problem files, filter to APPROVED)
 - state/epics/ (all epic files, filter to active)
 - state/stories/ (all story files with status APPROVED or DRAFT)

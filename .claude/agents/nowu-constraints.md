@@ -54,7 +54,7 @@ For public interface inspection only:
 
 - Source file internals (anything beyond __init__.py and contracts/)
 - tests/
-- docs/ROADMAP-004.md (consumed in S1)
+- docs/ROADMAP.md (consumed in S1)
 - docs/USE_CASES.md (consumed in S1)
 
 ## What You Produce
@@ -81,7 +81,7 @@ Required fields:
 
 If intake introduces a new external actor or system boundary:
   Draft a C4 Level 1 Mermaid diagram and embed in the constraints sheet.
-  Otherwise: reference the existing diagram in ARCHITECTURE.md by section name.
+  Otherwise: reference the existing diagram in architecture/ARCHITECTURE-VISION.md by section name.
 
 ## S2 Conflict Protocol
 

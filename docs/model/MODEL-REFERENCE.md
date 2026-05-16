@@ -258,7 +258,7 @@ These agents live in `.claude/agents/` alongside execution agents but are **not 
 
 | Agent | Trigger | Altitude | Phase | Input | Output |
 |---|---|---|---|---|---|
-| `roadmap-creator` | P0.V+P0.G complete, 10+ UCs exist | STRATEGIC | IMPLEMENTATION | vision, goals, partial UCs | ROADMAP-001.md |
+| `roadmap-creator` | P0.V+P0.G complete, 10+ UCs exist | STRATEGIC | IMPLEMENTATION | vision, goals, partial UCs | ROADMAP.md |
 | `roadmap-updater` | SYNTHESIS complete, Arch Vision complete, stage gates | STRATEGIC | LEARN | current ROADMAP-NNN.md + milestone artifact | ROADMAP-NNN+1.md |
 | `work-scheduler` | User asks "what's next?" or agent completes task | N/A (meta) | N/A (query) | current ROADMAP-NNN.md + system state | Next work item decision (console output) |
 
@@ -285,10 +285,10 @@ ROADMAP lives in `docs/` (not `state/`) because it is project-level canonical do
 The orchestrator is invoked at **milestone boundaries**, not during execution:
 
 ```
-P0.V + P0.G complete, 10+ UCs → 🔵 roadmap-creator → ROADMAP-001.md
-W1 SYNTHESIS complete           → 🔵 roadmap-updater → ROADMAP-002.md
-W3 Hypothesis ADRs complete     → 🔵 roadmap-updater → ROADMAP-003.md
-v1-core stage gate passes       → 🔵 roadmap-updater → ROADMAP-004.md
+P0.V + P0.G complete, 10+ UCs → 🔵 roadmap-creator → ROADMAP.md (v1, created)
+W1 SYNTHESIS complete           → 🔵 roadmap-updater → ROADMAP.md (v2, archived v1 → archive/ROADMAP-001.md)
+W3 Hypothesis ADRs complete     → 🔵 roadmap-updater → ROADMAP.md (v3, archived v2 → archive/ROADMAP-002.md)
+v1-core stage gate passes       → 🔵 roadmap-updater → ROADMAP.md (v4, archived v3 → archive/ROADMAP-003.md)
 Any time: "what's next?"        → 🔵 work-scheduler  → console output
 ```
 
@@ -455,7 +455,7 @@ Every artifact in this model MUST declare an `artifact_type` YAML frontmatter fi
 | PROGRESS_LOG | state/ | EXECUTION / IMPLEMENTATION | progress-001.md |
 | RESEARCH_INDEX | docs/research/ | PRODUCT / ANALYSIS | research-index.md |
 | REVIEW_REPORT | state/reviews/ | EXECUTION / EVALUATION | review-001.md |
-| ROADMAP | docs/ | STRATEGIC / IMPLEMENTATION | ROADMAP-001.md |
+| ROADMAP | docs/ | STRATEGIC / IMPLEMENTATION | ROADMAP.md (stable; previous versions in docs/archive/) |
 | SESSION_ANALYSIS | state/analysis/ | DELIVERY / LEARN | session-review-001.md |
 | SESSION_LEARNINGS | state/learnings/ | (varies) / LEARN | session-learnings-001.md |
 | SESSION_LOG | state/ | STRATEGIC / LEARN | session-log.md |

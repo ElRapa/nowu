@@ -23,7 +23,7 @@ report with specific, actionable findings.
 ## Inputs (read only these files)
 
 - docs/vision.md (primary subject, required)
-- docs/ROADMAP-004.md (current product stage and active work, required)
+- docs/ROADMAP.md (current product stage and active work, required)
 - docs/USE_CASES.md (use case registry for coverage check, if exists)
 - state/problems/ (latest 3 problem files by modified date, if any exist)
 - state/epics/ (active epic files, if any exist)

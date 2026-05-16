@@ -5,7 +5,7 @@ last_updated: 2026-05-13
 
 > **⚠️ SUPERSEDED** — This file is obsolete and retained for historical reference only.
 > For current plan/progress tracking, see:
-> - **Roadmap:** `docs/ROADMAP-003.md` (canonical tracker)
+> - **Roadmap:** `docs/ROADMAP.md` (canonical tracker)
 > - **Session Log:** `state/session-log.md` (chronology)
 
 # nowu — Progress Log

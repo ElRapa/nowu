@@ -33,7 +33,7 @@ Cut scope now rather than during implementation.
 - Any file under state/arch/, state/tasks/, state/intake/
 - docs/architecture/ARCHITECTURE-VISION.md, docs/DECISIONS.md
 - Any source code or test files
-- docs/ROADMAP-004.md, docs/ROADMAP-004.md
+- docs/ROADMAP.md, docs/ROADMAP.md
 
 ## Handling Missing USE_CASES.md
 

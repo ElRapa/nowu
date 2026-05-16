@@ -22,7 +22,7 @@
 9. Skim all post-ADR-0006 records (ADR-0007 onward) for awareness — check current grade in frontmatter
 
 ### Strategic Context (for alignment)
-10. `docs/ROADMAP-004.md`                  — current implementation roadmap
+10. `docs/ROADMAP.md`                  — current implementation roadmap
 11. `state/arch/SYNTHESIS-001.md` (if exists) — architectural themes
 12. `docs/architecture/ARCHITECTURE-VISION.md` (if exists) — architectural principles, risks
 

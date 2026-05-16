@@ -18,7 +18,7 @@ This framework is self-developing: you help build it using the same workflow it 
 4. `docs/model/WORKFLOW-STANDARDS.md`       — binding workflow rules (epistemic grades, phases)
 5. `docs/architecture/containers.md`        — module map (C4 L2)
 6. `docs/DECISIONS.md`                      — all D-NNN decisions (binding)
-7. `docs/ROADMAP-004.md`                    — current implementation roadmap (areas × stages + execution status)
+7. `docs/ROADMAP.md`                    — current implementation roadmap (areas × stages + execution status)
 
 ### Workflow detail (read when executing S1-S9 or P0-P4)
 
@@ -58,7 +58,7 @@ This framework is self-developing: you help build it using the same workflow it 
 | What are the binding rules? | `docs/model/WORKFLOW-STANDARDS.md` + `docs/DECISIONS.md` |
 | How do I execute S1-S9? | `docs/WORKFLOW.md` + `docs/WORKFLOW-DETAILED.md` |
 | How do I start from a vague idea? | `docs/PRE-WORKFLOW.md` |
-| What's the implementation roadmap? | `docs/ROADMAP-004.md` |
+| What's the implementation roadmap? | `docs/ROADMAP.md` |
 | What are we building for users? | `docs/USE_CASES.md` + `docs/goals/` |
 | How do I verify correctness? | `docs/model/VERIFICATION-GUIDE.md` |
 | What's the module architecture? | `docs/architecture/containers.md` + ADRs |
@@ -86,7 +86,7 @@ with a RED health check outstanding.
 1. What is this product, who is it for, and what problem does it solve? (from vision.md)
 2. What are the 5 altitudes and 10 phases in the model? What's the S1-S9 zigzag?
 3. What are the main modules/containers and which layer does each belong to?
-4. What is the current stage and what's the critical path? (from ROADMAP-004)
+4. What is the current stage and what's the critical path? (from ROADMAP.md)
 5. Which agent handles each step: P0–P4, S1, S2, S3, S4, S5, S6/S7, S8, S9?
 6. Which skill modes exist (A/B/C/D + pre-workflow modes) and when to use each?
 7. What do Tier 1, Tier 2, and Tier 3 approval mean — give one example of each.

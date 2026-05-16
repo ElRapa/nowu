@@ -17,7 +17,7 @@
 6. `docs/DECISIONS.md`                     — all D-NNN decisions (binding)
 
 ### Strategic Context (altitude-specific)
-7. `docs/ROADMAP-004.md`                   — current implementation roadmap
+7. `docs/ROADMAP.md`                   — current implementation roadmap
 8. `CLAUDE.md`                             — commands, approval tiers
 
 ### If Doing SYNTHESIS or Architecture Vision
