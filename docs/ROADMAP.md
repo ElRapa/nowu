@@ -140,7 +140,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Workflow | W18 | 5×10 grid auto-population from history | v2 | 20+ intakes | NF-08, XP-10 | PLANNED |
 | Knowledge | K1 | Traceability metadata in all new artifacts | v1-core | none | NF-09 | ACTIVE |
 | Knowledge | K2 | Forward/backward trace validation | v1-core | W4 | NF-09, XP-08 | ✅ DONE |
-| Knowledge | K3 | MemoryService integration for structured recall (gap-backed: GAP-001, GAP-002) | v1 | core contracts baseline | NF-01, PK-03 | ✅ DONE |
+| Knowledge | K3 | MemoryService integration for structured recall (gap-backed: GAP-001, GAP-002) | v1 | core contracts baseline | NF-01, PK-03 | ✅ DONE (2026-05-15) |
 | Knowledge | K4 | Session state persistence via know | v1 | K3 | NF-01, NF-10, XP-01 | PLANNED |
 | Knowledge | K5 | Cross-project recall | v1.1 | K4 | XP-01, XP-03 | PLANNED |
 | Knowledge | K6 | Semantic queries over artifact corpus | v1.1 | K5 | PK-02, PK-09, XP-04 | PLANNED |
@@ -166,7 +166,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Framework | F1 | Contracts baseline | v1-core | none | NF-03 | ✅ DONE |
 | Framework | F2 | Import boundary enforcement tests | v1-core | none | NF-02 | ✅ DONE |
 | Framework | F3 | Level 0 artifact verification script | v1-core | none | NF-09, NF-15 | ✅ DONE (via W29) |
-| Framework | F4 | Session runtime + WAL | v1 | K3 | NF-01, NF-10 | PLANNED |
+| Framework | F4 | Session runtime + WAL (includes KnowAdapter singleton lifecycle enforcement) | v1 | K3 | NF-01, NF-10 | PLANNED |
 | Framework | F5 | Role sequencer runtime | v1 | F4 | NF-04, NF-05 | PLANNED |
 | Framework | F6 | Bridge CLI + approval routing | v1 | F5 | NF-05, PK-08 | PLANNED |
 | Framework | F7 | Project bootstrap command | v1.1 | F6 | NF-07 | PLANNED |
@@ -179,7 +179,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Framework | F11 | Multi-user/external project support | v2 | F10 | XP-10 | PLANNED |
 | Know Internal | KI-1 | Acceptance test gap triage + fixes (documented behavioral discrepancies in test_acceptance.py) | v1 | none | foundation for K3+ | PLANNED |
 | Know Internal | KI-2 | License + packaging reconciliation (README says MIT, pyproject says Proprietary) | v1 | none | XP-08 | PLANNED |
-| Know Internal | KI-3 | KnowAdapter expansion for MemoryService v2 (atom CRUD, graph traversal, version queries) | v1 | K3 | NF-01, PK-03 | PLANNED |
+| Know Internal | KI-3 | KnowAdapter expansion for MemoryService v2 (atom CRUD, graph traversal, version queries) + introduce typed DTOs in core (MemoryItem, MemoryLink) to replace dict[str, Any] returns | v1 | K3 | NF-01, PK-03 | PLANNED |
 | Know Internal | KI-4 | Domain atom type registry (custom types for AP/RE without know core changes) | v1 | W19 | AP-01, RE-01, XP-07 | PLANNED |
 | Know Internal | KI-5 | Atom storage format evaluation — JSON→MD migration path (optional, for inspectability) | v1.1 | KI-3 | quality attribute #3 (inspectability) | PLANNED |
 
@@ -293,7 +293,7 @@ dependency_graph:
   F1: {depends_on: [], status: "✅ complete", evidence: ["src/nowu/core/contracts/"]}
   F2: {depends_on: [], status: "✅ complete", evidence: ["tests/architecture/test_import_boundaries.py"]}
   F3: {depends_on: ["F1"], status: "✅ complete (subsumed by W29)", evidence: ["tests/architecture/test_epistemic_enforcement.py"]}
-  F4: {depends_on: ["K3"], status: "PLANNED"}
+  F4: {depends_on: ["K3"], status: "PLANNED", note: "Must enforce singleton KnowAdapter lifecycle (single know.init per process) — K3 review finding"}
   F5: {depends_on: ["F4"], status: "PLANNED"}
 
   # === v1 (in progress) ===
@@ -336,9 +336,16 @@ dependency_graph:
 
   K3:
     depends_on: ["K1"]
-    status: "PLANNED"
+    status: "✅ complete"
     gap_evidence: ["GAP-001", "GAP-002"]
     evidence_refs: ["state/arch/intake-007-gap-register.md"]
+    evidence:
+      - "src/nowu/core/contracts/memory.py (11 methods)"
+      - "src/nowu/bridge/know_adapter.py"
+      - "tests/bridge/test_know_adapter.py (15 tests)"
+      - "state/learnings/session-2026-05-15-k3-workflow.md"
+      - "state/learnings/session-2026-05-15-k3-dual-agent.md"
+    follow_up: "D-SESS-03: port defensive parse helpers from freeform into committed KnowAdapter (before KI-3)"
 
   A3: {depends_on: ["W5"], status: "PLANNED"}
   F6: {depends_on: ["F5"], status: "PLANNED"}
@@ -398,7 +405,7 @@ dependency_graph:
   # === Know Internal (sibling repo ../know) ===
   KI-1: {depends_on: [], status: "PLANNED", note: "Acceptance test triage in know — behavioral gaps documented in test_acceptance.py ACTUAL: comments"}
   KI-2: {depends_on: [], status: "PLANNED", note: "License reconciliation — README says MIT, pyproject says Proprietary"}
-  KI-3: {depends_on: ["K3"], status: "PLANNED", note: "KnowAdapter expansion — maps expanded MemoryService v2 to KnowledgeBase API"}
+  KI-3: {depends_on: ["K3"], status: "PLANNED", note: "KnowAdapter expansion — maps expanded MemoryService v2 to KnowledgeBase API. Also introduce typed DTOs (MemoryItem, MemoryLink) in core/contracts/ to replace dict[str, Any] returns (K3 review finding)."}
   KI-4: {depends_on: ["W19"], status: "PLANNED", note: "Domain atom type registry in know — must support AP/RE custom types"}
   KI-5: {depends_on: ["KI-3"], status: "PLANNED", note: "JSON→MD atom storage migration evaluation — optional inspectability improvement"}
 
@@ -462,7 +469,7 @@ adr_status_snapshot:
 | R7 | Vision-to-reality overbuild (architecture ahead of proof) | T6 | HIGH | Stage-gated execution; only implement what active UC stage requires | OPEN |
 | R8 | Progressive-disclosure maturity protocol remains implicit and inconsistent | T8 | MEDIUM | Formalize via W21 and enforce artifact maturation paths | OPEN |
 | R9 | Audience-aware rendering lags knowledge growth, causing poor human/agent UX | T9 | MEDIUM | Prioritize W23 before v1.2 collaboration scaling | OPEN |
-| R10 | Knowledge contract too narrow for v1 domain UCs — MemoryService exposes only 4 task/decision-skewed methods; no atom CRUD, graph traversal, or version-chain support | T2/T5 | HIGH | K3 integration + W19 domain extension model; use W27+W28 gap evidence to scope | OPEN (grounded: GAP-001, GAP-002, GAP-004) |
+| R10 | Knowledge contract too narrow for v1 domain UCs — MemoryService exposes only 4 task/decision-skewed methods; no atom CRUD, graph traversal, or version-chain support | T2/T5 | HIGH | K3 integration + W19 domain extension model; use W27+W28 gap evidence to scope | PARTIALLY_MITIGATED (K3 delivered 11-method MemoryService + KnowAdapter; atom CRUD and connections addressed; version-lineage and traversal remain for K9a/KI-3) |
 | R11 | Decision evidence model too thin — DecisionRecord's 5 fields insufficient for AP-06/RE-06 full evidence chains; supplementary structure needed outside current contracts | T6 | MEDIUM | W19 + W20 traceability metadata; validate with W28 RE-06 evidence | OPEN (grounded: GAP-003) |
 | R12 | Epistemic decay policy mismatch — ADR-0010 and know baseline define inconsistent decay/staleness semantics, undermining trust in grade assignments | T4 | MEDIUM | ADR-0010 maintenance pass during W20; reconcile definitions before K12 implementation | OPEN (grounded: GAP-007) |
 
