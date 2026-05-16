@@ -34,7 +34,7 @@ If they exist:
 
 ## What You NEVER Load
 
-- docs/ARCHITECTURE.md (constraints already extracted in S2)
+- docs/architecture/ARCHITECTURE-VISION.md (constraints already extracted in S2)
 - docs/DECISIONS.md (already in constraints sheet)
 - Source code internals
 - tests/

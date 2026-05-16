@@ -2,8 +2,9 @@
 name: roadmap-creator
 description: >
   Orchestrator meta-agent. Creates the initial implementation roadmap from
-  vision, goals, and early use cases. Produces ROADMAP-001.md with stage
-  structure, area breakdown, dependency graph, stage gates, and risk register.
+  vision, goals, and early use cases. Produces docs/ROADMAP.md (stable name,
+  always current) with stage structure, area breakdown, dependency graph, stage
+  gates, and risk register. Archives previous version to docs/archive/ROADMAP-NNN.md.
   Not part of the execution agent roster — operates at the orchestrator layer
   external to the 5×10 field.
 model: claude-sonnet-4-6
@@ -33,7 +34,7 @@ You transform vision + goals + early use cases into a multi-stage implementation
 - After `vision.md` and `goal-*.md` exist (P0.V + P0.G complete)
 - After 10-20 use cases exist in `USE_CASES.md` (enough to see patterns)
 - Before the full 50 UCs are captured (roadmap evolves as understanding grows)
-- When `docs/ROADMAP-001.md` does not exist
+  - When `docs/ROADMAP.md` does not exist
 
 ## Inputs (Read ALL Required)
 
@@ -44,7 +45,7 @@ You transform vision + goals + early use cases into a multi-stage implementation
 
 **Context:**
 - `docs/DECISIONS.md`: Existing decisions to honor
-- `docs/architecture/ARCHITECTURE.md`: Module structure if it exists
+- `docs/architecture/ARCHITECTURE-VISION.md`: Module structure if it exists
 
 ## What You NEVER Load
 
@@ -101,7 +102,11 @@ Identify 5-10 known risks:
 
 ## Output
 
-Write exactly one file: `docs/ROADMAP-001.md`
+Write exactly one file: `docs/ROADMAP.md` (stable name — never versioned in place)
+
+> **Stable name rule:** `docs/ROADMAP.md` is always the current roadmap. When a new version is
+> created by `roadmap-updater`, it archives the current file to `docs/archive/ROADMAP-NNN.md`
+> before overwriting. You only write `docs/ROADMAP.md` — never `docs/ROADMAP.md` etc.
 
 **Required sections:**
 1. Stage Structure (table with time horizons, success criteria, status)
@@ -116,6 +121,8 @@ Write exactly one file: `docs/ROADMAP-001.md`
 ```yaml
 ---
 artifact_type: ROADMAP
+stable_name: docs/ROADMAP.md
+archive: docs/archive/
 version: 1
 epistemic_grade: HYPOTHESIS
 created_at: [timestamp]
@@ -132,8 +139,8 @@ status: ACTIVE
 - Stage gates MUST have measurable boolean criteria
 - Risk register MUST include mitigation strategies
 - UC-to-stage mapping MUST cover all captured UCs
-- Epistemic grade MUST be HYPOTHESIS (this is a guess based on incomplete evidence)
-- Output MUST be a single Markdown file at `docs/ROADMAP-001.md`
+  - Epistemic grade MUST be HYPOTHESIS (this is a guess based on incomplete evidence)
+  - Output MUST be written to `docs/ROADMAP.md` (stable name — never `docs/ROADMAP-NNN.md`)
 
 ## Quality Self-Check
 

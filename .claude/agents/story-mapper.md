@@ -31,9 +31,9 @@ Cut scope now rather than during implementation.
 ## What You NEVER Load
 
 - Any file under state/arch/, state/tasks/, state/intake/
-- docs/ARCHITECTURE.md, docs/DECISIONS.md
+- docs/architecture/ARCHITECTURE-VISION.md, docs/DECISIONS.md
 - Any source code or test files
-- docs/STAGED-PLAN.md, docs/ROADMAP-003.md
+- docs/ROADMAP.md, docs/ROADMAP.md
 
 ## Handling Missing USE_CASES.md
 

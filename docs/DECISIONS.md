@@ -442,7 +442,7 @@ It didn't account for Workflow, Knowledge, or Agent areas as independent workstr
 ### Decision
 Replace with 4 areas (Workflow, Knowledge, Agents, Framework) × 4 stages
 (v1-core, v1, v1.1, v2). Each cell is independently actionable with explicit dependencies.
-See `docs/ROADMAP-001.md` for full detail.
+See `docs/ROADMAP.md` for full detail.
 
 ### Consequences
 - **Good**: Parallel progress possible; clear dependencies; no monolithic sequencing

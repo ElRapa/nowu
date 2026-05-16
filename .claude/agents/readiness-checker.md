@@ -36,7 +36,7 @@ only when every blocking check passes.
 ## What You NEVER Load
 
 - Any source code or test files
-- docs/ARCHITECTURE.md, docs/DECISIONS.md, docs/vision.md
+- docs/architecture/ARCHITECTURE-VISION.md, docs/DECISIONS.md, docs/vision.md
 - state/intake/ (you write to it, never read from it)
 - state/capture/, state/tasks/, state/vbr/, state/reviews/
 
