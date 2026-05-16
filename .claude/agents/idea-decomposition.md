@@ -27,7 +27,7 @@ You classify and route only.
 
 - state/ideas/idea-NNN.md (required)
 - docs/vision.md (scope boundary and product intent, required)
-- docs/STAGED-PLAN.md (current product stage, optional -- if missing, treat as Stage 0)
+- docs/ROADMAP-004.md (current product stage, optional -- if missing, treat as Stage 0)
 
 ## What You NEVER Load
 

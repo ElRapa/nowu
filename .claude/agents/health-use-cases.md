@@ -25,10 +25,10 @@ You output a dated health report under `state/health/`.
 Required:
 - `docs/vision.md`
 - `docs/USE_CASES.md`      # if missing, status = RED, reason: "no catalog"
-- `docs/STAGED-PLAN.md`        # if missing, treat plan as PLAN-ABSENT (YELLOW, not RED)
+- `docs/ROADMAP-004.md`        # if missing, treat plan as PLAN-ABSENT (YELLOW, not RED)
 
 Optional (if they exist):
-- `docs/ROADMAP-003.md`
+- `docs/ROADMAP-004.md`
 - `state/problems/`        # latest ~20 `problem-*.md`
 - `state/epics/`           # latest ~20 `epic-*.md`
 - `state/stories/`         # latest ~50 APPROVED `story-*.md`

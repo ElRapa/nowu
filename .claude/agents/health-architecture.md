@@ -26,8 +26,8 @@ existing file. You produce a health report with specific, actionable findings.
 - docs/architecture/context.md (C4 L1, if exists)
 - docs/architecture/adr/ (all ADR files, if directory exists)
 - docs/DECISIONS.md (binding decision registry, required)
-- docs/ARCHITECTURE.md (module map and rules, if exists)
-- docs/STAGED-PLAN.md (current stage for drift tolerance calibration)
+- docs/architecture/ARCHITECTURE-VISION.md (module map and rules, if exists)
+- docs/ROADMAP-004.md (current stage for drift tolerance calibration)
 - Bash command ONLY: find src/ -maxdepth 2 -type d
   (directory structure of src/ only -- do NOT read file contents)
 - state/arch/ (architecture pass file NAMES only -- no content)

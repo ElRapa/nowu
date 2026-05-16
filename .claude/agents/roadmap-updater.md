@@ -100,6 +100,26 @@ status: ACTIVE
 ---
 ```
 
+### Update Type 4: Reference Refresh (`/update-refs`)
+
+When invoked as `/update-refs` (or user asks to fix stale roadmap/architecture references):
+
+1. **Identify current canonical files** — read `docs/ROADMAP-*.md` (latest version number) and confirm `docs/architecture/ARCHITECTURE-VISION.md` exists.
+2. **Scan for stale patterns** across `.claude/agents/`, `.claude/skills/`, `BOOTSTRAP*.md`, `CLAUDE.md`, `FILE-STRUCTURE.md`, `docs/WORKFLOW*.md`, `docs/model/MODEL-REFERENCE.md`:
+   - Any `docs/ROADMAP-NNN.md` where NNN < current version
+   - `docs/ROADMAP-004.md` (non-existent legacy name)
+   - `docs/architecture/ARCHITECTURE-VISION.md` (non-existent; correct path is `docs/architecture/ARCHITECTURE-VISION.md`)
+   - `state/SESSION_STATE.md` marked as operational (it is TEMPLATE ONLY)
+3. **Apply replacements in-place** using bash bulk replace (`perl -pi -e` or `sed -i`):
+   - Old roadmap refs → `docs/ROADMAP-NNN.md` (current version)
+   - `docs/ROADMAP-004.md` → `docs/ROADMAP-NNN.md` (current version)
+   - `docs/architecture/ARCHITECTURE-VISION.md` → `docs/architecture/ARCHITECTURE-VISION.md`
+4. **Verify** with grep: all three stale patterns return 0 results in active agent/skill/bootstrap files.
+5. **Do NOT touch**: `state/` artifacts, `docs/research/`, `docs/archive/`, historical decision records, or the superseded roadmap files themselves.
+6. **Report**: files changed per pattern, grep verification output.
+
+> **Invoke with**: `/update-refs` or "fix stale roadmap references"
+
 ## Hard Constraints
 
 - New version MUST reference `supersedes: ROADMAP-NNN`

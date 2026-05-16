@@ -15,4 +15,4 @@ Follow-on items flagged (low effort, not yet done as of 2026-05-13):
 - F1: Add `pyyaml>=6.0` to `[project.dependencies]` in pyproject.toml
 - F2: Add "Known Limitations" note to ADR-0007 (v1-core schema divergence, D-024)
 
-> *Note (2026-05-13): PROGRESS.md is now fully tombstoned. Use `docs/ROADMAP-003.md` as the first status reference instead.*
+> *Note (2026-05-13): PROGRESS.md is now fully tombstoned. Use `docs/ROADMAP-004.md` as the first status reference instead.*

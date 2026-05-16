@@ -135,7 +135,7 @@ Files this agent may write or update:
 Files this agent NEVER writes:
 - `docs/vision.md`
 - `docs/USE_CASES.md`
-- `docs/STAGED-PLAN.md`
+- `docs/ROADMAP-004.md`
 - `docs/DECISIONS.md`
 - Anything in `src/`, `tests/`, `state/problems/`, `state/stories/`
 

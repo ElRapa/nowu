@@ -23,7 +23,7 @@ You update the knowledge base so the next cycle starts with accurate context.
 Always:
 - state/reviews/<task-id>.md -- lessons, outcome, verdict
 - docs/DECISIONS.md -- check if any decisions need updating
-- docs/ROADMAP-003.md -- update status fields
+- docs/ROADMAP-004.md -- update status fields
 - state/session-log.md -- add completion entry
 - git log --oneline -10 -- recent commits for continuity
 
@@ -49,7 +49,7 @@ If it exists:
    - lessons: key learnings from the review report
    - next_cycle_trigger: CONTINUE | ARCH_PIVOT | PRODUCT_PIVOT | COMPLETE
 
-2. Update docs/ROADMAP-003.md (ALL of the following):
+2. Update docs/ROADMAP-004.md (ALL of the following):
    a. Mark completed work item as ✅ DONE in **both** the work grid (Section 2) and
       the dependency graph (Section 4). Add `evidence:` list to the dep graph entry.
    b. Update **Section 7** `next_work_item` to the next READY item from the dep graph.
@@ -71,7 +71,7 @@ If it exists:
 4. Update docs/DECISIONS.md if review raised new decisions:
    Append D-NNN entries for any new decisions.
 
-5. If module boundaries changed: write a note in docs/ARCHITECTURE.md
+5. If module boundaries changed: write a note in docs/architecture/ARCHITECTURE-VISION.md
    under a "Pending Updates" section -- do not rewrite ARCHITECTURE.md directly.
 
 6. If `state/arch/NNN-atam-lite.md` was loaded, check for risks with
@@ -105,7 +105,7 @@ If it exists:
 
 12. **Execute commit** (not just suggest):
     Stage and commit the following paths (if modified):
-    `state/capture/*`, `state/session-log.md`, `docs/ROADMAP-003.md`, `docs/DECISIONS.md`,
+    `state/capture/*`, `state/session-log.md`, `docs/ROADMAP-004.md`, `docs/DECISIONS.md`,
     `docs/goals/*.md`, `state/analysis/S9-*.md`, `state/tasks/*.md`, `state/intake/*.md`.
     Use the conventional commit message from step 8.
     Do NOT stage `src/` or `tests/` — those are committed by the implementer (S6/S7).

@@ -30,7 +30,7 @@ evidence. You do not design solutions or propose resolutions.
 ## What You NEVER Load
 
 - Any file under state/discovery/, state/problems/, state/epics/
-- docs/vision.md, docs/STAGED-PLAN.md, docs/USE_CASES.md
+- docs/vision.md, docs/ROADMAP-004.md, docs/USE_CASES.md
 - Any source code or test files
 - state/arch/ (arch passes are downstream of this step)
 
