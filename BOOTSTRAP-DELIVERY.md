@@ -35,4 +35,5 @@ Each workflow step loads ONLY its C4-level context:
 Violating context scoping causes anchoring bias or re-litigation.
 
 ## Before Proceeding
+If `work-scheduler` provided a `context_plan`, load only its `required_files` and use `summary_bullets` for orientation instead of scanning the repo.
 Verify: ☐ I know which S1-S9 step I'm in ☐ I know the context scoping rules for my step ☐ I know my approval tier ☐ I know the quality gates (pytest, mypy, ruff). If any unclear, re-read the relevant file above.

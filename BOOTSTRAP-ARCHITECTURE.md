@@ -39,4 +39,5 @@
 - `state/SESSION_STATE.md` — TEMPLATE ONLY, not an operational file
 
 ## Before Proceeding
+If `work-scheduler` provided a `context_plan`, load only its `required_files` and use `summary_bullets` for orientation instead of scanning the repo.
 Verify: ☐ I know the 5 modules and their import rules ☐ I loaded all ACCEPTED ADRs ☐ I know which roadmap stage is active. If any unclear, re-read the relevant file above.

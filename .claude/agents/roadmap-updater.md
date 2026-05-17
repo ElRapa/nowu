@@ -38,7 +38,7 @@ You integrate new architectural evidence or execution feedback into the roadmap:
 ## Inputs (Read ALL Required)
 
 **Required:**
-- `docs/ROADMAP-NNN.md`: Current roadmap version (latest)
+- `docs/ROADMAP.md`: Current roadmap (stable name — always current)
 - Milestone artifact: one of:
   - `state/arch/SYNTHESIS-NNN.md`
   - `docs/architecture/ARCHITECTURE-VISION.md`

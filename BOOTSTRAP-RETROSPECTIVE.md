@@ -25,4 +25,5 @@
 11. `CLAUDE.md`                            — commands (especially /health-check)
 
 ## Before Proceeding
+If `work-scheduler` provided a `context_plan`, load only its `required_files` and use `summary_bullets` for orientation instead of scanning the repo.
 Verify: ☐ I know the RETROSPECTIVE altitude and how it differs from EXECUTION ☐ I know the GAP steps (G0-G2) ☐ I know the health check categories ☐ I know the epistemic grade scale. If any unclear, re-read the relevant file above.

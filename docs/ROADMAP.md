@@ -141,7 +141,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Knowledge | K1 | Traceability metadata in all new artifacts | v1-core | none | NF-09 | ACTIVE |
 | Knowledge | K2 | Forward/backward trace validation | v1-core | W4 | NF-09, XP-08 | ✅ DONE |
 | Knowledge | K3 | MemoryService integration for structured recall (gap-backed: GAP-001, GAP-002) | v1 | core contracts baseline | NF-01, PK-03 | ✅ DONE (2026-05-15) |
-| Knowledge | K4 | Session state persistence via know | v1 | K3 | NF-01, NF-10, XP-01 | PLANNED |
+| Knowledge | K4 | Session state persistence via know | v1 | K3 | NF-01, NF-10, XP-01 | READY |
 | Knowledge | K5 | Cross-project recall | v1.1 | K4 | XP-01, XP-03 | PLANNED |
 | Knowledge | K6 | Semantic queries over artifact corpus | v1.1 | K5 | PK-02, PK-09, XP-04 | PLANNED |
 | Knowledge | K11 | External document ingestion pipeline | v1.1 | K6 | PK-07 | PLANNED |
@@ -166,7 +166,7 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Framework | F1 | Contracts baseline | v1-core | none | NF-03 | ✅ DONE |
 | Framework | F2 | Import boundary enforcement tests | v1-core | none | NF-02 | ✅ DONE |
 | Framework | F3 | Level 0 artifact verification script | v1-core | none | NF-09, NF-15 | ✅ DONE (via W29) |
-| Framework | F4 | Session runtime + WAL (includes KnowAdapter singleton lifecycle enforcement) | v1 | K3 | NF-01, NF-10 | PLANNED |
+| Framework | F4 | Session runtime + WAL (includes KnowAdapter singleton lifecycle enforcement) | v1 | K3 | NF-01, NF-10 | READY |
 | Framework | F5 | Role sequencer runtime | v1 | F4 | NF-04, NF-05 | PLANNED |
 | Framework | F6 | Bridge CLI + approval routing | v1 | F5 | NF-05, PK-08 | PLANNED |
 | Framework | F7 | Project bootstrap command | v1.1 | F6 | NF-07 | PLANNED |
@@ -177,10 +177,10 @@ Legend: **F** = first addressed, **A** = target stage where goal is considered a
 | Framework | F13 | Operational report export presets | v1.2 | W26, W23 | RE-07, XP-08, XP-11 | PLANNED |
 | Framework | F10 | Installable package + public docs | v2 | F7, v1.1 gate | XP-09 | PLANNED |
 | Framework | F11 | Multi-user/external project support | v2 | F10 | XP-10 | PLANNED |
-| Know Internal | KI-1 | Acceptance test gap triage + fixes (documented behavioral discrepancies in test_acceptance.py) | v1 | none | foundation for K3+ | PLANNED |
-| Know Internal | KI-2 | License + packaging reconciliation (README says MIT, pyproject says Proprietary) | v1 | none | XP-08 | PLANNED |
-| Know Internal | KI-3 | KnowAdapter expansion for MemoryService v2 (atom CRUD, graph traversal, version queries) + introduce typed DTOs in core (MemoryItem, MemoryLink) to replace dict[str, Any] returns | v1 | K3 | NF-01, PK-03 | PLANNED |
-| Know Internal | KI-4 | Domain atom type registry (custom types for AP/RE without know core changes) | v1 | W19 | AP-01, RE-01, XP-07 | PLANNED |
+| Know Internal | KI-1 | Acceptance test gap triage + fixes (documented behavioral discrepancies in test_acceptance.py) | v1 | none | foundation for K3+ | READY |
+| Know Internal | KI-2 | License + packaging reconciliation (README says MIT, pyproject says Proprietary) | v1 | none | XP-08 | READY |
+| Know Internal | KI-3 | KnowAdapter expansion for MemoryService v2 (atom CRUD, graph traversal, version queries) + introduce typed DTOs in core (MemoryItem, MemoryLink) to replace dict[str, Any] returns | v1 | K3 | NF-01, PK-03 | READY |
+| Know Internal | KI-4 | Domain atom type registry (custom types for AP/RE without know core changes) | v1 | W19 | AP-01, RE-01, XP-07 | READY |
 | Know Internal | KI-5 | Atom storage format evaluation — JSON→MD migration path (optional, for inspectability) | v1.1 | KI-3 | quality attribute #3 (inspectability) | PLANNED |
 
 > **Know Internal items (KI-prefix):** These are work items executed in the `../know` sibling repo, tracked here for coordination. Know v0.4.0 is a working alpha with JSON atom files, SQLite FTS5 index, embeddings, 3-layer search, PageRank importance, curator, CLI, and MCP server. The existing capability exceeds what nowu currently consumes via the 4-method MemoryService Protocol. KI items close the gaps identified during know assessment (2026-05-15) and prepare know for the expanded contract surface that K3/K9a/W19 require on the nowu side.
@@ -293,26 +293,28 @@ dependency_graph:
   F1: {depends_on: [], status: "✅ complete", evidence: ["src/nowu/core/contracts/"]}
   F2: {depends_on: [], status: "✅ complete", evidence: ["tests/architecture/test_import_boundaries.py"]}
   F3: {depends_on: ["F1"], status: "✅ complete (subsumed by W29)", evidence: ["tests/architecture/test_epistemic_enforcement.py"]}
-  F4: {depends_on: ["K3"], status: "PLANNED", note: "Must enforce singleton KnowAdapter lifecycle (single know.init per process) — K3 review finding"}
+  F4: {depends_on: ["K3"], status: "READY", note: "Must enforce singleton KnowAdapter lifecycle (single know.init per process) — K3 review finding"}
   F5: {depends_on: ["F4"], status: "PLANNED"}
 
   # === v1 (in progress) ===
   W7: {depends_on: ["W1"], status: "PLANNED"}
   W8: {depends_on: ["W32"], status: "✅ complete", evidence: ["tests/architecture/test_epistemic_enforcement.py"]}
-  W9: {depends_on: ["W4"], status: "PLANNED"}
+  W9: {depends_on: ["W4"], status: "✅ complete", evidence: ["docs/architecture/adr/ADR-0007..0010 promoted HYPOTHESIS→INFORMED_ESTIMATE", "state/learnings/session-2026-05-15-w9-adr-promotion.md"]}
   W10: {depends_on: ["W4"], status: "PLANNED"}
 
   W19:
     depends_on: ["ADR-0008", "ADR-0009"]
-    status: "PLANNED"
+    status: "✅ complete"
     gap_evidence: ["GAP-003", "GAP-005"]
     evidence_refs: ["state/arch/intake-007-gap-register.md"]
+    evidence: ["docs/architecture/adr/ADR-0011-domain-extension-model.md", "state/learnings/session-2026-05-15-w19-domain-extension.md"]
 
   W20:
     depends_on: ["ADR-0009", "K1"]
-    status: "PLANNED"
+    status: "✅ complete"
     gap_evidence: ["GAP-003", "GAP-007"]
     evidence_refs: ["state/arch/intake-007-gap-register.md", "docs/DECISIONS.md#d-027"]
+    evidence: ["docs/architecture/adr/ADR-0012-traceability-metadata-standard.md", "state/learnings/session-2026-05-15-w20-traceability.md"]
 
   W21: {depends_on: ["ADR-0008", "ADR-0010"], status: "PLANNED"}
 
@@ -330,7 +332,7 @@ dependency_graph:
       - "state/reviews/intake-007-review.md"
       - "state/capture/capture-intake-007.md"
 
-  W28: {depends_on: ["W4"], status: "READY", evidence: ["state/capture/capture-intake-007.md (next: W28)"]}
+  W28: {depends_on: ["W4"], status: "✅ complete", evidence: ["state/capture/capture-intake-008.md", "state/learnings/session-2026-05-15-w28-workflow.md", "state/learnings/session-2026-05-15-w28-dual-agent.md"]}
   W29: {depends_on: ["W4", "ADR-0010"], status: "✅ complete", evidence: ["tests/architecture/test_epistemic_enforcement.py"]}
   W32: {depends_on: ["W4", "W5"], status: "✅ complete", evidence: ["state/arch/w32-epistemic-calibration.md", "docs/model/MODEL-REFERENCE.md §6"]}
 
@@ -345,7 +347,7 @@ dependency_graph:
       - "tests/bridge/test_know_adapter.py (15 tests)"
       - "state/learnings/session-2026-05-15-k3-workflow.md"
       - "state/learnings/session-2026-05-15-k3-dual-agent.md"
-    follow_up: "D-SESS-03: port defensive parse helpers from freeform into committed KnowAdapter (before KI-3)"
+    follow_up: "D-SESS-03: ✅ done — defensive parse helpers ported into KnowAdapter (tags validation + digit-string grade path, 12 new edge-case tests)"
 
   A3: {depends_on: ["W5"], status: "PLANNED"}
   F6: {depends_on: ["F5"], status: "PLANNED"}
@@ -362,7 +364,7 @@ dependency_graph:
   W23: {depends_on: ["W22"], status: "PLANNED"}
   W30: {depends_on: ["W29", "W15"], status: "BLOCKED_BY_v1.1_prereqs"}
   W31: {depends_on: ["F6", "W22"], status: "BLOCKED_BY_v1+"}
-  K4: {depends_on: ["K3"], status: "PLANNED"}
+  K4: {depends_on: ["K3"], status: "READY"}
   K5: {depends_on: ["K4"], status: "PLANNED"}
   K6: {depends_on: ["K4"], status: "PLANNED"}
   K11: {depends_on: ["K6"], status: "BLOCKED_BY_v1.1_prereqs"}
@@ -403,10 +405,10 @@ dependency_graph:
   F12: {depends_on: ["W24", "W26"], status: "PLANNED"}
 
   # === Know Internal (sibling repo ../know) ===
-  KI-1: {depends_on: [], status: "PLANNED", note: "Acceptance test triage in know — behavioral gaps documented in test_acceptance.py ACTUAL: comments"}
-  KI-2: {depends_on: [], status: "PLANNED", note: "License reconciliation — README says MIT, pyproject says Proprietary"}
-  KI-3: {depends_on: ["K3"], status: "PLANNED", note: "KnowAdapter expansion — maps expanded MemoryService v2 to KnowledgeBase API. Also introduce typed DTOs (MemoryItem, MemoryLink) in core/contracts/ to replace dict[str, Any] returns (K3 review finding)."}
-  KI-4: {depends_on: ["W19"], status: "PLANNED", note: "Domain atom type registry in know — must support AP/RE custom types"}
+  KI-1: {depends_on: [], status: "READY", note: "Acceptance test triage in know — behavioral gaps documented in test_acceptance.py ACTUAL: comments"}
+  KI-2: {depends_on: [], status: "READY", note: "License reconciliation — README says MIT, pyproject says Proprietary"}
+  KI-3: {depends_on: ["K3"], status: "READY", note: "KnowAdapter expansion — maps expanded MemoryService v2 to KnowledgeBase API. Also introduce typed DTOs (MemoryItem, MemoryLink) in core/contracts/ to replace dict[str, Any] returns (K3 review finding). Sequence after KI-1 to build on clean test foundation."}
+  KI-4: {depends_on: ["W19"], status: "READY", note: "Domain atom type registry in know — must support AP/RE custom types"}
   KI-5: {depends_on: ["KI-3"], status: "PLANNED", note: "JSON→MD atom storage migration evaluation — optional inspectability improvement"}
 
   # === v2 (blocked by v1.2 prereqs) ===
@@ -420,7 +422,8 @@ dependency_graph:
 
 adr_status_snapshot:
   accepted: [ADR-0001, ADR-0002, ADR-0003, ADR-0004, ADR-0005, ADR-0006]
-  proposed_hypothesis: [ADR-0007, ADR-0008, ADR-0009, ADR-0010]
+  proposed_hypothesis: [ADR-0011, ADR-0012]
+  promoted_to_informed_estimate: [ADR-0007, ADR-0008, ADR-0009, ADR-0010]
   newly_logged_decisions_since_roadmap_003: [D-025, D-026, D-027]
 ```
 
@@ -439,7 +442,7 @@ adr_status_snapshot:
 
 - [ ] At least 5 completed intakes with no unresolved Tier-3 blockers.
 - [x] Epistemic Level 0 and calibration path (W29 + W32) operational.
-- [ ] AP and RE v1 bootstrap active with at least one live intake each (**W27 complete; W28 next/ready**).
+- [x] AP and RE v1 bootstrap active with at least one live intake each (**W27 ✅ complete; W28 ✅ complete**).
 - [ ] PK-08 first remote surface available (W31 dependency path started).
 
 ### v1.1 → v1.2
@@ -485,18 +488,19 @@ adr_status_snapshot:
 ## 7. Current Work Item
 
 ```yaml
-next_work_item: W28
-description: "RE domain project bootstrap (RE-01/RE-06) — comparative second-domain validation against W27 gap pattern"
-current_stage: v1 (v1-core complete; W27 complete; validate whether W27 gaps are AP-specific or cross-domain systemic)
-agent_to_invoke: full-cycle
+next_work_item: KI-1
+description: "know acceptance test gap triage + fixes (behavioral discrepancies in test_acceptance.py ACTUAL: comments)"
+current_stage: v1 (v1-core complete; W27/W28/W9/W19/W20/K3/D-SESS-03 complete)
+agent_to_invoke: single-step
 input_artifacts:
-  - docs/USE_CASES.md (RE-01, RE-06 use cases)
-  - docs/architecture/adr/ADR-0008-knowledge-atom-model.md
-  - docs/architecture/adr/ADR-0009-orchestration-protocol.md
-  - state/capture/capture-intake-007.md (next-cycle trigger confirms W28)
-  - state/arch/intake-007-gap-register.md (compare: do RE gaps match AP gaps?)
-validation_goal: "Determine if GAP-001..007 are domain-specific (AP) or systemic (cross-domain). If systemic, K3/W19/W20 priority rises."
-status_hint: READY (W4 + v1-core gate passed + W27 complete)
+  - docs/ROADMAP.md (this file — KI-1/KI-2/KI-3/KI-4 notes)
+  - ../know/tests/test_acceptance.py (read ACTUAL: comments for documented gaps)
+  - ../know/src/know/api.py
+  - ../know/src/know/schema.py
+parallel_candidates:
+  - KI-2: "trivial, zero-dep — run in same session as KI-1"
+  - K4: "medium scope, K3 done — can start full-cycle in main repo"
+status_hint: READY (all dependencies met; KI-1 and KI-2 have no deps)
 ```
 
 ## Appendix A: ROADMAP-002 Change Disposition

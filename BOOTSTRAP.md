@@ -1,5 +1,7 @@
 # nowu Bootstrap — Session Start Routing
 
+> **Default pattern:** Run `work-scheduler` → get `bootstrap` + `context_plan` → start a fresh session using `BOOTSTRAP_lean.md` + the specified altitude bootstrap → load only `context_plan.required_files` (≤6 files).
+>
 > **Choose the bootstrap that matches your work altitude.**
 >
 > For focused work sessions, **start with a skill invocation instead** — see the
@@ -8,7 +10,7 @@
 >
 > For lean follow-up sessions, see `BOOTSTRAP_lean.md`.
 >
-> For full onboarding with maximum context, see `BOOTSTRAP-FULL.md`.
+> For full onboarding with maximum context, see `BOOTSTRAP-FULL.md` — use only for true zero-context onboarding or deep troubleshooting.
 
 ---
 

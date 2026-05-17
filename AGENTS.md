@@ -100,7 +100,7 @@ Canonical mapping of all 35 agents to 5×10 altitude/phase positions. This table
 | **Orchestrator + Meta** | | | | | |
 | roadmap-creator | `.claude/agents/roadmap-creator.md` | Orchestrator milestone | STRATEGIC | IMPLEMENTATION | Frontmatter pre-set; MODEL §8 confirmed. |
 | roadmap-updater | `.claude/agents/roadmap-updater.md` | Orchestrator milestone | STRATEGIC | LEARN | Frontmatter pre-set; MODEL §8 confirmed. |
-| work-scheduler | `.claude/agents/work-scheduler.md` | Orchestrator query | N/A (meta) | N/A (query) | Read-only meta-layer query agent; outside 5×10 grid per MODEL §8. |
+| work-scheduler | `.claude/agents/work-scheduler.md` | Orchestrator query | N/A (meta) | N/A (query) | Read-only meta-layer query agent; outside 5×10 grid per MODEL §8. Outputs next work item plus a lean `context_plan` (bootstrap, required files ≤6, summary bullets, token constraints) for starting a fresh session. Run at session start to get your marching orders. |
 
 ## Import Boundary Rules (Enforced by Test)
 
@@ -186,6 +186,17 @@ Full scoping matrix in `CLAUDE.md` and `docs/WORKFLOW.md`.
 
 These conventions apply to ALL sessions regardless of altitude, phase, or task type.
 
+### Roadmap Sync (After Every Completed Work Item)
+
+When a work item is marked done (S9 capture complete or equivalent):
+- Update `docs/ROADMAP.md` Section 2 (work grid) status to `✅ DONE` with evidence refs.
+- Update Section 4 (dep graph) status to `✅ complete` with evidence.
+- Update Section 7 `next_work_item` to the next READY item.
+- Flip newly-unblocked items from `PLANNED` → `READY` in both Section 2 and Section 4.
+- This is enforced by `nowu-curator` checklist (S9 step); for ad-hoc work done outside S9, update manually.
+
+**If work was done ad-hoc (Sisyphus, manual edits, no S9 curator):** Update `docs/ROADMAP.md` directly — it takes <5 minutes. `work-scheduler` will detect and report any stale items the next time it is run.
+
 ### Artifacts & Metadata
 
 - Every artifact has **YAML frontmatter**: `artifact_type`, `status`, `created_at` at minimum.
@@ -217,6 +228,8 @@ All three must pass before S8 review or any merge.
 - New decisions get the next D-NNN number. New ADRs start at HYPOTHESIS grade.
 
 ### Session Entry (Do NOT Load Everything)
+
+**Default pattern:** Run `work-scheduler` → get `bootstrap` + `context_plan` → start a fresh session using `BOOTSTRAP_lean.md` + the specified altitude bootstrap → load only `context_plan.required_files` (≤6 files).
 
 Start sessions with a **skill invocation** that matches your work type, or read the
 altitude-specific bootstrap (see `BOOTSTRAP.md` routing index):

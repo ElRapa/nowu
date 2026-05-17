@@ -29,4 +29,5 @@
 12. `state/ideas/` — run `ls`              — see what ideas exist
 
 ## Before Proceeding
+If `work-scheduler` provided a `context_plan`, load only its `required_files` and use `summary_bullets` for orientation instead of scanning the repo.
 Verify: ☐ I know nowu's product vision ☐ I know the 5 altitudes and which one I'm in ☐ I know the current roadmap stage ☐ I know the approval tiers. If any unclear, re-read the relevant file above.

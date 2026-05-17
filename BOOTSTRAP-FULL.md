@@ -1,7 +1,8 @@
 # nowu Bootstrap — Full Orientation (Comprehensive)
 
 **Use this for**: True onboarding (zero context), deep troubleshooting, or maximum context load.  
-**For routine work**: Use altitude-specific bootstraps — see `BOOTSTRAP.md` routing index.
+**For routine work**: Use `work-scheduler` → get `context_plan` → start with `BOOTSTRAP_lean.md` + the altitude-specific bootstrap. Load only `context_plan.required_files` (≤6 files).  
+**For altitude-specific work**: Use altitude bootstraps directly — see `BOOTSTRAP.md` routing index.
 
 ---
 
