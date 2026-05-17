@@ -1,0 +1,18 @@
+W20 session-learning verification evidence (2026-05-15)
+
+Created:
+- state/learnings/session-2026-05-15-w20-traceability.md ✅
+
+Updated:
+- state/learnings/INDEX.md (newest-first entry for W20 inserted at top of Entries table) ✅
+
+Session-learning structure checks:
+- YAML frontmatter present with artifact_type/session/created_at/session_type/source_artifacts/purpose ✅
+- Contains sections: What Was Done / Decisions Made / Process Insights / Anti-Patterns / Produced / Next ✅
+- Includes explicit decision on GAP-007 deferral to K12 and scope-boundary rationale ✅
+
+Notepad update:
+- Appended W20 findings to .sisyphus/notepads/v1-roadmap-batch/learnings.md ✅
+
+Status:
+- Session-learning deliverable complete and indexed ✅
