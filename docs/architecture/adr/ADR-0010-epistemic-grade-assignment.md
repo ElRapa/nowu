@@ -3,7 +3,10 @@ id: ADR-0010
 title: Epistemic Grade Assignment & Propagation
 date: 2026-05-07
 status: PROPOSED
-epistemic_grade: HYPOTHESIS
+epistemic_grade: INFORMED_ESTIMATE
+epistemic_grade_previous: HYPOTHESIS
+epistemic_grade_promoted_at: 2026-05-15
+epistemic_grade_promoted_by: W9 ADR promotion pass
 superseded_by: ~
 source_synthesis: SYNTHESIS-001
 source_themes: [T4, T2, T8]
@@ -15,10 +18,12 @@ depends_on: [ADR-0008]
 
 ## Status
 
-PROPOSED (HYPOTHESIS grade) — Derived from SYNTHESIS-001 Theme T4 (Epistemic Awareness).
-Depends on ADR-0008 (atom schema defines where grades live). Will be validated through
-first S1-S9 intake. D-015 establishes the tiered enforcement policy; this ADR defines
-the grade semantics, assignment rules, propagation, and decay.
+PROPOSED (INFORMED_ESTIMATE grade, promoted 2026-05-15) — Derived from SYNTHESIS-001 Theme
+T4 (Epistemic Awareness). Depends on ADR-0008 (atom schema defines where grades live).
+Promoted from HYPOTHESIS after W8/W29/W32 calibration tasks and three intakes (intake-001,
+intake-007, intake-008) confirmed the grade assignment rules, propagation semantics, and
+vocabulary. Residual risk: GAP-007 identifies a decay semantics discrepancy (MEDIUM=90d
+vs know baseline MEDIUM=180d) pending ADR-0010 maintenance. See "## Supporting Evidence".
 
 ## Context
 
@@ -207,3 +212,75 @@ them voluntarily. Automated enforcement comes later.
 - depends_on: ADR-0008
 - depended_on_by: ADR-0007 (continuity state carries grades), ADR-0009 (orchestration
   routes by grade at gates), ADR-0012 (traceability includes grade metadata)
+
+## Supporting Evidence
+
+Grade promoted from HYPOTHESIS to INFORMED_ESTIMATE on 2026-05-15 (W9 ADR promotion pass).
+Promotion rule: D-017 requires ≥2 S1-S9 intakes confirming the hypothesis. Three intakes
+plus W8/W29/W32 calibration tasks confirm the grade assignment rules and vocabulary.
+
+### Evidence from W8/W29/W32 Enforcement Calibration
+
+**Files:** `state/arch/w32-epistemic-calibration.md`, `state/learnings/session-2026-05-14-w8-w29-epistemic-enforcement.md`
+
+- W32 produced per-artifact-type grade thresholds calibrated against W4 (intake-001) actual
+  grades. These thresholds are now canonical in `docs/model/MODEL-REFERENCE.md` §6
+  "Per-Artifact-Type Thresholds (W32 Calibration)". The calibration confirms ADR-0010's
+  assignment rules are internally consistent and map correctly to artifact types.
+- W8+W29 enforcement session confirmed the grade vocabulary (HYPOTHESIS, INFORMED_ESTIMATE,
+  EVIDENCE_BASED) is consistently applicable across workflow artifacts. The session learning
+  file confirms: "6 inconsistencies found" in work grid vs dep graph — identifying
+  grade tracking gaps, not grade model flaws.
+- MODEL-REFERENCE §6 "ADR (hypothesis): Promotes via D-017 (2 intakes → IE; 5 → EB)" —
+  this threshold notation is itself an application of ADR-0010's propagation rules.
+
+**Confirmation:** Grade vocabulary, assignment rules, and per-artifact thresholds calibrated
+and accepted as canonical.
+
+### Evidence from intake-001 (W4 — NF-01 First End-to-End Cycle)
+
+**Files:** `state/intake/intake-001.md`, `state/capture/capture-intake-001.md`
+
+- All artifacts in the W4 cycle carried explicit epistemic grades consistent with ADR-0010's
+  default grades table: intake brief as HYPOTHESIS, decision (D-024) at INFORMED_ESTIMATE,
+  implementation artifacts (changesets) at EVIDENCE_BASED (passing VBR), capture record
+  at EVIDENCE_BASED.
+- `capture-intake-001.md` epistemic_grade: EVIDENCE_BASED — consistent with ADR-0010's
+  rule "Capture grade must equal or exceed review grade (S9 adds no judgment)."
+- The grade assignment was applied voluntarily (Level 0 enforcement) without orchestrator
+  blocking, confirming the rules are followable at v1-core scale.
+
+**Confirmation:** Grade assignment rules followed correctly through a complete S1-S9 cycle.
+
+### Evidence from intake-007 (W27 — AP Domain Bootstrap) and intake-008 (W28 — RE Domain)
+
+**Files:** `state/capture/capture-intake-007.md`, `state/capture/capture-intake-008.md`,
+`state/arch/intake-007-gap-register.md`
+
+- Both domain captures carry `epistemic_grade: EVIDENCE_BASED`, consistent with ADR-0010's
+  S9 rule (Capture inherits review grade; review was INFORMED_ESTIMATE→EVIDENCE_BASED on
+  full review with VBR).
+- **GAP-007** (MEDIUM, from intake-007 gap register): "Decay semantics discrepancy:
+  ADR-0010 specifies `MEDIUM=90d` while know-side implementation baseline is `MEDIUM=180d`."
+  This is a residual risk flagged by the intake evidence. It is a maintenance item requiring
+  reconciliation, not a fundamental flaw in the grade assignment model.
+- `capture-intake-008.md`: "Applying a strict per-gap AP-vs-RE evidence row prevents
+  ambiguous classifications" — this lesson applies ADR-0010's behavioral rule ("flag
+  uncertainty, prefer higher-grade sources").
+
+**Confirmation:** Grade assignment rules applied consistently across AP and RE domain
+sessions. GAP-007 (decay semantics mismatch) is a known residual risk that does NOT
+contradict ADR-0010's core assignment and propagation rules.
+
+### Promotion Justification
+
+D-017 threshold: HYPOTHESIS → INFORMED_ESTIMATE after ≥2 S1-S9 intakes confirming the
+hypothesis. Evidence sources:
+- W32 calibration: grade thresholds calibrated against actual intake data.
+- intake-001: Grade assignment rules followed end-to-end.
+- intake-007 + intake-008: Consistent grade application across two additional domains.
+
+Residual risk: GAP-007 (decay semantics mismatch). The INFORMED_ESTIMATE grade reflects
+this known gap. Resolution requires either: (a) updating ADR-0010 decay table to match
+know baseline, or (b) updating know baseline to match ADR-0010. This is ADR-0010
+maintenance work, not a demotion trigger.

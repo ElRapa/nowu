@@ -3,7 +3,10 @@ id: ADR-0008
 title: Knowledge Atom Model & Lifecycle
 date: 2026-05-07
 status: PROPOSED
-epistemic_grade: HYPOTHESIS
+epistemic_grade: INFORMED_ESTIMATE
+epistemic_grade_previous: HYPOTHESIS
+epistemic_grade_promoted_at: 2026-05-15
+epistemic_grade_promoted_by: W9 ADR promotion pass
 superseded_by: ~
 source_synthesis: SYNTHESIS-001
 source_themes: [T2, T1, T4, T5, T8, T9]
@@ -14,9 +17,12 @@ source_ucs: [PK-01, PK-02, PK-04, PK-05, PK-06, PK-07, PK-09, XP-01, XP-03, XP-0
 
 ## Status
 
-PROPOSED (HYPOTHESIS grade) — Derived from SYNTHESIS-001 Theme T2 (Knowledge Persistence
-& Lifecycle). Will be validated through first S1-S9 intake (W4). Promoted to
-INFORMED_ESTIMATE after 2+ intakes confirm or refine.
+PROPOSED (INFORMED_ESTIMATE grade, promoted 2026-05-15) — Derived from SYNTHESIS-001 Theme
+T2 (Knowledge Persistence & Lifecycle). Promoted from HYPOTHESIS after intake-007 (W27, AP
+domain) and intake-008 (W28, RE domain) confirmed that the knowledge atom model's design is
+sound — both domain bootstraps needed exactly the capabilities ADR-0008 specifies, and the
+capability gaps (GAP-001..007) represent missing implementation, not design contradictions.
+See "## Supporting Evidence" section.
 
 ## Context
 
@@ -210,3 +216,66 @@ is the narrative source of truth; the atoms are the queryable index into that na
 - depended_on_by: ADR-0010 (grades live on atoms), ADR-0007 (session state uses atoms),
   ADR-0011 (domain types extend atoms), ADR-0014 (maturity stages on atoms),
   ADR-0015 (rendering reads atoms)
+
+## Supporting Evidence
+
+Grade promoted from HYPOTHESIS to INFORMED_ESTIMATE on 2026-05-15 (W9 ADR promotion pass).
+Promotion rule: D-017 requires ≥2 S1-S9 intakes confirming the hypothesis. Two domain
+bootstraps (intake-007 and intake-008) now confirm the knowledge atom model's design.
+
+### Evidence from intake-007 (W27 — AP Domain Bootstrap)
+
+**Files:** `state/intake/intake-007.md`, `state/capture/capture-intake-007.md`,
+`state/arch/intake-007-gap-register.md`, `state/arch/intake-007-fit-assessment.md`
+
+- W27 attempted to express AP-domain knowledge (regulatory requirements, formulation
+  versions, business decisions) using the existing nowu workflow and contract surfaces.
+  The result: AP knowledge can be represented in artifacts, but seven structured gaps
+  (GAP-001..007) emerged where the `MemoryService` Protocol does not yet expose the atom
+  capabilities ADR-0008 specifies.
+- **GAP-001** (HIGH): "`MemoryService` has no generic atom CRUD/query surface" — this
+  gap's existence CONFIRMS ADR-0008's model: atoms are the right unit; the implementation
+  simply hasn't caught up.
+- **GAP-002** (HIGH): No relationship/graph traversal — confirms atoms need typed
+  `Connection` relationships as ADR-0008 specifies.
+- **GAP-004** (HIGH): No version-chain semantics — confirms atoms need `supersedes`
+  connections as specified in ADR-0008's `Connection` dataclass.
+- **GAP-005** (MEDIUM): No domain extension model — confirms the `KnowledgeType` extensibility
+  hypothesis in ADR-0008 § "Domain Extensibility".
+- `capture-intake-007.md`: "The cycle demonstrates representational viability in existing
+  nowu artifact structures while explicitly isolating capability gaps to named owners"—
+  the gaps confirm the model, not contradict it.
+- `intake-007.md` context: "W27 validates the workflow against a domain it was not
+  originally built around" — T5 validation confirms domain agnosticism of the atom model.
+
+**Confirmation:** ADR-0008 atom model design confirmed by AP domain evidence. Capability
+gaps are implementation gaps (K3, K9, W19), not design contradictions.
+
+### Evidence from intake-008 (W28 — RE Domain Bootstrap)
+
+**Files:** `state/intake/intake-008.md`, `state/capture/capture-intake-008.md`
+
+- W28 ran the second domain validation (RE domain) and produced a cross-domain gap
+  comparison (`w28-gap-comparison.md`). Key finding from `capture-intake-008.md`: "six of
+  seven gaps recur with equivalent structural impact in AP and RE, indicating systemic
+  platform pressure rather than AP-only edge cases."
+- The 6 systemic gaps (GAP-001, 002, 003, 004, 005, 007) all map to atom capabilities
+  ADR-0008 specifies. Their recurrence across two distinct domains (AP and RE) with
+  "equivalent structural impact" is strong corroborating evidence that ADR-0008 has
+  correctly identified the required capability set.
+- RE-01 (process inventory) and RE-06 (long-horizon investment tracking) confirmed the
+  same atom model needs as AP — typed relationships, versioning, and domain extensibility.
+
+**Confirmation:** Cross-domain recurrence of atom model gaps in both AP and RE strengthens
+confidence that ADR-0008's design is addressing the right problem space.
+
+### Promotion Justification
+
+D-017 threshold: HYPOTHESIS → INFORMED_ESTIMATE after ≥2 S1-S9 intakes confirming the
+hypothesis. Two domain bootstraps confirm:
+- intake-007 (AP): 7 gaps, all pointing to missing atom implementation, not design flaws.
+- intake-008 (RE): 6/7 gaps recur cross-domain, confirming the atom model's scope.
+
+Note: The atom model has not yet been runtime-validated (K3 not implemented). The
+INFORMED_ESTIMATE grade reflects design confirmation from domain evidence; promotion to
+EVIDENCE_BASED requires implementation + usage evidence (per D-017: ≥5 intakes).

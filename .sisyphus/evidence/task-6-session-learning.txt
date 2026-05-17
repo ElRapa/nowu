@@ -1,0 +1,45 @@
+EVIDENCE: Task 6 — Session Learning (W9)
+Generated: 2026-05-15
+
+## Session Learning File
+
+Location: state/learnings/session-2026-05-15-w9-adr-promotion.md
+Status: WRITTEN
+
+## Content Summary
+
+The session learning file covers:
+
+1. **What Was Done**: W9 ADR promotion pass — evaluated ADR-0007..0010 against
+   cumulative intake evidence (intake-001, intake-007, intake-008) and promoted all
+   4 from HYPOTHESIS to INFORMED_ESTIMATE.
+
+2. **Decisions Made**: D-SESS-W9-01: Promote all 4 ADRs simultaneously rather than
+   promoting 1-2 with detailed justification for deferring others.
+
+3. **Process Insights**:
+   - Insight 1: Evidence evaluation requires explicit per-ADR rubric (which intake,
+     which finding, how it confirms/surfaces-risk)
+   - Insight 2: D-017 threshold (2 intakes → IE) was met for all 4 ADRs with existing
+     intake corpus
+   - Insight 3: Residual risks (GAP-007 for ADR-0010, D-024 field divergence for
+     ADR-0007) are maintenance items, not demotion triggers — must be documented in
+     evidence section, not used to block promotion
+
+4. **Anti-Patterns**: Conflating "implementation gap" with "design contradiction"
+   (would have incorrectly blocked ADR-0008 promotion)
+
+5. **What Should Happen Next**:
+   - Resolve GAP-007 decay semantics mismatch in ADR-0010 (MEDIUM priority)
+   - Add Known Limitations note to ADR-0007 per capture-intake-001 follow-on F2
+   - Continue intake accumulation toward ADR EVIDENCE_BASED promotion (need 5 intakes
+     per D-017)
+
+## Index Entry Added
+
+state/learnings/INDEX.md entry added (newest first):
+- Date: 2026-05-15
+- Session: W9 ADR promotion pass
+- Key Learnings: D-017 met for all 4 ADRs; "impl gap ≠ design contradiction" for ADR-0008;
+  Status sections updated without rewriting decision text
+- File: state/learnings/session-2026-05-15-w9-adr-promotion.md
