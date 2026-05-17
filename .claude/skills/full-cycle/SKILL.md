@@ -25,7 +25,7 @@ Those are handled by pre-workflow skills (P0.VISION, P0.UC, P1–P4).
 Read these files to orient before any agent invocation:
 
 - `docs/DECISIONS.md` — binding decisions (D-001 through D-020)
-- `docs/STAGED-PLAN.md` — current roadmap and "What To Do Right Now"
+- `docs/ROADMAP.md` — current roadmap and "What To Do Right Now"
 - `docs/WORKFLOW.md` — S1-S9 reference table and context scoping rules
 - `state/intake/intake-NNN.md` — the intake you're working on
 
@@ -52,7 +52,7 @@ Notes:
 - **Invoke:** `nowu-constraints`
 - **Input:**
   - `state/intake/intake-NNN.md`
-  - `docs/ARCHITECTURE.md`
+  - `docs/architecture/ARCHITECTURE-VISION.md`
   - `docs/DECISIONS.md`
   - Any contracts file (e.g., `core/contracts.py`)
 - **Output:** `state/arch/intake-NNN-constraints.md`
@@ -95,7 +95,7 @@ On approval:
   - `state/arch/intake-NNN-decision.md`
   - File tree of affected modules
   - Test structure
-  - `docs/ROADMAP-003.md`
+  - `docs/ROADMAP.md`
 - **Output:** `state/tasks/task-NNN.md` (1–5 files)
 - **STOP:** agent outputs shaped tasks.
 - **Human gate:** review and approve shaped tasks.
@@ -146,12 +146,12 @@ For each task spec in dependency order:
 - **Input:**
   - `state/reviews/review-task-NNN.md`
   - `docs/DECISIONS.md`
-  - `docs/ROADMAP-003.md`
+  - `docs/ROADMAP.md`
   - `state/session-log.md`
   - `git log`
 - **Outputs:**
   - `state/capture/capture-task-NNN.md`
-  - Updated `docs/ROADMAP-003.md`: work grid + dep graph + Section 7 + dependency cascade
+  - Updated `docs/ROADMAP.md`: work grid + dep graph + Section 7 + dependency cascade
   - Updated `state/session-log.md`: entry + dashboard (milestones, blocked items, current work)
   - Optional updates to `docs/DECISIONS.md`
   - Commit (not just message) on feature branch `feat/{work-item-id}` (D-025)

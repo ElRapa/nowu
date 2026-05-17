@@ -7,7 +7,7 @@
 1. Copy root files: `CLAUDE.md`, `BOOTSTRAP.md`, `BOOTSTRAP_lean.md`, `BOOTSTRAP-STRATEGIC.md`, `BOOTSTRAP-ARCHITECTURE.md`, `BOOTSTRAP-DELIVERY.md`, `BOOTSTRAP-RETROSPECTIVE.md`, `BOOTSTRAP-FULL.md`, `AGENTS.md`
 2. Copy `docs/` directory. Update product-specific content in:
    - `docs/vision.md` (or run `/pre-workflow run 001 --mode Bootstrap`)
-   - `docs/ROADMAP-001.md` (human-authored roadmap)
+   - `docs/ROADMAP.md` (human-authored roadmap)
    - `docs/architecture/containers.md` (adapt to your modules)
    - `docs/DECISIONS.md` (start empty — add D-001 for first architecture decision)
    - `docs/USE_CASES.md` (start with 3-5 core use cases)

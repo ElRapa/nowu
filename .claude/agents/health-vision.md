@@ -23,7 +23,7 @@ report with specific, actionable findings.
 ## Inputs (read only these files)
 
 - docs/vision.md (primary subject, required)
-- docs/STAGED-PLAN.md (current product stage and active work, required)
+- docs/ROADMAP.md (current product stage and active work, required)
 - docs/USE_CASES.md (use case registry for coverage check, if exists)
 - state/problems/ (latest 3 problem files by modified date, if any exist)
 - state/epics/ (active epic files, if any exist)
@@ -31,7 +31,7 @@ report with specific, actionable findings.
 ## What You NEVER Load
 
 - Any source code or test files
-- docs/ARCHITECTURE.md, docs/DECISIONS.md
+- docs/architecture/ARCHITECTURE-VISION.md, docs/DECISIONS.md
 - state/tasks/, state/arch/, state/vbr/, state/reviews/, state/intake/
 - state/capture/, state/stories/ -- not needed for vision health
 

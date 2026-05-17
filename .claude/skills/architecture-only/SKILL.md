@@ -67,12 +67,12 @@ Invoke: `nowu-curator`
 Input:
 - `state/arch/intake-NNN-decision.md`
 - `docs/DECISIONS.md`
-  - `docs/ROADMAP-003.md`
+  - `docs/ROADMAP.md`
   - `state/session-log.md`
 
 Output:
 - `state/capture/capture-intake-NNN.md`
-  - Updated `docs/ROADMAP-003.md` status fields
+  - Updated `docs/ROADMAP.md` status fields
   - Updated `state/session-log.md` entry
 
 Done when:

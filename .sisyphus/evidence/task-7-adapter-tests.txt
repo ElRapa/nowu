@@ -1,0 +1,5 @@
+Bridge adapter test output
+Command: uv run pytest tests/bridge/test_know_adapter.py -q
+
+Output:
+...............                                                          [100%]

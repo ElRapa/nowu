@@ -19,8 +19,7 @@
 
 ### Evidence Gathering (for pattern detection)
 8. `state/tasks/` — run `ls`               — task statuses (for blocked/deferred patterns)
-9. `state/SESSION_STATE.md` (if filled)    — session bookmark (for handoff quality)
-10. `git log --oneline -20`                — recent commits (for drift detection)
+9. `git log --oneline -20`                — recent commits (for drift detection)
 
 ### Tools
 11. `CLAUDE.md`                            — commands (especially /health-check)

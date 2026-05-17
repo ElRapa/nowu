@@ -1,0 +1,7 @@
+...............                                                          [100%]
+
+[mypy]
+Success: no issues found in 2 source files
+
+[ruff]
+All checks passed!

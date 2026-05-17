@@ -1,0 +1,21 @@
+W20 ADR-0012 verification evidence (2026-05-15)
+
+Target file:
+- docs/architecture/adr/ADR-0012-traceability-metadata-standard.md
+
+Frontmatter checks:
+- status: PROPOSED ✅
+- epistemic_grade: HYPOTHESIS ✅
+
+Content checks:
+- NF-09 references: grep count = 12 (>=1 required) ✅
+- GAP-003 references: grep count = 8 (>=1 required) ✅
+- GAP-007/decay/defer references: grep count = 11 (>=2 required) ✅
+
+Constraint checks:
+- Addresses GAP-003 with concrete required evidence-chain fields ✅
+- Notes GAP-007 mismatch and explicitly defers resolution to K12 ✅
+- Preserves ADR-0010 authority for grade/decay semantics (no contradiction introduced) ✅
+
+Status:
+- ADR artifact created and validated against W20 acceptance conditions ✅

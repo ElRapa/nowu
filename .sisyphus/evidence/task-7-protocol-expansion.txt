@@ -1,0 +1,5 @@
+Method count check
+Command: grep "def " "src/nowu/core/contracts/memory.py" | wc -l
+
+Output:
+11

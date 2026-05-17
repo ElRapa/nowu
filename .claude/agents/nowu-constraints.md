@@ -23,7 +23,7 @@ constrain the design space. You do NOT look at source code internals.
 
 Always:
 - state/intake/<active>.md -- the intake brief (READY_FOR_ARCH status)
-- docs/ARCHITECTURE.md -- module map and boundaries
+- docs/architecture/ARCHITECTURE-VISION.md -- module map and boundaries
 - docs/DECISIONS.md -- constraints catalogue (load fully)
 
 If it exists (pre-workflow artifact):
@@ -54,7 +54,7 @@ For public interface inspection only:
 
 - Source file internals (anything beyond __init__.py and contracts/)
 - tests/
-- docs/STAGED-PLAN.md (consumed in S1)
+- docs/ROADMAP.md (consumed in S1)
 - docs/USE_CASES.md (consumed in S1)
 
 ## What You Produce
@@ -81,7 +81,7 @@ Required fields:
 
 If intake introduces a new external actor or system boundary:
   Draft a C4 Level 1 Mermaid diagram and embed in the constraints sheet.
-  Otherwise: reference the existing diagram in ARCHITECTURE.md by section name.
+  Otherwise: reference the existing diagram in architecture/ARCHITECTURE-VISION.md by section name.
 
 ## S2 Conflict Protocol
 

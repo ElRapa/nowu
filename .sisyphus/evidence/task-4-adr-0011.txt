@@ -1,0 +1,18 @@
+W19 ADR-0011 verification evidence
+Date: 2026-05-15
+Branch: feat/W19
+
+Target file:
+- docs/architecture/adr/ADR-0011-domain-extension-model.md
+
+Checks satisfied:
+- Frontmatter present with `status: PROPOSED` and `epistemic_grade: HYPOTHESIS`.
+- Explicitly addresses GAP-003 and GAP-005 (Context + Related sections).
+- Required structure present: Title, Status, Context, Decision, Consequences, Extension Points, AP+RE Examples, Downstream KI-4 Requirements.
+- AP + RE examples included with AP-06 (intake-007) and RE-06 (intake-008).
+- Extension mechanism constrained to bridge/config + `../know` registry; no `core/contracts/` changes proposed.
+- KI-4 requirements include concrete type names and method signatures for registry + decision evidence linking.
+
+Additional validation notes:
+- AP/RE mention count in ADR exceeds minimum threshold (>=4 mentions total).
+- Repository tests executed successfully (`uv run pytest --tb=short -q`).

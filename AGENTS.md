@@ -139,7 +139,7 @@ workflow (S1–S9) and a pre-workflow (P0–P4). **Each step has a dedicated age
 | Pre-workflow spec (P0-P4) | `docs/PRE-WORKFLOW.md` |
 | Binding decisions | `docs/DECISIONS.md` (D-001 through D-020) |
 | ADRs (binding) | `docs/architecture/adr/ADR-0001..0010` |
-| Implementation roadmap | `docs/ROADMAP-001.md` |
+| Implementation roadmap | `docs/ROADMAP.md` |
 | Context scoping table | `CLAUDE.md` (Context Scoping section) |
 | Agent definitions | `.claude/agents/` (32 agents) |
 | Skills (modes) | `.claude/skills/` (full-cycle, implement-loop, single-step, etc.) |
@@ -227,7 +227,7 @@ Use when you are **not yet at an intake brief**.
 
 | Situation | Skill | Mode | Outcome |
 |---|---|---|---|
-| New product / big idea (from zero) | `pre-workflow-runner` | Bootstrap | `docs/vision.md` + `docs/ROADMAP-001.md` + first `intake-NNN` READY_FOR_S1 |
+| New product / big idea (from zero) | `pre-workflow-runner` | Bootstrap | `docs/vision.md` + `docs/ROADMAP.md` + first `intake-NNN` READY_FOR_S1 |
 | New epic on existing product | `pre-workflow-runner` | Full | `problem-NNN`, `epic-NNN`, `story-NNN-*`, `arch-pass-NNN`, `intake-NNN` READY_FOR_S1 |
 | New story on existing epic | `pre-workflow-runner` | Standard | new `story-NNN-*` + `intake-NNN` READY_FOR_S1, no arch pass |
 | Small feature / tweak | `pre-workflow-runner` | Lite | 1-few approved stories + `intake-NNN` READY_FOR_S1 |

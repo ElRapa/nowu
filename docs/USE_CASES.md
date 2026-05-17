@@ -15,9 +15,9 @@ status: ACCEPTED
   (SESSION-STATE.md, V1_PLAN, in_scope_files, state/goals/). Resolved open questions
   now reference decision IDs (D-NNN, ADR-NNNN) instead of filenames per D-023.
 - Removed stale "V1_PLAN step-to-UC traceability" section from v1-core stage mapping.
-  UC-to-implementation traceability is now owned by ROADMAP-003 Section 3 (per D-020).
+  UC-to-implementation traceability is now owned by ROADMAP Section 3 (per D-020).
 - Fixed summary statistics — counts were stale since v2.1 and internally contradictory.
-- Updated Catalog Overview to reflect current stage (W4 per ROADMAP-003).
+- Updated Catalog Overview to reflect current stage (W4 per ROADMAP.md).
 - Removed leftover "Human next steps" section referencing non-existent proposed file.
 - Added NF-15 to v1-core UC list, NF-16 to v1 list, PK-09 to v1.1 list (all were
   added in v2.3–v2.5 but never added to stage UC lists).
@@ -203,7 +203,7 @@ Each use case follows this structure:
   knows — the vision sharpens, the decisions compound, and the knowledge becomes part of the
   product itself. For the multi-project human who loses context easily: nowu is the difference
   between a project that compounds and one that resets.
-- **Current stage:** Stage 1 — v1-core framework. W4 (First S1-S9 intake) is the current work item per ROADMAP-003.
+- **Current stage:** Stage 1 — v1-core framework. W4 (First S1-S9 intake) is the current work item per ROADMAP.md.
 - **Scope of this catalog:**
   - NF group: v1-core framework self-development (NF-01–NF-16; NF-08, NF-11, NF-14 are v1.1; NF-16 is v1)
   - AP, RE groups: v1 dogfooding (minimal 2-3 UCs per project, test nowu on real non-software work)
@@ -1017,7 +1017,7 @@ project within one interaction.
 - PK-01, PK-03
 - XP-01
 
-*For UC-to-work-item traceability, see ROADMAP-003 Section 3 (per D-020).*
+*For UC-to-work-item traceability, see ROADMAP Section 3 (per D-020).*
 
 ---
 

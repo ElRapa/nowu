@@ -36,7 +36,7 @@ artifacts that S2 (Constraints) will refine -- not replace.
 
 - Any file under state/discovery/ or state/epics/
 - Any source code or test files (src/, tests/)
-- docs/STAGED-PLAN.md, docs/USE_CASES.md, docs/ROADMAP-003.md
+- docs/ROADMAP.md, docs/USE_CASES.md, docs/ROADMAP.md
 - state/intake/ (downstream of this step)
 
 ## Mode Detection

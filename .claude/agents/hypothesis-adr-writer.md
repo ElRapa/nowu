@@ -22,7 +22,7 @@ that define typed interfaces, state machines, and protocols.
 
 ## When to Invoke
 
-- STAGED-PLAN has a W3-like task: "Write hypothesis ADRs from SYNTHESIS themes"
+- The staged plan has a W3-like task: "Write hypothesis ADRs from SYNTHESIS themes"
 - SYNTHESIS-001 (or equivalent) exists with identified themes and ADR recommendations
 - Architecture Vision exists with principles, quality attributes, and ADR roadmap
 
