@@ -21,12 +21,12 @@ status: ACTIVE
 ## Status Dashboard
 
 > Last updated: 2026-05-15
-> Source: `docs/ROADMAP-004.md` (v5)
+> Source: `docs/ROADMAP.md` (v5, stable name — was ROADMAP-004.md)
 
 #### Current Position
-- **Stage**: v1 — executing v1 work items; W28/W19/W20/K3/W9 complete on feature branches (pending human merge)
-- **Current Work Item**: Human-gated merges for feat/W28, feat/W19, feat/W20, feat/W9, feat/K3
-- **Next Work Items**: KI-1/KI-2 (know test/license fixes), K4 (session state persistence), W14 (grade promotion workflows)
+- **Stage**: v1 — executing v1 work items; W28/W19/W20/K3/W9 complete and merged to main
+- **Current Work Item**: KI-1/KI-2 (know test/license fixes) or K4 (session state persistence)
+- **Next Work Items**: KI-1/KI-2, K4, W14 (grade promotion workflows)
 
 #### Milestones
 | Milestone | Status | Date |
@@ -45,6 +45,7 @@ status: ACTIVE
 | W29: NF-15 Level 0 Epistemic Enforcement | ✅ Done | 2026-05-14 |
 | W8: Level 1 Advisory Enforcement | ✅ Done | 2026-05-14 |
 | W27: AP Domain Project Bootstrap | ✅ Done | 2026-05-15 |
+| W28: RE Domain Project Bootstrap | ✅ Done | 2026-05-15 |
 | v1-core → v1 Gate | ✅ Passed | 2026-05-15 |
 | ROADMAP-004 | ✅ Done | 2026-05-15 |
 | Know assessment + KI items | ✅ Done | 2026-05-15 |
@@ -56,7 +57,6 @@ status: ACTIVE
 
 #### Blocked Items
 - W11: Level 2 blocking enforcement — READY (W8 complete, v1.1 scope)
-- feat/W28, feat/W19, feat/W20, feat/W9, feat/K3 — awaiting human-gated merge to main
 
 #### Goal Progress
 | Goal | Active UCs | Linked to Epics |

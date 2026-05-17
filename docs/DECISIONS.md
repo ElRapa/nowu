@@ -718,3 +718,40 @@ representability is proven; executable integration deferred to K3/W19.
 ### Review Trigger
 
 After K3 implementation — verify that gap register items are addressed.
+
+---
+
+## D-028 — RE Domain Comparative Bootstrap and Gap Classification
+
+**Date**: 2026-05-15 | **Status**: ACCEPTED | **Level**: system
+**Intake**: intake-008 (W28) | **Use Cases**: RE-01, RE-06
+**Epistemic Grade**: HYPOTHESIS
+**Builds on**: D-027
+
+### Context
+
+W27 delivered AP-domain evidence and documented GAP-001..007 but did not establish whether
+those gaps are AP-specific or cross-domain systemic. ROADMAP-004 positions W28 as the second
+domain validation (RE-01/RE-06) to classify each gap using comparative evidence.
+
+### Decision
+
+Execute W28 as an artifact-only comparative validation run:
+1. Produce RE-01 process inventory evidence and RE-06 decision-tracking evidence.
+2. Classify GAP-001..007 using the rule: **systemic** if equivalent structural impact appears
+   in ≥2 domains (AP and RE), otherwise **domain-specific**.
+3. Do not change `src/` or `tests/`; all outputs remain in `state/` and roadmap/session artifacts.
+
+### Consequences
+
+- **Good**: Produces an explicit cross-domain confidence signal for K3/W19/W20/K9 prioritization.
+- **Good**: Preserves scope discipline and comparability with W27.
+- **Bad**: Still no executable integration proof for contract/runtime surfaces.
+
+### Tradeoff Accepted
+
+Classification rigor and traceability over implementation breadth in this cycle.
+
+### Review Trigger
+
+After K3 and W19 implementation work begins, re-evaluate this classification against runtime evidence.

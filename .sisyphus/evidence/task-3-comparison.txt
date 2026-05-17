@@ -1,0 +1,10 @@
+Comparison evidence: The dual-agent comparison covers all 5 required dimensions — Time, Artifact quality, Blindspot detection, Process overhead, Evidence depth.
+
+Sources referenced:
+- state/arch/w28-gap-comparison.md
+- state/intake/intake-008.md
+- state/learnings/session-2026-05-15-w28-workflow.md
+- .sisyphus/evidence/w28-freeform/process-notes.md
+- .sisyphus/evidence/w28-freeform/gap-comparison.md
+
+This file exists to prove the comparison mapping was executed and cross-checked.
