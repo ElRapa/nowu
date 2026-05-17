@@ -347,5 +347,121 @@ class KnowAdapterTest(unittest.TestCase):
         )
 
 
+@patch("nowu.bridge.know_adapter.know_api.init")
+class ToGradeParseTest(unittest.TestCase):
+    """Edge-case tests for _to_grade defensive parsing (D-SESS-03)."""
+
+    def test_to_grade_returns_speculation_for_none(self, _mock_init: unittest.mock.Mock) -> None:
+        from nowu.bridge.know_adapter import KnowAdapter
+
+        adapter = KnowAdapter()
+        self.assertEqual(adapter._to_grade(None), EpistemicGrade.SPECULATION)
+
+    def test_to_grade_accepts_int(self, _mock_init: unittest.mock.Mock) -> None:
+        from nowu.bridge.know_adapter import KnowAdapter
+
+        adapter = KnowAdapter()
+        self.assertEqual(adapter._to_grade(1), EpistemicGrade(1))
+
+    def test_to_grade_accepts_name_string(self, _mock_init: unittest.mock.Mock) -> None:
+        from nowu.bridge.know_adapter import KnowAdapter
+
+        adapter = KnowAdapter()
+        result = adapter._to_grade("EVIDENCE_BASED")
+        self.assertEqual(result, EpistemicGrade["EVIDENCE_BASED"])
+
+    def test_to_grade_accepts_digit_string(self, _mock_init: unittest.mock.Mock) -> None:
+        from nowu.bridge.know_adapter import KnowAdapter
+
+        adapter = KnowAdapter()
+        result = adapter._to_grade("2")
+        self.assertEqual(result, EpistemicGrade(2))
+
+    def test_to_grade_raises_on_invalid_string(self, _mock_init: unittest.mock.Mock) -> None:
+        from nowu.bridge.know_adapter import KnowAdapter
+
+        adapter = KnowAdapter()
+        with self.assertRaises((KeyError, ValueError)):
+            adapter._to_grade("NOT_A_GRADE")
+
+    def test_to_optional_grade_returns_none_for_none(self, _mock_init: unittest.mock.Mock) -> None:
+        from nowu.bridge.know_adapter import KnowAdapter
+
+        adapter = KnowAdapter()
+        self.assertIsNone(adapter._to_optional_grade(None))
+
+    def test_to_optional_grade_delegates_for_value(self, _mock_init: unittest.mock.Mock) -> None:
+        from nowu.bridge.know_adapter import KnowAdapter
+
+        adapter = KnowAdapter()
+        self.assertEqual(adapter._to_optional_grade("2"), EpistemicGrade(2))
+
+
+@patch("nowu.bridge.know_adapter.know_api.query_atoms")
+@patch("nowu.bridge.know_adapter.know_api.init")
+class QueryAtomsDefensiveTest(unittest.TestCase):
+    """Edge-case tests for query_atoms defensive filter parsing (D-SESS-03)."""
+
+    def test_query_atoms_tags_non_list_raises(
+        self,
+        _mock_init: unittest.mock.Mock,
+        _mock_query: unittest.mock.Mock,
+    ) -> None:
+        from nowu.bridge.know_adapter import KnowAdapter
+
+        adapter = KnowAdapter()
+        with self.assertRaises(ValueError):
+            adapter.query_atoms({"tags": "not-a-list"})
+
+    def test_query_atoms_tags_none_is_accepted(
+        self,
+        _mock_init: unittest.mock.Mock,
+        mock_query: unittest.mock.Mock,
+    ) -> None:
+        from nowu.bridge.know_adapter import KnowAdapter
+
+        mock_query.return_value = []
+        adapter = KnowAdapter()
+        result = adapter.query_atoms({"tags": None})
+        self.assertEqual(result, [])
+
+    def test_query_atoms_invalid_type_raises(
+        self,
+        _mock_init: unittest.mock.Mock,
+        _mock_query: unittest.mock.Mock,
+    ) -> None:
+        from nowu.bridge.know_adapter import KnowAdapter
+
+        adapter = KnowAdapter()
+        with self.assertRaises((KeyError, ValueError)):
+            adapter.query_atoms({"type": "NOT_A_TYPE"})
+
+    def test_query_atoms_offset_defaults_to_zero(
+        self,
+        _mock_init: unittest.mock.Mock,
+        mock_query: unittest.mock.Mock,
+    ) -> None:
+        from nowu.bridge.know_adapter import KnowAdapter
+
+        mock_query.return_value = []
+        adapter = KnowAdapter()
+        adapter.query_atoms({})
+        call_kwargs = mock_query.call_args.kwargs
+        self.assertEqual(call_kwargs.get("offset", 0), 0)
+
+    def test_query_atoms_offset_string_coerced_to_int(
+        self,
+        _mock_init: unittest.mock.Mock,
+        mock_query: unittest.mock.Mock,
+    ) -> None:
+        from nowu.bridge.know_adapter import KnowAdapter
+
+        mock_query.return_value = []
+        adapter = KnowAdapter()
+        adapter.query_atoms({"offset": "5"})
+        call_kwargs = mock_query.call_args.kwargs
+        self.assertEqual(call_kwargs.get("offset"), 5)
+
+
 if __name__ == "__main__":
     unittest.main()

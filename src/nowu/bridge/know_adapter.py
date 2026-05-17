@@ -122,6 +122,10 @@ class KnowAdapter(MemoryService):
         grade_min = filters.get("grade_min")
         grade_max = filters.get("grade_max")
 
+        tags = filters.get("tags")
+        if tags is not None and not isinstance(tags, list):
+            raise ValueError("tags filter must be a list[str]")
+
         atoms = know_api.query_atoms(
             type=KnowledgeType(atom_type) if atom_type else None,
             project=filters.get("project"),
@@ -129,7 +133,7 @@ class KnowAdapter(MemoryService):
             grade_min=self._to_optional_grade(grade_min),
             grade_max=self._to_optional_grade(grade_max),
             importance_min=filters.get("importance_min"),
-            tags=filters.get("tags"),
+            tags=tags,
             keyword=filters.get("keyword"),
             limit=limit,
             offset=int(filters.get("offset", 0)),
@@ -150,11 +154,12 @@ class KnowAdapter(MemoryService):
         return [connection.to_dict() for connection in know_api.get_connections(atom_id)]
 
     def _to_grade(self, grade: str | int | None) -> EpistemicGrade:
-        """Normalize grade to EpistemicGrade enum with safe default."""
         if grade is None:
             return EpistemicGrade.SPECULATION
         if isinstance(grade, int):
             return EpistemicGrade(grade)
+        if grade.isdigit():
+            return EpistemicGrade(int(grade))
         try:
             return EpistemicGrade[grade]
         except KeyError:
